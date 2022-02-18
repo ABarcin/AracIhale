@@ -14,6 +14,8 @@ namespace AracIhale.MODEL.VM
         //Hedebidi
         // Selam 
 
+        // git bash içi dneme yorumu
+
         [Key]
         public int ModelID { get; set; }
 
