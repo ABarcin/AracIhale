@@ -10,7 +10,7 @@ namespace AracIhale.MODEL.VM
 {
     public class ArabaModelVM : BaseVM
     {
-
+        //pog i was here pog
         //Hedebidi
         // Selam 
 
