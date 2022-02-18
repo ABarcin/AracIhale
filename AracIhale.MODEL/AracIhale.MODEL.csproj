@@ -144,6 +144,7 @@
     <Compile Include="Model\Entities\Yetki.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VM\aaa.cs" />
+    <Compile Include="VM\aaaa.cs" />
     <Compile Include="VM\ArabaModelVM.cs" />
     <Compile Include="VM\AracCDListVM.cs" />
     <Compile Include="VM\AracFiyatVM.cs" />
