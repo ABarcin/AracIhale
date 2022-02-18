@@ -10,6 +10,8 @@ namespace AracIhale.MODEL.VM
 {
     public class ArabaModelVM : BaseVM
     {
+        // Selam 
+
         [Key]
         public int ModelID { get; set; }
 
