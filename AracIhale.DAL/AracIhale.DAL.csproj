@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BAD45B94-B823-41D2-A219-0BA73E723CD7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AracIhale.DAL</RootNamespace>
+    <AssemblyName>AracIhale.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Abstract\IArabaModelRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAracFiyatRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAracOzellikRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAracParcaRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAracRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAracStatuRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAracTeklifRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAracTramerDetayRepository.cs" />
+    <Compile Include="Repositories\Abstract\IAracTramerRepository.cs" />
+    <Compile Include="Repositories\Abstract\ICalisanIletisimRepository.cs" />
+    <Compile Include="Repositories\Abstract\ICalisanRepository.cs" />
+    <Compile Include="Repositories\Abstract\IFavoriAramaKriterRepository.cs" />
+    <Compile Include="Repositories\Abstract\IFavoriAramaRepository.cs" />
+    <Compile Include="Repositories\Abstract\IFavoriIlanRepository.cs" />
+    <Compile Include="Repositories\Abstract\IFavoriOzellikRepository.cs" />
+    <Compile Include="Repositories\Abstract\IFirmaIletisimRepository.cs" />
+    <Compile Include="Repositories\Abstract\IFirmaRepository.cs" />
+    <Compile Include="Repositories\Abstract\IFirmaTipRepository.cs" />
+    <Compile Include="Repositories\Abstract\IFotografRepository.cs" />
+    <Compile Include="Repositories\Abstract\IIhaleAracRepository.cs" />
+    <Compile Include="Repositories\Abstract\IIhaleRepository.cs" />
+    <Compile Include="Repositories\Abstract\IIhaleStatuRepository.cs" />
+    <Compile Include="Repositories\Abstract\IIhaleSurecRepository.cs" />
+    <Compile Include="Repositories\Abstract\IIlanRepository.cs" />
+    <Compile Include="Repositories\Abstract\IIlceRepository.cs" />
+    <Compile Include="Repositories\Abstract\IIletisimTurRepository.cs" />
+    <Compile Include="Repositories\Abstract\IKullaniciIletisimRepository.cs" />
+    <Compile Include="Repositories\Abstract\IKullaniciRepository.cs" />
+    <Compile Include="Repositories\Abstract\IKullaniciTipRepository.cs" />
+    <Compile Include="Repositories\Abstract\IKurumsalIhaleRepository.cs" />
+    <Compile Include="Repositories\Abstract\IKurumsalKullaniciRepository.cs" />
+    <Compile Include="Repositories\Abstract\IMarkaRepository.cs" />
+    <Compile Include="Repositories\Abstract\IOzellikBilgiRepository.cs" />
+    <Compile Include="Repositories\Abstract\IOzellikRepository.cs" />
+    <Compile Include="Repositories\Abstract\IPaketRepository.cs" />
+    <Compile Include="Repositories\Abstract\IRepository.cs" />
+    <Compile Include="Repositories\Abstract\IRolRepository.cs" />
+    <Compile Include="Repositories\Abstract\IRolYetkiRepository.cs" />
+    <Compile Include="Repositories\Abstract\ISehirRepository.cs" />
+    <Compile Include="Repositories\Abstract\ISehirIlceRepository.cs" />
+    <Compile Include="Repositories\Abstract\IStatuRepository.cs" />
+    <Compile Include="Repositories\Abstract\IStokRepository.cs" />
+    <Compile Include="Repositories\Abstract\ITramerDetayRepository.cs" />
+    <Compile Include="Repositories\Abstract\IYetkiRepository.cs" />
+    <Compile Include="Repositories\Concrete\ArabaModelRepository.cs" />
+    <Compile Include="Repositories\Concrete\AracFiyatRepository.cs" />
+    <Compile Include="Repositories\Concrete\AracOzellikRepository.cs" />
+    <Compile Include="Repositories\Concrete\AracParcaRepository.cs" />
+    <Compile Include="Repositories\Concrete\AracRepository.cs" />
+    <Compile Include="Repositories\Concrete\AracStatuRepository.cs" />
+    <Compile Include="Repositories\Concrete\AracTeklifRepository.cs" />
+    <Compile Include="Repositories\Concrete\AracTramerDetayRepository.cs" />
+    <Compile Include="Repositories\Concrete\AracTramerRepository.cs" />
+    <Compile Include="Repositories\Concrete\CalisanIletisimRepository.cs" />
+    <Compile Include="Repositories\Concrete\CalisanRepository.cs" />
+    <Compile Include="Repositories\Concrete\FavoriAramaKriterRepository.cs" />
+    <Compile Include="Repositories\Concrete\FavoriAramaRepository.cs" />
+    <Compile Include="Repositories\Concrete\FavoriIlanRepository.cs" />
+    <Compile Include="Repositories\Concrete\FavoriOzellikRepository.cs" />
+    <Compile Include="Repositories\Concrete\FirmaIletisimRepository.cs" />
+    <Compile Include="Repositories\Concrete\FirmaRepository.cs" />
+    <Compile Include="Repositories\Concrete\FirmaTipRepository.cs" />
+    <Compile Include="Repositories\Concrete\FotografRepository.cs" />
+    <Compile Include="Repositories\Concrete\IhaleAracRepository.cs" />
+    <Compile Include="Repositories\Concrete\IhaleRepository.cs" />
+    <Compile Include="Repositories\Concrete\IhaleStatuRepository.cs" />
+    <Compile Include="Repositories\Concrete\IhaleSurecRepository.cs" />
+    <Compile Include="Repositories\Concrete\IlanRepository.cs" />
+    <Compile Include="Repositories\Concrete\IlceRepository.cs" />
+    <Compile Include="Repositories\Concrete\IletisimTurRepository.cs" />
+    <Compile Include="Repositories\Concrete\KullaniciIletisimRepository.cs" />
+    <Compile Include="Repositories\Concrete\KullaniciRepository.cs" />
+    <Compile Include="Repositories\Concrete\KullaniciTipRepository.cs" />
+    <Compile Include="Repositories\Concrete\KurumsalIhaleRepository.cs" />
+    <Compile Include="Repositories\Concrete\KurumsalKullaniciRepository.cs" />
+    <Compile Include="Repositories\Concrete\MarkaRepository.cs" />
+    <Compile Include="Repositories\Concrete\OzellikBilgiRepository.cs" />
+    <Compile Include="Repositories\Concrete\OzellikRepository.cs" />
+    <Compile Include="Repositories\Concrete\PaketRepository.cs" />
+    <Compile Include="Repositories\Concrete\Repository.cs" />
+    <Compile Include="Repositories\Concrete\RolRepository.cs" />
+    <Compile Include="Repositories\Concrete\RolYetkiRepository.cs" />
+    <Compile Include="Repositories\Concrete\SehirIlceRepository.cs" />
+    <Compile Include="Repositories\Concrete\SehirRepository.cs" />
+    <Compile Include="Repositories\Concrete\StatuRepository.cs" />
+    <Compile Include="Repositories\Concrete\StokRepository.cs" />
+    <Compile Include="Repositories\Concrete\TramerDetayRepository.cs" />
+    <Compile Include="Repositories\Concrete\YetkiRepository.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AracIhale.MODEL\AracIhale.MODEL.csproj">
+      <Project>{937B72B3-DDA9-42C5-84C7-BD148DEE4324}</Project>
+      <Name>AracIhale.MODEL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
