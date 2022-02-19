@@ -12,8 +12,7 @@ namespace AracIhale.MODEL.Model.Entities
         public int KurumsalKullaniciID { get; set; }
 
         [Required]
-        [StringLength(25)]
-        public string KullaniciAd { get; set; }
+        public int KullaniciID { get; set; }
 
         public int FirmaID { get; set; }
 

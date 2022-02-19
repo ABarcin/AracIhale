@@ -15,8 +15,12 @@ namespace AracIhale.MODEL.Model.Entities
 
         public int YetkiID { get; set; }
 
+        public int SayfaID { get; set; }
+
         public virtual Rol Rol { get; set; }
 
         public virtual Yetki Yetki { get; set; }
+
+        public virtual Sayfa Sayfa { get; set; }
     }
 }

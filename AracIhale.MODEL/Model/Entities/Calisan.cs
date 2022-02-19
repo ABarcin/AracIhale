@@ -15,11 +15,13 @@ namespace AracIhale.MODEL.Model.Entities
             CalisanIletisim = new HashSet<CalisanIletisim>();
             Ihale = new HashSet<Ihale>();
         }
-
+        [Key]
         public int CalisanID { get; set; }
 
         [Required]
-        [StringLength(25)]
+        [Index(IsUnique = true)]
+        [StringLength(50)]
+        [Column(TypeName = "varchar")]
         public string KullaniciAd { get; set; }
 
         [Required]
