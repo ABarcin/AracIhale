@@ -20,11 +20,13 @@ namespace AracIhale.MODEL.Model.Entities
             KurumsalKullanici = new HashSet<KurumsalKullanici>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int KullaniciID { get; set; }
 
-        [Key]
-        [StringLength(25)]
+        [Required]
+        [Index(IsUnique = true)]
+        [StringLength(50)]
+        [Column(TypeName = "varchar")]
         public string KullaniciAd { get; set; }
 
         public int KullaniciTipID { get; set; }

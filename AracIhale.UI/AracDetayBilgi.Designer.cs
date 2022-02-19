@@ -415,6 +415,7 @@ namespace AracIhale.UI
             this.btnKaydet.TabIndex = 1;
             this.btnKaydet.Text = "Kaydet";
             this.btnKaydet.UseVisualStyleBackColor = true;
+            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
             // 
             // btnIlanBilgileri
             // 
@@ -492,6 +493,7 @@ namespace AracIhale.UI
             this.Controls.Add(this.grpDetayBilgi);
             this.Name = "AracDetayBilgi";
             this.Text = "AracDetayBilgi";
+            this.Load += new System.EventHandler(this.AracDetayBilgi_Load);
             this.grpDetayBilgi.ResumeLayout(false);
             this.grpDetayBilgi.PerformLayout();
             this.grpDetayBilgi2.ResumeLayout(false);

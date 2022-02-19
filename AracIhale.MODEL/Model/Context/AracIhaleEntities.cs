@@ -60,6 +60,8 @@ namespace AracIhale.MODEL.Model.Context
         public virtual DbSet<TramerDetay> TramerDetay { get; set; }
         public virtual DbSet<Yetki> Yetki { get; set; }
         public virtual DbSet<Ekspertiz> Ekspertiz { get; set; }
+        public virtual DbSet<Sayfa> Sayfa { get; set; }
+        public virtual DbSet<Log> Log { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -69,8 +71,7 @@ namespace AracIhale.MODEL.Model.Context
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Arac>()
-                .Property(e => e.KullaniciAd)
-                .IsFixedLength();
+                .Property(e => e.KullaniciID);
 
             modelBuilder.Entity<Arac>()
                 .HasMany(e => e.AracFiyat)
@@ -117,8 +118,7 @@ namespace AracIhale.MODEL.Model.Context
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<AracTeklif>()
-                .Property(e => e.KullaniciAd)
-                .IsFixedLength();
+                .Property(e => e.KullaniciID);
 
             modelBuilder.Entity<AracTeklif>()
                 .Property(e => e.TeklifFiyat)
@@ -148,8 +148,7 @@ namespace AracIhale.MODEL.Model.Context
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<FavoriArama>()
-                .Property(e => e.KullaniciAd)
-                .IsFixedLength();
+                .Property(e => e.KullaniciID);
 
             modelBuilder.Entity<FavoriAramaKriter>()
                 .Property(e => e.BaslangicFiyat)
@@ -170,8 +169,7 @@ namespace AracIhale.MODEL.Model.Context
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<FavoriIlan>()
-                .Property(e => e.KullaniciAd)
-                .IsFixedLength();
+                .Property(e => e.KullaniciID);
 
             modelBuilder.Entity<Firma>()
                 .HasMany(e => e.FirmaIletisim)
@@ -293,8 +291,7 @@ namespace AracIhale.MODEL.Model.Context
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<KullaniciIletisim>()
-                .Property(e => e.KullaniciAd)
-                .IsFixedLength();
+                .Property(e => e.KullaniciID);
 
             modelBuilder.Entity<KullaniciTip>()
                 .HasMany(e => e.Ihale)
@@ -307,8 +304,7 @@ namespace AracIhale.MODEL.Model.Context
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<KurumsalKullanici>()
-                .Property(e => e.KullaniciAd)
-                .IsFixedLength();
+                .Property(e => e.KullaniciID);
 
             modelBuilder.Entity<Marka>()
                 .HasMany(e => e.Arac)
