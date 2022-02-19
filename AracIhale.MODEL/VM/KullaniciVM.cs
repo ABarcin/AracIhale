@@ -13,7 +13,7 @@ namespace AracIhale.MODEL.VM
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // <-----
         public int KullaniciID { get; set; }
 
-        [StringLength(25)]
+        [StringLength(50)]
         public string KullaniciAd { get; set; }
         //kullanıcı adı nvarchar fatih düzeltecek
 
