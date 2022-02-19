@@ -15,7 +15,7 @@ namespace AracIhale.MODEL.Mapping
             return new FavoriIlan()
             {
                 FavoriIlanID = vm.FavoriIlanID,
-                KullaniciAd = vm.KullaniciAd,
+                KullaniciID = vm.KullaniciID,
                 IlanID = vm.IlanID,
                 Tarih = vm.Tarih,
                 IsActive = vm.IsActive,
@@ -31,7 +31,7 @@ namespace AracIhale.MODEL.Mapping
             return new FavoriIlanVM()
             {
                 FavoriIlanID = entity.FavoriIlanID,
-                KullaniciAd = entity.KullaniciAd,
+                KullaniciID = entity.KullaniciID,
                 IlanID = entity.IlanID,
                 Tarih = entity.Tarih,
                 IsActive = entity.IsActive,

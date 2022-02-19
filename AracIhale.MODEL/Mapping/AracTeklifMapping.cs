@@ -16,7 +16,7 @@ namespace AracIhale.MODEL.Mapping
             {
                 AracTeklifID = vm.AracTeklifID,
                 IhaleAracID = vm.IhaleAracID,
-                KullaniciAd = vm.KullaniciAd,
+                KullaniciID = vm.KullaniciID,
                 TeklifFiyat = vm.TeklifFiyat,
                 Tarih = vm.Tarih,
                 IsActive = vm.IsActive,
@@ -32,7 +32,7 @@ namespace AracIhale.MODEL.Mapping
             {
                 AracTeklifID = entity.AracTeklifID,
                 IhaleAracID = entity.IhaleAracID,
-                KullaniciAd = entity.KullaniciAd,
+                KullaniciID = entity.KullaniciID,
                 TeklifFiyat = entity.TeklifFiyat,
                 Tarih = entity.Tarih,
                 IsActive = entity.IsActive,

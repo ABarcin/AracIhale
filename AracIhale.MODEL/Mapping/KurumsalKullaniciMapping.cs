@@ -15,7 +15,7 @@ namespace AracIhale.MODEL.Mapping
             return new KurumsalKullanici()
             {
                 KurumsalKullaniciID = vm.KurumsalKullaniciID,
-                KullaniciAd = vm.KullaniciAd,
+                KullaniciID = vm.KullaniciID,
                 FirmaID = vm.FirmaID,
                 OnayDurum = vm.OnayDurum,
                 IsActive = vm.IsActive,
@@ -31,7 +31,7 @@ namespace AracIhale.MODEL.Mapping
             return new KurumsalKullaniciVM()
             {
                 KurumsalKullaniciID = kurumsalKullanici.KurumsalKullaniciID,
-                KullaniciAd = kurumsalKullanici.KullaniciAd,
+                KullaniciID = kurumsalKullanici.KullaniciID,
                 FirmaID = kurumsalKullanici.FirmaID,
                 OnayDurum = kurumsalKullanici.OnayDurum,
                 IsActive = kurumsalKullanici.IsActive,
