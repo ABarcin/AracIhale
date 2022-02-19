@@ -10,12 +10,6 @@ namespace AracIhale.MODEL.VM
 {
     public class ArabaModelVM : BaseVM
     {
-        //pog i was here pog
-        //Hedebidi
-        // Selam 
-
-        // git bash içi dneme yorumu
-
         [Key]
         public int ModelID { get; set; }
 
