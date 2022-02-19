@@ -16,7 +16,7 @@ namespace AracIhale.MODEL.Mapping
             {
                 KullaniciIletisimID = vm.KullaniciIletisimID,
                 IletisimTuruID = vm.IletisimTuruID,
-                KullaniciAd = vm.KullaniciAd,
+                KullaniciID = vm.KullaniciID,
                 IletisimBilgi = vm.IletisimBilgi,
                 IsActive = vm.IsActive,
                 CreatedBy = vm.CreatedBy,
@@ -32,7 +32,7 @@ namespace AracIhale.MODEL.Mapping
             {
                 KullaniciIletisimID = kullaniciIletisim.KullaniciIletisimID,
                 IletisimTuruID = kullaniciIletisim.IletisimTuruID,
-                KullaniciAd = kullaniciIletisim.KullaniciAd,
+                KullaniciID = kullaniciIletisim.KullaniciID,
                 IletisimBilgi = kullaniciIletisim.IletisimBilgi,
                 IsActive = kullaniciIletisim.IsActive,
                 CreatedBy = kullaniciIletisim.CreatedBy,

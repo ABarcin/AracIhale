@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AracIhale.MODEL.VM
 {
-    public class SayfaVM
+    public class SayfaVM : BaseVM
     {
         [Key]
         public int SayfaID { get; set; }
