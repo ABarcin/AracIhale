@@ -16,7 +16,7 @@ namespace AracIhale.MODEL.Mapping
             {
                 FavoriAramaID = vm.FavoriAramaID,
                 FavoriAramaKriterID = vm.FavoriAramaKriterID,
-                KullaniciAd = vm.KullaniciAd,
+                KullaniciID = vm.KullaniciID,
                 Ad = vm.Ad,
                 IsActive = vm.IsActive,
                 CreatedBy = vm.CreatedBy,

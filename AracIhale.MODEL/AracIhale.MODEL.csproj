@@ -88,6 +88,7 @@
     <Compile Include="Mapping\PaketMapping.cs" />
     <Compile Include="Mapping\RolMapping.cs" />
     <Compile Include="Mapping\RolYetkiMapping.cs" />
+    <Compile Include="Mapping\SayfaMapping.cs" />
     <Compile Include="Mapping\SehirIlceMapping.cs" />
     <Compile Include="Mapping\SehirMapping.cs" />
     <Compile Include="Mapping\StatuMapping.cs" />
@@ -143,7 +144,6 @@
     <Compile Include="Model\Entities\TramerDetay.cs" />
     <Compile Include="Model\Entities\Yetki.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VM\aaa.cs" />
     <Compile Include="VM\ArabaModelVM.cs" />
     <Compile Include="VM\AracCDListVM.cs" />
     <Compile Include="VM\AracFiyatVM.cs" />
@@ -188,6 +188,7 @@
     <Compile Include="VM\PaketVM.cs" />
     <Compile Include="VM\RolVM.cs" />
     <Compile Include="VM\RolYetkiVM.cs" />
+    <Compile Include="VM\SayfaVM.cs" />
     <Compile Include="VM\SehirIlceVM.cs" />
     <Compile Include="VM\SehirVM.cs" />
     <Compile Include="VM\StatuVM.cs" />

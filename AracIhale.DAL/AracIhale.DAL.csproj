@@ -87,6 +87,7 @@
     <Compile Include="Repositories\Abstract\IRepository.cs" />
     <Compile Include="Repositories\Abstract\IRolRepository.cs" />
     <Compile Include="Repositories\Abstract\IRolYetkiRepository.cs" />
+    <Compile Include="Repositories\Abstract\ISayfaRepository.cs" />
     <Compile Include="Repositories\Abstract\ISehirRepository.cs" />
     <Compile Include="Repositories\Abstract\ISehirIlceRepository.cs" />
     <Compile Include="Repositories\Abstract\IStatuRepository.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Repositories\Concrete\Repository.cs" />
     <Compile Include="Repositories\Concrete\RolRepository.cs" />
     <Compile Include="Repositories\Concrete\RolYetkiRepository.cs" />
+    <Compile Include="Repositories\Concrete\SayfaRepository.cs" />
     <Compile Include="Repositories\Concrete\SehirIlceRepository.cs" />
     <Compile Include="Repositories\Concrete\SehirRepository.cs" />
     <Compile Include="Repositories\Concrete\StatuRepository.cs" />

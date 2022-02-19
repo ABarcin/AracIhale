@@ -14,8 +14,7 @@ namespace AracIhale.MODEL.VM
         public int FavoriAramaKriterID { get; set; }
 
         [Required]
-        [StringLength(25)]
-        public string KullaniciAd { get; set; }
+        public int KullaniciID { get; set; }
 
         [Required]
         public string Ad { get; set; }

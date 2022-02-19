@@ -59,6 +59,8 @@ namespace AracIhale.DAL.UnitOfWork
             IlceRepository = new IlceRepository(UnitOfWorkContext);
             SehirIlceRepository = new SehirIlceRepository(UnitOfWorkContext);
             ArabaModelRepository = new ArabaModelRepository(UnitOfWorkContext);
+            SayfaRepository = new SayfaRepository(UnitOfWorkContext);
+
     }
 
         public IAracFiyatRepository AracFiyatRepository { get; private set; }
@@ -146,6 +148,7 @@ namespace AracIhale.DAL.UnitOfWork
         public ISehirIlceRepository SehirIlceRepository { get; private set; }
 
         public IArabaModelRepository ArabaModelRepository { get; private set; }
+        public ISayfaRepository SayfaRepository { get; private set; }
 
         public int Complate()
         {

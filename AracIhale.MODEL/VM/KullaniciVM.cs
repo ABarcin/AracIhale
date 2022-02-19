@@ -15,6 +15,7 @@ namespace AracIhale.MODEL.VM
 
         [StringLength(25)]
         public string KullaniciAd { get; set; }
+        //kullanıcı adı nvarchar fatih düzeltecek
 
         public int KullaniciTipID { get; set; }
 
