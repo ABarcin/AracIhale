@@ -24,7 +24,7 @@ namespace AracIhale.UI
         {
             PrepareForm();
             lstAracListesi.Items.Clear();
-            foreach (AracListAbVM arac in unitOfWork.AracRepository.TumAraclar())
+            foreach (AracListVM arac in unitOfWork.AracRepository.AracListele(secilenMarka,secilenModel,secilenKullaniciTipi,secilenStatu))
             {
                 ListViewItem li = new ListViewItem();
                 li.Text = arac.AracID.ToString();
@@ -32,7 +32,6 @@ namespace AracIhale.UI
                 li.SubItems.Add(arac.ModelAd);
                 li.SubItems.Add(arac.KullaniciTip);
                 li.SubItems.Add(arac.StatuAd);
-                li.SubItems.Add(arac.KullaniciAd);
                 li.SubItems.Add(arac.CreatedDate.ToString());
                 lstAracListesi.Items.Add(li);
             }
@@ -72,7 +71,6 @@ namespace AracIhale.UI
                 li.SubItems.Add(arac.ModelAd);
                 li.SubItems.Add(arac.KullaniciTip);
                 li.SubItems.Add(arac.StatuAd);
-                li.SubItems.Add(arac.KullaniciAd);
                 li.SubItems.Add(arac.CreatedDate.ToString());
                 lstAracListesi.Items.Add(li);
             }
