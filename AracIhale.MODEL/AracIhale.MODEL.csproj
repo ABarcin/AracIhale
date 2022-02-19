@@ -85,6 +85,7 @@
     <Compile Include="Mapping\KullaniciTipMapping.cs" />
     <Compile Include="Mapping\KurumsalIhaleMapping.cs" />
     <Compile Include="Mapping\KurumsalKullaniciMapping.cs" />
+    <Compile Include="Mapping\LogMapping.cs" />
     <Compile Include="Mapping\MarkaMapping.cs" />
     <Compile Include="Mapping\OzellikBilgiMapping.cs" />
     <Compile Include="Mapping\OzellikMapping.cs" />
@@ -152,7 +153,6 @@
     <Compile Include="VM\ArabaModelVM.cs" />
     <Compile Include="VM\AracCDListVM.cs" />
     <Compile Include="VM\AracFiyatVM.cs" />
-    <Compile Include="VM\AracListAbVM.cs" />
     <Compile Include="VM\AracListVM.cs" />
     <Compile Include="VM\AracOzellikVM.cs" />
     <Compile Include="VM\AracParcaVM.cs" />
@@ -187,6 +187,7 @@
     <Compile Include="VM\KullaniciVM.cs" />
     <Compile Include="VM\KurumsalIhaleVM.cs" />
     <Compile Include="VM\KurumsalKullaniciVM.cs" />
+    <Compile Include="VM\LogVM.cs" />
     <Compile Include="VM\MarkaVM.cs" />
     <Compile Include="VM\OzellikBilgiVM.cs" />
     <Compile Include="VM\OzellikVM.cs" />

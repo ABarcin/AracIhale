@@ -13,8 +13,7 @@ namespace AracIhale.MODEL.VM
         public int AracID { get; set; }
 
         [Required]
-        [StringLength(25)]
-        public string KullaniciAd { get; set; }
+        public int KullaniciID { get; set; }
 
         public int MarkaID { get; set; }
 
@@ -22,7 +21,7 @@ namespace AracIhale.MODEL.VM
 
         public int Km { get; set; }
 
-        public DateTime Yıl { get; set; }
+        public DateTime Yil { get; set; }
 
         public virtual ArabaModel ArabaModel { get; set; }
 

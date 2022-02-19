@@ -83,6 +83,7 @@
     <Compile Include="Repositories\Abstract\IKullaniciTipRepository.cs" />
     <Compile Include="Repositories\Abstract\IKurumsalIhaleRepository.cs" />
     <Compile Include="Repositories\Abstract\IKurumsalKullaniciRepository.cs" />
+    <Compile Include="Repositories\Abstract\ILogRepository.cs" />
     <Compile Include="Repositories\Abstract\IMarkaRepository.cs" />
     <Compile Include="Repositories\Abstract\IOzellikBilgiRepository.cs" />
     <Compile Include="Repositories\Abstract\IOzellikRepository.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Repositories\Concrete\KullaniciTipRepository.cs" />
     <Compile Include="Repositories\Concrete\KurumsalIhaleRepository.cs" />
     <Compile Include="Repositories\Concrete\KurumsalKullaniciRepository.cs" />
+    <Compile Include="Repositories\Concrete\LogRepository.cs" />
     <Compile Include="Repositories\Concrete\MarkaRepository.cs" />
     <Compile Include="Repositories\Concrete\OzellikBilgiRepository.cs" />
     <Compile Include="Repositories\Concrete\OzellikRepository.cs" />

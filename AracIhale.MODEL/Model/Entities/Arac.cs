@@ -32,7 +32,7 @@ namespace AracIhale.MODEL.Model.Entities
 
         public int Km { get; set; }
 
-        public DateTime Yıl { get; set; }
+        public DateTime Yil { get; set; }
 
         public virtual ArabaModel ArabaModel { get; set; }
 

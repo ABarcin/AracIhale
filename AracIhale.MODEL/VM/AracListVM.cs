@@ -26,7 +26,6 @@ namespace AracIhale.MODEL.VM
         public string StatuAd { get; set; }
         public int StatuID { get; set; }
         [Required]
-        [StringLength(25)]
-        public string KullaniciAd { get; set; }
+        public int KullaniciID { get; set; }
     }
 }

@@ -15,8 +15,7 @@ namespace AracIhale.MODEL.VM
         public int IhaleAracID { get; set; }
 
         [Required]
-        [StringLength(25)]
-        public string KullaniciAd { get; set; }
+        public int KullaniciID { get; set; }
 
         [Column(TypeName = "money")]
         public decimal TeklifFiyat { get; set; }
