@@ -14,13 +14,14 @@ namespace AracIhale.MODEL.Model.Entities
         public int IhaleAracID { get; set; }
 
         [Required]
-        [StringLength(25)]
-        public string KullaniciAd { get; set; }
+        public int KullaniciID { get; set; }
 
         [Column(TypeName = "money")]
         public decimal TeklifFiyat { get; set; }
 
         public DateTime? Tarih { get; set; }
+
+        public bool? TeklifOnay { get; set; } = false;
 
         public virtual IhaleArac IhaleArac { get; set; }
 
