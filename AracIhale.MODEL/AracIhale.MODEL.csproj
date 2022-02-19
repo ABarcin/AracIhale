@@ -152,7 +152,6 @@
     <Compile Include="VM\ArabaModelVM.cs" />
     <Compile Include="VM\AracCDListVM.cs" />
     <Compile Include="VM\AracFiyatVM.cs" />
-    <Compile Include="VM\AracListAbVM.cs" />
     <Compile Include="VM\AracListVM.cs" />
     <Compile Include="VM\AracOzellikVM.cs" />
     <Compile Include="VM\AracParcaVM.cs" />
