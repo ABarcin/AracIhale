@@ -1,4 +1,5 @@
-﻿using AracIhale.MODEL.VM;
+﻿using AracIhale.MODEL.Model.Entities;
+using AracIhale.MODEL.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
