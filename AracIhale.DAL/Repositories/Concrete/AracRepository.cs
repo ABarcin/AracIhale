@@ -46,11 +46,11 @@ namespace AracIhale.DAL.Repositories.Concrete
             {
                 AracCDListVM aracListVM = new AracCDListVM();
                 aracListVM.AracID = item.AracID;
-                aracListVM.KullaniciAd = item.KullaniciAd;
+                aracListVM.AracID = item.AracID;
                 aracListVM.MarkaID = item.MarkaID;
                 aracListVM.ModelID = item.ModelID;
                 aracListVM.Km = item.Km;
-                aracListVM.Yıl = item.Yıl;
+                aracListVM.Yil = item.Yil;
                 aracListVM.ArabaModel = item.ArabaModel;
                 aracListVM.Kullanici = item.Kullanici;
                 aracListVM.Marka = item.Marka;
@@ -72,35 +72,15 @@ namespace AracIhale.DAL.Repositories.Concrete
                  && y.IsActive == true)
                 .Select(x => new AracListVM
                 {
-                    AracID = x.AracID,
                     MarkaAd = x.Marka.Ad,
                     ModelAd = x.ArabaModel.Ad,
                     KullaniciTip = x.Kullanici.KullaniciTip.Tip,
                     StatuID = x.AracStatu.Where(y=>y.IsActive == true).FirstOrDefault().StatuID,
                     StatuAd = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().Statu.StatuAd,
-                    KullaniciAd = ThisContext.Arac.Where(v => v.AracID == x.AracID).Select(z => z.KullaniciAd).FirstOrDefault(),
                     CreatedDate = x.CreatedDate
                 }).Where(C=>C.StatuID==statu.StatuID).ToList();
 
             return aracList;
-        }
-
-        public List<AracListAbVM> TumAraclar()
-        {
-            List<AracListAbVM> araclar = ThisContext.Arac.Include("ArabaModel").Include("Calisan").Include("Kullanici").Include("Marka").Include("Statu").Include("AracStatu")
-                .Select(x => new AracListAbVM()
-                {
-                    AracID = x.AracID,
-                    MarkaAd = x.Marka.Ad,
-                    ModelAd = x.ArabaModel.Ad,
-                    KullaniciAd = x.KullaniciAd,
-                    KullaniciTip = x.Kullanici.KullaniciTip.Tip,
-                    KaydetmeZamani = x.CreatedDate,
-                    StatuID=x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().StatuID,
-                    StatuAd=x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().Statu.StatuAd
-
-                }).ToList();
-            return araclar;
         }
     }
 }
