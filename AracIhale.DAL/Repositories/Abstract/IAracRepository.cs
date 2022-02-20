@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AracIhale.MODEL.Model.Entities;
@@ -15,6 +16,8 @@ namespace AracIhale.DAL.Repositories.Abstract
         Arac GetAracWithRelationshipByID(int id);
         List<AracCDListVM> GetAracByIhaleID(int id);
         #endregion
-        List<AracListVM> AracListele(MarkaVM marka, ArabaModelVM model, KullaniciTipVM kTip, StatuVM statu);
+
+        List<AracListVM> AracListele(string marka, string model, string kTip, string statu);
+        
     }
 }

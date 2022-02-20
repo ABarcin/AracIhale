@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AracIhale.CORE;
 using AracIhale.DAL.UnitOfWork;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.VM;
@@ -27,28 +28,39 @@ namespace AracIhale.UI
             KullaniciTipComboBoxDoldur();
             IhaleStatuComboBoxDoldur();
             FirmaComboBoxDoldu();
+            DateTimePickerDoldur();
         }
 
+
+
+        Validation validation = new Validation();
         private void btnKaydet_Click(object sender, EventArgs e)
         {
             AracListViewDoldur();
         }
+        private void DateTimePickerDoldur()
+        {
+            dtIhaleBaslangic.Value = DateTime.Now;
+            dtIhaleBitis.Value = DateTime.Now;
+        }
 
         private void AracListViewDoldur()
         {
-            List<AracCDListVM> aracListVMler = unitOfWork.AracRepository.GetAracByIhaleID(1);
-
-            foreach (var item in aracListVMler)
+            if (!validation.IsValidateNull(gbIhaleGenel, errorProvider1, dtIhaleBaslangic, dtIhaleBitis, dtBaslangicSaat, dtBitisSaat))
             {
-                ListViewItem listViewItem = new ListViewItem();
-                listViewItem.Text = item.AracID.ToString();
-                listViewItem.SubItems.Add(item.Marka.Ad);
-                listViewItem.SubItems.Add(item.ArabaModel.Ad);
-                listViewItem.SubItems.Add(item.Kullanici.KullaniciTip.Tip);
+                List<AracCDListVM> aracListVMler = unitOfWork.AracRepository.GetAracByIhaleID(1);
 
-                //listArac.Items.Add(listViewItem);
+                foreach (var item in aracListVMler)
+                {
+                    ListViewItem listViewItem = new ListViewItem();
+                    listViewItem.Text = item.AracID.ToString();
+                    listViewItem.SubItems.Add(item.Marka.Ad);
+                    listViewItem.SubItems.Add(item.ArabaModel.Ad);
+                    listViewItem.SubItems.Add(item.Kullanici.KullaniciTip.Tip);
+
+                    //listArac.Items.Add(listViewItem);
+                }
             }
-
         }
 
         private void KullaniciTipComboBoxDoldur()
