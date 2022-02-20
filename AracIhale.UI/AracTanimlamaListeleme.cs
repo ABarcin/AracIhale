@@ -22,8 +22,9 @@ namespace AracIhale.UI
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
         private void AracTanimlama_Load(object sender, EventArgs e)
         {
-            PrepareForm();
+            
             lstAracListesi.Items.Clear();
+            PrepareForm();
         }
 
 
@@ -33,6 +34,9 @@ namespace AracIhale.UI
             cmbAracMarka.Items.AddRange(unitOfWork.MarkaRepository.TumMarkalar().ToArray());
             cmbKullaniciTipi.Items.AddRange(unitOfWork.KullaniciTipRepository.KullaniciTipListele().ToArray());
             cmbStatu.Items.AddRange(unitOfWork.AracStatuRepository.StatuleriListele().ToArray());
+            FiltrelenenAraclariListele();
+
+
         }
         string secilenMarka;
         string secilenModel;
@@ -101,7 +105,9 @@ namespace AracIhale.UI
 
         private void FiltreleriTemizle()
         {
-            cmbAracMarka.SelectedIndex = cmbAracModel.SelectedIndex = cmbKullaniciTipi.SelectedIndex = cmbStatu.SelectedIndex = -1;
+            cmbAracMarka.SelectedIndex = 0;
+            cmbAracModel.SelectedIndex = cmbKullaniciTipi.SelectedIndex = cmbStatu.SelectedIndex = -1; ;
+            secilenMarka = secilenModel = secilenKullaniciTipi = secilenStatu = null;
             FiltrelenenAraclariListele();
 
         }
