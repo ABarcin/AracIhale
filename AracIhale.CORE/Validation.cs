@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,7 +15,22 @@ namespace AracIhale.CORE
         {
             InitializeLocalValues();
         }
-
+        public bool IsValidateEmail(TextBox textBoxMail,ErrorProvider errorProvider)
+        {
+            bool validate = false;
+            string email = textBoxMail.Text;
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            if (match.Success)
+            {
+                validate = true;
+            }
+            else
+            {
+                errorProvider.SetError(textBoxMail, "Hatalı Mail");
+            }
+            return validate;
+        }
         private void InitializeLocalValues()
         {
             List<Char> tempForbiddenCharacters = new List<char>();
@@ -63,6 +79,7 @@ namespace AracIhale.CORE
             }
             return validate;
         }
+
         public bool IsValidatePhoneNumber(MaskedTextBox maskedText, ErrorProvider errorProvider)
         {
             bool validate = false;

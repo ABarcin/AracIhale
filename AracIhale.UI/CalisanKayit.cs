@@ -100,6 +100,7 @@ namespace AracIhale.UI
             }
             return calisan;
         }
+       
 
         Validation validation;
         UnitOfWork unitOfWork;
@@ -119,7 +120,6 @@ namespace AracIhale.UI
                 errorProvider.SetError(btnKaydet, "Hata");
             }
         }
-
         private void FormuTemizle()
         {
             txtAd.Text = txtKullaniciAdi.Text = txtSifre.Text = txtSifreTekrar.Text = txtSoyad.Text = string.Empty;
@@ -145,7 +145,6 @@ namespace AracIhale.UI
             }
             return dogruMu;
         }
-
         private void listCalisanlar_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listCalisanlar.SelectedItems.Count > 0)
@@ -196,7 +195,6 @@ namespace AracIhale.UI
                 errorProvider.SetError(btnSil, "Hata");
             }
         }
-
         private void txtAd_TextChanged(object sender, EventArgs e)
         {
             errorProvider.Clear();
