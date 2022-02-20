@@ -254,5 +254,67 @@ namespace AracIhale.CORE
             }
             return validate;
         }
+
+
+        public bool IsValidateNull(GroupBox groupBox, ErrorProvider errorProvider, DateTimePicker basTarih, DateTimePicker bitTarih, DateTimePicker basSaat, DateTimePicker bitSaat )
+        {
+            bool validate = true;
+            errorProvider.Clear();
+
+            if (basTarih.Value > bitTarih.Value)
+            {
+                validate = false;
+                Message = "Başlangıç Tarihi Bitiş Tarihinden Sonra Olamaz";
+                errorProvider.SetError(basTarih, Message);
+                errorProvider.SetError(bitTarih, Message);
+            }
+            else if (basSaat.Value.ToShortTimeString() == bitSaat.Value.ToShortTimeString() && basTarih.Value == bitTarih.Value)
+            {
+                validate = false;
+                Message = "Başlangıç saati bitiş saatine eşit olamaz";
+                errorProvider.SetError(basSaat, Message);
+                errorProvider.SetError(bitSaat, Message);
+            }
+            else if (basSaat.Value >= bitSaat.Value && basTarih.Value == bitTarih.Value)
+            {
+                validate = false;
+                Message = "Başlangıç saati bitiş saatinden büyük olamaz";
+                errorProvider.SetError(basSaat, Message);
+                errorProvider.SetError(bitSaat, Message);
+            }
+
+            foreach (Control item in groupBox.Controls)
+            {                
+                TextBox txt = item as TextBox;
+                ComboBox cmb = item as ComboBox;
+                DateTimePicker dt = item as DateTimePicker;
+             
+                if (txt != null)
+                {
+                    
+                    if (string.IsNullOrEmpty(txt.Text))
+                    {
+                        Message = "İhale Adı Giriniz.";
+                        validate = false;
+                        errorProvider.SetError(txt, Message);
+                    }
+                }
+                if (cmb != null)
+                {
+                    if (cmb.SelectedIndex == 0)
+                    {
+                        Message = "Lütfen Bilgileri Doldurun.";
+                        validate = false;
+                        errorProvider.SetError(cmb, Message);
+                    }
+                }                   
+            }
+            return validate;
+        }
+
+        private void DateTimePickerValidate()
+        {
+            
+        }
     }
 }
