@@ -39,7 +39,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<AracParcaVM> ListAracParcaToListAracParcaVM(List<AracParca> list)
         {
-            List<AracParcaVM> AracParcaListVM = null;
+            List<AracParcaVM> AracParcaListVM = new List<AracParcaVM>();
             foreach (AracParca item in list)
             {
                 AracParcaListVM.Add(AracParcaToAracParcaVM(item));
@@ -49,7 +49,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<AracParca> ListAracParcaVMToListAracParca(List<AracParcaVM> listVM)
         {
-            List<AracParca> AracParcaList = null;
+            List<AracParca> AracParcaList = new List<AracParca>();
             foreach (AracParcaVM item in listVM)
             {
                 AracParcaList.Add(AracParcaVMToAracParca(item));

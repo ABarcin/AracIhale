@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +71,12 @@
     </Compile>
     <Compile Include="Anasayfa.Designer.cs">
       <DependentUpon>Anasayfa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTramerBilgileri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTramerBilgileri.Designer.cs">
+      <DependentUpon>frmTramerBilgileri.cs</DependentUpon>
     </Compile>
     <Compile Include="TramerBilgileri.cs">
       <SubType>Form</SubType>
@@ -177,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Anasayfa.resx">
       <DependentUpon>Anasayfa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTramerBilgileri.resx">
+      <DependentUpon>frmTramerBilgileri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TramerBilgileri.resx">
       <DependentUpon>TramerBilgileri.cs</DependentUpon>
