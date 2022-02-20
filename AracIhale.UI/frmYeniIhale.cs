@@ -27,6 +27,7 @@ namespace AracIhale.UI
         {
             ihaleListVM = _ihaleListVM;
             AracListViewDoldur();
+            bilgileriGetir();
         }
 
         private void YeniIhale_Load(object sender, EventArgs e)
@@ -89,6 +90,25 @@ namespace AracIhale.UI
                     MessageBox.Show("İhale güncelleme başarısız");
                 }
             }
+
+        }
+
+        private void bilgileriGetir()
+        {
+            txtIhaleAdi.Text = ihaleListVM.IhaleAdi;
+
+            dtIhaleBaslangic.Value = ihaleListVM.IhaleBaslangic;
+            dtIhaleBitis.Value = ihaleListVM.IhaleBitis;
+
+            DateTime dtBaslangic = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            dtBaslangic = dtBaslangic + ihaleListVM.BaslangicSaat;
+
+            dtBaslangicSaat.Value = dtBaslangic;
+
+            DateTime dtBitis = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            dtBitis = dtBitis + ihaleListVM.BitisSaat;
+
+            dtBitisSaat.Value = dtBitis;
 
         }
 
