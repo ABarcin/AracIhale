@@ -100,6 +100,7 @@ namespace AracIhale.UI
             }
             return calisan;
         }
+       
 
         Validation validation;
         UnitOfWork unitOfWork;

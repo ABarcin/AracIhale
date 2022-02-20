@@ -89,11 +89,11 @@
     <Compile Include="UyeOnay.Designer.cs">
       <DependentUpon>UyeOnay.cs</DependentUpon>
     </Compile>
-    <Compile Include="YonetimPaneli.cs">
+    <Compile Include="frmYonetimPaneli.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="YonetimPaneli.Designer.cs">
-      <DependentUpon>YonetimPaneli.cs</DependentUpon>
+    <Compile Include="frmYonetimPaneli.Designer.cs">
+      <DependentUpon>frmYonetimPaneli.cs</DependentUpon>
     </Compile>
     <Compile Include="AracDetayBilgi.cs">
       <SubType>Form</SubType>
@@ -187,8 +187,8 @@
     <EmbeddedResource Include="UyeOnay.resx">
       <DependentUpon>UyeOnay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="YonetimPaneli.resx">
-      <DependentUpon>YonetimPaneli.cs</DependentUpon>
+    <EmbeddedResource Include="frmYonetimPaneli.resx">
+      <DependentUpon>frmYonetimPaneli.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AracDetayBilgi.resx">
       <DependentUpon>AracDetayBilgi.cs</DependentUpon>

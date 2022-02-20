@@ -51,7 +51,6 @@ namespace AracIhale.DAL.Repositories.Concrete
             }).Where(x=>x.IsActive==true).ToList();
             return calisanlar;
         }
-        //burak
         public List<CalisanVM> CalisanListesiGetir()
         {
             List<CalisanVM> calisanlistesi = new List<CalisanVM>();
@@ -95,6 +94,13 @@ namespace AracIhale.DAL.Repositories.Concrete
         {
             Calisan silinecekCalisan = this.GetByID(id);
             this.SoftRemove(silinecekCalisan);
+        }
+
+        public CalisanVM KullaniciGetir(string kullaniciAdi)
+        {
+            CalisanRepository calisanRepository = new CalisanRepository(ThisContext);
+            Calisan c = calisanRepository.GetAll(x=>x.KullaniciAd==kullaniciAdi).FirstOrDefault();
+            return mapping.CalisanToCalisanVM(c);
         }
     }
 }

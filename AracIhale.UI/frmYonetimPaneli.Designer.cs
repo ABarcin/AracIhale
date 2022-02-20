@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class YonetimPaneli
+    partial class frmYonetimPaneli
     {
         /// <summary>
         /// Required designer variable.
@@ -108,7 +108,6 @@ namespace AracIhale.UI
             this.Controls.Add(this.label1);
             this.Name = "YonetimPaneli";
             this.Text = "Yönetim Paneli";
-            this.Load += new System.EventHandler(this.YonetimPaneli_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
