@@ -15,36 +15,54 @@ namespace AracIhale.UI
 {
     public partial class IhaleListeleme : Form
     {
+        UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
+
         public IhaleListeleme()
         {
             InitializeComponent();
         }
-        UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
+
+        private void IhaleListeleme_Load(object sender, EventArgs e)
+        {
+            PrepareForm();
+            SetDefaultValueAndFillListView();
+        }
+
+        /// <summary>
+        /// Comboboxlarin dolduruldugu metod.
+        /// </summary>
         private void PrepareForm()
         {
+            cmbUyeTipi.Items.Add("Uye Tipi Seciniz");
             cmbUyeTipi.Items.AddRange(unitOfWork.KullaniciTipRepository.KullaniciTipListele().ToArray());
+            cmbStatu.Items.Add("Statu Seciniz");
             cmbStatu.Items.AddRange(unitOfWork.IhaleStatuRepository.StatuleriListele().ToArray());
+
+            cmbUyeTipi.SelectedIndex = 0;
+            cmbStatu.SelectedIndex = 0;
+
         }
-        KullaniciTipVM secilenKullaniciTipi;
-        StatuVM secilenStatu;
+
+        /// <summary>
+        /// Listele butonuna basildiginda gerekli filtrelemelerin
+        /// yapidigi metod.
+        /// </summary>
         private void btnListele_Click(object sender, EventArgs e)
         {
-            if (IsValidate())
-            {
-                secilenKullaniciTipi = cmbUyeTipi.SelectedItem as KullaniciTipVM;
-                secilenStatu = cmbStatu.SelectedItem as StatuVM;
-
-                FiltrelenenIhaleleriListele();
-            }
+            SetDefaultValueAndFillListView();
         }
 
-        private void FiltrelenenIhaleleriListele()
+        /// <summary>
+        /// Listview'a gerekli verilerin eklendigi metod.
+        /// </summary>
+        /// <param name="ihaleListVMs">Gerekli filtrelemelerin yapildigi liste</param>
+        private void FiltrelenenIhaleleriListele(List<IhaleListVM> ihaleListVMs)
         {
             listIhaleler.Items.Clear();
-            foreach (IhaleListVM ihale in unitOfWork.IhaleRepository.IhaleListele(txtIhaleAdi.Text, secilenKullaniciTipi, secilenStatu))
+            foreach (IhaleListVM ihale in ihaleListVMs)
             {
                 ListViewItem li = new ListViewItem();
-                li.Text = ihale.IhaleID.ToString();
+                li.Text = (listIhaleler.Items.Count + 1).ToString();
                 li.SubItems.Add(ihale.IhaleAdi);
                 li.SubItems.Add(ihale.KullaniciTip);
                 li.SubItems.Add(ihale.IhaleBaslangic.ToShortDateString());
@@ -56,20 +74,32 @@ namespace AracIhale.UI
             }
         }
 
-        private bool IsValidate()
+        /// <summary>
+        /// Filtrelemelerin yapildigi ve FiltrelenenIhaleleriListele
+        /// metodunu cagirarak listview'in doldurulmasina katki saglayan metod.
+        /// </summary>
+        private void SetDefaultValueAndFillListView()
         {
-            bool isValidate = false;
+            string ihaleAdi = "";
+            KullaniciTipVM kullaniciTip = null;
+            StatuVM statu = null;
 
-            if (!string.IsNullOrWhiteSpace(txtIhaleAdi.Text) && cmbUyeTipi.SelectedIndex > -1 && cmbStatu.SelectedIndex > -1)
+            if (!string.IsNullOrEmpty(txtIhaleAdi.Text))
             {
-                isValidate = true;
+                ihaleAdi = txtIhaleAdi.Text;
             }
-            return isValidate;
-        }
-        private void IhaleListeleme_Load(object sender, EventArgs e)
-        {
-            PrepareForm();
 
+            if (cmbUyeTipi.SelectedIndex != 0)
+            {
+                kullaniciTip = cmbUyeTipi.SelectedItem as KullaniciTipVM;
+            }
+
+            if(cmbStatu.SelectedIndex != 0)
+            {
+                statu = cmbStatu.SelectedItem as StatuVM;
+            }
+
+            FiltrelenenIhaleleriListele(unitOfWork.IhaleRepository.IhaleListele(ihaleAdi, kullaniciTip, statu));
         }
 
         private void btnYeni_Click(object sender, EventArgs e)

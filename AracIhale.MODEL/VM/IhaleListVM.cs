@@ -15,6 +15,8 @@ namespace AracIhale.MODEL.VM
         [Required]
         public string IhaleAdi { get; set; }
 
+        public int KullaniciTipID { get; set; }
+
         [Required]
         [StringLength(25)]
         public string KullaniciTip { get; set; }
