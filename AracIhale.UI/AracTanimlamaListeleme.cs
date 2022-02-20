@@ -24,24 +24,16 @@ namespace AracIhale.UI
         {
             PrepareForm();
             lstAracListesi.Items.Clear();
-            foreach (AracListVM arac in unitOfWork.AracRepository.AracListele(secilenMarka,secilenModel,secilenKullaniciTipi,secilenStatu))
-            {
-                ListViewItem li = new ListViewItem();
-                li.Text = arac.AracID.ToString();
-                li.SubItems.Add(arac.MarkaAd);
-                li.SubItems.Add(arac.ModelAd);
-                li.SubItems.Add(arac.KullaniciTip);
-                li.SubItems.Add(arac.StatuAd);
-                li.SubItems.Add(arac.CreatedDate.ToString());
-                lstAracListesi.Items.Add(li);
-            }
         }
+
+
 
         private void PrepareForm()
         {
             cmbAracMarka.Items.AddRange(unitOfWork.MarkaRepository.TumMarkalar().ToArray());
             cmbKullaniciTipi.Items.AddRange(unitOfWork.KullaniciTipRepository.KullaniciTipListele().ToArray());
             cmbStatu.Items.AddRange(unitOfWork.AracStatuRepository.StatuleriListele().ToArray());
+            unitOfWork.AracRepository.FiltrelenenAraclariListele(x => x.IsActive == true);
         }
         MarkaVM secilenMarka;
         ArabaModelVM secilenModel;
@@ -55,7 +47,6 @@ namespace AracIhale.UI
                 secilenModel = cmbAracModel.SelectedItem as ArabaModelVM;
                 secilenKullaniciTipi = cmbKullaniciTipi.SelectedItem as KullaniciTipVM;
                 secilenStatu = cmbStatu.SelectedItem as StatuVM;
-
                 FiltrelenenAraclariListele();
             }
         }
@@ -71,7 +62,7 @@ namespace AracIhale.UI
                 li.SubItems.Add(arac.ModelAd);
                 li.SubItems.Add(arac.KullaniciTip);
                 li.SubItems.Add(arac.StatuAd);
-                li.SubItems.Add(arac.CreatedDate.ToString());
+                li.SubItems.Add(arac.KullaniciAd);
                 lstAracListesi.Items.Add(li);
             }
         }
@@ -115,6 +106,11 @@ namespace AracIhale.UI
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
         {
 
         }

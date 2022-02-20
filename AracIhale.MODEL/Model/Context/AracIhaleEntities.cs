@@ -10,7 +10,7 @@ namespace AracIhale.MODEL.Model.Context
     public partial class AracIhaleEntities : DbContext
     {
         public AracIhaleEntities()
-            : base("name=AracIhaleEntities")
+            : base("name = AracIhaleEntities")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }

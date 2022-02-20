@@ -12,7 +12,7 @@ namespace AracIhale.MODEL.VM
         public int CalisanID { get; set; }
 
         [Required]
-        [StringLength(25)]
+        [StringLength(50)]
         public string KullaniciAd { get; set; }
 
         [Required]

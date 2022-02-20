@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AracIhale.DAL.Repositories.Abstract;
@@ -67,18 +68,59 @@ namespace AracIhale.DAL.Repositories.Concrete
         }
         public List<AracListVM> AracListele(MarkaVM marka, ArabaModelVM model, KullaniciTipVM kTip, StatuVM statu)
         {
-            var aracList = ThisContext.Arac.Include("ArabaModel").Include("Calisan").Include("Kullanici").Include("Marka").Include("Statu").Include("AracStatu")
-                .Where(y => y.MarkaID == marka.MarkaID && y.ModelID == model.ModelID && y.Kullanici.KullaniciTip.Tip == kTip.Tip
-                 && y.IsActive == true)
+            //var aracList = ThisContext.Arac.Include("ArabaModel").Include("Calisan").Include("Kullanici").Include("Marka").Include("AracStatu")
+            //    .Where(y => y.MarkaID == marka.MarkaID && y.ModelID == model.ModelID && y.Kullanici.KullaniciTip.Tip == kTip.Tip
+            //     && y.IsActive == true)
+            //    .Select(x => new AracListVM
+            //    {
+            //        MarkaAd = x.Marka.Ad,
+            //        ModelAd = x.ArabaModel.Ad,
+            //        KullaniciTip = x.Kullanici.KullaniciTip.Tip,
+            //        StatuID = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().StatuID,
+            //        StatuAd = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().Statu.StatuAd,
+            //        KullaniciID = x.KullaniciID,
+            //        KullaniciAd = x.Kullanici.KullaniciAd
+            //    }).Where(C => C.StatuID == statu.StatuID).ToList();
+            
+            var aracList = FiltrelenenAraclariListele(y => y.MarkaID == marka.MarkaID && y.ModelID == model.ModelID && y.Kullanici.KullaniciTip.Tip == kTip.Tip
+                  && y.IsActive == true).Where(c=>c.StatuID == statu.StatuID).ToList();
+
+
+            return aracList;
+        }
+        
+        public List<AracListVM> AracListele()
+        {
+            var aracList = ThisContext.Arac.Include("ArabaModel").Include("Calisan").Include("Kullanici").Include("Marka").Include("AracStatu")
+                .Where(y => y.IsActive == true)
                 .Select(x => new AracListVM
                 {
                     MarkaAd = x.Marka.Ad,
                     ModelAd = x.ArabaModel.Ad,
                     KullaniciTip = x.Kullanici.KullaniciTip.Tip,
-                    StatuID = x.AracStatu.Where(y=>y.IsActive == true).FirstOrDefault().StatuID,
+                    StatuID = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().StatuID,
                     StatuAd = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().Statu.StatuAd,
-                    CreatedDate = x.CreatedDate
-                }).Where(C=>C.StatuID==statu.StatuID).ToList();
+                    KullaniciID = x.KullaniciID,
+                    KullaniciAd = x.Kullanici.KullaniciAd
+                }).ToList();
+
+            return aracList;
+        }
+
+        public List<AracListVM> FiltrelenenAraclariListele(Expression<Func<Arac, bool>> expression)
+        {
+            var aracList = ThisContext.Arac
+                .Where(expression)
+                .Select(x=> new AracListVM
+                {
+                    MarkaAd = x.Marka.Ad,
+                    ModelAd = x.ArabaModel.Ad,
+                    KullaniciTip = x.Kullanici.KullaniciTip.Tip,
+                    StatuID = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().StatuID,
+                    StatuAd = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().Statu.StatuAd,
+                    KullaniciID = x.KullaniciID,
+                    KullaniciAd = x.Kullanici.KullaniciAd
+                }).ToList();
 
             return aracList;
         }
