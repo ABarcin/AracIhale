@@ -88,7 +88,7 @@ namespace AracIhale.DAL.Repositories.Concrete
         {
             CalisanRepository calisanRepository = new CalisanRepository(ThisContext);
             Calisan c = calisanRepository.GetByID(id);
-            return mapping.CalisanToCalisanVM(c);
+            return c==null?null: mapping.CalisanToCalisanVM(c);
         }
         public void Sil(object id)
         {
@@ -100,7 +100,7 @@ namespace AracIhale.DAL.Repositories.Concrete
         {
             CalisanRepository calisanRepository = new CalisanRepository(ThisContext);
             Calisan c = calisanRepository.GetAll(x=>x.KullaniciAd==kullaniciAdi).FirstOrDefault();
-            return mapping.CalisanToCalisanVM(c);
+            return c==null? null: mapping.CalisanToCalisanVM(c);
         }
     }
 }

@@ -43,6 +43,10 @@ namespace AracIhale.UI
                         this.Close();
                         errorProvider.Clear();
                     }
+                    else
+                    {
+                        errorProvider.SetError(btnGiris, "Hatalı Kullanıcı Adı Yada Şifre!!!");
+                    }
                 }
                 
                 else
@@ -52,10 +56,14 @@ namespace AracIhale.UI
             }
             else
             {
-                errorProvider.SetError(btnGiris, "Hatalı Kullanıcı Adı Yada Şifre");
+                errorProvider.SetError(btnGiris, "Girdiğiniz Bilgiler Eksik Yada Hatalı");
 
             }
         }
+        /// <summary>
+        /// fomrdan gelen bilgiler kontrol ediliyor
+        /// </summary>
+        /// <returns></returns>
         private bool IsValidate()
         {
             validation = new Validation();
@@ -79,6 +87,20 @@ namespace AracIhale.UI
                 validate = true;
             }
             return validate;
+        }
+        /// <summary>
+        /// şifresini unutan çalışanlar için mail ile şifre alma
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSifre_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            using (frmSifreBul frmSifre = new frmSifreBul())
+            {
+                frmSifre.ShowDialog();
+            }
+            this.Close();
         }
     }
 }
