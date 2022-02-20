@@ -22,42 +22,33 @@ namespace AracIhale.UI
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
         private void AracTanimlama_Load(object sender, EventArgs e)
         {
-            PrepareForm();
+            
             lstAracListesi.Items.Clear();
-            foreach (AracListVM arac in unitOfWork.AracRepository.AracListele(secilenMarka,secilenModel,secilenKullaniciTipi,secilenStatu))
-            {
-                ListViewItem li = new ListViewItem();
-                li.Text = arac.AracID.ToString();
-                li.SubItems.Add(arac.MarkaAd);
-                li.SubItems.Add(arac.ModelAd);
-                li.SubItems.Add(arac.KullaniciTip);
-                li.SubItems.Add(arac.StatuAd);
-                li.SubItems.Add(arac.CreatedDate.ToString());
-                lstAracListesi.Items.Add(li);
-            }
+            PrepareForm();
         }
+
+
 
         private void PrepareForm()
         {
             cmbAracMarka.Items.AddRange(unitOfWork.MarkaRepository.TumMarkalar().ToArray());
             cmbKullaniciTipi.Items.AddRange(unitOfWork.KullaniciTipRepository.KullaniciTipListele().ToArray());
             cmbStatu.Items.AddRange(unitOfWork.AracStatuRepository.StatuleriListele().ToArray());
+            FiltrelenenAraclariListele();
+
+
         }
-        MarkaVM secilenMarka;
-        ArabaModelVM secilenModel;
-        KullaniciTipVM secilenKullaniciTipi;
-        StatuVM secilenStatu;
+        string secilenMarka;
+        string secilenModel;
+        string secilenKullaniciTipi;
+        string secilenStatu;
         private void btnListele_Click(object sender, EventArgs e)
         {
-            if (IsValidate())
-            {
-                secilenMarka = cmbAracMarka.SelectedItem as MarkaVM;
-                secilenModel = cmbAracModel.SelectedItem as ArabaModelVM;
-                secilenKullaniciTipi = cmbKullaniciTipi.SelectedItem as KullaniciTipVM;
-                secilenStatu = cmbStatu.SelectedItem as StatuVM;
-
-                FiltrelenenAraclariListele();
-            }
+            secilenMarka = cmbAracMarka.SelectedItem == null ? null : cmbAracMarka.SelectedItem.ToString();
+            secilenModel = cmbAracModel.SelectedItem == null ? null : cmbAracModel.SelectedItem.ToString();
+            secilenKullaniciTipi = cmbKullaniciTipi.SelectedItem == null ? null : cmbKullaniciTipi.SelectedItem.ToString();
+            secilenStatu = cmbStatu.SelectedItem == null ? null : cmbStatu.SelectedItem.ToString();
+            FiltrelenenAraclariListele();
         }
 
         private void FiltrelenenAraclariListele()
@@ -71,21 +62,9 @@ namespace AracIhale.UI
                 li.SubItems.Add(arac.ModelAd);
                 li.SubItems.Add(arac.KullaniciTip);
                 li.SubItems.Add(arac.StatuAd);
-                li.SubItems.Add(arac.CreatedDate.ToString());
+                li.SubItems.Add(arac.KullaniciAd);
                 lstAracListesi.Items.Add(li);
             }
-        }
-
-        private bool IsValidate()
-        {
-            bool isValidate = false;
-
-            if (cmbAracMarka.SelectedIndex > -1 && cmbAracModel.SelectedIndex > -1 && cmbKullaniciTipi.SelectedIndex > -1
-                && cmbStatu.SelectedIndex > -1)
-            {
-                isValidate = true;
-            }
-            return isValidate;
         }
 
         private void cmbAracMarka_SelectedIndexChanged(object sender, EventArgs e)
@@ -116,6 +95,20 @@ namespace AracIhale.UI
 
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
+        {
+            FiltreleriTemizle();
+        }
+
+        private void FiltreleriTemizle()
+        {
+            cmbAracMarka.SelectedIndex = 0;
+            cmbAracModel.SelectedIndex = cmbKullaniciTipi.SelectedIndex = cmbStatu.SelectedIndex = -1; ;
+            secilenMarka = secilenModel = secilenKullaniciTipi = secilenStatu = null;
+            FiltrelenenAraclariListele();
 
         }
     }
