@@ -15,17 +15,17 @@ using AracIhale.MODEL.VM;
 
 namespace AracIhale.UI
 {
-    public partial class IhaleAracFiyat : Form
+    public partial class frmIhaleAracFiyat : Form
     {
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
         Validation validation = new Validation();
         IhaleListVM ihaleListVM = null;
-        public IhaleAracFiyat()
+        public frmIhaleAracFiyat()
         {
             InitializeComponent();
         }
 
-        public IhaleAracFiyat(IhaleListVM _ihaleListVM) : this()
+        public frmIhaleAracFiyat(IhaleListVM _ihaleListVM) : this()
         {
             ihaleListVM = _ihaleListVM;
         }

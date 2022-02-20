@@ -40,7 +40,7 @@ namespace AracIhale.UI
         private void btnIhaleIslemleri_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (IhaleListeleme ihaleListeleme = new IhaleListeleme())
+            using (frmIhaleListeleme ihaleListeleme = new frmIhaleListeleme())
             {
                 ihaleListeleme.ShowDialog();
             }

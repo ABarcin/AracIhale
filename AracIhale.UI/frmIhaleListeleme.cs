@@ -13,13 +13,13 @@ using System.Windows.Forms;
 
 namespace AracIhale.UI
 {
-    public partial class IhaleListeleme : Form
+    public partial class frmIhaleListeleme : Form
     {
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
 
         IhaleListVM ihaleListVM = null;
 
-        public IhaleListeleme()
+        public frmIhaleListeleme()
         {
             InitializeComponent();
         }
@@ -182,7 +182,7 @@ namespace AracIhale.UI
         private void btnYeni_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (YeniIhale yeniIhale=new YeniIhale())
+            using (frmYeniIhale yeniIhale=new frmYeniIhale())
             {
                 yeniIhale.ShowDialog();
             }
@@ -192,7 +192,7 @@ namespace AracIhale.UI
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (YeniIhale yeniIhale = new YeniIhale(ihaleListVM))
+            using (frmYeniIhale yeniIhale = new frmYeniIhale(ihaleListVM))
             {
                 yeniIhale.ShowDialog();
             }

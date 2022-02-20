@@ -131,17 +131,17 @@
     <Compile Include="CalisanKayit.Designer.cs">
       <DependentUpon>CalisanKayit.cs</DependentUpon>
     </Compile>
-    <Compile Include="IhaleAracFiyat.cs">
+    <Compile Include="frmIhaleAracFiyat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IhaleAracFiyat.Designer.cs">
-      <DependentUpon>IhaleAracFiyat.cs</DependentUpon>
+    <Compile Include="frmIhaleAracFiyat.Designer.cs">
+      <DependentUpon>frmIhaleAracFiyat.cs</DependentUpon>
     </Compile>
-    <Compile Include="IhaleListeleme.cs">
+    <Compile Include="frmIhaleListeleme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IhaleListeleme.Designer.cs">
-      <DependentUpon>IhaleListeleme.cs</DependentUpon>
+    <Compile Include="frmIhaleListeleme.Designer.cs">
+      <DependentUpon>frmIhaleListeleme.cs</DependentUpon>
     </Compile>
     <Compile Include="IlanBilgileri.cs">
       <SubType>Form</SubType>
@@ -163,11 +163,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="YeniIhale.cs">
+    <Compile Include="frmYeniIhale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="YeniIhale.Designer.cs">
-      <DependentUpon>YeniIhale.cs</DependentUpon>
+    <Compile Include="frmYeniIhale.Designer.cs">
+      <DependentUpon>frmYeniIhale.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AdminAnasayfa.resx">
       <DependentUpon>AdminAnasayfa.cs</DependentUpon>
@@ -208,11 +208,11 @@
     <EmbeddedResource Include="CalisanKayit.resx">
       <DependentUpon>CalisanKayit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IhaleAracFiyat.resx">
-      <DependentUpon>IhaleAracFiyat.cs</DependentUpon>
+    <EmbeddedResource Include="frmIhaleAracFiyat.resx">
+      <DependentUpon>frmIhaleAracFiyat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IhaleListeleme.resx">
-      <DependentUpon>IhaleListeleme.cs</DependentUpon>
+    <EmbeddedResource Include="frmIhaleListeleme.resx">
+      <DependentUpon>frmIhaleListeleme.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IlanBilgileri.resx">
       <DependentUpon>IlanBilgileri.cs</DependentUpon>
@@ -232,8 +232,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="YeniIhale.resx">
-      <DependentUpon>YeniIhale.cs</DependentUpon>
+    <EmbeddedResource Include="frmYeniIhale.resx">
+      <DependentUpon>frmYeniIhale.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

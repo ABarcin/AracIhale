@@ -13,17 +13,17 @@ using AracIhale.MODEL.VM;
 
 namespace AracIhale.UI
 {
-    public partial class YeniIhale : Form
+    public partial class frmYeniIhale : Form
     {
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
         IhaleListVM ihaleListVM = null;
 
-        public YeniIhale()
+        public frmYeniIhale()
         {
             InitializeComponent();
         }
 
-        public YeniIhale(IhaleListVM _ihaleListVM) : this()
+        public frmYeniIhale(IhaleListVM _ihaleListVM) : this()
         {
             ihaleListVM = _ihaleListVM;
             AracListViewDoldur();
@@ -143,7 +143,7 @@ namespace AracIhale.UI
         private void btnAracEkle_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (IhaleAracFiyat ihaleAracFiyat=new IhaleAracFiyat(ihaleListVM))
+            using (frmIhaleAracFiyat ihaleAracFiyat=new frmIhaleAracFiyat(ihaleListVM))
             {
                 ihaleAracFiyat.ShowDialog();
             }

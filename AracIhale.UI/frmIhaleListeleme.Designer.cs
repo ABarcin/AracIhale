@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class IhaleListeleme
+    partial class frmIhaleListeleme
     {
         /// <summary>
         /// Required designer variable.

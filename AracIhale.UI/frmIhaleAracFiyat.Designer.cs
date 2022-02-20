@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class IhaleAracFiyat
+    partial class frmIhaleAracFiyat
     {
         /// <summary>
         /// Required designer variable.
