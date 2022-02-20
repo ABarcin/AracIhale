@@ -16,7 +16,7 @@ namespace AracIhale.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new IhaleAracFiyat());
+            Application.Run(new IhaleListeleme());
         }
     }
 }

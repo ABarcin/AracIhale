@@ -17,6 +17,8 @@ namespace AracIhale.UI
     {
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
 
+        IhaleListVM ihaleListVM = null;
+
         public IhaleListeleme()
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace AracIhale.UI
         {
             PrepareForm();
             SetDefaultValueAndFillListView();
+            btnGuncelle.Enabled = false;
         }
 
         /// <summary>
@@ -35,6 +38,7 @@ namespace AracIhale.UI
         {
             cmbUyeTipi.Items.Add("Uye Tipi Seciniz");
             cmbUyeTipi.Items.AddRange(unitOfWork.KullaniciTipRepository.KullaniciTipListele().ToArray());
+            
             cmbStatu.Items.Add("Statu Seciniz");
             cmbStatu.Items.AddRange(unitOfWork.IhaleStatuRepository.StatuleriListele().ToArray());
 
@@ -70,6 +74,8 @@ namespace AracIhale.UI
                 li.SubItems.Add(ihale.IhaleDurum);
                 li.SubItems.Add(ihale.KullaniciAd);
                 li.SubItems.Add(ihale.CreatedDate.ToString());
+                li.Tag = ihale;
+
                 listIhaleler.Items.Add(li);
             }
         }
@@ -99,7 +105,78 @@ namespace AracIhale.UI
                 statu = cmbStatu.SelectedItem as StatuVM;
             }
 
-            FiltrelenenIhaleleriListele(unitOfWork.IhaleRepository.IhaleListele(ihaleAdi, kullaniciTip, statu));
+            List<IhaleListVM> ihaleListVMs = new List<IhaleListVM>();
+
+            IhaleListVM ihale1 = new IhaleListVM() {
+                IhaleID = 1,
+                IhaleAdi = "Gel vatandas gel passat var",
+                KullaniciTipID = 1,
+                CalisanID = 1,
+                KullaniciTip = "Kurumsal",
+                IhaleBaslangic = DateTime.Now,
+                IhaleBitis = DateTime.Now,
+                BaslangicSaat = TimeSpan.Zero,
+                BitisSaat = TimeSpan.Zero,
+                IhaleStatuID = 1,
+                IhaleDurum = "Basladi",
+                KullaniciAd = "JagatayBaba"
+            };
+
+            IhaleListVM ihale2 = new IhaleListVM()
+            {
+                IhaleID = 2,
+                IhaleAdi = "Sıfır hasar mercedes",
+                KullaniciTipID = 2,
+                CalisanID = 1,
+                KullaniciTip = "Bireysel",
+                IhaleBaslangic = DateTime.Now,
+                IhaleBitis = DateTime.Now,
+                BaslangicSaat = TimeSpan.Zero,
+                BitisSaat = TimeSpan.Zero,
+                IhaleStatuID = 2,
+                IhaleDurum = "Bitti",
+                KullaniciAd = "BurakBaba"
+            };
+
+            IhaleListVM ihale3 = new IhaleListVM()
+            {
+                IhaleID = 3,
+                IhaleAdi = "Tank gibi volvo param olsada ben alsam",
+                KullaniciTipID = 2,
+                CalisanID = 1,
+                KullaniciTip = "Bireysel",
+                IhaleBaslangic = DateTime.Now,
+                IhaleBitis = DateTime.Now,
+                BaslangicSaat = TimeSpan.Zero,
+                BitisSaat = TimeSpan.Zero,
+                IhaleStatuID = 1,
+                IhaleDurum = "Basladi",
+                KullaniciAd = "FatihSultanMehmet"
+            };
+
+            IhaleListVM ihale4 = new IhaleListVM()
+            {
+                IhaleID = 4,
+                IhaleAdi = "Cirrrlop gibi BMW",
+                KullaniciTipID = 1,
+                CalisanID = 1,
+                KullaniciTip = "Kurumsal",
+                IhaleBaslangic = DateTime.Now,
+                IhaleBitis = DateTime.Now,
+                BaslangicSaat = TimeSpan.Zero,
+                BitisSaat = TimeSpan.Zero,
+                IhaleStatuID = 1,
+                IhaleDurum = "Basladi",
+                KullaniciAd = "AhmetBarcinn"
+            };
+
+            ihaleListVMs.Add(ihale1);
+            ihaleListVMs.Add(ihale2);
+            ihaleListVMs.Add(ihale3);
+            ihaleListVMs.Add(ihale4);
+
+            //FiltrelenenIhaleleriListele(unitOfWork.IhaleRepository.IhaleListele(ihaleAdi, kullaniciTip, statu));
+            FiltrelenenIhaleleriListele(ihaleListVMs);
         }
 
         private void btnYeni_Click(object sender, EventArgs e)
@@ -110,6 +187,31 @@ namespace AracIhale.UI
                 yeniIhale.ShowDialog();
             }
             this.Show();
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            using (YeniIhale yeniIhale = new YeniIhale(ihaleListVM))
+            {
+                yeniIhale.ShowDialog();
+            }
+            this.Show();
+        }
+
+        private void listIhaleler_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listIhaleler.SelectedItems.Count > 0)
+            {
+                ihaleListVM = listIhaleler.SelectedItems[0].Tag as IhaleListVM;
+
+                if(ihaleListVM != null)
+                {
+                    btnGuncelle.Enabled = true;
+                }
+
+                MessageBox.Show($"'{ihaleListVM.IhaleAdi}' adlı ihale seçildi.");
+            }
         }
     }
 }

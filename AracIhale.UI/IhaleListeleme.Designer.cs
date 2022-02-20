@@ -93,6 +93,7 @@ namespace AracIhale.UI
             this.btnGuncelle.TabIndex = 6;
             this.btnGuncelle.Text = "Güncelle";
             this.btnGuncelle.UseVisualStyleBackColor = false;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
             // 
             // btnYeni
             // 
@@ -134,11 +135,13 @@ namespace AracIhale.UI
             this.listIhaleler.HideSelection = false;
             this.listIhaleler.Location = new System.Drawing.Point(5, 26);
             this.listIhaleler.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listIhaleler.MultiSelect = false;
             this.listIhaleler.Name = "listIhaleler";
             this.listIhaleler.Size = new System.Drawing.Size(973, 233);
             this.listIhaleler.TabIndex = 0;
             this.listIhaleler.UseCompatibleStateImageBehavior = false;
             this.listIhaleler.View = System.Windows.Forms.View.Details;
+            this.listIhaleler.SelectedIndexChanged += new System.EventHandler(this.listIhaleler_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -263,7 +266,7 @@ namespace AracIhale.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 570);
             this.Controls.Add(this.gbIhaleListeleme);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "IhaleListeleme";
             this.Text = "IhaleListeleme";
             this.Load += new System.EventHandler(this.IhaleListeleme_Load);

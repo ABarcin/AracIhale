@@ -19,9 +19,15 @@ namespace AracIhale.UI
     {
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
         Validation validation = new Validation();
+        IhaleListVM ihaleListVM = null;
         public IhaleAracFiyat()
         {
             InitializeComponent();
+        }
+
+        public IhaleAracFiyat(IhaleListVM _ihaleListVM) : this()
+        {
+            ihaleListVM = _ihaleListVM;
         }
 
         private void IhaleAracFiyat_Load(object sender, EventArgs e)
@@ -31,22 +37,30 @@ namespace AracIhale.UI
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-            if (ValidateForm())
+            if(ihaleListVM != null)
             {
-                DialogResult result = MessageBox.Show("Aracı eklemek istediğinize eminmisiniz","",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-
-                if(result == DialogResult.Yes)
+                if (ValidateForm())
                 {
-                    IhaleAracVM ihaleAracVM = new IhaleAracVM();
-                    ihaleAracVM.AracID = (cmbArac.SelectedItem as AracListVM).AracID;
-                    ihaleAracVM.IhaleBaslangicFiyat = decimal.Parse(txtIhaleBaslangicFiyat.Text);
-                    ihaleAracVM.MinAlimFiyati = decimal.Parse(txtIhaleBitisFiyat.Text);
-                    ihaleAracVM.IhaleID = unitOfWork.IhaleRepository.GetAll().LastOrDefault().IhaleID;
+                    DialogResult result = MessageBox.Show("Aracı eklemek istediğinize eminmisiniz", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    unitOfWork.IhaleAracRepository.Add(new IhaleAracMapping().IhaleAracVMToIhaleArac(ihaleAracVM));
-                    unitOfWork.Complate();
-                    Clear();
+                    if (result == DialogResult.Yes)
+                    {
+                        IhaleAracVM ihaleAracVM = new IhaleAracVM();
+                        ihaleAracVM.AracID = (cmbArac.SelectedItem as AracListVM).AracID;
+                        ihaleAracVM.IhaleBaslangicFiyat = decimal.Parse(txtIhaleBaslangicFiyat.Text);
+                        ihaleAracVM.MinAlimFiyati = decimal.Parse(txtIhaleBitisFiyat.Text);
+                        ihaleAracVM.IhaleID = ihaleListVM.IhaleID;
+
+                        unitOfWork.IhaleAracRepository.Add(new IhaleAracMapping().IhaleAracVMToIhaleArac(ihaleAracVM));
+                        unitOfWork.Complate();
+                        Clear();
+                    }
                 }
+            }
+
+            else
+            {
+                MessageBox.Show("İhale seçmediniz. Lütfen ihale listeleme ekranından ihale seçiniz.","",MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
             }
         }
 

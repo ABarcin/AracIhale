@@ -27,11 +27,13 @@ namespace AracIhale.MODEL.VM
 
         [Column(TypeName = "date")]
         public DateTime IhaleBitis { get; set; }
-
+        public TimeSpan BaslangicSaat { get; set; }
+        public TimeSpan BitisSaat { get; set; }
         public int IhaleStatuID { get; set; }
 
         [Required]
         public string IhaleDurum { get; set; }
+        public int CalisanID { get; set; }
         [Required]
         [StringLength(25)]
         public string KullaniciAd { get; set; }

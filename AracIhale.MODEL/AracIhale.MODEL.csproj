@@ -74,6 +74,7 @@
     <Compile Include="Mapping\FirmaTipMapping.cs" />
     <Compile Include="Mapping\FotografMapping.cs" />
     <Compile Include="Mapping\IhaleAracMapping.cs" />
+    <Compile Include="Mapping\IhaleListMapping.cs" />
     <Compile Include="Mapping\IhaleMapping.cs" />
     <Compile Include="Mapping\IhaleStatuMapping.cs" />
     <Compile Include="Mapping\IhaleSurecMapping.cs" />
