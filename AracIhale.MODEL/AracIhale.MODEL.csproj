@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Mapping\ArabaModelMapping.cs" />
     <Compile Include="Mapping\AracFiyatMapping.cs" />
+    <Compile Include="Mapping\AracListMapping.cs" />
     <Compile Include="Mapping\AracMapping.cs" />
     <Compile Include="Mapping\AracOzellikMapping.cs" />
     <Compile Include="Mapping\AracParcaMapping.cs" />

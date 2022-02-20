@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AracIhale.DAL.Repositories.Abstract;
+using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
 using AracIhale.MODEL.VM;
@@ -81,6 +82,13 @@ namespace AracIhale.DAL.Repositories.Concrete
                 }).Where(C=>C.StatuID==statu.StatuID).ToList();
 
             return aracList;
+        }
+
+        public List<AracListVM> AracVMListele()
+        {
+            var aracList = ThisContext.Arac.Include("ArabaModel").Include("Kullanici").Include("Marka").ToList();
+
+            return new AracListMapping().ListAracToListAracVM(aracList);
         }
     }
 }

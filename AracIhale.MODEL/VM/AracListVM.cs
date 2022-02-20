@@ -27,5 +27,10 @@ namespace AracIhale.MODEL.VM
         public int StatuID { get; set; }
         [Required]
         public int KullaniciID { get; set; }
+
+        public override string ToString()
+        {
+            return this.MarkaAd + " " + this.ModelAd;
+        }
     }
 }
