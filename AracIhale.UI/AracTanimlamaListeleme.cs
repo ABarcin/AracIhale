@@ -33,22 +33,18 @@ namespace AracIhale.UI
             cmbAracMarka.Items.AddRange(unitOfWork.MarkaRepository.TumMarkalar().ToArray());
             cmbKullaniciTipi.Items.AddRange(unitOfWork.KullaniciTipRepository.KullaniciTipListele().ToArray());
             cmbStatu.Items.AddRange(unitOfWork.AracStatuRepository.StatuleriListele().ToArray());
-            unitOfWork.AracRepository.FiltrelenenAraclariListele(x => x.IsActive == true);
         }
-        MarkaVM secilenMarka;
-        ArabaModelVM secilenModel;
-        KullaniciTipVM secilenKullaniciTipi;
-        StatuVM secilenStatu;
+        string secilenMarka;
+        string secilenModel;
+        string secilenKullaniciTipi;
+        string secilenStatu;
         private void btnListele_Click(object sender, EventArgs e)
         {
-            if (IsValidate())
-            {
-                secilenMarka = cmbAracMarka.SelectedItem as MarkaVM;
-                secilenModel = cmbAracModel.SelectedItem as ArabaModelVM;
-                secilenKullaniciTipi = cmbKullaniciTipi.SelectedItem as KullaniciTipVM;
-                secilenStatu = cmbStatu.SelectedItem as StatuVM;
-                FiltrelenenAraclariListele();
-            }
+            secilenMarka = cmbAracMarka.SelectedItem == null ? null : cmbAracMarka.SelectedItem.ToString();
+            secilenModel = cmbAracModel.SelectedItem == null ? null : cmbAracModel.SelectedItem.ToString();
+            secilenKullaniciTipi = cmbKullaniciTipi.SelectedItem == null ? null : cmbKullaniciTipi.SelectedItem.ToString();
+            secilenStatu = cmbStatu.SelectedItem == null ? null : cmbStatu.SelectedItem.ToString();
+            FiltrelenenAraclariListele();
         }
 
         private void FiltrelenenAraclariListele()
@@ -65,18 +61,6 @@ namespace AracIhale.UI
                 li.SubItems.Add(arac.KullaniciAd);
                 lstAracListesi.Items.Add(li);
             }
-        }
-
-        private bool IsValidate()
-        {
-            bool isValidate = false;
-
-            if (cmbAracMarka.SelectedIndex > -1 && cmbAracModel.SelectedIndex > -1 && cmbKullaniciTipi.SelectedIndex > -1
-                && cmbStatu.SelectedIndex > -1)
-            {
-                isValidate = true;
-            }
-            return isValidate;
         }
 
         private void cmbAracMarka_SelectedIndexChanged(object sender, EventArgs e)
@@ -112,6 +96,13 @@ namespace AracIhale.UI
 
         private void btnTemizle_Click(object sender, EventArgs e)
         {
+            FiltreleriTemizle();
+        }
+
+        private void FiltreleriTemizle()
+        {
+            cmbAracMarka.SelectedIndex = cmbAracModel.SelectedIndex = cmbKullaniciTipi.SelectedIndex = cmbStatu.SelectedIndex = -1;
+            FiltrelenenAraclariListele();
 
         }
     }

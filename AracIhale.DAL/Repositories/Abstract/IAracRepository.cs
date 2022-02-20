@@ -17,9 +17,7 @@ namespace AracIhale.DAL.Repositories.Abstract
         List<AracCDListVM> GetAracByIhaleID(int id);
         #endregion
 
-        List<AracListVM> AracListele();
-        List<AracListVM> FiltrelenenAraclariListele(Expression<Func<Arac, bool>> expression);
-        List<AracListVM> AracListele(MarkaVM marka, ArabaModelVM model, KullaniciTipVM kTip, StatuVM statu);
+        List<AracListVM> AracListele(string marka, string model, string kTip, string statu);
         
     }
 }
