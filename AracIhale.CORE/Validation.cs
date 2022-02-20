@@ -311,10 +311,5 @@ namespace AracIhale.CORE
             }
             return validate;
         }
-
-        private void DateTimePickerValidate()
-        {
-            
-        }
     }
 }
