@@ -17,5 +17,10 @@ namespace AracIhale.MODEL.VM
         public int? FirmaTipID { get; set; }
 
         public int? PaketID { get; set; }
+
+        public override string ToString()
+        {
+            return Unvan;
+        }
     }
 }

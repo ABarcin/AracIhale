@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AracIhale.DAL.Repositories.Abstract;
+using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
+using AracIhale.MODEL.VM;
 
 namespace AracIhale.DAL.Repositories.Concrete
 {
@@ -15,6 +17,12 @@ namespace AracIhale.DAL.Repositories.Concrete
         public AracFiyatRepository(AracIhaleEntities context) : base(context)
         {
 
+        }
+
+        public void AracFiyatEkle(AracFiyatVM aracFiyatVM)
+        {
+            AracFiyat eklenecekAracFiyat = new AracFiyatMapping().AracFiyatVMToAracFiyat(aracFiyatVM);
+            this.Add(eklenecekAracFiyat);
         }
     }
 }

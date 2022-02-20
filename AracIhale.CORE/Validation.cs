@@ -254,5 +254,47 @@ namespace AracIhale.CORE
             }
             return validate;
         }
+        public bool IsValidateCombobox(List<ComboBox> comboBoxes, ErrorProvider errorProvider)
+        {
+            bool validate = true;
+            errorProvider.Clear();
+            foreach (ComboBox cmb in comboBoxes)
+            {
+                if (cmb.SelectedIndex < 0)
+                {
+                    validate = false;
+                    Message = "Lütfen bir seçim yapınız.";
+                    errorProvider.SetError(cmb, Message);
+                    break;
+                }
+            }
+            return validate;
+        }
+        public bool IsValidateNumericUpDown(NumericUpDown numericUpDown, ErrorProvider errorProvider)
+        {
+            bool validate = true;
+            if (numericUpDown.Value <= 0)
+            {
+                validate = false;
+                Message = "Lütfen geçerli bir sayı giriniz.";
+                errorProvider.SetError(numericUpDown, Message);
+            }
+            return validate;
+        }
+        public bool IsValidateNumericUpDown(List<NumericUpDown> numericUpDowns, ErrorProvider errorProvider)
+        {
+            bool validate = true;
+            foreach (var nm in numericUpDowns)
+            {
+                if (nm.Value <= 0)
+                {
+                    validate = false;
+                    Message = "Lütfen geçerli bir sayı giriniz.";
+                    errorProvider.SetError(nm, Message);
+                    break;
+                }
+            }
+            return validate;
+        }
     }
 }

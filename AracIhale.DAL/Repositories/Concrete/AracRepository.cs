@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AracIhale.DAL.Repositories.Abstract;
+using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
 using AracIhale.MODEL.VM;
@@ -100,6 +101,7 @@ namespace AracIhale.DAL.Repositories.Concrete
                 .Where(x=>x.IsActive == true)
                 .Select(x => new AracListVM
                 {
+                    AracID = x.AracID,
                     MarkaAd = x.Marka.Ad,
                     ModelAd = x.ArabaModel.Ad,
                     KullaniciTip = x.Kullanici.KullaniciTip.Tip,
@@ -110,6 +112,23 @@ namespace AracIhale.DAL.Repositories.Concrete
                 }).ToList();
 
             return aracList;
+        }
+
+        public void AracSil(object id)
+        {
+            Arac silinecekArac = GetByID(id);
+            SoftRemove(silinecekArac);
+        }
+        
+        public void AracEkle(AracVM arac)
+        {
+            Arac eklenecekArac = new AracMapping().AracVMToArac(arac);
+            this.Add(eklenecekArac);
+        }
+
+        public int SonAracIDGetir()
+        {
+            return ThisContext.Arac.OrderByDescending(x => x.AracID).Select(x => x.AracID).FirstOrDefault();
         }
     }
 }

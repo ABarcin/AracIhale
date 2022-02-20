@@ -42,7 +42,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<OzellikBilgiVM> ListOzellikBilgiToListOzellikBilgiVM(List<OzellikBilgi> ozellikBilgiler)
         {
-            List<OzellikBilgiVM> ozellikBilgiVM = null;
+            List<OzellikBilgiVM> ozellikBilgiVM = new List<OzellikBilgiVM>();
             foreach (OzellikBilgi item in ozellikBilgiler)
             {
                 ozellikBilgiVM.Add(OzellikBilgiToOzellikBilgiVM(item));
@@ -51,7 +51,7 @@ namespace AracIhale.MODEL.Mapping
         }
         public List<OzellikBilgi> ListOzellikBilgiVMToListOzellikBilgi(List<OzellikBilgiVM> ozellikBilgiVM)
         {
-            List<OzellikBilgi> ozellikBilgiler = null;
+            List<OzellikBilgi> ozellikBilgiler = new List<OzellikBilgi>();
             foreach (OzellikBilgiVM item in ozellikBilgiVM)
             {
                 ozellikBilgiler.Add(OzellikBilgiVMToOzellikBilgi(item));

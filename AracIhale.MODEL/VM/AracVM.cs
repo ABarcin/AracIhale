@@ -10,7 +10,7 @@ namespace AracIhale.MODEL.VM
 {
     public class AracVM:BaseVM
     {
-        public int AracID { get; set; }
+        //public int AracID { get; set; }
 
         [Required]
         public int KullaniciID { get; set; }
@@ -19,8 +19,8 @@ namespace AracIhale.MODEL.VM
 
         public int ModelID { get; set; }
 
-        public int Km { get; set; }
+        public decimal Km { get; set; }
 
-        public DateTime Yil { get; set; }
+        public int Yil { get; set; }
     }
 }

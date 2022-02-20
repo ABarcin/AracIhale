@@ -1,4 +1,5 @@
 ﻿using AracIhale.MODEL.Model.Entities;
+using AracIhale.MODEL.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace AracIhale.DAL.Repositories.Abstract
 {
     public interface IAracOzellikRepository : IRepository<AracOzellik>
     {
+        void AracOzellikEkle(List<AracOzellikVM> aracOzellikVMs);
     }
 }

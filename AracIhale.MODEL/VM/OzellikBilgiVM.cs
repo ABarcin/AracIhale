@@ -15,5 +15,10 @@ namespace AracIhale.MODEL.VM
         public string OzellikDetay { get; set; }
 
         public int OzellikID { get; set; }
+
+        public override string ToString()
+        {
+            return OzellikDetay;
+        }
     }
 }

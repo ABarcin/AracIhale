@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class AracDetayBilgi
+    partial class frmAracDetayBilgi
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,8 @@ namespace AracIhale.UI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpDetayBilgi = new System.Windows.Forms.GroupBox();
-            this.txtAracFiyat = new System.Windows.Forms.TextBox();
             this.cmbStatu = new System.Windows.Forms.ComboBox();
             this.cmbSirketAdi = new System.Windows.Forms.ComboBox();
             this.cmbKullaniciTipi = new System.Windows.Forms.ComboBox();
@@ -39,7 +39,6 @@ namespace AracIhale.UI
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grpDetayBilgi2 = new System.Windows.Forms.GroupBox();
-            this.txtKMBilgisi = new System.Windows.Forms.TextBox();
             this.cmbDonanim = new System.Windows.Forms.ComboBox();
             this.cmbRenk = new System.Windows.Forms.ComboBox();
             this.cmbVitesTipi = new System.Windows.Forms.ComboBox();
@@ -70,15 +69,21 @@ namespace AracIhale.UI
             this.btnAliciBilgileri = new System.Windows.Forms.Button();
             this.btnKomisyon = new System.Windows.Forms.Button();
             this.btnHemenAlSatis = new System.Windows.Forms.Button();
+            this.nmAracFiyat = new System.Windows.Forms.NumericUpDown();
+            this.nmKMBilgisi = new System.Windows.Forms.NumericUpDown();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpDetayBilgi.SuspendLayout();
             this.grpDetayBilgi2.SuspendLayout();
             this.grpFoto.SuspendLayout();
             this.grpAciklama.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmAracFiyat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmKMBilgisi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // grpDetayBilgi
             // 
-            this.grpDetayBilgi.Controls.Add(this.txtAracFiyat);
+            this.grpDetayBilgi.Controls.Add(this.nmAracFiyat);
             this.grpDetayBilgi.Controls.Add(this.cmbStatu);
             this.grpDetayBilgi.Controls.Add(this.cmbSirketAdi);
             this.grpDetayBilgi.Controls.Add(this.cmbKullaniciTipi);
@@ -93,13 +98,6 @@ namespace AracIhale.UI
             this.grpDetayBilgi.TabStop = false;
             this.grpDetayBilgi.Text = "Araç Detay Bilgileri";
             // 
-            // txtAracFiyat
-            // 
-            this.txtAracFiyat.Location = new System.Drawing.Point(103, 61);
-            this.txtAracFiyat.Name = "txtAracFiyat";
-            this.txtAracFiyat.Size = new System.Drawing.Size(121, 20);
-            this.txtAracFiyat.TabIndex = 3;
-            // 
             // cmbStatu
             // 
             this.cmbStatu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -107,11 +105,12 @@ namespace AracIhale.UI
             this.cmbStatu.Location = new System.Drawing.Point(600, 24);
             this.cmbStatu.Name = "cmbStatu";
             this.cmbStatu.Size = new System.Drawing.Size(121, 21);
-            this.cmbStatu.TabIndex = 2;
+            this.cmbStatu.TabIndex = 3;
             // 
             // cmbSirketAdi
             // 
             this.cmbSirketAdi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSirketAdi.Enabled = false;
             this.cmbSirketAdi.FormattingEnabled = true;
             this.cmbSirketAdi.Location = new System.Drawing.Point(372, 24);
             this.cmbSirketAdi.Name = "cmbSirketAdi";
@@ -125,7 +124,8 @@ namespace AracIhale.UI
             this.cmbKullaniciTipi.Location = new System.Drawing.Point(103, 24);
             this.cmbKullaniciTipi.Name = "cmbKullaniciTipi";
             this.cmbKullaniciTipi.Size = new System.Drawing.Size(121, 21);
-            this.cmbKullaniciTipi.TabIndex = 2;
+            this.cmbKullaniciTipi.TabIndex = 1;
+            this.cmbKullaniciTipi.SelectedIndexChanged += new System.EventHandler(this.cmbKullaniciTipi_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -165,7 +165,7 @@ namespace AracIhale.UI
             // 
             // grpDetayBilgi2
             // 
-            this.grpDetayBilgi2.Controls.Add(this.txtKMBilgisi);
+            this.grpDetayBilgi2.Controls.Add(this.nmKMBilgisi);
             this.grpDetayBilgi2.Controls.Add(this.cmbDonanim);
             this.grpDetayBilgi2.Controls.Add(this.cmbRenk);
             this.grpDetayBilgi2.Controls.Add(this.cmbVitesTipi);
@@ -192,13 +192,6 @@ namespace AracIhale.UI
             this.grpDetayBilgi2.TabStop = false;
             this.grpDetayBilgi2.Text = "Araç Detay Bilgileri";
             // 
-            // txtKMBilgisi
-            // 
-            this.txtKMBilgisi.Location = new System.Drawing.Point(103, 156);
-            this.txtKMBilgisi.Name = "txtKMBilgisi";
-            this.txtKMBilgisi.Size = new System.Drawing.Size(121, 20);
-            this.txtKMBilgisi.TabIndex = 3;
-            // 
             // cmbDonanim
             // 
             this.cmbDonanim.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -206,7 +199,7 @@ namespace AracIhale.UI
             this.cmbDonanim.Location = new System.Drawing.Point(600, 115);
             this.cmbDonanim.Name = "cmbDonanim";
             this.cmbDonanim.Size = new System.Drawing.Size(121, 21);
-            this.cmbDonanim.TabIndex = 2;
+            this.cmbDonanim.TabIndex = 13;
             // 
             // cmbRenk
             // 
@@ -215,7 +208,7 @@ namespace AracIhale.UI
             this.cmbRenk.Location = new System.Drawing.Point(372, 115);
             this.cmbRenk.Name = "cmbRenk";
             this.cmbRenk.Size = new System.Drawing.Size(121, 21);
-            this.cmbRenk.TabIndex = 2;
+            this.cmbRenk.TabIndex = 12;
             // 
             // cmbVitesTipi
             // 
@@ -224,7 +217,7 @@ namespace AracIhale.UI
             this.cmbVitesTipi.Location = new System.Drawing.Point(600, 69);
             this.cmbVitesTipi.Name = "cmbVitesTipi";
             this.cmbVitesTipi.Size = new System.Drawing.Size(121, 21);
-            this.cmbVitesTipi.TabIndex = 2;
+            this.cmbVitesTipi.TabIndex = 10;
             // 
             // cmbYakitTipi
             // 
@@ -233,7 +226,7 @@ namespace AracIhale.UI
             this.cmbYakitTipi.Location = new System.Drawing.Point(372, 69);
             this.cmbYakitTipi.Name = "cmbYakitTipi";
             this.cmbYakitTipi.Size = new System.Drawing.Size(121, 21);
-            this.cmbYakitTipi.TabIndex = 2;
+            this.cmbYakitTipi.TabIndex = 9;
             // 
             // cmbVersiyon
             // 
@@ -242,7 +235,7 @@ namespace AracIhale.UI
             this.cmbVersiyon.Location = new System.Drawing.Point(103, 115);
             this.cmbVersiyon.Name = "cmbVersiyon";
             this.cmbVersiyon.Size = new System.Drawing.Size(121, 21);
-            this.cmbVersiyon.TabIndex = 2;
+            this.cmbVersiyon.TabIndex = 11;
             // 
             // cmbAracYil
             // 
@@ -251,7 +244,7 @@ namespace AracIhale.UI
             this.cmbAracYil.Location = new System.Drawing.Point(600, 24);
             this.cmbAracYil.Name = "cmbAracYil";
             this.cmbAracYil.Size = new System.Drawing.Size(121, 21);
-            this.cmbAracYil.TabIndex = 2;
+            this.cmbAracYil.TabIndex = 7;
             // 
             // label14
             // 
@@ -269,7 +262,7 @@ namespace AracIhale.UI
             this.cmbGovdeTipi.Location = new System.Drawing.Point(103, 69);
             this.cmbGovdeTipi.Name = "cmbGovdeTipi";
             this.cmbGovdeTipi.Size = new System.Drawing.Size(121, 21);
-            this.cmbGovdeTipi.TabIndex = 2;
+            this.cmbGovdeTipi.TabIndex = 8;
             // 
             // label13
             // 
@@ -287,7 +280,7 @@ namespace AracIhale.UI
             this.cmbAracModel.Location = new System.Drawing.Point(372, 24);
             this.cmbAracModel.Name = "cmbAracModel";
             this.cmbAracModel.Size = new System.Drawing.Size(121, 21);
-            this.cmbAracModel.TabIndex = 2;
+            this.cmbAracModel.TabIndex = 6;
             // 
             // label10
             // 
@@ -314,7 +307,8 @@ namespace AracIhale.UI
             this.cmbAracMarka.Location = new System.Drawing.Point(103, 24);
             this.cmbAracMarka.Name = "cmbAracMarka";
             this.cmbAracMarka.Size = new System.Drawing.Size(121, 21);
-            this.cmbAracMarka.TabIndex = 2;
+            this.cmbAracMarka.TabIndex = 5;
+            this.cmbAracMarka.SelectedIndexChanged += new System.EventHandler(this.cmbAracMarka_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -404,7 +398,7 @@ namespace AracIhale.UI
             this.txtAciklama.Location = new System.Drawing.Point(6, 19);
             this.txtAciklama.Name = "txtAciklama";
             this.txtAciklama.Size = new System.Drawing.Size(311, 64);
-            this.txtAciklama.TabIndex = 0;
+            this.txtAciklama.TabIndex = 15;
             this.txtAciklama.Text = "";
             // 
             // btnKaydet
@@ -439,6 +433,7 @@ namespace AracIhale.UI
             // 
             // btnAracTarihce
             // 
+            this.btnAracTarihce.Enabled = false;
             this.btnAracTarihce.Location = new System.Drawing.Point(334, 397);
             this.btnAracTarihce.Name = "btnAracTarihce";
             this.btnAracTarihce.Size = new System.Drawing.Size(90, 23);
@@ -449,6 +444,7 @@ namespace AracIhale.UI
             // 
             // btnAliciBilgileri
             // 
+            this.btnAliciBilgileri.Enabled = false;
             this.btnAliciBilgileri.Location = new System.Drawing.Point(238, 397);
             this.btnAliciBilgileri.Name = "btnAliciBilgileri";
             this.btnAliciBilgileri.Size = new System.Drawing.Size(90, 23);
@@ -459,6 +455,7 @@ namespace AracIhale.UI
             // 
             // btnKomisyon
             // 
+            this.btnKomisyon.Enabled = false;
             this.btnKomisyon.Location = new System.Drawing.Point(142, 397);
             this.btnKomisyon.Name = "btnKomisyon";
             this.btnKomisyon.Size = new System.Drawing.Size(90, 23);
@@ -468,12 +465,43 @@ namespace AracIhale.UI
             // 
             // btnHemenAlSatis
             // 
+            this.btnHemenAlSatis.Enabled = false;
             this.btnHemenAlSatis.Location = new System.Drawing.Point(21, 397);
             this.btnHemenAlSatis.Name = "btnHemenAlSatis";
             this.btnHemenAlSatis.Size = new System.Drawing.Size(115, 23);
             this.btnHemenAlSatis.TabIndex = 1;
             this.btnHemenAlSatis.Text = "Hemen Al Satış";
             this.btnHemenAlSatis.UseVisualStyleBackColor = true;
+            // 
+            // nmAracFiyat
+            // 
+            this.nmAracFiyat.Location = new System.Drawing.Point(103, 62);
+            this.nmAracFiyat.Maximum = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            0});
+            this.nmAracFiyat.Name = "nmAracFiyat";
+            this.nmAracFiyat.Size = new System.Drawing.Size(121, 20);
+            this.nmAracFiyat.TabIndex = 4;
+            this.nmAracFiyat.ThousandsSeparator = true;
+            // 
+            // nmKMBilgisi
+            // 
+            this.nmKMBilgisi.Location = new System.Drawing.Point(103, 157);
+            this.nmKMBilgisi.Maximum = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            0});
+            this.nmKMBilgisi.Name = "nmKMBilgisi";
+            this.nmKMBilgisi.Size = new System.Drawing.Size(121, 20);
+            this.nmKMBilgisi.TabIndex = 14;
+            this.nmKMBilgisi.ThousandsSeparator = true;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // AracDetayBilgi
             // 
@@ -500,14 +528,14 @@ namespace AracIhale.UI
             this.grpDetayBilgi2.PerformLayout();
             this.grpFoto.ResumeLayout(false);
             this.grpAciklama.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nmAracFiyat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmKMBilgisi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox grpDetayBilgi;
-        private System.Windows.Forms.TextBox txtAracFiyat;
         private System.Windows.Forms.ComboBox cmbStatu;
         private System.Windows.Forms.ComboBox cmbSirketAdi;
         private System.Windows.Forms.ComboBox cmbKullaniciTipi;
@@ -534,7 +562,6 @@ namespace AracIhale.UI
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtKMBilgisi;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox grpFoto;
         private System.Windows.Forms.Button btnFotoEkle;
@@ -547,5 +574,9 @@ namespace AracIhale.UI
         private System.Windows.Forms.Button btnAliciBilgileri;
         private System.Windows.Forms.Button btnKomisyon;
         private System.Windows.Forms.Button btnHemenAlSatis;
+        private System.Windows.Forms.NumericUpDown nmAracFiyat;
+        private System.Windows.Forms.NumericUpDown nmKMBilgisi;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.GroupBox grpDetayBilgi;
     }
 }

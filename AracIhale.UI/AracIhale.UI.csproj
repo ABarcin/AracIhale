@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,17 +96,17 @@
     <Compile Include="YonetimPaneli.Designer.cs">
       <DependentUpon>YonetimPaneli.cs</DependentUpon>
     </Compile>
-    <Compile Include="AracDetayBilgi.cs">
+    <Compile Include="frmAracDetayBilgi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AracDetayBilgi.Designer.cs">
-      <DependentUpon>AracDetayBilgi.cs</DependentUpon>
+    <Compile Include="frmAracDetayBilgi.Designer.cs">
+      <DependentUpon>frmAracDetayBilgi.cs</DependentUpon>
     </Compile>
-    <Compile Include="AracTanimlamaListeleme.cs">
+    <Compile Include="frmAracTanimlamaListeleme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AracTanimlamaListeleme.Designer.cs">
-      <DependentUpon>AracTanimlamaListeleme.cs</DependentUpon>
+    <Compile Include="frmAracTanimlamaListeleme.Designer.cs">
+      <DependentUpon>frmAracTanimlamaListeleme.cs</DependentUpon>
     </Compile>
     <Compile Include="AracTarihce.cs">
       <SubType>Form</SubType>
@@ -190,11 +191,11 @@
     <EmbeddedResource Include="YonetimPaneli.resx">
       <DependentUpon>YonetimPaneli.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AracDetayBilgi.resx">
-      <DependentUpon>AracDetayBilgi.cs</DependentUpon>
+    <EmbeddedResource Include="frmAracDetayBilgi.resx">
+      <DependentUpon>frmAracDetayBilgi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AracTanimlamaListeleme.resx">
-      <DependentUpon>AracTanimlamaListeleme.cs</DependentUpon>
+    <EmbeddedResource Include="frmAracTanimlamaListeleme.resx">
+      <DependentUpon>frmAracTanimlamaListeleme.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AracTarihce.resx">
       <DependentUpon>AracTarihce.cs</DependentUpon>

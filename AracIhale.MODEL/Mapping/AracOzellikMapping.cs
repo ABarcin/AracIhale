@@ -41,7 +41,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<AracOzellikVM> ListAracOzellikToListAracOzellikVM(List<AracOzellik> list)
         {
-            List<AracOzellikVM> AracOzellikListVM = null;
+            List<AracOzellikVM> AracOzellikListVM = new List<AracOzellikVM>();
             foreach (AracOzellik item in list)
             {
                 AracOzellikListVM.Add(AracOzellikToAracOzellikVM(item));
@@ -51,7 +51,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<AracOzellik> ListAracOzellikVMToListAracOzellik(List<AracOzellikVM> listVM)
         {
-            List<AracOzellik> AracOzellikList = null;
+            List<AracOzellik> AracOzellikList = new List<AracOzellik>();
             foreach (AracOzellikVM item in listVM)
             {
                 AracOzellikList.Add(AracOzellikVMToAracOzellik(item));

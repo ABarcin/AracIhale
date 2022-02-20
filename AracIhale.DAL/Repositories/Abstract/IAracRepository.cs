@@ -18,6 +18,8 @@ namespace AracIhale.DAL.Repositories.Abstract
         #endregion
 
         List<AracListVM> AracListele(string marka, string model, string kTip, string statu);
-        
+        void AracSil(object id);
+        void AracEkle(AracVM arac);
+        int SonAracIDGetir();
     }
 }

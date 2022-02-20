@@ -59,6 +59,7 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public TEntity Add(TEntity entity)
         {
+            _context.Entry(entity).State = EntityState.Added;
             return _dbSet.Add(entity);
         }
 

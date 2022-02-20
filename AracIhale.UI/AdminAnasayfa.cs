@@ -30,7 +30,7 @@ namespace AracIhale.UI
         private void btnAraclslemleri_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (AracTanimlamaListeleme aracTanimlamaListeleme=new AracTanimlamaListeleme())
+            using (frmAracTanimlamaListeleme aracTanimlamaListeleme=new frmAracTanimlamaListeleme())
             {
                 aracTanimlamaListeleme.ShowDialog();
             }

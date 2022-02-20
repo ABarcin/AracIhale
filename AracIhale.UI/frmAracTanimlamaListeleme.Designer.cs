@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class AracTanimlamaListeleme
+    partial class frmAracTanimlamaListeleme
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,12 @@ namespace AracIhale.UI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpGenel = new System.Windows.Forms.GroupBox();
             this.btnYeni = new System.Windows.Forms.Button();
             this.btnGuncelle = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
+            this.btnTemizle = new System.Windows.Forms.Button();
             this.btnListele = new System.Windows.Forms.Button();
             this.grpAracListesi = new System.Windows.Forms.GroupBox();
             this.lstAracListesi = new System.Windows.Forms.ListView();
@@ -50,10 +52,11 @@ namespace AracIhale.UI
             this.cmbAracMarka = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnTemizle = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpGenel.SuspendLayout();
             this.grpAracListesi.SuspendLayout();
             this.grpKriterler.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // grpGenel
@@ -102,6 +105,16 @@ namespace AracIhale.UI
             this.btnSil.UseVisualStyleBackColor = true;
             this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
+            // btnTemizle
+            // 
+            this.btnTemizle.Location = new System.Drawing.Point(628, 100);
+            this.btnTemizle.Name = "btnTemizle";
+            this.btnTemizle.Size = new System.Drawing.Size(75, 23);
+            this.btnTemizle.TabIndex = 2;
+            this.btnTemizle.Text = "Temizle";
+            this.btnTemizle.UseVisualStyleBackColor = true;
+            this.btnTemizle.Click += new System.EventHandler(this.btnTemizle_Click);
+            // 
             // btnListele
             // 
             this.btnListele.Location = new System.Drawing.Point(709, 100);
@@ -130,9 +143,11 @@ namespace AracIhale.UI
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
+            this.lstAracListesi.FullRowSelect = true;
             this.lstAracListesi.GridLines = true;
             this.lstAracListesi.HideSelection = false;
             this.lstAracListesi.Location = new System.Drawing.Point(6, 19);
+            this.lstAracListesi.MultiSelect = false;
             this.lstAracListesi.Name = "lstAracListesi";
             this.lstAracListesi.Size = new System.Drawing.Size(766, 268);
             this.lstAracListesi.TabIndex = 0;
@@ -254,15 +269,9 @@ namespace AracIhale.UI
             this.label1.TabIndex = 0;
             this.label1.Text = "Araç Marka:";
             // 
-            // btnTemizle
+            // errorProvider
             // 
-            this.btnTemizle.Location = new System.Drawing.Point(628, 100);
-            this.btnTemizle.Name = "btnTemizle";
-            this.btnTemizle.Size = new System.Drawing.Size(75, 23);
-            this.btnTemizle.TabIndex = 2;
-            this.btnTemizle.Text = "Temizle";
-            this.btnTemizle.UseVisualStyleBackColor = true;
-            this.btnTemizle.Click += new System.EventHandler(this.btnTemizle_Click);
+            this.errorProvider.ContainerControl = this;
             // 
             // AracTanimlamaListeleme
             // 
@@ -277,6 +286,7 @@ namespace AracIhale.UI
             this.grpAracListesi.ResumeLayout(false);
             this.grpKriterler.ResumeLayout(false);
             this.grpKriterler.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -305,6 +315,7 @@ namespace AracIhale.UI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTemizle;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
 
