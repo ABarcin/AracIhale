@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class KullaniciListeleme
+    partial class frmCalisanListeleme
     {
         /// <summary>
         /// Required designer variable.
@@ -42,11 +42,13 @@ namespace AracIhale.UI
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
+            this.listCalisanlar.FullRowSelect = true;
             this.listCalisanlar.GridLines = true;
             this.listCalisanlar.HideSelection = false;
             this.listCalisanlar.Location = new System.Drawing.Point(13, 13);
+            this.listCalisanlar.MultiSelect = false;
             this.listCalisanlar.Name = "listCalisanlar";
-            this.listCalisanlar.Size = new System.Drawing.Size(521, 274);
+            this.listCalisanlar.Size = new System.Drawing.Size(704, 290);
             this.listCalisanlar.TabIndex = 0;
             this.listCalisanlar.UseCompatibleStateImageBehavior = false;
             this.listCalisanlar.View = System.Windows.Forms.View.Details;
@@ -54,37 +56,37 @@ namespace AracIhale.UI
             // columnHeader1
             // 
             this.columnHeader1.Text = "Ad Soyad";
-            this.columnHeader1.Width = 178;
+            this.columnHeader1.Width = 291;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Rol";
-            this.columnHeader2.Width = 179;
+            this.columnHeader2.Width = 148;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Aktiflik Durumu";
-            this.columnHeader3.Width = 156;
+            this.columnHeader3.Width = 260;
             // 
             // btnEkle
             // 
-            this.btnEkle.Location = new System.Drawing.Point(13, 309);
+            this.btnEkle.Location = new System.Drawing.Point(92, 309);
             this.btnEkle.Name = "btnEkle";
             this.btnEkle.Size = new System.Drawing.Size(521, 23);
             this.btnEkle.TabIndex = 1;
-            this.btnEkle.Text = "Kullanıcı Ekle / Bilgileri Güncelle";
+            this.btnEkle.Text = "Calisan Ekle / Bilgileri Güncelle";
             this.btnEkle.UseVisualStyleBackColor = true;
             this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
             // 
-            // KullaniciListeleme
+            // frmCalisanListeleme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 364);
+            this.ClientSize = new System.Drawing.Size(729, 404);
             this.Controls.Add(this.btnEkle);
             this.Controls.Add(this.listCalisanlar);
-            this.Name = "KullaniciListeleme";
-            this.Text = "KullaniciListeleme";
+            this.Name = "frmCalisanListeleme";
+            this.Text = "CalisanListeleme";
             this.Load += new System.EventHandler(this.KullaniciListeleme_Load);
             this.ResumeLayout(false);
 

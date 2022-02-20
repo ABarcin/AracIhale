@@ -36,7 +36,7 @@ namespace AracIhale.UI
                     if (loginOlduMu)
                     {
                         this.Hide();
-                        using (AdminAnasayfa adminAnasayfa = new AdminAnasayfa())
+                        using (frmAdminAnasayfa adminAnasayfa = new frmAdminAnasayfa())
                         {
                             adminAnasayfa.ShowDialog();
                         }
