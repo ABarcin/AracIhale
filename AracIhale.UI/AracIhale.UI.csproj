@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +71,12 @@
     </Compile>
     <Compile Include="Anasayfa.Designer.cs">
       <DependentUpon>Anasayfa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIletisim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIletisim.Designer.cs">
+      <DependentUpon>frmIletisim.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSifreBul.cs">
       <SubType>Form</SubType>
@@ -183,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Anasayfa.resx">
       <DependentUpon>Anasayfa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIletisim.resx">
+      <DependentUpon>frmIletisim.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSifreBul.resx">
       <DependentUpon>frmSifreBul.cs</DependentUpon>

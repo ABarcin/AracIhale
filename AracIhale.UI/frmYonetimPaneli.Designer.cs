@@ -109,6 +109,7 @@ namespace AracIhale.UI
             this.Controls.Add(this.label1);
             this.Name = "frmYonetimPaneli";
             this.Text = "Yönetim Paneli";
+            this.Load += new System.EventHandler(this.frmYonetimPaneli_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,4 +1,5 @@
 ﻿using AracIhale.CORE;
+using AracIhale.CORE.Login;
 using AracIhale.DAL.UnitOfWork;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
@@ -29,12 +30,14 @@ namespace AracIhale.UI
         {
             if (IsValidate())
             {
-                if (YetkiKontrol(unitOfWork.CalisanRepository.KullaniciGetir(txtKullaniciAdi.Text)))
+                CalisanVM calisan = unitOfWork.CalisanRepository.KullaniciGetir(txtKullaniciAdi.Text);
+                if (YetkiKontrol(calisan))
                 {
                     bool loginOlduMu = unitOfWork.CalisanRepository.OturumAc(txtKullaniciAdi.Text, txtSifre.Text);
 
                     if (loginOlduMu)
                     {
+                        LoginKullanici.GirisYapmisCalisan = calisan;
                         this.Hide();
                         using (frmAdminAnasayfa adminAnasayfa = new frmAdminAnasayfa())
                         {
@@ -101,6 +104,11 @@ namespace AracIhale.UI
                 frmSifre.ShowDialog();
             }
             this.Close();
+        }
+
+        private void frmYonetimPaneli_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
