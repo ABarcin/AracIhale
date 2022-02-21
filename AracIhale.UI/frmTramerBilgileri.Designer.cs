@@ -37,6 +37,7 @@ namespace AracIhale.UI
             this.label1 = new System.Windows.Forms.Label();
             this.btnKaydet = new System.Windows.Forms.Button();
             this.epMoney = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnGuncelle = new System.Windows.Forms.Button();
             this.gbTramer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epMoney)).BeginInit();
             this.SuspendLayout();
@@ -98,11 +99,22 @@ namespace AracIhale.UI
             // 
             this.epMoney.ContainerControl = this;
             // 
+            // btnGuncelle
+            // 
+            this.btnGuncelle.Location = new System.Drawing.Point(131, 620);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(154, 23);
+            this.btnGuncelle.TabIndex = 2;
+            this.btnGuncelle.Text = "Güncelle";
+            this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
+            // 
             // frmTramerBilgileri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 655);
+            this.Controls.Add(this.btnGuncelle);
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.gbTramer);
             this.Name = "frmTramerBilgileri";
@@ -124,5 +136,6 @@ namespace AracIhale.UI
         private System.Windows.Forms.FlowLayoutPanel flpTramerDurum;
         private System.Windows.Forms.Button btnKaydet;
         private System.Windows.Forms.ErrorProvider epMoney;
+        private System.Windows.Forms.Button btnGuncelle;
     }
 }
