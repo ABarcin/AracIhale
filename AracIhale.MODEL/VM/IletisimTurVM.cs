@@ -14,5 +14,9 @@ namespace AracIhale.MODEL.VM
         [Required]
         [StringLength(50)]
         public string Ad { get; set; }
+        public override string ToString()
+        {
+            return Ad;
+        }
     }
 }
