@@ -74,7 +74,7 @@ namespace AracIhale.DAL.Repositories.Concrete
         }
         public void Ekle(CalisanVM calisan)
         {
-            Calisan eklenecekCalisan = this.GetByID(calisan.CalisanID);
+            Calisan eklenecekCalisan = new Calisan();
             eklenecekCalisan.AktiflikDurumu = calisan.AktiflikDurumu;
             eklenecekCalisan.Ad = calisan.Ad;
             eklenecekCalisan.Soyad = calisan.Soyad;
@@ -101,6 +101,11 @@ namespace AracIhale.DAL.Repositories.Concrete
             CalisanRepository calisanRepository = new CalisanRepository(ThisContext);
             Calisan c = calisanRepository.GetAll(x=>x.KullaniciAd==kullaniciAdi).FirstOrDefault();
             return c==null? null: mapping.CalisanToCalisanVM(c);
+        }
+
+        public int CalisanIdGetir()
+        {
+            return this.GetAll().OrderByDescending(x => x.CalisanID).First().CalisanID;
         }
     }
 }

@@ -32,5 +32,16 @@ namespace AracIhale.DAL.Repositories.Concrete
             }
             return vM == null ? null : vM.IletisimBilgi;
         }
+
+        public List<CalisanIletisimVM> IletisimBilgileriniGetir(CalisanVM calisan)
+        {
+            return mapping.ListCalisanIletisimToListCalisanIletisimVM( this.GetAll(x => x.IsActive == true && x.CalisanID == calisan.CalisanID).ToList());
+        }
+
+        public void IletisimBilgisiEkle(CalisanIletisimVM vm)
+        {
+            this.Add(mapping.CalisanIletisimVMToCalisanIletisim(vm));
+        }
+
     }
 }
