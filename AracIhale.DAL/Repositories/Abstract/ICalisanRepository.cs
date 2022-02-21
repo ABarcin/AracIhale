@@ -17,6 +17,6 @@ namespace AracIhale.DAL.Repositories.Abstract
         CalisanVM KullaniciGetir(string kullaniciAdi);
         void Ekle(CalisanVM calisan);
         void Sil(object id);
-
+        int CalisanIdGetir();
     }
 }
