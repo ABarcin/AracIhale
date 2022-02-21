@@ -40,7 +40,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<IletisimTurVM> ListIletisimTurToListIletisimTurVM(List<IletisimTur> iletisimTurler)
         {
-            List<IletisimTurVM> iletisimTurVM = null;
+            List<IletisimTurVM> iletisimTurVM = new List<IletisimTurVM>() ;
             foreach (IletisimTur item in iletisimTurler)
             {
                 iletisimTurVM.Add(IletisimTurToIletisimTurVM(item));
