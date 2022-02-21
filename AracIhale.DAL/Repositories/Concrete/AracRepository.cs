@@ -30,7 +30,9 @@ namespace AracIhale.DAL.Repositories.Concrete
         {
             IhaleAracRepository ihaleAracRepository = new IhaleAracRepository(ThisContext);
 
-            List<IhaleArac> ihaleAraclar = ihaleAracRepository.GetAll();
+            AracStatuRepository aracStatuRepository = new AracStatuRepository(ThisContext);
+
+            List<IhaleArac> ihaleAraclar = ihaleAracRepository.GetAll(x => x.IhaleID == id);
 
             List<Arac> araclar = new List<Arac>();
 
@@ -38,11 +40,9 @@ namespace AracIhale.DAL.Repositories.Concrete
 
             foreach (var item in ihaleAraclar)
             {
-                if (item.AracID == id)
-                {
-                    araclar.Add(GetAracWithRelationshipByID(item.AracID));
-                }
+                araclar.Add(this.GetAracWithRelationshipByID(item.AracID));
             }
+
             foreach (var item in araclar)
             {
                 AracCDListVM aracListVM = new AracCDListVM();
@@ -54,7 +54,9 @@ namespace AracIhale.DAL.Repositories.Concrete
                 aracListVM.Yil = item.Yil;
                 aracListVM.ArabaModel = item.ArabaModel;
                 aracListVM.Kullanici = item.Kullanici;
+                aracListVM.KullaniciTipAdi = ThisContext.KullaniciTip.Where(x => x.KullaniciTipID == item.Kullanici.KullaniciTipID).FirstOrDefault().Tip;
                 aracListVM.Marka = item.Marka;
+                aracListVM.Statu = ThisContext.AracStatu.Include("Statu").ToList().Where(y => y.AracID == item.AracID).OrderByDescending(x => x.Tarih).FirstOrDefault().Statu;
 
                 aracVMler.Add(aracListVM);
             }

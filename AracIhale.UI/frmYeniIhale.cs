@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AracIhale.CORE.Login;
 using AracIhale.DAL.UnitOfWork;
 using AracIhale.MODEL.Model.Context;
+using AracIhale.MODEL.Model.Entities;
 using AracIhale.MODEL.VM;
 
 namespace AracIhale.UI
@@ -27,7 +29,6 @@ namespace AracIhale.UI
         {
             ihaleListVM = _ihaleListVM;
             AracListViewDoldur();
-            bilgileriGetir();
         }
 
         private void YeniIhale_Load(object sender, EventArgs e)
@@ -35,6 +36,14 @@ namespace AracIhale.UI
             KullaniciTipComboBoxDoldur();
             IhaleStatuComboBoxDoldur();
             FirmaComboBoxDoldu();
+            bilgileriGetir();
+            AracListViewDoldur();
+
+            // Silinmesi gerekiyor. Test icin.
+            Login.GirisYapmisCalisan = new Calisan()
+            {
+                CalisanID = 1
+            };
         }
 
         private void btnKaydet_Click(object sender, EventArgs e)
@@ -43,72 +52,109 @@ namespace AracIhale.UI
             {
                 // Validation yapilacak
                 // EKLE
-                ihaleListVM.IhaleAdi = txtIhaleAdi.Text;
-                ihaleListVM.KullaniciTipID = (cmbUyeTip.SelectedItem as KullaniciTipVM).KullaniciTipID;
-                //ihaleListVM.KullaniciTip = (cmbUyeTip.SelectedItem as KullaniciTipVM).Tip;
-                ihaleListVM.IhaleBaslangic = dtBaslangicSaat.Value;
-                ihaleListVM.IhaleBitis = dtIhaleBitis.Value;
-                ihaleListVM.BaslangicSaat = dtIhaleBaslangic.Value.TimeOfDay;
-                ihaleListVM.BitisSaat = dtBitisSaat.Value.TimeOfDay;
-                ihaleListVM.IhaleStatuID = (cmbStatu.SelectedItem as IhaleStatuVM).IhaleStatuID;
-                //ihaleListVM.IhaleDurum = (cmbStatu.SelectedItem as IhaleStatuVM).Durum;
-                ihaleListVM.CalisanID = 1;
 
-                unitOfWork.IhaleRepository.InsertIhaleVM(ihaleListVM);
+                DialogResult result = MessageBox.Show("İhale eklemek istediğinize eminmisiniz","",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 
-                if(unitOfWork.Complate() > 0)
+                ihaleListVM = new IhaleListVM();
+
+                if(result == DialogResult.Yes)
                 {
-                    MessageBox.Show("İhale ekleme başarılı");
-                }
-                else
-                {
-                    MessageBox.Show("İhale ekleme başarısız");
-                }
+                    ihaleListVM.IhaleAdi = txtIhaleAdi.Text;
+                    ihaleListVM.KullaniciTipID = (cmbUyeTip.SelectedItem as KullaniciTipVM).KullaniciTipID;
+                    ihaleListVM.IhaleBaslangic = dtBaslangicSaat.Value;
+                    ihaleListVM.IhaleBitis = dtIhaleBaslangic.Value;
+                    ihaleListVM.BaslangicSaat = dtIhaleBitis.Value.TimeOfDay;
+                    ihaleListVM.BitisSaat = dtBitisSaat.Value.TimeOfDay;
+                    ihaleListVM.IhaleStatuID = (cmbStatu.SelectedItem as IhaleStatuVM).IhaleStatuID;
+                    ihaleListVM.CalisanID = Login.GirisYapmisCalisan.CalisanID;
 
+                    unitOfWork.IhaleRepository.InsertIhaleVM(ihaleListVM);
+
+                    if (unitOfWork.Complate() > 0)
+                    {
+                        MessageBox.Show("İhale ekleme başarılı");
+                    }
+                    else
+                    {
+                        MessageBox.Show("İhale ekleme başarısız");
+                    }
+                }
+                ihaleListVM = null;
             }
             else
             {
                 // Validation yapilacak
                 // GUNCELLE
 
-                ihaleListVM.IhaleAdi = txtIhaleAdi.Text;
-                ihaleListVM.KullaniciTipID = (cmbUyeTip.SelectedItem as KullaniciTipVM).KullaniciTipID;
-                ihaleListVM.IhaleBaslangic = dtBaslangicSaat.Value;
-                ihaleListVM.IhaleBitis = dtIhaleBitis.Value;
-                ihaleListVM.BaslangicSaat = dtIhaleBaslangic.Value.TimeOfDay;
-                ihaleListVM.BitisSaat = dtBitisSaat.Value.TimeOfDay;
-                ihaleListVM.IhaleStatuID = (cmbStatu.SelectedItem as IhaleStatuVM).IhaleStatuID;
+                DialogResult result = MessageBox.Show("İhaleyi gücellemek istediğinize eminmisiniz", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                unitOfWork.IhaleRepository.UpdateIhaleVM(ihaleListVM);
+                if (result == DialogResult.Yes)
+                {
+                    ihaleListVM.IhaleAdi = txtIhaleAdi.Text;
+                    ihaleListVM.KullaniciTipID = (cmbUyeTip.SelectedItem as KullaniciTipVM).KullaniciTipID;
+                    ihaleListVM.IhaleBaslangic = dtIhaleBaslangic.Value;
+                    ihaleListVM.IhaleBitis = dtIhaleBitis.Value;
+                    ihaleListVM.BaslangicSaat = dtBaslangicSaat.Value.TimeOfDay;
+                    ihaleListVM.BitisSaat = dtBitisSaat.Value.TimeOfDay;
+                    ihaleListVM.IhaleStatuID = (cmbStatu.SelectedItem as IhaleStatuVM).IhaleStatuID;
+                    ihaleListVM.ModifiedDate = DateTime.Now;
+                    ihaleListVM.CalisanID = Login.GirisYapmisCalisan.CalisanID;
 
-                if (unitOfWork.Complate() > 0)
-                {
-                    MessageBox.Show("İhale güncelleme başarılı");
+                    unitOfWork.IhaleRepository.UpdateIhaleVM(ihaleListVM);
+
+                    if (unitOfWork.Complate() > 0)
+                    {
+                        MessageBox.Show("İhale güncelleme başarılı");
+                    }
+                    else
+                    {
+                        MessageBox.Show("İhale güncelleme başarısız");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("İhale güncelleme başarısız");
-                }
+
             }
 
         }
 
         private void bilgileriGetir()
         {
-            txtIhaleAdi.Text = ihaleListVM.IhaleAdi;
+            if(ihaleListVM != null)
+            {
+                txtIhaleAdi.Text = ihaleListVM.IhaleAdi;
 
-            dtIhaleBaslangic.Value = ihaleListVM.IhaleBaslangic;
-            dtIhaleBitis.Value = ihaleListVM.IhaleBitis;
+                dtIhaleBitis.Value = ihaleListVM.IhaleBaslangic;
+                dtIhaleBaslangic.Value = ihaleListVM.IhaleBitis;
 
-            DateTime dtBaslangic = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            dtBaslangic = dtBaslangic + ihaleListVM.BaslangicSaat;
+                DateTime dtBaslangic = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                dtBaslangic = dtBaslangic + ihaleListVM.BaslangicSaat;
 
-            dtBaslangicSaat.Value = dtBaslangic;
+                dtBaslangicSaat.Value = dtBaslangic;
 
-            DateTime dtBitis = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            dtBitis = dtBitis + ihaleListVM.BitisSaat;
+                DateTime dtBitis = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                dtBitis = dtBitis + ihaleListVM.BitisSaat;
 
-            dtBitisSaat.Value = dtBitis;
+                dtBitisSaat.Value = dtBitis;
+
+                for (int i = cmbUyeTip.Items.Count - 1 ; i > 0; i--)
+                {
+                    KullaniciTipVM kullaniciTipVM = cmbUyeTip.Items[i] as KullaniciTipVM;
+
+                    if (kullaniciTipVM.KullaniciTipID == ihaleListVM.KullaniciTipID)
+                    {
+                        cmbUyeTip.SelectedIndex = i;
+                    }
+                }
+
+                for (int i = cmbStatu.Items.Count - 1; i > 0; i--)
+                {
+                    IhaleStatuVM ihaleStatuVM = cmbStatu.Items[i] as IhaleStatuVM;
+
+                    if (ihaleStatuVM.IhaleStatuID == ihaleListVM.IhaleStatuID)
+                    {
+                        cmbStatu.SelectedIndex = i;
+                    }
+                }
+            }
 
         }
 
@@ -116,17 +162,21 @@ namespace AracIhale.UI
         {
             List<AracCDListVM> aracListVMler = unitOfWork.AracRepository.GetAracByIhaleID(ihaleListVM.IhaleID);
 
+            listArac.Items.Clear();
+
             foreach (var item in aracListVMler)
             {
                 ListViewItem listViewItem = new ListViewItem();
                 listViewItem.Text = item.AracID.ToString();
                 listViewItem.SubItems.Add(item.Marka.Ad);
                 listViewItem.SubItems.Add(item.ArabaModel.Ad);
-                listViewItem.SubItems.Add(item.Kullanici.KullaniciTip.Tip);
+                listViewItem.SubItems.Add(item.KullaniciTipAdi);
+                listViewItem.SubItems.Add(item.Statu.StatuAd);
+                listViewItem.SubItems.Add(item.Kullanici.Ad);
+                listViewItem.SubItems.Add(item.CreatedDate.ToString());
 
                 listArac.Items.Add(listViewItem);
             }
-
         }
 
         private void KullaniciTipComboBoxDoldur()
@@ -136,7 +186,10 @@ namespace AracIhale.UI
 
             List<KullaniciTipVM> kullaniciTipVMler = unitOfWork.KullaniciTipRepository.GetKullaniciTipVM();
 
-            cmbUyeTip.Items.AddRange(kullaniciTipVMler.ToArray());
+            if(kullaniciTipVMler != null)
+            {
+                cmbUyeTip.Items.AddRange(kullaniciTipVMler.ToArray());
+            }
         }
 
         private void IhaleStatuComboBoxDoldur()
@@ -146,8 +199,10 @@ namespace AracIhale.UI
 
             List<IhaleStatuVM> ihaleStatuVMler = unitOfWork.IhaleStatuRepository.GetIhaleStatuVM();
 
-            cmbStatu.Items.AddRange(ihaleStatuVMler.ToArray());
-
+            if(ihaleStatuVMler != null)
+            {
+                cmbStatu.Items.AddRange(ihaleStatuVMler.ToArray());
+            }
         }
 
         private void FirmaComboBoxDoldu()
@@ -157,7 +212,10 @@ namespace AracIhale.UI
 
             List<FirmaVM> firmaVMler = unitOfWork.FirmaRepository.GetFirmaVMler();
 
-            cmbSirketAdi.Items.AddRange(firmaVMler.ToArray());
+            if(firmaVMler != null)
+            {
+                cmbSirketAdi.Items.AddRange(firmaVMler.ToArray());
+            }
         }
 
         private void btnAracEkle_Click(object sender, EventArgs e)

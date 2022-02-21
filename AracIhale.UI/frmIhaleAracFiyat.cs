@@ -45,15 +45,25 @@ namespace AracIhale.UI
 
                     if (result == DialogResult.Yes)
                     {
-                        IhaleAracVM ihaleAracVM = new IhaleAracVM();
-                        ihaleAracVM.AracID = (cmbArac.SelectedItem as AracListVM).AracID;
-                        ihaleAracVM.IhaleBaslangicFiyat = decimal.Parse(txtIhaleBaslangicFiyat.Text);
-                        ihaleAracVM.MinAlimFiyati = decimal.Parse(txtIhaleBitisFiyat.Text);
-                        ihaleAracVM.IhaleID = ihaleListVM.IhaleID;
+                        if (unitOfWork.AracRepository.GetAracByIhaleID(ihaleListVM.IhaleID).Count == 0)
+                        {
+                            IhaleAracVM ihaleAracVM = new IhaleAracVM();
+                            ihaleAracVM.AracID = (cmbArac.SelectedItem as AracListVM).AracID;
+                            ihaleAracVM.IhaleBaslangicFiyat = decimal.Parse(txtIhaleBaslangicFiyat.Text);
+                            ihaleAracVM.MinAlimFiyati = decimal.Parse(txtIhaleBitisFiyat.Text);
+                            ihaleAracVM.IhaleID = ihaleListVM.IhaleID;
 
-                        unitOfWork.IhaleAracRepository.Add(new IhaleAracMapping().IhaleAracVMToIhaleArac(ihaleAracVM));
-                        unitOfWork.Complate();
-                        Clear();
+                            unitOfWork.IhaleAracRepository.Add(new IhaleAracMapping().IhaleAracVMToIhaleArac(ihaleAracVM));
+                            unitOfWork.Complate();
+                            Clear();
+
+                            MessageBox.Show("Araç ihaleye eklendi.");
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Eklemek istediğiniz araç zaten bu ihalede bulunmaktadır.","",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        }
                     }
                 }
             }

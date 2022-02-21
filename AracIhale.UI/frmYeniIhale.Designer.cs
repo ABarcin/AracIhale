@@ -44,8 +44,8 @@ namespace AracIhale.UI
             this.gbIhaleGenel = new System.Windows.Forms.GroupBox();
             this.dtBitisSaat = new System.Windows.Forms.DateTimePicker();
             this.dtBaslangicSaat = new System.Windows.Forms.DateTimePicker();
-            this.dtIhaleBitis = new System.Windows.Forms.DateTimePicker();
             this.dtIhaleBaslangic = new System.Windows.Forms.DateTimePicker();
+            this.dtIhaleBitis = new System.Windows.Forms.DateTimePicker();
             this.cmbStatu = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -167,8 +167,8 @@ namespace AracIhale.UI
             // 
             this.gbIhaleGenel.Controls.Add(this.dtBitisSaat);
             this.gbIhaleGenel.Controls.Add(this.dtBaslangicSaat);
-            this.gbIhaleGenel.Controls.Add(this.dtIhaleBitis);
             this.gbIhaleGenel.Controls.Add(this.dtIhaleBaslangic);
+            this.gbIhaleGenel.Controls.Add(this.dtIhaleBitis);
             this.gbIhaleGenel.Controls.Add(this.cmbStatu);
             this.gbIhaleGenel.Controls.Add(this.label3);
             this.gbIhaleGenel.Controls.Add(this.label8);
@@ -195,7 +195,7 @@ namespace AracIhale.UI
             this.dtBitisSaat.CustomFormat = "\"HH:mm\"";
             this.dtBitisSaat.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtBitisSaat.Location = new System.Drawing.Point(529, 139);
-            this.dtBitisSaat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtBitisSaat.Margin = new System.Windows.Forms.Padding(4);
             this.dtBitisSaat.Name = "dtBitisSaat";
             this.dtBitisSaat.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtBitisSaat.ShowUpDown = true;
@@ -207,27 +207,27 @@ namespace AracIhale.UI
             this.dtBaslangicSaat.CustomFormat = "\"HH:mm\"";
             this.dtBaslangicSaat.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtBaslangicSaat.Location = new System.Drawing.Point(133, 142);
-            this.dtBaslangicSaat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtBaslangicSaat.Margin = new System.Windows.Forms.Padding(4);
             this.dtBaslangicSaat.Name = "dtBaslangicSaat";
             this.dtBaslangicSaat.ShowUpDown = true;
             this.dtBaslangicSaat.Size = new System.Drawing.Size(189, 22);
             this.dtBaslangicSaat.TabIndex = 18;
             // 
-            // dtIhaleBitis
-            // 
-            this.dtIhaleBitis.Location = new System.Drawing.Point(133, 91);
-            this.dtIhaleBitis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dtIhaleBitis.Name = "dtIhaleBitis";
-            this.dtIhaleBitis.Size = new System.Drawing.Size(189, 22);
-            this.dtIhaleBitis.TabIndex = 17;
-            // 
             // dtIhaleBaslangic
             // 
-            this.dtIhaleBaslangic.Location = new System.Drawing.Point(529, 91);
-            this.dtIhaleBaslangic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtIhaleBaslangic.Location = new System.Drawing.Point(133, 91);
+            this.dtIhaleBaslangic.Margin = new System.Windows.Forms.Padding(4);
             this.dtIhaleBaslangic.Name = "dtIhaleBaslangic";
             this.dtIhaleBaslangic.Size = new System.Drawing.Size(189, 22);
             this.dtIhaleBaslangic.TabIndex = 17;
+            // 
+            // dtIhaleBitis
+            // 
+            this.dtIhaleBitis.Location = new System.Drawing.Point(529, 91);
+            this.dtIhaleBitis.Margin = new System.Windows.Forms.Padding(4);
+            this.dtIhaleBitis.Name = "dtIhaleBitis";
+            this.dtIhaleBitis.Size = new System.Drawing.Size(189, 22);
+            this.dtIhaleBitis.TabIndex = 17;
             // 
             // cmbStatu
             // 
@@ -336,7 +336,7 @@ namespace AracIhale.UI
             this.label1.TabIndex = 5;
             this.label1.Text = "İhale Adı:";
             // 
-            // YeniIhale
+            // frmYeniIhale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -345,9 +345,10 @@ namespace AracIhale.UI
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.gbIhaleArac);
             this.Controls.Add(this.gbIhaleGenel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "YeniIhale";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "frmYeniIhale";
             this.Text = "YeniIhale";
+            this.Load += new System.EventHandler(this.YeniIhale_Load);
             this.gbIhaleArac.ResumeLayout(false);
             this.gbIhaleGenel.ResumeLayout(false);
             this.gbIhaleGenel.PerformLayout();
@@ -381,8 +382,8 @@ namespace AracIhale.UI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtIhaleBitis;
         private System.Windows.Forms.DateTimePicker dtIhaleBaslangic;
+        private System.Windows.Forms.DateTimePicker dtIhaleBitis;
         private System.Windows.Forms.DateTimePicker dtBitisSaat;
         private System.Windows.Forms.DateTimePicker dtBaslangicSaat;
         private System.Windows.Forms.ListView listArac;

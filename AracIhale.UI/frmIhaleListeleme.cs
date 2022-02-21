@@ -1,5 +1,6 @@
 ﻿using AracIhale.DAL.UnitOfWork;
 using AracIhale.MODEL.Model.Context;
+using AracIhale.MODEL.Model.Entities;
 using AracIhale.MODEL.VM;
 using System;
 using System.Collections.Generic;
@@ -105,78 +106,7 @@ namespace AracIhale.UI
                 statu = cmbStatu.SelectedItem as StatuVM;
             }
 
-            List<IhaleListVM> ihaleListVMs = new List<IhaleListVM>();
-
-            IhaleListVM ihale1 = new IhaleListVM() {
-                IhaleID = 1,
-                IhaleAdi = "Gel vatandas gel passat var",
-                KullaniciTipID = 1,
-                CalisanID = 1,
-                KullaniciTip = "Kurumsal",
-                IhaleBaslangic = DateTime.Now,
-                IhaleBitis = DateTime.Now,
-                BaslangicSaat = TimeSpan.Zero,
-                BitisSaat = TimeSpan.Zero,
-                IhaleStatuID = 1,
-                IhaleDurum = "Basladi",
-                KullaniciAd = "JagatayBaba"
-            };
-
-            IhaleListVM ihale2 = new IhaleListVM()
-            {
-                IhaleID = 2,
-                IhaleAdi = "Sıfır hasar mercedes",
-                KullaniciTipID = 2,
-                CalisanID = 1,
-                KullaniciTip = "Bireysel",
-                IhaleBaslangic = DateTime.Now,
-                IhaleBitis = DateTime.Now,
-                BaslangicSaat = TimeSpan.Zero,
-                BitisSaat = TimeSpan.Zero,
-                IhaleStatuID = 2,
-                IhaleDurum = "Bitti",
-                KullaniciAd = "BurakBaba"
-            };
-
-            IhaleListVM ihale3 = new IhaleListVM()
-            {
-                IhaleID = 3,
-                IhaleAdi = "Tank gibi volvo param olsada ben alsam",
-                KullaniciTipID = 2,
-                CalisanID = 1,
-                KullaniciTip = "Bireysel",
-                IhaleBaslangic = DateTime.Now,
-                IhaleBitis = DateTime.Now,
-                BaslangicSaat = TimeSpan.Zero,
-                BitisSaat = TimeSpan.Zero,
-                IhaleStatuID = 1,
-                IhaleDurum = "Basladi",
-                KullaniciAd = "FatihSultanMehmet"
-            };
-
-            IhaleListVM ihale4 = new IhaleListVM()
-            {
-                IhaleID = 4,
-                IhaleAdi = "Cirrrlop gibi BMW",
-                KullaniciTipID = 1,
-                CalisanID = 1,
-                KullaniciTip = "Kurumsal",
-                IhaleBaslangic = DateTime.Now,
-                IhaleBitis = DateTime.Now,
-                BaslangicSaat = TimeSpan.Zero,
-                BitisSaat = TimeSpan.Zero,
-                IhaleStatuID = 1,
-                IhaleDurum = "Basladi",
-                KullaniciAd = "AhmetBarcinn"
-            };
-
-            ihaleListVMs.Add(ihale1);
-            ihaleListVMs.Add(ihale2);
-            ihaleListVMs.Add(ihale3);
-            ihaleListVMs.Add(ihale4);
-
-            //FiltrelenenIhaleleriListele(unitOfWork.IhaleRepository.IhaleListele(ihaleAdi, kullaniciTip, statu));
-            FiltrelenenIhaleleriListele(ihaleListVMs);
+            FiltrelenenIhaleleriListele(unitOfWork.IhaleRepository.IhaleListele(ihaleAdi, kullaniciTip, statu));
         }
 
         private void btnYeni_Click(object sender, EventArgs e)
