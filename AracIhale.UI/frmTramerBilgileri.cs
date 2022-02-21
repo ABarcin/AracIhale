@@ -18,25 +18,42 @@ namespace AracIhale.UI
 {
     public partial class frmTramerBilgileri : Form
     {
+        int _aracID = 5; // injection metodu ile fatihten alınacak
+
         public frmTramerBilgileri()
         {
             InitializeComponent();
         }
 
         UnitOfWork _unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        List<AracParcaVM> _aracParcaListesi;
+        List<TramerDetayVM> _tramerDurumListesi;
 
         private void frmTramerBilgileri_Load(object sender, EventArgs e)
         {
-            PrepareFormToAdd();
-            //PrepareFormToUpdate();
+            _aracParcaListesi = _unitOfWork.AracParcaRepository.AracParcaListesiGetir();
+            _tramerDurumListesi = _unitOfWork.TramerDetayRepository.TramerDurumListesiGetir();
+            PrepareForm();
         }
 
-        private void PrepareFormToAdd()
+        private void PrepareForm()
         {
-            var aracParcaListesi = _unitOfWork.AracParcaRepository.AracParcaListesiGetir();
-            var tramerDurumListesi = _unitOfWork.TramerDetayRepository.TramerDurumListesiGetir();
+            AracTramerVM aracTramerVM = _unitOfWork.AracTramerRepository.AracTramerVMGetir(_aracID);
+            List<AracTramerDetayVM> aracTramerDetayVMList = new List<AracTramerDetayVM>();
 
-            foreach (var item in tramerDurumListesi)
+            if (aracTramerVM != null)
+            {
+                aracTramerDetayVMList = _unitOfWork.AracTramerDetayRepository.AracTramerVMListesiniGetir(aracTramerVM.AracTramerID);
+                btnKaydet.Enabled = false;
+                MessageBox.Show("Bilgiler daha önce kaydedilmiştir. Güncellemek için verileri düzenleyin ve 'Güncelle' butonuna tıklayınız.");
+            }
+            else
+            {
+                btnGuncelle.Enabled = false;
+                MessageBox.Show("Araca dair tramer bilgileri henüz bulunmamaktadır. Lütfen verileri düzenleyin ve 'Kaydet' butonuna tıklayınız.");
+            }
+
+            foreach (var item in _tramerDurumListesi)
             {
                 flpTramerDurum.Controls.Add(new Label 
                 {
@@ -44,7 +61,7 @@ namespace AracIhale.UI
                 });
             }
 
-            foreach (var aracParca in aracParcaListesi)
+            foreach (var aracParca in _aracParcaListesi)
             {
                 FlowLayoutPanel flpAracParca = new FlowLayoutPanel
                 {
@@ -59,31 +76,43 @@ namespace AracIhale.UI
 
                 flpAracParca.Controls.Add(lblAracParca);
 
-                for (int i = 1; i <= tramerDurumListesi.Count(); i++)
+                for (int i = 0; i < _tramerDurumListesi.Count(); i++)
                 {
                     RadioButton rdb = new RadioButton
                     {
-                        Name = "rdb" + aracParca.ParcaAd + tramerDurumListesi[i - 1].TramerDurum
+                        Name = "rdb" + aracParca.ParcaAd + _tramerDurumListesi[i].TramerDurum
                     };
-                    if (i == 1)
-                        rdb.Checked = true;
+
+                    if (aracTramerVM == null)
+                    {
+                        if (i == 0)
+                        {
+                            rdb.Checked = true;
+                        }
+                    }
+                    else
+                    {
+                        txtMoney.Text = aracTramerVM.Fiyat.ToString();
+
+                        foreach (var item in aracTramerDetayVMList)
+                        {
+                            string aracParcaAdi = _aracParcaListesi.Where(x => x.AracParcaID == item.AracParcaID).Select(x => x.ParcaAd).First();
+                            string tramerDurum = _tramerDurumListesi.Where(x => x.TramerDetayID == item.TramerDetayID).Select(x => x.TramerDurum).First();
+                            string isaretlenecekButton = "rdb" + aracParcaAdi + tramerDurum;
+
+                            if (rdb.Name == isaretlenecekButton)
+                            {
+                                rdb.Checked = true;
+                            }
+                        }
+                    }
 
                     flpAracParca.Controls.Add(rdb);
-                    //(flpAracParca.Controls[flpAracParca.Controls.Count - 1] as RadioButton).Location = new Point(-i * flpAracParca.Width / 4, -flpAracParca.Height);
                 }
 
                 flpRuntime.Controls.Add(flpAracParca);
-
             }
         }
-
-        private void PrepareFormToUpdate()
-        {
-            //toDo: databaseden dataları getir radiobuttonları ve fiyat textini düzenle
-        }
-
-        int _aracID = 3;
-        int _aracTramerID;
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
@@ -91,8 +120,6 @@ namespace AracIhale.UI
             {
                 try
                 {
-                    List<AracParcaVM> aracParcaListesi = _unitOfWork.AracParcaRepository.AracParcaListesiGetir();
-                    List<TramerDetayVM> tramerDurumListesi = _unitOfWork.TramerDetayRepository.TramerDurumListesiGetir();
                     AracTramerVM aracTramerVM = new AracTramerVM();
 
                     if (new Validation().IsValidateMoney(txtMoney, epMoney))
@@ -105,30 +132,21 @@ namespace AracIhale.UI
                         throw new Exception();
                     }
 
-                    _unitOfWork.AracTramerRepository.Add(new AracTramerMapping().AracTramerVMToAracTramer(aracTramerVM));
+                    _unitOfWork.AracTramerRepository.AracTramerEkle(aracTramerVM);
                     _unitOfWork.Complate();
 
-                    _aracTramerID = _unitOfWork.AracTramerRepository.GetAll().OrderByDescending(x => x.AracTramerID).First().AracTramerID;
+                     int aracTramerID = _unitOfWork.AracTramerRepository.EklenenAracTramerIDGetir();
 
-                    List<AracTramerDetayVM> aracTramerDetayVMList = TramerBilgileriGetir(aracParcaListesi, tramerDurumListesi, _aracTramerID);
-
-                    if (aracTramerDetayVMList.Count() != aracParcaListesi.Count())
-                    {
-                        throw new Exception();
-                    }
-
-                    foreach (var aracTramerDetayVM in aracTramerDetayVMList)
-                    {
-                        _unitOfWork.AracTramerDetayRepository.Add(new AracTramerDetayMapping().AracTramerDetayVMToAracTramerDetay(aracTramerDetayVM));
-                        _unitOfWork.Complate();
-                    }
+                    AracTramerDetaylariEkle(_aracParcaListesi, _tramerDurumListesi, aracTramerID);
 
                     scope.Complete();
+                    btnKaydet.Enabled = false;
+                    btnGuncelle.Enabled = true;
                     MessageBox.Show("Tramer Bilgileri başarıyla eklendi.");
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -139,10 +157,7 @@ namespace AracIhale.UI
             {
                 try
                 {
-                    List<AracParcaVM> aracParcaListesi = _unitOfWork.AracParcaRepository.AracParcaListesiGetir();
-                    List<TramerDetayVM> tramerDurumListesi = _unitOfWork.TramerDetayRepository.TramerDurumListesiGetir();
-
-                    AracTramerVM aracTramerVM = new AracTramerMapping().AracTramerToAracTramerVM(_unitOfWork.AracTramerRepository.GetAll(x => x.AracID == _aracID).OrderByDescending(y => y.AracTramerID).First());
+                    AracTramerVM aracTramerVM = _unitOfWork.AracTramerRepository.AracTramerVMGetir(_aracID);
 
                     if (new Validation().IsValidateMoney(txtMoney, epMoney))
                     {
@@ -153,24 +168,12 @@ namespace AracIhale.UI
                         throw new Exception();
                     }
 
-                    _unitOfWork.AracTramerRepository.Update(new AracTramerMapping().AracTramerVMToAracTramer(aracTramerVM));
+                    _unitOfWork.AracTramerRepository.AracTramerGuncelle(aracTramerVM);
                     _unitOfWork.Complate();
 
-                    //_aracTramerID = _unitOfWork.AracTramerRepository.GetAll(x => x.AracTramerID == aracTramerVM.AracTramerID).First().AracTramerID;
-                    _aracTramerID = aracTramerVM.AracTramerID;
+                    int aracTramerID = aracTramerVM.AracTramerID;
 
-                    List<AracTramerDetayVM> aracTramerDetayVMList = TramerBilgileriGuncelle(aracParcaListesi, tramerDurumListesi, _aracTramerID);
-
-                    if (aracTramerDetayVMList.Count() != aracParcaListesi.Count())
-                    {
-                        throw new Exception();
-                    }
-
-                    foreach (var aracTramerDetayVM in aracTramerDetayVMList)
-                    {
-                        _unitOfWork.AracTramerDetayRepository.Update(new AracTramerDetayMapping().AracTramerDetayVMToAracTramerDetay(aracTramerDetayVM));
-                        _unitOfWork.Complate();
-                    }
+                    AracTramerDetaylariGuncelle(_aracParcaListesi, _tramerDurumListesi, aracTramerID);
 
                     scope.Complete();
                     MessageBox.Show("Tramer Bilgileri başarıyla güncellendi!");
@@ -182,10 +185,8 @@ namespace AracIhale.UI
             }
         }
 
-        List<AracTramerDetayVM> TramerBilgileriGetir(List<AracParcaVM> aracParcaListesi, List<TramerDetayVM> tramerDurumListesi, int aracTramerID)
+        void AracTramerDetaylariEkle(List<AracParcaVM> aracParcaListesi, List<TramerDetayVM> tramerDurumListesi, int aracTramerID)
         {
-            List<AracTramerDetayVM> aracTramerDetayVMList = new List<AracTramerDetayVM>();
-
             foreach (var flpAracParca in flpRuntime.Controls)
             {
                 foreach (var control in (flpAracParca as FlowLayoutPanel).Controls)
@@ -209,7 +210,8 @@ namespace AracIhale.UI
                                             TramerDetayID = tramerDurum.TramerDetayID
                                         };
 
-                                        aracTramerDetayVMList.Add(aracTramerDetayVM);
+                                        _unitOfWork.AracTramerDetayRepository.AracTramerDetayEkle(aracTramerDetayVM);
+                                        _unitOfWork.Complate();
                                     }
                                 }
                             }
@@ -217,14 +219,10 @@ namespace AracIhale.UI
                     }
                 }
             }
-
-            return aracTramerDetayVMList;
         }
 
-        List<AracTramerDetayVM> TramerBilgileriGuncelle(List<AracParcaVM> aracParcaListesi, List<TramerDetayVM> tramerDurumListesi, int aracTramerID)
+        void AracTramerDetaylariGuncelle(List<AracParcaVM> aracParcaListesi, List<TramerDetayVM> tramerDurumListesi, int aracTramerID)
         {
-            List<AracTramerDetayVM> aracTramerDetayVMList = new List<AracTramerDetayVM>();
-
             foreach (var flpAracParca in flpRuntime.Controls)
             {
                 foreach (var control in (flpAracParca as FlowLayoutPanel).Controls)
@@ -241,14 +239,13 @@ namespace AracIhale.UI
                                 {
                                     if (rdb.Checked)
                                     {
-                                        ;
-                                        AracTramerDetayVM aracTramerDetayVM = 
-                                            new AracTramerDetayMapping().AracTramerDetayToAracTramerDetayVM(_unitOfWork.AracTramerDetayRepository
-                                            .GetAll(x => x.AracTramerID == aracTramerID && x.AracParcaID == aracParca.AracParcaID).OrderByDescending(y => y.AracTramerID).First());
+                                        AracTramerDetayVM aracTramerDetayVM = _unitOfWork.AracTramerDetayRepository
+                                            .AracTramerDetayVMGetir(aracTramerID, aracParca.AracParcaID);
 
                                         aracTramerDetayVM.TramerDetayID = tramerDurum.TramerDetayID;
 
-                                        aracTramerDetayVMList.Add(aracTramerDetayVM);
+                                        _unitOfWork.AracTramerDetayRepository.AracTramerDetayGuncelle(aracTramerDetayVM);
+                                        _unitOfWork.Complate();
                                     }
                                 }
                             }
@@ -256,10 +253,6 @@ namespace AracIhale.UI
                     }
                 }
             }
-
-            return aracTramerDetayVMList;
         }
-
-
     }
 }
