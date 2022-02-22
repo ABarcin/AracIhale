@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace AracIhale.UI
 {
-    public partial class KullaniciListeleme : Form
+    public partial class frmCalisanListeleme : Form
     {
         AracIhaleEntities _context = new AracIhaleEntities();
 
-        public KullaniciListeleme()
+        public frmCalisanListeleme()
         {
             InitializeComponent();
         }
@@ -34,34 +34,34 @@ namespace AracIhale.UI
             CalisanRepository calisanRepository = new CalisanRepository(_context);
             RolRepository rolRepository = new RolRepository(_context);
 
-            List<CalisanVM> xd = calisanRepository.CalisanListesiGetir();
+            List<CalisanVM> calisanList = calisanRepository.CalisanListesiGetir();
 
 
-            foreach (CalisanVM item in xd)
+            foreach (CalisanVM item in calisanList)
             {
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = item.Ad + " " + item.Soyad;
-                lvi.SubItems.Add(rolRepository.RolAdiGetir(item.RolID));
+                ListViewItem listView = new ListViewItem();
+                listView.Text = item.Ad + " " + item.Soyad;
+                listView.SubItems.Add(rolRepository.RolAdiGetir(item.RolID));
 
                 if (item.AktiflikDurumu == true)
                 {
-                    lvi.SubItems.Add("Aktif");
+                    listView.SubItems.Add("Aktif");
                 }
                 else
                 {
-                    lvi.SubItems.Add("Pasif");
+                    listView.SubItems.Add("Pasif");
                 }
 
-                listCalisanlar.Items.Add(lvi);
+                listCalisanlar.Items.Add(listView);
             }
         }
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (CalisanKayit calisanKayit=new CalisanKayit())
+            using (frmCalisanKayit frmCalisanKayit=new frmCalisanKayit())
             {
-                calisanKayit.ShowDialog();
+                frmCalisanKayit.ShowDialog();
             }
             CalisanListele();
             this.Show();

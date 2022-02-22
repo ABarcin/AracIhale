@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class AdminAnasayfa
+    partial class frmAdminAnasayfa
     {
         /// <summary>
         /// Required designer variable.
@@ -75,7 +75,7 @@ namespace AracIhale.UI
             this.btnUyeListeleme.UseVisualStyleBackColor = true;
             this.btnUyeListeleme.Click += new System.EventHandler(this.btnUyeListeleme_Click);
             // 
-            // AdminAnasayfa
+            // frmAdminAnasayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -84,8 +84,9 @@ namespace AracIhale.UI
             this.Controls.Add(this.btnIhaleIslemleri);
             this.Controls.Add(this.btnAraclslemleri);
             this.Controls.Add(this.btnKullaniciIslemleri);
-            this.Name = "AdminAnasayfa";
+            this.Name = "frmAdminAnasayfa";
             this.Text = "AdminAnasayfa";
+            this.Load += new System.EventHandler(this.frmAdminAnasayfa_Load);
             this.ResumeLayout(false);
 
         }

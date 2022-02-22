@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AracIhale.UI
 {
-    public partial class AdminAnasayfa : Form
+    public partial class frmAdminAnasayfa : Form
     {
-        public AdminAnasayfa()
+        public frmAdminAnasayfa()
         {
             InitializeComponent();
         }
@@ -20,9 +20,9 @@ namespace AracIhale.UI
         private void btnKullaniciIslemleri_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (KullaniciListeleme kullaniciListeleme=new KullaniciListeleme())
+            using (frmCalisanListeleme calisanListeleme=new frmCalisanListeleme())
             {
-                kullaniciListeleme.ShowDialog();
+                calisanListeleme.ShowDialog();
             }
             this.Show();
         }
@@ -55,6 +55,11 @@ namespace AracIhale.UI
                 uyeListeleme.ShowDialog();
             }
             this.Show();
+        }
+
+        private void frmAdminAnasayfa_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

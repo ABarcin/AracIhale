@@ -10,6 +10,14 @@ namespace AracIhale.DAL.Repositories.Abstract
 {
     public interface IAracTramerRepository : IRepository<AracTramer>
     {
+        int EklenenAracTramerIDGetir();
+
+        void AracTramerEkle(AracTramerVM aracTramerVM);
+
+        void AracTramerGuncelle(AracTramerVM aracTramerVM);
+
+        AracTramerVM AracTramerVMGetir(int aracID);
+
         AracTramerVM GetAracTramerVMByAracID(int id);
     }
 }

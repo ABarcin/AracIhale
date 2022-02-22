@@ -10,7 +10,7 @@ namespace AracIhale.MODEL.Mapping
 {
     public class AracTramerDetayMapping
     {
-        public AracTramerDetay AracTramerVMToAracTramer(AracTramerDetayVM vm)
+        public AracTramerDetay AracTramerDetayVMToAracTramerDetay(AracTramerDetayVM vm)
         {
             return new AracTramerDetay()
             {
@@ -25,7 +25,7 @@ namespace AracIhale.MODEL.Mapping
                 ModifiedDate = vm.ModifiedDate
             };
         }
-        public AracTramerDetayVM AracTramerToAracTramerVM(AracTramerDetay entity)
+        public AracTramerDetayVM AracTramerDetayToAracTramerDetayVM(AracTramerDetay entity)
         {
             return new AracTramerDetayVM()
             {
@@ -41,19 +41,19 @@ namespace AracIhale.MODEL.Mapping
         }
         public List<AracTramerDetayVM> ListAracTramerDetayToListAracTramerDetayVM(List<AracTramerDetay> list)
         {
-            List<AracTramerDetayVM> aracTramerListVM = null;
+            List<AracTramerDetayVM> aracTramerListVM = new List<AracTramerDetayVM>();
             foreach (AracTramerDetay item in list)
             {
-                aracTramerListVM.Add(AracTramerToAracTramerVM(item));
+                aracTramerListVM.Add(AracTramerDetayToAracTramerDetayVM(item));
             }
             return aracTramerListVM;
         }
         public List<AracTramerDetay> ListAracTramerDetayVMToListAracTramerDetay(List<AracTramerDetayVM> listVM)
         {
-            List<AracTramerDetay> aracTramerDetayList = null;
+            List<AracTramerDetay> aracTramerDetayList = new List<AracTramerDetay>();
             foreach (AracTramerDetayVM item in listVM)
             {
-                aracTramerDetayList.Add(AracTramerVMToAracTramer(item));
+                aracTramerDetayList.Add(AracTramerDetayVMToAracTramerDetay(item));
             }
             return aracTramerDetayList;
         }

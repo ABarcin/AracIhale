@@ -19,6 +19,26 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         }
 
+        public IlanVM IlanVMGetir(int aracID)
+        {
+            IlanVM ilanVM = new IlanMapping()
+                .IlanToIlanVM(this.GetAll(x => x.AracID == aracID).OrderByDescending(y => y.IlanID).FirstOrDefault());
+
+            return ilanVM;
+        }
+
+        public void IlanEkle(IlanVM ilanVM)
+        {
+            Ilan eklenecekIlan = new IlanMapping().IlanVMToIlan(ilanVM);
+            this.Add(eklenecekIlan);
+        }
+
+        public void IlanGuncelle(IlanVM ilanVM)
+        {
+            Ilan guncellenecekIlan = new IlanMapping().IlanVMToIlan(ilanVM);
+            this.UpdateWithId(ilanVM.IlanID, guncellenecekIlan);
+        }
+
         /// <summary>
         /// Arac ID'sine gore IlanVM getiren metod.
         /// </summary>
