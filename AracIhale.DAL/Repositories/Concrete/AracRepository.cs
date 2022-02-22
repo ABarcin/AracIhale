@@ -104,6 +104,7 @@ namespace AracIhale.DAL.Repositories.Concrete
                 .Where(x => x.IsActive == true)
                 .Select(x => new AracListVM
                 {
+                    AracID = x.AracID,
                     MarkaAd = x.Marka.Ad,
                     ModelAd = x.ArabaModel.Ad,
                     KullaniciTip = x.Kullanici.KullaniciTip.Tip,
