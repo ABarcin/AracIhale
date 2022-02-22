@@ -27,13 +27,8 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public void AracTramerDetayGuncelle(AracTramerDetayVM aracTramerDetayVM)
         {
-            AracTramerDetay guncellenecekAracTramer = this.GetByID(aracTramerDetayVM.AracTramerDetayID);
-
-            guncellenecekAracTramer.TramerDetayID = aracTramerDetayVM.TramerDetayID;
-            guncellenecekAracTramer.ModifiedDate = aracTramerDetayVM.ModifiedDate;
-
-            this.Update(guncellenecekAracTramer);
-
+            AracTramerDetay guncellenecekAracTramer = new AracTramerDetayMapping().AracTramerDetayVMToAracTramerDetay(aracTramerDetayVM);
+            this.UpdateWithId(aracTramerDetayVM.AracTramerDetayID,guncellenecekAracTramer);
         }
 
         public AracTramerDetayVM AracTramerDetayVMGetir(int aracTramerID, int aracParcaID)

@@ -41,16 +41,16 @@ namespace AracIhale.UI
             AracTramerVM aracTramerVM = _unitOfWork.AracTramerRepository.AracTramerVMGetir(_aracID);
             List<AracTramerDetayVM> aracTramerDetayVMList = new List<AracTramerDetayVM>();
 
-            if (aracTramerVM != null)
+            if (aracTramerVM == null)
+            {
+                btnGuncelle.Enabled = false;
+                MessageBox.Show("Araca dair tramer bilgileri henüz bulunmamaktadır. Lütfen verileri düzenleyin ve 'Kaydet' butonuna tıklayınız.");
+            }
+            else
             {
                 aracTramerDetayVMList = _unitOfWork.AracTramerDetayRepository.AracTramerVMListesiniGetir(aracTramerVM.AracTramerID);
                 btnKaydet.Enabled = false;
                 MessageBox.Show("Bilgiler daha önce kaydedilmiştir. Güncellemek için verileri düzenleyin ve 'Güncelle' butonuna tıklayınız.");
-            }
-            else
-            {
-                btnGuncelle.Enabled = false;
-                MessageBox.Show("Araca dair tramer bilgileri henüz bulunmamaktadır. Lütfen verileri düzenleyin ve 'Kaydet' butonuna tıklayınız.");
             }
 
             foreach (var item in _tramerDurumListesi)
@@ -146,7 +146,7 @@ namespace AracIhale.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -180,7 +180,7 @@ namespace AracIhale.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
             }
         }

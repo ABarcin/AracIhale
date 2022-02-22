@@ -254,5 +254,16 @@ namespace AracIhale.CORE
             }
             return validate;
         }
+
+        public bool IsTextBoxNullOrWhiteSpace(TextBox txt, ErrorProvider errorProvider, string message)
+        {
+            if (string.IsNullOrWhiteSpace(txt.Text))
+            {
+                errorProvider.SetError(txt, message);
+                return false;
+            }
+
+            return true;
+        }
     }
 }

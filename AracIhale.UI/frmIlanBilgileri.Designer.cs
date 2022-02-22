@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class IlanBilgileri
+    partial class frmIlanBilgileri
     {
         /// <summary>
         /// Required designer variable.
@@ -29,17 +29,24 @@ namespace AracIhale.UI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpIlanBilgileri = new System.Windows.Forms.GroupBox();
+            this.btnGuncelle = new System.Windows.Forms.Button();
             this.btnKaydet = new System.Windows.Forms.Button();
             this.txtIlanAciklama = new System.Windows.Forms.TextBox();
             this.txtIlanBaslik = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.epAciklama = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epBaslik = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpIlanBilgileri.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epAciklama)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epBaslik)).BeginInit();
             this.SuspendLayout();
             // 
             // grpIlanBilgileri
             // 
+            this.grpIlanBilgileri.Controls.Add(this.btnGuncelle);
             this.grpIlanBilgileri.Controls.Add(this.btnKaydet);
             this.grpIlanBilgileri.Controls.Add(this.txtIlanAciklama);
             this.grpIlanBilgileri.Controls.Add(this.txtIlanBaslik);
@@ -47,10 +54,20 @@ namespace AracIhale.UI
             this.grpIlanBilgileri.Controls.Add(this.label1);
             this.grpIlanBilgileri.Location = new System.Drawing.Point(12, 12);
             this.grpIlanBilgileri.Name = "grpIlanBilgileri";
-            this.grpIlanBilgileri.Size = new System.Drawing.Size(480, 349);
+            this.grpIlanBilgileri.Size = new System.Drawing.Size(498, 349);
             this.grpIlanBilgileri.TabIndex = 0;
             this.grpIlanBilgileri.TabStop = false;
             this.grpIlanBilgileri.Text = "İlan Bilgileri";
+            // 
+            // btnGuncelle
+            // 
+            this.btnGuncelle.Location = new System.Drawing.Point(313, 320);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(75, 23);
+            this.btnGuncelle.TabIndex = 1;
+            this.btnGuncelle.Text = "Güncelle";
+            this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
             // 
             // btnKaydet
             // 
@@ -60,6 +77,7 @@ namespace AracIhale.UI
             this.btnKaydet.TabIndex = 3;
             this.btnKaydet.Text = "Kaydet";
             this.btnKaydet.UseVisualStyleBackColor = true;
+            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
             // 
             // txtIlanAciklama
             // 
@@ -94,16 +112,27 @@ namespace AracIhale.UI
             this.label1.TabIndex = 0;
             this.label1.Text = "İlan Başlığı:";
             // 
-            // IlanBilgileri
+            // epAciklama
+            // 
+            this.epAciklama.ContainerControl = this;
+            // 
+            // epBaslik
+            // 
+            this.epBaslik.ContainerControl = this;
+            // 
+            // frmIlanBilgileri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 373);
+            this.ClientSize = new System.Drawing.Size(515, 373);
             this.Controls.Add(this.grpIlanBilgileri);
-            this.Name = "IlanBilgileri";
+            this.Name = "frmIlanBilgileri";
             this.Text = "IlanBilgileri";
+            this.Load += new System.EventHandler(this.frmIlanBilgileri_Load);
             this.grpIlanBilgileri.ResumeLayout(false);
             this.grpIlanBilgileri.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epAciklama)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epBaslik)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -116,5 +145,8 @@ namespace AracIhale.UI
         private System.Windows.Forms.TextBox txtIlanBaslik;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnGuncelle;
+        private System.Windows.Forms.ErrorProvider epAciklama;
+        private System.Windows.Forms.ErrorProvider epBaslik;
     }
 }

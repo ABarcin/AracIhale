@@ -150,11 +150,11 @@
     <Compile Include="IhaleListeleme.Designer.cs">
       <DependentUpon>IhaleListeleme.cs</DependentUpon>
     </Compile>
-    <Compile Include="IlanBilgileri.cs">
+    <Compile Include="frmIlanBilgileri.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IlanBilgileri.Designer.cs">
-      <DependentUpon>IlanBilgileri.cs</DependentUpon>
+    <Compile Include="frmIlanBilgileri.Designer.cs">
+      <DependentUpon>frmIlanBilgileri.cs</DependentUpon>
     </Compile>
     <Compile Include="KullaniciListeleme.cs">
       <SubType>Form</SubType>
@@ -224,8 +224,8 @@
     <EmbeddedResource Include="IhaleListeleme.resx">
       <DependentUpon>IhaleListeleme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IlanBilgileri.resx">
-      <DependentUpon>IlanBilgileri.cs</DependentUpon>
+    <EmbeddedResource Include="frmIlanBilgileri.resx">
+      <DependentUpon>frmIlanBilgileri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KullaniciListeleme.resx">
       <DependentUpon>KullaniciListeleme.cs</DependentUpon>
