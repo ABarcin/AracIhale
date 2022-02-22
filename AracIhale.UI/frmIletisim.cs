@@ -65,7 +65,11 @@ namespace AracIhale.UI
                 }
 
             }
-            cmbIletisimTur.SelectedIndex = 0;
+            if (cmbIletisimTur.Items.Count>0)
+            {
+                cmbIletisimTur.SelectedIndex = 0;
+            }
+            
         }
 
         private void CmbDoldurIletisimTurDoldur()
