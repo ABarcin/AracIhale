@@ -2,6 +2,7 @@
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
 using AracIhale.MODEL.VM;
+using AracIhale.CORE.Login;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,13 @@ namespace AracIhale.UI
             PrepareForm();
             SetDefaultValueAndFillListView();
             btnGuncelle.Enabled = false;
+            btnSil.Enabled = false;
+
+            // Silinmesi gerekiyor. Test icin.
+            Login.GirisYapmisCalisan = new Calisan()
+            {
+                CalisanID = 1
+            };
         }
 
         /// <summary>
@@ -38,14 +46,21 @@ namespace AracIhale.UI
         private void PrepareForm()
         {
             cmbUyeTipi.Items.Add("Uye Tipi Seciniz");
-            cmbUyeTipi.Items.AddRange(unitOfWork.KullaniciTipRepository.KullaniciTipListele().ToArray());
+
+            if(unitOfWork.KullaniciTipRepository.KullaniciTipListele() != null)
+            {
+                cmbUyeTipi.Items.AddRange(unitOfWork.KullaniciTipRepository.KullaniciTipListele().ToArray());
+            }
             
             cmbStatu.Items.Add("Statu Seciniz");
-            cmbStatu.Items.AddRange(unitOfWork.IhaleStatuRepository.StatuleriListele().ToArray());
+
+            if (unitOfWork.IhaleStatuRepository.StatuleriListele() != null)
+            {
+                cmbStatu.Items.AddRange(unitOfWork.IhaleStatuRepository.StatuleriListele().ToArray());
+            }
 
             cmbUyeTipi.SelectedIndex = 0;
             cmbStatu.SelectedIndex = 0;
-
         }
 
         /// <summary>
@@ -129,6 +144,37 @@ namespace AracIhale.UI
             this.Show();
         }
 
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            if(ihaleListVM != null)
+            {
+                DialogResult result = MessageBox.Show("İhaleyi silmek istediğinize eminmisiniz", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    ihaleListVM.IsActive = false;
+
+                    unitOfWork.IhaleRepository.UpdateIhaleVM(ihaleListVM);
+
+                    if (unitOfWork.Complate() > 0)
+                    {
+                        MessageBox.Show("İhale silme başarılı");
+                    }
+                    else
+                    {
+                        MessageBox.Show("İhale silme başarısız");
+                    }
+
+                    btnGuncelle.Enabled = false;
+                    btnSil.Enabled = false;
+
+                    ihaleListVM = null;
+
+                    SetDefaultValueAndFillListView();
+                }
+            }
+        }
+
         private void listIhaleler_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listIhaleler.SelectedItems.Count > 0)
@@ -138,10 +184,16 @@ namespace AracIhale.UI
                 if(ihaleListVM != null)
                 {
                     btnGuncelle.Enabled = true;
+                    btnSil.Enabled = true;
                 }
 
                 MessageBox.Show($"'{ihaleListVM.IhaleAdi}' adlı ihale seçildi.");
             }
+        }
+
+        private void OnVisible_VisibleChanged(object sender, EventArgs e)
+        {
+            SetDefaultValueAndFillListView();
         }
     }
 }

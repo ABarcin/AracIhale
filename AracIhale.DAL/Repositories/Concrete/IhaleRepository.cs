@@ -28,10 +28,11 @@ namespace AracIhale.DAL.Repositories.Concrete
         /// <param name="ihaleAdi">Ihale adi</param>
         /// <param name="kTip">Kullanici tipi</param>
         /// <param name="statu">Ihale statusu</param>
-        /// <returns></returns>
         public List<IhaleListVM> IhaleListele(string ihaleAdi="", KullaniciTipVM kTip=null, StatuVM statu=null)
         {
-            var ihaleList = ThisContext.Ihale.Include("Calisan").Include("Kullanici").Include("Statu").Include("IhaleSurec").Include("IhaleStatu")
+            try
+            {
+                var ihaleList = ThisContext.Ihale.Include("Calisan").Include("Kullanici").Include("Statu").Include("IhaleSurec").Include("IhaleStatu")
             .Where(y => y.IsActive == true)
             .Select(x => new IhaleListVM
             {
@@ -49,26 +50,33 @@ namespace AracIhale.DAL.Repositories.Concrete
                 CreatedDate = x.CreatedDate
             }).ToList();
 
-            // Ihale adi bos degilse ihale adina gore filtreleme yapacak
-            if (ihaleAdi != "")
-            {
-                ihaleList = ihaleList.Where(y => y.IhaleAdi == ihaleAdi && y.IsActive == true).ToList();
+                // Ihale adi bos degilse ihale adina gore filtreleme yapacak
+                if (ihaleAdi != "")
+                {
+                    ihaleList = ihaleList.Where(y => y.IhaleAdi == ihaleAdi && y.IsActive == true).ToList();
+                }
+
+                // Kullanici tipi null degilse kullanici tipine gore filteleme yapicak.
+                if (kTip != null)
+                {
+                    ihaleList = ihaleList.Where(y => y.KullaniciTipID == kTip.KullaniciTipID && y.IsActive == true).ToList();
+                }
+
+                // Statu null degilse statuye gore filtreleme yapicak.
+                if (statu != null)
+                {
+                    ihaleList = ihaleList.Where(y => y.IhaleStatuID == statu.StatuID && y.IsActive == true).ToList();
+                }
+
+                return ihaleList;
             }
 
-            // Kullanici tipi null degilse kullanici tipine gore filteleme yapicak.
-            if(kTip != null)
+            catch(Exception e)
             {
-                ihaleList = ihaleList.Where(y => y.KullaniciTipID == kTip.KullaniciTipID && y.IsActive == true).ToList();
+                return new List<IhaleListVM>();
             }
-
-            // Statu null degilse statuye gore filtreleme yapicak.
-            if(statu != null)
-            {
-                ihaleList = ihaleList.Where(y => y.IhaleStatuID == statu.StatuID && y.IsActive == true).ToList();
-            }
-
-            return ihaleList;
         }
+
 
         public void InsertIhaleVM(IhaleListVM ihaleListVM)
         {
@@ -102,6 +110,7 @@ namespace AracIhale.DAL.Repositories.Concrete
             }
         }
 
+
         public void UpdateIhaleVM(IhaleListVM ihaleListVM)
         {
             IhaleRepository ihaleRepository = new IhaleRepository(ThisContext);
@@ -121,6 +130,7 @@ namespace AracIhale.DAL.Repositories.Concrete
             ihaleEntity.BitisSaat = ihaleListVM.BitisSaat;
             ihaleEntity.ModifiedDate = DateTime.Now;
             ihaleEntity.ModifiedBy = Login.GirisYapmisCalisan.KullaniciAd;
+            ihaleEntity.IsActive = ihaleListVM.IsActive;
             
             ihaleSurecEntity.IhaleStatuID = ihaleListVM.IhaleStatuID;
             ihaleSurecEntity.ModifiedDate = DateTime.Now;

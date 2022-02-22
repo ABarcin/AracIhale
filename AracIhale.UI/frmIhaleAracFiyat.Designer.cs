@@ -63,6 +63,7 @@ namespace AracIhale.UI
             // 
             // cmbArac
             // 
+            this.cmbArac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbArac.FormattingEnabled = true;
             this.cmbArac.Location = new System.Drawing.Point(175, 48);
             this.cmbArac.Name = "cmbArac";
@@ -128,14 +129,14 @@ namespace AracIhale.UI
             // 
             this.errorProviderIhaleAracFiyat.ContainerControl = this;
             // 
-            // IhaleAracFiyat
+            // frmIhaleAracFiyat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(409, 358);
             this.Controls.Add(this.gbIhaleFiyat);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "IhaleAracFiyat";
+            this.Name = "frmIhaleAracFiyat";
             this.Text = "IhaleAracFiyat";
             this.Load += new System.EventHandler(this.IhaleAracFiyat_Load);
             this.gbIhaleFiyat.ResumeLayout(false);

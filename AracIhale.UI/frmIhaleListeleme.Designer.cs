@@ -71,6 +71,7 @@ namespace AracIhale.UI
             this.gbIhaleListeleme.TabIndex = 1;
             this.gbIhaleListeleme.TabStop = false;
             this.gbIhaleListeleme.Text = "Araç Tanımlama/Listeleme";
+            this.gbIhaleListeleme.VisibleChanged += new System.EventHandler(this.OnVisible_VisibleChanged);
             // 
             // btnSil
             // 
@@ -82,6 +83,7 @@ namespace AracIhale.UI
             this.btnSil.TabIndex = 7;
             this.btnSil.Text = "Sil";
             this.btnSil.UseVisualStyleBackColor = false;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
             // btnGuncelle
             // 
@@ -260,14 +262,14 @@ namespace AracIhale.UI
             this.label1.TabIndex = 0;
             this.label1.Text = "İhale Adı:";
             // 
-            // IhaleListeleme
+            // frmIhaleListeleme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 570);
             this.Controls.Add(this.gbIhaleListeleme);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "IhaleListeleme";
+            this.Name = "frmIhaleListeleme";
             this.Text = "IhaleListeleme";
             this.Load += new System.EventHandler(this.IhaleListeleme_Load);
             this.gbIhaleListeleme.ResumeLayout(false);

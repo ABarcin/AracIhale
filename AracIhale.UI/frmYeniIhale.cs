@@ -38,82 +38,130 @@ namespace AracIhale.UI
             FirmaComboBoxDoldu();
             bilgileriGetir();
             AracListViewDoldur();
-
-            // Silinmesi gerekiyor. Test icin.
-            Login.GirisYapmisCalisan = new Calisan()
-            {
-                CalisanID = 1
-            };
         }
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-            if(ihaleListVM == null)
+            if (Login.GirisYapmisCalisan != null)
             {
-                // Validation yapilacak
-                // EKLE
-
-                DialogResult result = MessageBox.Show("İhale eklemek istediğinize eminmisiniz","",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-
-                ihaleListVM = new IhaleListVM();
-
-                if(result == DialogResult.Yes)
+                if (ihaleListVM == null)
                 {
-                    ihaleListVM.IhaleAdi = txtIhaleAdi.Text;
-                    ihaleListVM.KullaniciTipID = (cmbUyeTip.SelectedItem as KullaniciTipVM).KullaniciTipID;
-                    ihaleListVM.IhaleBaslangic = dtBaslangicSaat.Value;
-                    ihaleListVM.IhaleBitis = dtIhaleBaslangic.Value;
-                    ihaleListVM.BaslangicSaat = dtIhaleBitis.Value.TimeOfDay;
-                    ihaleListVM.BitisSaat = dtBitisSaat.Value.TimeOfDay;
-                    ihaleListVM.IhaleStatuID = (cmbStatu.SelectedItem as IhaleStatuVM).IhaleStatuID;
-                    ihaleListVM.CalisanID = Login.GirisYapmisCalisan.CalisanID;
+                    // Validation yapilacak
+                    // EKLE
 
-                    unitOfWork.IhaleRepository.InsertIhaleVM(ihaleListVM);
+                    if (ValidateForm())
+                    {
+                        DialogResult result = MessageBox.Show("İhale eklemek istediğinize eminmisiniz", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (unitOfWork.Complate() > 0)
-                    {
-                        MessageBox.Show("İhale ekleme başarılı");
+                        ihaleListVM = new IhaleListVM();
+
+                        if (result == DialogResult.Yes)
+                        {
+                            ihaleListVM.IhaleAdi = txtIhaleAdi.Text;
+                            ihaleListVM.KullaniciTipID = (cmbUyeTip.SelectedItem as KullaniciTipVM).KullaniciTipID;
+                            ihaleListVM.IhaleBaslangic = dtBaslangicSaat.Value;
+                            ihaleListVM.IhaleBitis = dtIhaleBaslangic.Value;
+                            ihaleListVM.BaslangicSaat = dtIhaleBitis.Value.TimeOfDay;
+                            ihaleListVM.BitisSaat = dtBitisSaat.Value.TimeOfDay;
+                            ihaleListVM.IhaleStatuID = (cmbStatu.SelectedItem as IhaleStatuVM).IhaleStatuID;
+                            ihaleListVM.CalisanID = Login.GirisYapmisCalisan.CalisanID;
+                            ihaleListVM.CreatedDate = DateTime.Now;
+                            ihaleListVM.CreatedBy = Login.GirisYapmisCalisan.KullaniciAd;
+
+                            unitOfWork.IhaleRepository.InsertIhaleVM(ihaleListVM);
+
+                            if (unitOfWork.Complate() > 0)
+                            {
+                                MessageBox.Show("İhale ekleme başarılı");
+                            }
+                            else
+                            {
+                                MessageBox.Show("İhale ekleme başarısız");
+                            }
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("İhale ekleme başarısız");
-                    }
+                    ihaleListVM = null;
                 }
-                ihaleListVM = null;
+                else
+                {
+                    // Validation yapilacak
+                    // GUNCELLE
+
+                    if (ValidateForm())
+                    {
+                        DialogResult result = MessageBox.Show("İhaleyi gücellemek istediğinize eminmisiniz", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            ihaleListVM.IhaleAdi = txtIhaleAdi.Text;
+                            ihaleListVM.KullaniciTipID = (cmbUyeTip.SelectedItem as KullaniciTipVM).KullaniciTipID;
+                            ihaleListVM.IhaleBaslangic = dtIhaleBaslangic.Value;
+                            ihaleListVM.IhaleBitis = dtIhaleBitis.Value;
+                            ihaleListVM.BaslangicSaat = dtBaslangicSaat.Value.TimeOfDay;
+                            ihaleListVM.BitisSaat = dtBitisSaat.Value.TimeOfDay;
+                            ihaleListVM.IhaleStatuID = (cmbStatu.SelectedItem as IhaleStatuVM).IhaleStatuID;
+                            ihaleListVM.ModifiedDate = DateTime.Now;
+                            ihaleListVM.CalisanID = Login.GirisYapmisCalisan.CalisanID;
+                            ihaleListVM.ModifiedBy = Login.GirisYapmisCalisan.KullaniciAd;
+
+                            unitOfWork.IhaleRepository.UpdateIhaleVM(ihaleListVM);
+
+                            if (unitOfWork.Complate() > 0)
+                            {
+                                MessageBox.Show("İhale güncelleme başarılı");
+                            }
+                            else
+                            {
+                                MessageBox.Show("İhale güncelleme başarısız");
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Giriş yapmadınız. Lütfen giriş yapınız.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private bool ValidateForm()
+        {
+            bool IsValid = true;
+
+            if (string.IsNullOrEmpty(txtIhaleAdi.Text))
+            {
+                IsValid = false;
+                myErrorProvider.SetError(txtIhaleAdi,"Bu alan boş geçilemez");
             }
             else
             {
-                // Validation yapilacak
-                // GUNCELLE
-
-                DialogResult result = MessageBox.Show("İhaleyi gücellemek istediğinize eminmisiniz", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    ihaleListVM.IhaleAdi = txtIhaleAdi.Text;
-                    ihaleListVM.KullaniciTipID = (cmbUyeTip.SelectedItem as KullaniciTipVM).KullaniciTipID;
-                    ihaleListVM.IhaleBaslangic = dtIhaleBaslangic.Value;
-                    ihaleListVM.IhaleBitis = dtIhaleBitis.Value;
-                    ihaleListVM.BaslangicSaat = dtBaslangicSaat.Value.TimeOfDay;
-                    ihaleListVM.BitisSaat = dtBitisSaat.Value.TimeOfDay;
-                    ihaleListVM.IhaleStatuID = (cmbStatu.SelectedItem as IhaleStatuVM).IhaleStatuID;
-                    ihaleListVM.ModifiedDate = DateTime.Now;
-                    ihaleListVM.CalisanID = Login.GirisYapmisCalisan.CalisanID;
-
-                    unitOfWork.IhaleRepository.UpdateIhaleVM(ihaleListVM);
-
-                    if (unitOfWork.Complate() > 0)
-                    {
-                        MessageBox.Show("İhale güncelleme başarılı");
-                    }
-                    else
-                    {
-                        MessageBox.Show("İhale güncelleme başarısız");
-                    }
-                }
-
+                myErrorProvider.Clear();
             }
 
+            if(cmbStatu.SelectedIndex == 0)
+            {
+                IsValid = false;
+                myErrorProvider.SetError(cmbStatu, "Bu alan boş geçilemez");
+            }
+            else
+            {
+                myErrorProvider.Clear();
+            }
+
+            if (cmbUyeTip.SelectedIndex == 0)
+            {
+                IsValid = false;
+                myErrorProvider.SetError(cmbUyeTip, "Bu alan boş geçilemez");
+            }
+            else
+            {
+                myErrorProvider.Clear();
+            }
+
+            return IsValid;
         }
 
         private void bilgileriGetir()
@@ -160,22 +208,25 @@ namespace AracIhale.UI
 
         private void AracListViewDoldur()
         {
-            List<AracCDListVM> aracListVMler = unitOfWork.AracRepository.GetAracByIhaleID(ihaleListVM.IhaleID);
-
-            listArac.Items.Clear();
-
-            foreach (var item in aracListVMler)
+            if (ihaleListVM != null)
             {
-                ListViewItem listViewItem = new ListViewItem();
-                listViewItem.Text = item.AracID.ToString();
-                listViewItem.SubItems.Add(item.Marka.Ad);
-                listViewItem.SubItems.Add(item.ArabaModel.Ad);
-                listViewItem.SubItems.Add(item.KullaniciTipAdi);
-                listViewItem.SubItems.Add(item.Statu.StatuAd);
-                listViewItem.SubItems.Add(item.Kullanici.Ad);
-                listViewItem.SubItems.Add(item.CreatedDate.ToString());
+                List<AracCDListVM> aracListVMler = unitOfWork.AracRepository.GetAracByIhaleID(ihaleListVM.IhaleID);
 
-                listArac.Items.Add(listViewItem);
+                listArac.Items.Clear();
+
+                foreach (var item in aracListVMler)
+                {
+                    ListViewItem listViewItem = new ListViewItem();
+                    listViewItem.Text = (listArac.Items.Count + 1).ToString();
+                    listViewItem.SubItems.Add(item.Marka.Ad);
+                    listViewItem.SubItems.Add(item.ArabaModel.Ad);
+                    listViewItem.SubItems.Add(item.KullaniciTipAdi);
+                    listViewItem.SubItems.Add(item.Statu.StatuAd);
+                    listViewItem.SubItems.Add(item.Kullanici.Ad);
+                    listViewItem.SubItems.Add(item.CreatedDate.ToString());
+
+                    listArac.Items.Add(listViewItem);
+                }
             }
         }
 
@@ -226,6 +277,11 @@ namespace AracIhale.UI
                 ihaleAracFiyat.ShowDialog();
             }
             this.Show();
+        }
+
+        private void OnVisible_VisibleChanged(object sender, EventArgs e)
+        {
+            AracListViewDoldur();
         }
     }
 }
