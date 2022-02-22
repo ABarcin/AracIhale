@@ -42,6 +42,13 @@ namespace AracIhale.DAL.Repositories.Concrete
         {
             this.Add(mapping.CalisanIletisimVMToCalisanIletisim(vm));
         }
+        public void IletisimBilgisiGuncelle(CalisanIletisimVM vm)
+        {
+            CalisanIletisim iletisim = mapping.CalisanIletisimVMToCalisanIletisim(vm);
+
+
+            this.Update(iletisim);
+        }
 
     }
 }

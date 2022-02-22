@@ -65,6 +65,7 @@ namespace AracIhale.UI
                 }
 
             }
+            cmbIletisimTur.SelectedIndex = 0;
         }
 
         private void CmbDoldurIletisimTurDoldur()
@@ -79,25 +80,120 @@ namespace AracIhale.UI
         private void btnKaydet_Click(object sender, EventArgs e)
         {
             validation = new Validation();
-            if ((cmbIletisimTur.SelectedItem as IletisimTurVM).Ad=="Email")
+            string iletisimTur = (cmbIletisimTur.SelectedItem as IletisimTurVM).Ad.ToLower();
+            if(iletisimTur=="email"|| iletisimTur=="mail")
             {
-                if (validation.IsValidateEmail(txtIletisimBilgi, errorProvider)&&cmbIletisimTur.SelectedItem!=null) 
+                if (validation.IsValidateEmail(txtIletisimBilgi, errorProvider))
                 {
-                    using (unitOfWork=new UnitOfWork(new AracIhaleEntities()))
+                    IletisimEkle();
+                }
+            }else if (iletisimTur=="telefon"|| iletisimTur=="phone"|| iletisimTur=="cep"|| iletisimTur=="mobile")
+            {
+                if (validation.IsValidatePhoneNumber(txtIletisimBilgi,errorProvider))
+                {
+                    IletisimEkle();
+                }
+            }
+            else if (iletisimTur=="adres"||iletisimTur=="adress")
+            {
+                if (!string.IsNullOrWhiteSpace(txtIletisimBilgi.Text))
+                {
+                    IletisimEkle();
+                }
+            }
+        }
+
+        private void IletisimEkle()
+        {
+            using (unitOfWork = new UnitOfWork(new AracIhaleEntities()))
+            {
+                CalisanIletisimVM vm = new CalisanIletisimVM()
+                {
+                    CalisanID = calisan.CalisanID,
+                    IletisimTuruID = (cmbIletisimTur.SelectedItem as IletisimTurVM).IletisimTuruID,
+                    IletisimBilgi = txtIletisimBilgi.Text,
+                    IsActive = true,
+                    CreatedBy=LoginKullanici.GirisYapmisCalisan.KullaniciAd,
+                    ModifiedBy=LoginKullanici.GirisYapmisCalisan.KullaniciAd
+                    
+                };
+                unitOfWork.CalisanIletisimRepository.IletisimBilgisiEkle(vm);
+                unitOfWork.Complate();
+                IletisimBilgileriniDoldur();
+            }
+        }
+
+        private void lsvIletisim_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lsvIletisim.SelectedItems.Count>0)
+            {
+                btnKaydet.Enabled = false;
+                btnGuncelle.Enabled = true;
+                foreach (IletisimTurVM item in cmbIletisimTur.Items)
+                {
+                    if (item.IletisimTuruID==(lsvIletisim.SelectedItems[0].Tag as CalisanIletisimVM).IletisimTuruID)
                     {
-                        CalisanIletisimVM vm = new CalisanIletisimVM()
-                        {
-                            CalisanID = calisan.CalisanID,
-                            IletisimTuruID = (cmbIletisimTur.SelectedItem as IletisimTurVM).IletisimTuruID,
-                            IletisimBilgi = txtIletisimBilgi.Text,
-                            IsActive=true
-                        };
-                        unitOfWork.CalisanIletisimRepository.IletisimBilgisiEkle(vm);
-                        unitOfWork.Complate();
-                        IletisimBilgileriniDoldur();
-                        
+                        cmbIletisimTur.SelectedItem = item;
                     }
                 }
+                txtIletisimBilgi.Text = (lsvIletisim.SelectedItems[0].Tag as CalisanIletisimVM).IletisimBilgi;
+            }
+            else
+            {
+                btnKaydet.Enabled = true;
+                btnGuncelle.Enabled = false;
+                cmbIletisimTur.SelectedIndex = 0;
+                txtIletisimBilgi.Text = string.Empty;
+            }
+            
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            validation = new Validation();
+            string iletisimTur = (cmbIletisimTur.SelectedItem as IletisimTurVM).Ad.ToLower();
+            if (iletisimTur == "email" || iletisimTur == "mail")
+            {
+                if (validation.IsValidateEmail(txtIletisimBilgi, errorProvider))
+                {
+                    IletisimGuncelle();
+                }
+            }
+            else if (iletisimTur == "telefon" || iletisimTur == "phone" || iletisimTur == "cep" || iletisimTur == "mobile")
+            {
+                if (validation.IsValidatePhoneNumber(txtIletisimBilgi, errorProvider))
+                {
+                    IletisimGuncelle();
+                }
+            }
+            else if (iletisimTur == "adres" || iletisimTur == "adress")
+            {
+                if (!string.IsNullOrWhiteSpace(txtIletisimBilgi.Text))
+                {
+                    IletisimGuncelle();
+                }
+            }
+        }
+
+        private void IletisimGuncelle()
+        {
+            using (unitOfWork = new UnitOfWork(new AracIhaleEntities()))
+            {
+                CalisanIletisimVM vm = new CalisanIletisimVM()
+                {
+                    CalisanID = calisan.CalisanID,
+                    IletisimTuruID = (cmbIletisimTur.SelectedItem as IletisimTurVM).IletisimTuruID,
+                    IletisimBilgi = txtIletisimBilgi.Text,
+                    IsActive = true,
+                    CalisanIletisimID = (lsvIletisim.SelectedItems[0].Tag as CalisanIletisimVM).CalisanIletisimID,
+                    ModifiedBy = LoginKullanici.GirisYapmisCalisan.KullaniciAd
+
+                    
+                };
+                unitOfWork.CalisanIletisimRepository.IletisimBilgisiGuncelle(vm);
+                unitOfWork.Complate();
+                IletisimBilgileriniDoldur();
+                errorProvider.Clear();
             }
         }
     }

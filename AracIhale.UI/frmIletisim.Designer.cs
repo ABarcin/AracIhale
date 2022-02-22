@@ -39,6 +39,7 @@ namespace AracIhale.UI
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnGuncelle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,13 +94,16 @@ namespace AracIhale.UI
             this.lsvIletisim.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
+            this.lsvIletisim.FullRowSelect = true;
             this.lsvIletisim.HideSelection = false;
             this.lsvIletisim.Location = new System.Drawing.Point(12, 12);
+            this.lsvIletisim.MultiSelect = false;
             this.lsvIletisim.Name = "lsvIletisim";
             this.lsvIletisim.Size = new System.Drawing.Size(437, 197);
             this.lsvIletisim.TabIndex = 5;
             this.lsvIletisim.UseCompatibleStateImageBehavior = false;
             this.lsvIletisim.View = System.Windows.Forms.View.Details;
+            this.lsvIletisim.SelectedIndexChanged += new System.EventHandler(this.lsvIletisim_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -115,12 +119,23 @@ namespace AracIhale.UI
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // btnGuncelle
+            // 
+            this.btnGuncelle.Location = new System.Drawing.Point(133, 275);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(75, 23);
+            this.btnGuncelle.TabIndex = 4;
+            this.btnGuncelle.Text = "Güncelle";
+            this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
+            // 
             // frmIletisim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 450);
             this.Controls.Add(this.lsvIletisim);
+            this.Controls.Add(this.btnGuncelle);
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.txtIletisimBilgi);
             this.Controls.Add(this.label2);
@@ -146,5 +161,6 @@ namespace AracIhale.UI
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Button btnGuncelle;
     }
 }

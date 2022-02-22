@@ -9,5 +9,6 @@ namespace AracIhale.DAL.Repositories.Abstract
         string GetEmailByUserName(string kullaniciAd);
         List<CalisanIletisimVM> IletisimBilgileriniGetir(CalisanVM calisan);
         void IletisimBilgisiEkle(CalisanIletisimVM vm);
+        void IletisimBilgisiGuncelle(CalisanIletisimVM vm);
     }
 }

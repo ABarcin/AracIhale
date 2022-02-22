@@ -17,6 +17,7 @@ namespace AracIhale.MODEL.Mapping
                 CalisanID = vm.CalisanID,
                 IletisimBilgi = vm.IletisimBilgi,
                 IletisimTuruID = vm.IletisimTuruID,
+                CalisanIletisimID=vm.CalisanIletisimID,
                 IsActive = vm.IsActive,
                 CreatedBy = vm.CreatedBy,
                 CreatedDate = vm.CreatedDate,
@@ -36,6 +37,7 @@ namespace AracIhale.MODEL.Mapping
                 CreatedBy = entity.CreatedBy,
                 CreatedDate = entity.CreatedDate,
                 ModifiedBy = entity.ModifiedBy,
+                ModifiedDate = entity.ModifiedDate
             };
         }
         public List<CalisanIletisimVM> ListCalisanIletisimToListCalisanIletisimVM(List<CalisanIletisim> list)

@@ -60,58 +60,58 @@ namespace AracIhale.UI
             // 
             // btnKaydet
             // 
-            this.btnKaydet.Location = new System.Drawing.Point(169, 287);
+            this.btnKaydet.Location = new System.Drawing.Point(141, 287);
             this.btnKaydet.Name = "btnKaydet";
             this.btnKaydet.Size = new System.Drawing.Size(206, 23);
-            this.btnKaydet.TabIndex = 13;
+            this.btnKaydet.TabIndex = 10;
             this.btnKaydet.Text = "Kaydet";
             this.btnKaydet.UseVisualStyleBackColor = true;
             this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
             // 
             // txtSifreTekrar
             // 
-            this.txtSifreTekrar.Location = new System.Drawing.Point(169, 154);
+            this.txtSifreTekrar.Location = new System.Drawing.Point(141, 154);
             this.txtSifreTekrar.Name = "txtSifreTekrar";
             this.txtSifreTekrar.Size = new System.Drawing.Size(206, 20);
-            this.txtSifreTekrar.TabIndex = 8;
+            this.txtSifreTekrar.TabIndex = 5;
             this.txtSifreTekrar.TextChanged += new System.EventHandler(this.txtAd_TextChanged);
             // 
             // txtSifre
             // 
-            this.txtSifre.Location = new System.Drawing.Point(169, 127);
+            this.txtSifre.Location = new System.Drawing.Point(141, 127);
             this.txtSifre.Name = "txtSifre";
             this.txtSifre.Size = new System.Drawing.Size(206, 20);
-            this.txtSifre.TabIndex = 9;
+            this.txtSifre.TabIndex = 4;
             this.txtSifre.TextChanged += new System.EventHandler(this.txtAd_TextChanged);
             // 
             // txtSoyad
             // 
-            this.txtSoyad.Location = new System.Drawing.Point(169, 73);
+            this.txtSoyad.Location = new System.Drawing.Point(141, 73);
             this.txtSoyad.Name = "txtSoyad";
             this.txtSoyad.Size = new System.Drawing.Size(206, 20);
-            this.txtSoyad.TabIndex = 10;
+            this.txtSoyad.TabIndex = 2;
             this.txtSoyad.TextChanged += new System.EventHandler(this.txtAd_TextChanged);
             // 
             // txtKullaniciAdi
             // 
-            this.txtKullaniciAdi.Location = new System.Drawing.Point(169, 100);
+            this.txtKullaniciAdi.Location = new System.Drawing.Point(141, 100);
             this.txtKullaniciAdi.Name = "txtKullaniciAdi";
             this.txtKullaniciAdi.Size = new System.Drawing.Size(206, 20);
-            this.txtKullaniciAdi.TabIndex = 11;
+            this.txtKullaniciAdi.TabIndex = 3;
             this.txtKullaniciAdi.TextChanged += new System.EventHandler(this.txtAd_TextChanged);
             // 
             // txtAd
             // 
-            this.txtAd.Location = new System.Drawing.Point(169, 46);
+            this.txtAd.Location = new System.Drawing.Point(141, 46);
             this.txtAd.Name = "txtAd";
             this.txtAd.Size = new System.Drawing.Size(206, 20);
-            this.txtAd.TabIndex = 12;
+            this.txtAd.TabIndex = 1;
             this.txtAd.TextChanged += new System.EventHandler(this.txtAd_TextChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(67, 157);
+            this.label5.Location = new System.Drawing.Point(39, 157);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 3;
@@ -120,7 +120,7 @@ namespace AracIhale.UI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(67, 130);
+            this.label4.Location = new System.Drawing.Point(39, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(28, 13);
             this.label4.TabIndex = 4;
@@ -129,7 +129,7 @@ namespace AracIhale.UI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 76);
+            this.label2.Location = new System.Drawing.Point(39, 76);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 5;
@@ -138,7 +138,7 @@ namespace AracIhale.UI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(67, 103);
+            this.label3.Location = new System.Drawing.Point(39, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 6;
@@ -147,7 +147,7 @@ namespace AracIhale.UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(67, 49);
+            this.label1.Location = new System.Drawing.Point(39, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 13);
             this.label1.TabIndex = 7;
@@ -156,7 +156,7 @@ namespace AracIhale.UI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(67, 207);
+            this.label6.Location = new System.Drawing.Point(39, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(23, 13);
             this.label6.TabIndex = 3;
@@ -166,10 +166,10 @@ namespace AracIhale.UI
             // 
             this.cmbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRol.FormattingEnabled = true;
-            this.cmbRol.Location = new System.Drawing.Point(169, 204);
+            this.cmbRol.Location = new System.Drawing.Point(141, 204);
             this.cmbRol.Name = "cmbRol";
             this.cmbRol.Size = new System.Drawing.Size(206, 21);
-            this.cmbRol.TabIndex = 14;
+            this.cmbRol.TabIndex = 6;
             // 
             // listCalisanlar
             // 
@@ -185,7 +185,7 @@ namespace AracIhale.UI
             this.listCalisanlar.MultiSelect = false;
             this.listCalisanlar.Name = "listCalisanlar";
             this.listCalisanlar.Size = new System.Drawing.Size(506, 179);
-            this.listCalisanlar.TabIndex = 15;
+            this.listCalisanlar.TabIndex = 12;
             this.listCalisanlar.UseCompatibleStateImageBehavior = false;
             this.listCalisanlar.View = System.Windows.Forms.View.Details;
             this.listCalisanlar.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listCalisanlar_ItemSelectionChanged);
@@ -227,7 +227,7 @@ namespace AracIhale.UI
             this.btnGuncelle.Location = new System.Drawing.Point(582, 287);
             this.btnGuncelle.Name = "btnGuncelle";
             this.btnGuncelle.Size = new System.Drawing.Size(195, 23);
-            this.btnGuncelle.TabIndex = 13;
+            this.btnGuncelle.TabIndex = 14;
             this.btnGuncelle.Text = "Güncelle";
             this.btnGuncelle.UseVisualStyleBackColor = true;
             this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
@@ -237,7 +237,7 @@ namespace AracIhale.UI
             this.btnIletisim.Location = new System.Drawing.Point(381, 247);
             this.btnIletisim.Name = "btnIletisim";
             this.btnIletisim.Size = new System.Drawing.Size(396, 23);
-            this.btnIletisim.TabIndex = 16;
+            this.btnIletisim.TabIndex = 11;
             this.btnIletisim.Text = "İletişim Bilgisi Ekle";
             this.btnIletisim.UseVisualStyleBackColor = true;
             this.btnIletisim.Click += new System.EventHandler(this.btnIletisim_Click);
@@ -246,28 +246,29 @@ namespace AracIhale.UI
             // 
             this.rdbAktif.AutoSize = true;
             this.rdbAktif.Checked = true;
-            this.rdbAktif.Location = new System.Drawing.Point(202, 253);
+            this.rdbAktif.Location = new System.Drawing.Point(174, 253);
             this.rdbAktif.Name = "rdbAktif";
             this.rdbAktif.Size = new System.Drawing.Size(46, 17);
-            this.rdbAktif.TabIndex = 17;
+            this.rdbAktif.TabIndex = 7;
             this.rdbAktif.TabStop = true;
+            this.rdbAktif.Tag = "7";
             this.rdbAktif.Text = "Aktif";
             this.rdbAktif.UseVisualStyleBackColor = true;
             // 
             // rdbPasif
             // 
             this.rdbPasif.AutoSize = true;
-            this.rdbPasif.Location = new System.Drawing.Point(276, 253);
+            this.rdbPasif.Location = new System.Drawing.Point(248, 253);
             this.rdbPasif.Name = "rdbPasif";
             this.rdbPasif.Size = new System.Drawing.Size(48, 17);
-            this.rdbPasif.TabIndex = 17;
+            this.rdbPasif.TabIndex = 8;
             this.rdbPasif.Text = "Pasif";
             this.rdbPasif.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(66, 255);
+            this.label7.Location = new System.Drawing.Point(38, 255);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 13);
             this.label7.TabIndex = 3;

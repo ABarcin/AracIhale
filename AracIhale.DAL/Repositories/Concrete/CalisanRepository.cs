@@ -70,6 +70,7 @@ namespace AracIhale.DAL.Repositories.Concrete
             guncellenecekCalisan.Sifre = calisan.Sifre;
             guncellenecekCalisan.KullaniciAd = calisan.KullaniciAd;
             guncellenecekCalisan.RolID = calisan.RolID;
+            guncellenecekCalisan.ModifiedBy = calisan.KullaniciAd;
             this.Update(guncellenecekCalisan);
         }
         public void Ekle(CalisanVM calisan)
@@ -81,6 +82,8 @@ namespace AracIhale.DAL.Repositories.Concrete
             eklenecekCalisan.Sifre = calisan.Sifre;
             eklenecekCalisan.KullaniciAd = calisan.KullaniciAd;
             eklenecekCalisan.RolID = calisan.RolID;
+            eklenecekCalisan.CreatedBy = calisan.KullaniciAd;
+            eklenecekCalisan.ModifiedBy = calisan.KullaniciAd;
             this.Add(eklenecekCalisan);
         }
 
