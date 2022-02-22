@@ -39,7 +39,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<IhaleStatuVM> ListIhaleStatuToListIhaleStatuVM(List<IhaleStatu> list)
         {
-            List<IhaleStatuVM> IhaleStatuListVM = null;
+            List<IhaleStatuVM> IhaleStatuListVM = new List<IhaleStatuVM>();
             foreach (IhaleStatu item in list)
             {
                 IhaleStatuListVM.Add(IhaleStatuToIhaleStatuVM(item));
@@ -49,7 +49,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<IhaleStatu> ListIhaleStatuVMToListIhaleStatu(List<IhaleStatuVM> listVM)
         {
-            List<IhaleStatu> IhaleStatuList = null;
+            List<IhaleStatu> IhaleStatuList = new List<IhaleStatu>();
             foreach (IhaleStatuVM item in listVM)
             {
                 IhaleStatuList.Add(IhaleStatuVMToIhaleStatu(item));

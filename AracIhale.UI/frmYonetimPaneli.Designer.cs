@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class YonetimPaneli
+    partial class frmYonetimPaneli
     {
         /// <summary>
         /// Required designer variable.
@@ -90,12 +90,13 @@ namespace AracIhale.UI
             this.btnSifre.TabIndex = 7;
             this.btnSifre.Text = "Şifremi Unuttum";
             this.btnSifre.UseVisualStyleBackColor = true;
+            this.btnSifre.Click += new System.EventHandler(this.btnSifre_Click);
             // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // YonetimPaneli
+            // frmYonetimPaneli
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -106,9 +107,9 @@ namespace AracIhale.UI
             this.Controls.Add(this.txtKullaniciAdi);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "YonetimPaneli";
+            this.Name = "frmYonetimPaneli";
             this.Text = "Yönetim Paneli";
-            this.Load += new System.EventHandler(this.YonetimPaneli_Load);
+            this.Load += new System.EventHandler(this.frmYonetimPaneli_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

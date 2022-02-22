@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,7 +15,22 @@ namespace AracIhale.CORE
         {
             InitializeLocalValues();
         }
-
+        public bool IsValidateEmail(TextBox textBoxMail,ErrorProvider errorProvider)
+        {
+            bool validate = false;
+            string email = textBoxMail.Text;
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            if (match.Success)
+            {
+                validate = true;
+            }
+            else
+            {
+                errorProvider.SetError(textBoxMail, "Hatalı Mail");
+            }
+            return validate;
+        }
         private void InitializeLocalValues()
         {
             List<Char> tempForbiddenCharacters = new List<char>();
@@ -63,18 +79,26 @@ namespace AracIhale.CORE
             }
             return validate;
         }
-        public bool IsValidatePhoneNumber(MaskedTextBox maskedText, ErrorProvider errorProvider)
+
+        public bool IsValidatePhoneNumber(TextBox textBox, ErrorProvider errorProvider)
         {
-            bool validate = false;
-            if (maskedText.Text.Trim('(', ')', ' ', '-').Length < 10)
+            bool validate = true;
+            string numara = textBox.Text;
+            foreach (var item in numara)
             {
-                Message = "Geçersiz Numara Lütfen Geçerli Bir Numara Girin";
+                if (!char.IsDigit(item))
+                {
+                    validate = false;
+                    break;
+                }
             }
-            else
+            string temp= numara.TrimStart('0');
+            if (temp!=numara)
             {
-                validate = true;
+                Message = "Lütfen Numaranın Başına 0 Koymadan ve Boşluk Bırakmadan Yazınız";
+                errorProvider.SetError(textBox, Message);
+                validate = false;
             }
-            errorProvider.SetError(maskedText, Message);
             return validate;
         }
         private bool IsContainsNumber(TextBox textBox,ErrorProvider errorProvider)
@@ -240,19 +264,106 @@ namespace AracIhale.CORE
             errorProvider.SetError(userName, Message);
             return validate;
         }
+
         public bool IsValidateMoney(TextBox money, ErrorProvider errorProvider)
         {
             bool validate = true;
-            foreach (char item in money.Text)
+
+            var TryParseOut = 0.0M;
+
+            if (string.IsNullOrEmpty(money.Text))
             {
-                if (!char.IsDigit(item))
+                validate = false;
+                Message = "Bu kısım boş geçilemez";
+                errorProvider.SetError(money, Message);
+            }
+
+            else
+            {
+                if (!decimal.TryParse(money.Text, out TryParseOut))
                 {
                     validate = false;
-                    Message = "Sadece Sayi Girilebilir";
-                    break;
+                    Message = "Format hatası. Lütfen sayı giriniz.";
+                    errorProvider.SetError(money, Message);
+                }
+
+                if (money.Text.Contains('.'))
+                {
+                    validate = false;
+                    Message = "Format hatası. Lütfen virgül kullanınız.";
+                    errorProvider.SetError(money, Message);
                 }
             }
+
             return validate;
+        }
+
+
+        public bool IsValidateNull(GroupBox groupBox, ErrorProvider errorProvider, DateTimePicker basTarih, DateTimePicker bitTarih, DateTimePicker basSaat, DateTimePicker bitSaat )
+        {
+            bool validate = true;
+            errorProvider.Clear();
+
+            if (basTarih.Value > bitTarih.Value)
+            {
+                validate = false;
+                Message = "Başlangıç Tarihi Bitiş Tarihinden Sonra Olamaz";
+                errorProvider.SetError(basTarih, Message);
+                errorProvider.SetError(bitTarih, Message);
+            }
+            else if (basSaat.Value.ToShortTimeString() == bitSaat.Value.ToShortTimeString() && basTarih.Value == bitTarih.Value)
+            {
+                validate = false;
+                Message = "Başlangıç saati bitiş saatine eşit olamaz";
+                errorProvider.SetError(basSaat, Message);
+                errorProvider.SetError(bitSaat, Message);
+            }
+            else if (basSaat.Value >= bitSaat.Value && basTarih.Value == bitTarih.Value)
+            {
+                validate = false;
+                Message = "Başlangıç saati bitiş saatinden büyük olamaz";
+                errorProvider.SetError(basSaat, Message);
+                errorProvider.SetError(bitSaat, Message);
+            }
+
+            foreach (Control item in groupBox.Controls)
+            {                
+                TextBox txt = item as TextBox;
+                ComboBox cmb = item as ComboBox;
+                DateTimePicker dt = item as DateTimePicker;
+             
+                if (txt != null)
+                {
+                    
+                    if (string.IsNullOrEmpty(txt.Text))
+                    {
+                        Message = "İhale Adı Giriniz.";
+                        validate = false;
+                        errorProvider.SetError(txt, Message);
+                    }
+                }
+                if (cmb != null)
+                {
+                    if (cmb.SelectedIndex == 0)
+                    {
+                        Message = "Lütfen Bilgileri Doldurun.";
+                        validate = false;
+                        errorProvider.SetError(cmb, Message);
+                    }
+                }                   
+            }
+            return validate;
+        }
+
+        public bool IsTextBoxNullOrWhiteSpace(TextBox txt, ErrorProvider errorProvider, string message)
+        {
+            if (string.IsNullOrWhiteSpace(txt.Text))
+            {
+                errorProvider.SetError(txt, message);
+                return false;
+            }
+
+            return true;
         }
         public bool IsValidateCombobox(List<ComboBox> comboBoxes, ErrorProvider errorProvider)
         {

@@ -28,6 +28,10 @@ namespace AracIhale.MODEL.Mapping
 
         public IlanVM IlanToIlanVM(Ilan entity)
         {
+            if(entity == null)
+            {
+                return null;
+            }
             return new IlanVM()
             {
                 IlanID = entity.IlanID,

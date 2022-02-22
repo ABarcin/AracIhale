@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -147,6 +148,10 @@
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AracIhale.CORE\AracIhale.CORE.csproj">
+      <Project>{157FFB2E-3B9E-4B57-A59E-C338F0CF1143}</Project>
+      <Name>AracIhale.CORE</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AracIhale.MODEL\AracIhale.MODEL.csproj">
       <Project>{937B72B3-DDA9-42C5-84C7-BD148DEE4324}</Project>
       <Name>AracIhale.MODEL</Name>

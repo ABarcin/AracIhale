@@ -26,6 +26,10 @@ namespace AracIhale.MODEL.Mapping
         }
         public AracTramerVM AracTramerToAracTramerVM(AracTramer entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
             return new AracTramerVM()
             {
                 AracID = entity.AracID,

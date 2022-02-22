@@ -14,7 +14,9 @@ namespace AracIhale.DAL.Repositories.Abstract
         List<CalisanVM> TumCalisanlar();
         void Guncelle(CalisanVM calisan);
         CalisanVM KullaniciGetir(object id);
+        CalisanVM KullaniciGetir(string kullaniciAdi);
         void Ekle(CalisanVM calisan);
         void Sil(object id);
+        int CalisanIdGetir();
     }
 }

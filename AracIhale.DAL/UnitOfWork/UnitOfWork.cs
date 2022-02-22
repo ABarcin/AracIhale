@@ -63,6 +63,11 @@ namespace AracIhale.DAL.UnitOfWork
 
     }
 
+        public void IletisimBilgileriniDoldur()
+        {
+            throw new NotImplementedException();
+        }
+
         public IAracFiyatRepository AracFiyatRepository { get; private set; }
 
         public IAracOzellikRepository AracOzellikRepository { get; private set; }

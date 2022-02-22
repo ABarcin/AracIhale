@@ -11,7 +11,7 @@ namespace AracIhale.MODEL.Model.Context
     public partial class AracIhaleEntities : DbContext
     {
         public AracIhaleEntities()
-            : base("name = AracIhaleEntities")
+            : base("name=AracIhaleEntities")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
@@ -67,7 +67,6 @@ namespace AracIhale.MODEL.Model.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
             modelBuilder.Entity<ArabaModel>()
                 .HasMany(e => e.Arac)
                 .WithRequired(e => e.ArabaModel)

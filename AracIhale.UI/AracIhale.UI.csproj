@@ -54,11 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminAnasayfa.cs">
+    <Compile Include="frmAdminAnasayfa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminAnasayfa.Designer.cs">
-      <DependentUpon>AdminAnasayfa.cs</DependentUpon>
+    <Compile Include="frmAdminAnasayfa.Designer.cs">
+      <DependentUpon>frmAdminAnasayfa.cs</DependentUpon>
     </Compile>
     <Compile Include="AliciBilgileri.cs">
       <SubType>Form</SubType>
@@ -71,6 +71,24 @@
     </Compile>
     <Compile Include="Anasayfa.Designer.cs">
       <DependentUpon>Anasayfa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIletisim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIletisim.Designer.cs">
+      <DependentUpon>frmIletisim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSifreBul.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSifreBul.Designer.cs">
+      <DependentUpon>frmSifreBul.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTramerBilgileri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTramerBilgileri.Designer.cs">
+      <DependentUpon>frmTramerBilgileri.cs</DependentUpon>
     </Compile>
     <Compile Include="TramerBilgileri.cs">
       <SubType>Form</SubType>
@@ -90,11 +108,11 @@
     <Compile Include="UyeOnay.Designer.cs">
       <DependentUpon>UyeOnay.cs</DependentUpon>
     </Compile>
-    <Compile Include="YonetimPaneli.cs">
+    <Compile Include="frmYonetimPaneli.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="YonetimPaneli.Designer.cs">
-      <DependentUpon>YonetimPaneli.cs</DependentUpon>
+    <Compile Include="frmYonetimPaneli.Designer.cs">
+      <DependentUpon>frmYonetimPaneli.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAracDetayBilgi.cs">
       <SubType>Form</SubType>
@@ -126,35 +144,35 @@
     <Compile Include="BireyselUyeKayit.Designer.cs">
       <DependentUpon>BireyselUyeKayit.cs</DependentUpon>
     </Compile>
-    <Compile Include="CalisanKayit.cs">
+    <Compile Include="frmCalisanKayit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CalisanKayit.Designer.cs">
-      <DependentUpon>CalisanKayit.cs</DependentUpon>
+    <Compile Include="frmCalisanKayit.Designer.cs">
+      <DependentUpon>frmCalisanKayit.cs</DependentUpon>
     </Compile>
-    <Compile Include="IhaleAracFiyat.cs">
+    <Compile Include="frmIhaleAracFiyat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IhaleAracFiyat.Designer.cs">
-      <DependentUpon>IhaleAracFiyat.cs</DependentUpon>
+    <Compile Include="frmIhaleAracFiyat.Designer.cs">
+      <DependentUpon>frmIhaleAracFiyat.cs</DependentUpon>
     </Compile>
-    <Compile Include="IhaleListeleme.cs">
+    <Compile Include="frmIhaleListeleme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IhaleListeleme.Designer.cs">
-      <DependentUpon>IhaleListeleme.cs</DependentUpon>
+    <Compile Include="frmIhaleListeleme.Designer.cs">
+      <DependentUpon>frmIhaleListeleme.cs</DependentUpon>
     </Compile>
-    <Compile Include="IlanBilgileri.cs">
+    <Compile Include="frmIlanBilgileri.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IlanBilgileri.Designer.cs">
-      <DependentUpon>IlanBilgileri.cs</DependentUpon>
+    <Compile Include="frmIlanBilgileri.Designer.cs">
+      <DependentUpon>frmIlanBilgileri.cs</DependentUpon>
     </Compile>
-    <Compile Include="KullaniciListeleme.cs">
+    <Compile Include="frmCalisanListeleme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KullaniciListeleme.Designer.cs">
-      <DependentUpon>KullaniciListeleme.cs</DependentUpon>
+    <Compile Include="frmCalisanListeleme.Designer.cs">
+      <DependentUpon>frmCalisanListeleme.cs</DependentUpon>
     </Compile>
     <Compile Include="KurumsalUyeKayit.cs">
       <SubType>Form</SubType>
@@ -164,20 +182,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="YeniIhale.cs">
+    <Compile Include="frmYeniIhale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="YeniIhale.Designer.cs">
-      <DependentUpon>YeniIhale.cs</DependentUpon>
+    <Compile Include="frmYeniIhale.Designer.cs">
+      <DependentUpon>frmYeniIhale.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AdminAnasayfa.resx">
-      <DependentUpon>AdminAnasayfa.cs</DependentUpon>
+    <EmbeddedResource Include="frmAdminAnasayfa.resx">
+      <DependentUpon>frmAdminAnasayfa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AliciBilgileri.resx">
       <DependentUpon>AliciBilgileri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Anasayfa.resx">
       <DependentUpon>Anasayfa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIletisim.resx">
+      <DependentUpon>frmIletisim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSifreBul.resx">
+      <DependentUpon>frmSifreBul.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTramerBilgileri.resx">
+      <DependentUpon>frmTramerBilgileri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TramerBilgileri.resx">
       <DependentUpon>TramerBilgileri.cs</DependentUpon>
@@ -188,8 +215,8 @@
     <EmbeddedResource Include="UyeOnay.resx">
       <DependentUpon>UyeOnay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="YonetimPaneli.resx">
-      <DependentUpon>YonetimPaneli.cs</DependentUpon>
+    <EmbeddedResource Include="frmYonetimPaneli.resx">
+      <DependentUpon>frmYonetimPaneli.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAracDetayBilgi.resx">
       <DependentUpon>frmAracDetayBilgi.cs</DependentUpon>
@@ -206,20 +233,20 @@
     <EmbeddedResource Include="BireyselUyeKayit.resx">
       <DependentUpon>BireyselUyeKayit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CalisanKayit.resx">
-      <DependentUpon>CalisanKayit.cs</DependentUpon>
+    <EmbeddedResource Include="frmCalisanKayit.resx">
+      <DependentUpon>frmCalisanKayit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IhaleAracFiyat.resx">
-      <DependentUpon>IhaleAracFiyat.cs</DependentUpon>
+    <EmbeddedResource Include="frmIhaleAracFiyat.resx">
+      <DependentUpon>frmIhaleAracFiyat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IhaleListeleme.resx">
-      <DependentUpon>IhaleListeleme.cs</DependentUpon>
+    <EmbeddedResource Include="frmIhaleListeleme.resx">
+      <DependentUpon>frmIhaleListeleme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IlanBilgileri.resx">
-      <DependentUpon>IlanBilgileri.cs</DependentUpon>
+    <EmbeddedResource Include="frmIlanBilgileri.resx">
+      <DependentUpon>frmIlanBilgileri.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KullaniciListeleme.resx">
-      <DependentUpon>KullaniciListeleme.cs</DependentUpon>
+    <EmbeddedResource Include="frmCalisanListeleme.resx">
+      <DependentUpon>frmCalisanListeleme.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KurumsalUyeKayit.resx">
       <DependentUpon>KurumsalUyeKayit.cs</DependentUpon>
@@ -233,8 +260,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="YeniIhale.resx">
-      <DependentUpon>YeniIhale.cs</DependentUpon>
+    <EmbeddedResource Include="frmYeniIhale.resx">
+      <DependentUpon>frmYeniIhale.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

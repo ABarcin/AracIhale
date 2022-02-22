@@ -402,7 +402,7 @@ namespace AracIhale.UI
         private void btnIlanBilgileri_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (IlanBilgileri ilanBilgileri = new IlanBilgileri())
+            using (frmIlanBilgileri ilanBilgileri = new frmIlanBilgileri())
             {
                 ilanBilgileri.ShowDialog();
             }

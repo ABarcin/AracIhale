@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Mapping\ArabaModelMapping.cs" />
     <Compile Include="Mapping\AracFiyatMapping.cs" />
+    <Compile Include="Mapping\AracListMapping.cs" />
     <Compile Include="Mapping\AracMapping.cs" />
     <Compile Include="Mapping\AracOzellikMapping.cs" />
     <Compile Include="Mapping\AracParcaMapping.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Mapping\FirmaTipMapping.cs" />
     <Compile Include="Mapping\FotografMapping.cs" />
     <Compile Include="Mapping\IhaleAracMapping.cs" />
+    <Compile Include="Mapping\IhaleListMapping.cs" />
     <Compile Include="Mapping\IhaleMapping.cs" />
     <Compile Include="Mapping\IhaleStatuMapping.cs" />
     <Compile Include="Mapping\IhaleSurecMapping.cs" />

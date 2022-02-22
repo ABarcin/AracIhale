@@ -55,7 +55,7 @@ namespace AracIhale.DAL.Repositories.Concrete
             _context.Set<TEntity>().Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;  
         }
-        public void UpdateWithId(object id,TEntity entity)
+        public void UpdateWithId(object id, TEntity entity)
         {
             var existingEntity = this.GetByID(id);
             _context.Entry(existingEntity).CurrentValues.SetValues(entity);
