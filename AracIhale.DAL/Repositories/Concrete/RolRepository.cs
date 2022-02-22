@@ -35,5 +35,13 @@ namespace AracIhale.DAL.Repositories.Concrete
 
             return rol.Ad;
         }
+
+        //burcin
+        public int RolIDGetir(string rolAd)
+        {
+            Rol rol = ThisContext.Rol.Where(x => x.Ad == rolAd).FirstOrDefault();
+
+            return rol.RolID;
+        }
     }
 }

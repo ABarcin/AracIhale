@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
 using AracIhale.CORE;
 using AracIhale.DAL.Repositories.Concrete;
@@ -20,9 +21,12 @@ namespace AracIhale.UI
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
         Validation validation = new Validation();
         KullaniciVM kullaniciVM = new KullaniciVM();
+        KullaniciTipVM kullaniciTipVM = new KullaniciTipVM();
         KurumsalKullaniciVM kurumsalKullaniciVM = new KurumsalKullaniciVM();
         FirmaVM firmaVM = new FirmaVM();
         FirmaTipVM firmaTipVM = new FirmaTipVM();
+        RolVM rolVM = new RolVM();
+
         public frmKullaniciKayit()
         {
             InitializeComponent();
@@ -30,65 +34,67 @@ namespace AracIhale.UI
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-
-
-            if (cbKvkk.Checked && cbUyelik.Checked)
+            try
             {
-                if (txtSifre.Text != txtSifreTekrar.Text)
+                using (TransactionScope trans = new TransactionScope())
                 {
-                    errorProvider.SetError(txtSifreTekrar, "Şifre ile şifre tekrar eşleşmiyor");
-                }
-                else
-                {
-                    errorProvider.Clear();
-                }
-
-                if (validation.IsValidateName(txtAd, 1, 100, errorProvider) &&
-                    validation.IsValidateName(txtSoyad, 1, 100, errorProvider) &&
-                    validation.IsValidateUserName(txtKullaniciAdi, errorProvider, 1, 25) &&
-                    validation.IsValidatePassword(txtSifre, 1, 50, errorProvider) &&
-                    validation.IsValidatePassword(txtSifreTekrar, 1, 50, errorProvider) &&
-                    txtSifre.Text == txtSifreTekrar.Text)
-                {
-                    kullaniciVM.Ad = txtAd.Text;
-                    kullaniciVM.Soyad = txtSoyad.Text;
-                    kullaniciVM.KullaniciAd = txtKullaniciAdi.Text;
-                    kullaniciVM.Sifre = txtSifre.Text;
-                    kullaniciVM.RolID = 1;      //düzeltilmesi lazım
-                    kullaniciVM.KullaniciTipID = 1;
-                    kullaniciVM.KVKK = cbKvkk.Checked;
-
-                    unitOfWork.KullaniciRepository.BireyselKullaniciEkle(kullaniciVM);
-                    unitOfWork.Complate();
-
-                    //burcin
-                    if (validation.IsValidateNull(gbFirma,errorProvider))
+                    if (cbKvkk.Checked && cbUyelik.Checked)
                     {
-                        kurumsalKullaniciVM.KullaniciID = unitOfWork.KullaniciRepository.GetAll(x => x.KullaniciAd == kullaniciVM.KullaniciAd)[0].KullaniciID;
+                        if (txtSifre.Text != txtSifreTekrar.Text)
+                        {
+                            errorProvider.SetError(txtSifreTekrar, "Şifre ile şifre tekrar eşleşmiyor");
+                        }
+                        else
+                        {
+                            errorProvider.Clear();
+                        }
 
-                        kurumsalKullaniciVM.OnayDurum = false;
+                        if (validation.IsValidateName(txtAd, 1, 100, errorProvider) &&
+                            validation.IsValidateName(txtSoyad, 1, 100, errorProvider) &&
+                            validation.IsValidateUserName(txtKullaniciAdi, errorProvider, 1, 25) &&
+                            validation.IsValidatePassword(txtSifre, 1, 50, errorProvider) &&
+                            validation.IsValidatePassword(txtSifreTekrar, 1, 50, errorProvider) &&
+                            txtSifre.Text == txtSifreTekrar.Text)
+                        {
+                            kullaniciVM.Ad = txtAd.Text;
+                            kullaniciVM.Soyad = txtSoyad.Text;
+                            kullaniciVM.KullaniciAd = txtKullaniciAdi.Text;
+                            kullaniciVM.Sifre = txtSifre.Text;
+                            //düzeltilmesi lazım
+                            kullaniciVM.RolID = unitOfWork.RolRepository.RolIDGetir(cmbKullaniciTip.SelectedItem.ToString());
+                            kullaniciVM.KullaniciTipID = 1;
+                            kullaniciVM.KVKK = cbKvkk.Checked;
 
-                        kurumsalKullaniciVM.FirmaID = unitOfWork.FirmaRepository.GetAll()[cmbFirmaAd.SelectedIndex].FirmaID;
+                            unitOfWork.KullaniciRepository.BireyselKullaniciEkle(kullaniciVM);
+                            unitOfWork.Complate();
 
-                        unitOfWork.KurumsalKullaniciRepository.KurumsalKullaniciEkle(kurumsalKullaniciVM);
-                    }
-                    
+                            //burcin
+                            if (cmbKullaniciTip.Text=="Kurumsal")
+                            {
+                                kurumsalKullaniciVM.KullaniciID = unitOfWork.KullaniciRepository.GetAll(x => x.KullaniciAd == kullaniciVM.KullaniciAd)[0].KullaniciID;
 
-                    if (unitOfWork.Complate() > 0)
-                    {
-                        MessageBox.Show("Kullanici ekleme başarılı");
+                                kurumsalKullaniciVM.OnayDurum = false;
+
+                                kurumsalKullaniciVM.FirmaID = unitOfWork.FirmaRepository.GetAll()[cmbFirmaAd.SelectedIndex].FirmaID;
+
+                                unitOfWork.KurumsalKullaniciRepository.KurumsalKullaniciEkle(kurumsalKullaniciVM);
+                            }                          
+
+                        }
+                        trans.Complete();
                         FormTemizle();
+                        MessageBox.Show("Kayıt yapıldı.");
                     }
                     else
                     {
-                        MessageBox.Show("Kullanici ekleme başarısız");
+                        MessageBox.Show("Lütfen kullanıcı verileri koruma kanunu ve üyelik sözleşmesini kabul ediniz.");
                     }
                 }
             }
-
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Lütfen kullanıcı verileri koruma kanunu ve üyelik sözleşmesini kabul ediniz.");
+
+                MessageBox.Show("Kayıt yapılamadı.");
             }
         }
 
