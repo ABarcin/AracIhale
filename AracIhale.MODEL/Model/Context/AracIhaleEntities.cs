@@ -2,6 +2,7 @@ using AracIhale.MODEL.Model.Entities;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 
 namespace AracIhale.MODEL.Model.Context
@@ -65,6 +66,7 @@ namespace AracIhale.MODEL.Model.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<ArabaModel>()
                 .HasMany(e => e.Arac)
                 .WithRequired(e => e.ArabaModel)

@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class CalisanKayit
+    partial class frmCalisanKayit
     {
         /// <summary>
         /// Required designer variable.
@@ -47,6 +47,7 @@ namespace AracIhale.UI
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSil = new System.Windows.Forms.Button();
             this.btnGuncelle = new System.Windows.Forms.Button();
             this.btnIletisim = new System.Windows.Forms.Button();
@@ -172,35 +173,42 @@ namespace AracIhale.UI
             // 
             // listCalisanlar
             // 
+            this.listCalisanlar.CausesValidation = false;
             this.listCalisanlar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
             this.listCalisanlar.FullRowSelect = true;
             this.listCalisanlar.HideSelection = false;
             this.listCalisanlar.Location = new System.Drawing.Point(381, 46);
             this.listCalisanlar.MultiSelect = false;
             this.listCalisanlar.Name = "listCalisanlar";
-            this.listCalisanlar.Size = new System.Drawing.Size(396, 179);
+            this.listCalisanlar.Size = new System.Drawing.Size(506, 179);
             this.listCalisanlar.TabIndex = 15;
             this.listCalisanlar.UseCompatibleStateImageBehavior = false;
             this.listCalisanlar.View = System.Windows.Forms.View.Details;
-            this.listCalisanlar.SelectedIndexChanged += new System.EventHandler(this.listCalisanlar_SelectedIndexChanged);
+            this.listCalisanlar.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listCalisanlar_ItemSelectionChanged);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Adı";
-            this.columnHeader1.Width = 147;
+            this.columnHeader1.Width = 139;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Soyadı";
-            this.columnHeader2.Width = 128;
+            this.columnHeader2.Width = 144;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Rolü";
-            this.columnHeader3.Width = 106;
+            this.columnHeader3.Width = 128;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Aktiflik Durumu";
+            this.columnHeader4.Width = 88;
             // 
             // btnSil
             // 
@@ -232,6 +240,7 @@ namespace AracIhale.UI
             this.btnIletisim.TabIndex = 16;
             this.btnIletisim.Text = "İletişim Bilgisi Ekle";
             this.btnIletisim.UseVisualStyleBackColor = true;
+            this.btnIletisim.Click += new System.EventHandler(this.btnIletisim_Click);
             // 
             // rdbAktif
             // 
@@ -268,11 +277,11 @@ namespace AracIhale.UI
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // CalisanKayit
+            // frmCalisanKayit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 362);
+            this.ClientSize = new System.Drawing.Size(950, 362);
             this.Controls.Add(this.rdbPasif);
             this.Controls.Add(this.rdbAktif);
             this.Controls.Add(this.btnIletisim);
@@ -293,7 +302,7 @@ namespace AracIhale.UI
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Name = "CalisanKayit";
+            this.Name = "frmCalisanKayit";
             this.Text = "CalisanKayit";
             this.Load += new System.EventHandler(this.CalisanKayit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
@@ -328,5 +337,6 @@ namespace AracIhale.UI
         private System.Windows.Forms.RadioButton rdbPasif;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

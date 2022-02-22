@@ -20,6 +20,7 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public List<IhaleListVM> IhaleListele(string ihaleAdi, KullaniciTipVM kTip, StatuVM statu)
         {
+
             var ihaleList = ThisContext.Ihale.Include("Calisan").Include("Kullanici").Include("Statu").Include("IhaleSurec").Include("IhaleStatu")
                 .Where(y => y.IhaleAdi == ihaleAdi && y.KullaniciTipID == kTip.KullaniciTipID
                  && y.IsActive == true)
@@ -35,6 +36,15 @@ namespace AracIhale.DAL.Repositories.Concrete
                     KullaniciAd = ThisContext.Ihale.Where(v => v.IhaleID == x.IhaleID).Select(z => z.Calisan.KullaniciAd).FirstOrDefault(),
                     CreatedDate = x.CreatedDate
                 }).ToList();
+
+            foreach (IhaleListVM item in ihaleList)
+            {
+                if (true)
+                {
+
+                }
+            }
+            
 
             return ihaleList;
         }
