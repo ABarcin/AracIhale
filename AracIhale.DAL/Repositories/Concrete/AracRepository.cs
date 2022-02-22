@@ -23,6 +23,7 @@ namespace AracIhale.DAL.Repositories.Concrete
         public List<Arac> GetAraclarWithRelationship()
         {
             List<Arac> araclar = ThisContext.Arac.Include("ArabaModel").Include("Kullanici").Include("Marka").ToList();
+
             return araclar;
         }
 
@@ -51,7 +52,7 @@ namespace AracIhale.DAL.Repositories.Concrete
                 aracListVM.MarkaID = item.MarkaID;
                 aracListVM.ModelID = item.ModelID;
                 aracListVM.Km = item.Km;
-                aracListVM.Yil = item.Yil;
+                aracListVM.Yil = item.Yil.Year;
                 aracListVM.ArabaModel = item.ArabaModel;
                 aracListVM.Kullanici = item.Kullanici;
                 aracListVM.KullaniciTipAdi = ThisContext.KullaniciTip.Where(x => x.KullaniciTipID == item.Kullanici.KullaniciTipID).FirstOrDefault().Tip;
@@ -60,6 +61,7 @@ namespace AracIhale.DAL.Repositories.Concrete
 
                 aracVMler.Add(aracListVM);
             }
+
             return aracVMler;
         }
 
@@ -102,44 +104,16 @@ namespace AracIhale.DAL.Repositories.Concrete
                 .Where(x=>x.IsActive == true)
                 .Select(x => new AracListVM
                 {
-                    AracID = x.AracID,
                     MarkaAd = x.Marka.Ad,
                     ModelAd = x.ArabaModel.Ad,
                     KullaniciTip = x.Kullanici.KullaniciTip.Tip,
-                    StatuID = x.AracStatu.Where(y => y.IsActive == true).OrderByDescending(z => z.AracStatuID).FirstOrDefault().StatuID,
-                    StatuAd = x.AracStatu.Where(y => y.IsActive == true).OrderByDescending(z => z.AracStatuID).FirstOrDefault().Statu.StatuAd,
+                    StatuID = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().StatuID,
+                    StatuAd = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().Statu.StatuAd,
                     KullaniciID = x.KullaniciID,
                     KullaniciAd = x.Kullanici.KullaniciAd
                 }).ToList();
+
             return aracList;
-        }
-
-        public void AracSil(object id)
-        {
-            Arac silinecekArac = GetByID(id);
-            SoftRemove(silinecekArac);
-        }
-        
-        public void AracEkle(AracVM arac)
-        {
-            Arac eklenecekArac = new AracMapping().AracVMToArac(arac);
-            this.Add(eklenecekArac);
-        }
-
-        public int EklenenAracIDGetir()
-        {
-            return ThisContext.Arac.OrderByDescending(x => x.AracID).Select(x => x.AracID).FirstOrDefault();
-        }
-        
-        public AracVM AracVMByAracID(int id)
-        {
-            return new AracMapping().AracToAracVM(this.GetByID(id));
-        }
-
-        public void AracGuncelle(AracVM arac)
-        {
-            Arac guncellenecekArac = new AracMapping().AracVMToArac(arac);
-            this.UpdateWithId(arac.AracID, guncellenecekArac);
         }
 
         public List<AracListVM> AracVMListele()
