@@ -80,18 +80,25 @@ namespace AracIhale.CORE
             return validate;
         }
 
-        public bool IsValidatePhoneNumber(MaskedTextBox maskedText, ErrorProvider errorProvider)
+        public bool IsValidatePhoneNumber(TextBox textBox, ErrorProvider errorProvider)
         {
-            bool validate = false;
-            if (maskedText.Text.Trim('(', ')', ' ', '-').Length < 10)
+            bool validate = true;
+            string numara = textBox.Text;
+            foreach (var item in numara)
             {
-                Message = "Geçersiz Numara Lütfen Geçerli Bir Numara Girin";
+                if (!char.IsDigit(item))
+                {
+                    validate = false;
+                    break;
+                }
             }
-            else
+            string temp= numara.TrimStart('0');
+            if (temp!=numara)
             {
-                validate = true;
+                Message = "Lütfen Numaranın Başına 0 Koymadan ve Boşluk Bırakmadan Yazınız";
+                errorProvider.SetError(textBox, Message);
+                validate = false;
             }
-            errorProvider.SetError(maskedText, Message);
             return validate;
         }
         private bool IsContainsNumber(TextBox textBox,ErrorProvider errorProvider)
