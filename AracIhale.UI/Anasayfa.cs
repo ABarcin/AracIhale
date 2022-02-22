@@ -20,19 +20,9 @@ namespace AracIhale.UI
         private void btnBireysel_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (BireyselUyeKayit bireyselUyeKayit=new BireyselUyeKayit())
+            using (frmKullaniciKayit bireyselUyeKayit=new frmKullaniciKayit())
             {
                 bireyselUyeKayit.ShowDialog();
-            }
-            this.Show();
-        }
-
-        private void btnKurumsal_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            using (KurumsalUyeKayit kurumsalUyeKayit=new KurumsalUyeKayit())
-            {
-                kurumsalUyeKayit.ShowDialog();
             }
             this.Show();
         }

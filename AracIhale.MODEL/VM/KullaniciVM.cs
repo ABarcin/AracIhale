@@ -15,7 +15,6 @@ namespace AracIhale.MODEL.VM
 
         [StringLength(50)]
         public string KullaniciAd { get; set; }
-        //kullanıcı adı nvarchar fatih düzeltecek
 
         public int KullaniciTipID { get; set; }
 
@@ -32,5 +31,6 @@ namespace AracIhale.MODEL.VM
         public string Soyad { get; set; }
 
         public bool? KVKK { get; set; }
-    }
+
+}
 }

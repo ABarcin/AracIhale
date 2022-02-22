@@ -255,7 +255,6 @@ namespace AracIhale.CORE
             return validate;
         }
 
-
         public bool IsValidateNull(GroupBox groupBox, ErrorProvider errorProvider, DateTimePicker basTarih, DateTimePicker bitTarih, DateTimePicker basSaat, DateTimePicker bitSaat )
         {
             bool validate = true;
@@ -287,11 +286,9 @@ namespace AracIhale.CORE
             {                
                 TextBox txt = item as TextBox;
                 ComboBox cmb = item as ComboBox;
-                DateTimePicker dt = item as DateTimePicker;
              
                 if (txt != null)
-                {
-                    
+                {                    
                     if (string.IsNullOrEmpty(txt.Text))
                     {
                         Message = "İhale Adı Giriniz.";
@@ -312,9 +309,36 @@ namespace AracIhale.CORE
             return validate;
         }
 
-        private void DateTimePickerValidate()
+        public bool IsValidateNull(GroupBox groupBox, ErrorProvider errorProvider)
         {
-            
+            bool validate = true;
+            errorProvider.Clear();
+
+            foreach (Control item in groupBox.Controls)
+            {
+                TextBox txt = item as TextBox;
+                ComboBox cmb = item as ComboBox;
+
+                if (txt != null)
+                {
+                    if (string.IsNullOrEmpty(txt.Text))
+                    {
+                        Message = "Lütfen Bilgileri Doldurun.";
+                        validate = false;
+                        errorProvider.SetError(txt, Message);
+                    }
+                }
+                if (cmb != null)
+                {
+                    if (cmb.SelectedIndex == 0)
+                    {
+                        Message = "Lütfen Bilgileri Doldurun.";
+                        validate = false;
+                        errorProvider.SetError(cmb, Message);
+                    }
+                }
+            }
+            return validate;
         }
     }
 }

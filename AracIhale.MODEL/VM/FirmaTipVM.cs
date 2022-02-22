@@ -11,5 +11,10 @@ namespace AracIhale.MODEL.VM
         public int FirmaTipID { get; set; }
 
         public string FirmaTur { get; set; }
+
+        public override string ToString()
+        {
+            return FirmaTur.ToString();
+        }
     }
 }

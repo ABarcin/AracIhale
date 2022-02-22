@@ -119,11 +119,11 @@
     <Compile Include="BireyselTeklif.Designer.cs">
       <DependentUpon>BireyselTeklif.cs</DependentUpon>
     </Compile>
-    <Compile Include="BireyselUyeKayit.cs">
+    <Compile Include="frmKullaniciKayit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BireyselUyeKayit.Designer.cs">
-      <DependentUpon>BireyselUyeKayit.cs</DependentUpon>
+    <Compile Include="frmKullaniciKayit.Designer.cs">
+      <DependentUpon>frmKullaniciKayit.cs</DependentUpon>
     </Compile>
     <Compile Include="CalisanKayit.cs">
       <SubType>Form</SubType>
@@ -202,8 +202,8 @@
     <EmbeddedResource Include="BireyselTeklif.resx">
       <DependentUpon>BireyselTeklif.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BireyselUyeKayit.resx">
-      <DependentUpon>BireyselUyeKayit.cs</DependentUpon>
+    <EmbeddedResource Include="frmKullaniciKayit.resx">
+      <DependentUpon>frmKullaniciKayit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalisanKayit.resx">
       <DependentUpon>CalisanKayit.cs</DependentUpon>

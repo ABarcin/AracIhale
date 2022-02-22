@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class KurumsalUyeKayit
+    partial class frmKullaniciKayit
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@ namespace AracIhale.UI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cbKvkk = new System.Windows.Forms.CheckBox();
             this.cbUyelik = new System.Windows.Forms.CheckBox();
             this.btnKaydet = new System.Windows.Forms.Button();
@@ -45,25 +46,22 @@ namespace AracIhale.UI
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.cmbKullaniciTip = new System.Windows.Forms.ComboBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.gbFirma = new System.Windows.Forms.GroupBox();
+            this.cmbFirmaAd = new System.Windows.Forms.ComboBox();
+            this.cmbFirmaTip = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtFirmaAdi = new System.Windows.Forms.TextBox();
-            this.cbFirmaBilgisi = new System.Windows.Forms.ComboBox();
-            this.cbSehir = new System.Windows.Forms.ComboBox();
-            this.cbIlce = new System.Windows.Forms.ComboBox();
-            this.txtAdres = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lstIletisim = new System.Windows.Forms.ListView();
-            this.btnIletisim = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.gbFirma.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbKvkk
             // 
             this.cbKvkk.AutoSize = true;
-            this.cbKvkk.Location = new System.Drawing.Point(520, 353);
-            this.cbKvkk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbKvkk.Location = new System.Drawing.Point(500, 316);
+            this.cbKvkk.Margin = new System.Windows.Forms.Padding(4);
             this.cbKvkk.Name = "cbKvkk";
             this.cbKvkk.Size = new System.Drawing.Size(18, 17);
             this.cbKvkk.TabIndex = 19;
@@ -72,8 +70,8 @@ namespace AracIhale.UI
             // cbUyelik
             // 
             this.cbUyelik.AutoSize = true;
-            this.cbUyelik.Location = new System.Drawing.Point(520, 321);
-            this.cbUyelik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbUyelik.Location = new System.Drawing.Point(500, 284);
+            this.cbUyelik.Margin = new System.Windows.Forms.Padding(4);
             this.cbUyelik.Name = "cbUyelik";
             this.cbUyelik.Size = new System.Drawing.Size(18, 17);
             this.cbUyelik.TabIndex = 18;
@@ -81,50 +79,51 @@ namespace AracIhale.UI
             // 
             // btnKaydet
             // 
-            this.btnKaydet.Location = new System.Drawing.Point(133, 405);
-            this.btnKaydet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnKaydet.Location = new System.Drawing.Point(101, 466);
+            this.btnKaydet.Margin = new System.Windows.Forms.Padding(4);
             this.btnKaydet.Name = "btnKaydet";
-            this.btnKaydet.Size = new System.Drawing.Size(407, 28);
+            this.btnKaydet.Size = new System.Drawing.Size(419, 28);
             this.btnKaydet.TabIndex = 17;
             this.btnKaydet.Text = "Kayıt Ol";
             this.btnKaydet.UseVisualStyleBackColor = true;
+            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
             // 
             // txtSifreTekrar
             // 
-            this.txtSifreTekrar.Location = new System.Drawing.Point(265, 277);
-            this.txtSifreTekrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifreTekrar.Location = new System.Drawing.Point(245, 240);
+            this.txtSifreTekrar.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifreTekrar.Name = "txtSifreTekrar";
             this.txtSifreTekrar.Size = new System.Drawing.Size(273, 22);
             this.txtSifreTekrar.TabIndex = 12;
             // 
             // txtSifre
             // 
-            this.txtSifre.Location = new System.Drawing.Point(265, 244);
-            this.txtSifre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifre.Location = new System.Drawing.Point(245, 207);
+            this.txtSifre.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifre.Name = "txtSifre";
             this.txtSifre.Size = new System.Drawing.Size(273, 22);
             this.txtSifre.TabIndex = 13;
             // 
             // txtSoyad
             // 
-            this.txtSoyad.Location = new System.Drawing.Point(265, 87);
-            this.txtSoyad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSoyad.Location = new System.Drawing.Point(245, 81);
+            this.txtSoyad.Margin = new System.Windows.Forms.Padding(4);
             this.txtSoyad.Name = "txtSoyad";
             this.txtSoyad.Size = new System.Drawing.Size(273, 22);
             this.txtSoyad.TabIndex = 14;
             // 
             // txtKullaniciAdi
             // 
-            this.txtKullaniciAdi.Location = new System.Drawing.Point(265, 121);
-            this.txtKullaniciAdi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKullaniciAdi.Location = new System.Drawing.Point(245, 114);
+            this.txtKullaniciAdi.Margin = new System.Windows.Forms.Padding(4);
             this.txtKullaniciAdi.Name = "txtKullaniciAdi";
             this.txtKullaniciAdi.Size = new System.Drawing.Size(273, 22);
             this.txtKullaniciAdi.TabIndex = 15;
             // 
             // txtAd
             // 
-            this.txtAd.Location = new System.Drawing.Point(265, 54);
-            this.txtAd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAd.Location = new System.Drawing.Point(245, 48);
+            this.txtAd.Margin = new System.Windows.Forms.Padding(4);
             this.txtAd.Name = "txtAd";
             this.txtAd.Size = new System.Drawing.Size(273, 22);
             this.txtAd.TabIndex = 16;
@@ -132,7 +131,7 @@ namespace AracIhale.UI
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(129, 354);
+            this.label7.Location = new System.Drawing.Point(109, 317);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(214, 17);
@@ -142,7 +141,7 @@ namespace AracIhale.UI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(129, 321);
+            this.label6.Location = new System.Drawing.Point(109, 284);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(121, 17);
@@ -152,7 +151,7 @@ namespace AracIhale.UI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(129, 281);
+            this.label5.Location = new System.Drawing.Point(109, 244);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(93, 17);
@@ -162,7 +161,7 @@ namespace AracIhale.UI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(129, 247);
+            this.label4.Location = new System.Drawing.Point(109, 210);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 17);
@@ -172,7 +171,7 @@ namespace AracIhale.UI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(129, 91);
+            this.label2.Location = new System.Drawing.Point(109, 85);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 17);
@@ -182,7 +181,7 @@ namespace AracIhale.UI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(129, 124);
+            this.label3.Location = new System.Drawing.Point(109, 118);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 17);
@@ -192,7 +191,7 @@ namespace AracIhale.UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(129, 58);
+            this.label1.Location = new System.Drawing.Point(109, 52);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 17);
@@ -202,163 +201,105 @@ namespace AracIhale.UI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(617, 58);
+            this.label8.Location = new System.Drawing.Point(109, 163);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 17);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Şehir";
+            this.label8.Size = new System.Drawing.Size(87, 17);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Kullanıcı Tipi";
+            // 
+            // cmbKullaniciTip
+            // 
+            this.cmbKullaniciTip.FormattingEnabled = true;
+            this.cmbKullaniciTip.Location = new System.Drawing.Point(245, 160);
+            this.cmbKullaniciTip.Name = "cmbKullaniciTip";
+            this.cmbKullaniciTip.Size = new System.Drawing.Size(273, 24);
+            this.cmbKullaniciTip.TabIndex = 23;
+            this.cmbKullaniciTip.SelectedIndexChanged += new System.EventHandler(this.cmbKullaniciTip_SelectedIndexChanged);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
+            // gbFirma
+            // 
+            this.gbFirma.Controls.Add(this.cmbFirmaAd);
+            this.gbFirma.Controls.Add(this.cmbFirmaTip);
+            this.gbFirma.Controls.Add(this.label9);
+            this.gbFirma.Controls.Add(this.label10);
+            this.gbFirma.Location = new System.Drawing.Point(101, 351);
+            this.gbFirma.Name = "gbFirma";
+            this.gbFirma.Size = new System.Drawing.Size(417, 92);
+            this.gbFirma.TabIndex = 24;
+            this.gbFirma.TabStop = false;
+            this.gbFirma.Visible = false;
+            // 
+            // cmbFirmaAd
+            // 
+            this.cmbFirmaAd.FormattingEnabled = true;
+            this.cmbFirmaAd.Location = new System.Drawing.Point(140, 18);
+            this.cmbFirmaAd.Name = "cmbFirmaAd";
+            this.cmbFirmaAd.Size = new System.Drawing.Size(273, 24);
+            this.cmbFirmaAd.TabIndex = 32;
+            // 
+            // cmbFirmaTip
+            // 
+            this.cmbFirmaTip.FormattingEnabled = true;
+            this.cmbFirmaTip.Location = new System.Drawing.Point(140, 63);
+            this.cmbFirmaTip.Name = "cmbFirmaTip";
+            this.cmbFirmaTip.Size = new System.Drawing.Size(273, 24);
+            this.cmbFirmaTip.TabIndex = 31;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(617, 91);
+            this.label9.Location = new System.Drawing.Point(4, 66);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 17);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "İlçe";
+            this.label9.Size = new System.Drawing.Size(70, 17);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "Firma Tipi";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(775, 124);
+            this.label10.Location = new System.Drawing.Point(4, 21);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 17);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Adres";
+            this.label10.Size = new System.Drawing.Size(67, 17);
+            this.label10.TabIndex = 29;
+            this.label10.Text = "Firma Adı";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(129, 161);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 17);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "Firma Adı";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(129, 201);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(70, 17);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Firma Tipi";
-            // 
-            // txtFirmaAdi
-            // 
-            this.txtFirmaAdi.Location = new System.Drawing.Point(265, 158);
-            this.txtFirmaAdi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtFirmaAdi.Name = "txtFirmaAdi";
-            this.txtFirmaAdi.Size = new System.Drawing.Size(273, 22);
-            this.txtFirmaAdi.TabIndex = 15;
-            // 
-            // cbFirmaBilgisi
-            // 
-            this.cbFirmaBilgisi.FormattingEnabled = true;
-            this.cbFirmaBilgisi.Location = new System.Drawing.Point(265, 197);
-            this.cbFirmaBilgisi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cbFirmaBilgisi.Name = "cbFirmaBilgisi";
-            this.cbFirmaBilgisi.Size = new System.Drawing.Size(273, 24);
-            this.cbFirmaBilgisi.TabIndex = 22;
-            // 
-            // cbSehir
-            // 
-            this.cbSehir.FormattingEnabled = true;
-            this.cbSehir.Location = new System.Drawing.Point(691, 53);
-            this.cbSehir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cbSehir.Name = "cbSehir";
-            this.cbSehir.Size = new System.Drawing.Size(284, 24);
-            this.cbSehir.TabIndex = 22;
-            // 
-            // cbIlce
-            // 
-            this.cbIlce.FormattingEnabled = true;
-            this.cbIlce.Location = new System.Drawing.Point(691, 86);
-            this.cbIlce.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cbIlce.Name = "cbIlce";
-            this.cbIlce.Size = new System.Drawing.Size(284, 24);
-            this.cbIlce.TabIndex = 22;
-            // 
-            // txtAdres
-            // 
-            this.txtAdres.Location = new System.Drawing.Point(621, 149);
-            this.txtAdres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtAdres.Multiline = true;
-            this.txtAdres.Name = "txtAdres";
-            this.txtAdres.Size = new System.Drawing.Size(353, 73);
-            this.txtAdres.TabIndex = 16;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(748, 247);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(99, 17);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "İletişim Bilgileri";
-            // 
-            // lstIletisim
-            // 
-            this.lstIletisim.HideSelection = false;
-            this.lstIletisim.Location = new System.Drawing.Point(621, 277);
-            this.lstIletisim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.lstIletisim.Name = "lstIletisim";
-            this.lstIletisim.Size = new System.Drawing.Size(353, 93);
-            this.lstIletisim.TabIndex = 23;
-            this.lstIletisim.UseCompatibleStateImageBehavior = false;
-            // 
-            // btnIletisim
-            // 
-            this.btnIletisim.Location = new System.Drawing.Point(621, 405);
-            this.btnIletisim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnIletisim.Name = "btnIletisim";
-            this.btnIletisim.Size = new System.Drawing.Size(355, 28);
-            this.btnIletisim.TabIndex = 24;
-            this.btnIletisim.Text = "İletişim Bilgilerini Düzenle";
-            this.btnIletisim.UseVisualStyleBackColor = true;
-            // 
-            // KurumsalUyeKayit
+            // frmKullaniciKayit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.btnIletisim);
-            this.Controls.Add(this.lstIletisim);
-            this.Controls.Add(this.cbSehir);
-            this.Controls.Add(this.cbIlce);
-            this.Controls.Add(this.cbFirmaBilgisi);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
+            this.ClientSize = new System.Drawing.Size(674, 536);
+            this.Controls.Add(this.gbFirma);
+            this.Controls.Add(this.cmbKullaniciTip);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.cbKvkk);
             this.Controls.Add(this.cbUyelik);
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.txtSifreTekrar);
             this.Controls.Add(this.txtSifre);
             this.Controls.Add(this.txtSoyad);
-            this.Controls.Add(this.txtFirmaAdi);
             this.Controls.Add(this.txtKullaniciAdi);
-            this.Controls.Add(this.txtAdres);
             this.Controls.Add(this.txtAd);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "KurumsalUyeKayit";
-            this.Text = "KurumsalUyeKayit";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "frmKullaniciKayit";
+            this.Text = "Kullanıcı Kayıt";
+            this.Load += new System.EventHandler(this.frmKullaniciKayit_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.gbFirma.ResumeLayout(false);
+            this.gbFirma.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,17 +323,12 @@ namespace AracIhale.UI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cmbKullaniciTip;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.GroupBox gbFirma;
+        private System.Windows.Forms.ComboBox cmbFirmaAd;
+        private System.Windows.Forms.ComboBox cmbFirmaTip;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtFirmaAdi;
-        private System.Windows.Forms.ComboBox cbFirmaBilgisi;
-        private System.Windows.Forms.ComboBox cbSehir;
-        private System.Windows.Forms.ComboBox cbIlce;
-        private System.Windows.Forms.TextBox txtAdres;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ListView lstIletisim;
-        private System.Windows.Forms.Button btnIletisim;
     }
 }

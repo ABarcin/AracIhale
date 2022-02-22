@@ -35,8 +35,6 @@ namespace AracIhale.UI
             cmbKullaniciTipi.Items.AddRange(unitOfWork.KullaniciTipRepository.KullaniciTipListele().ToArray());
             cmbStatu.Items.AddRange(unitOfWork.AracStatuRepository.StatuleriListele().ToArray());
             FiltrelenenAraclariListele();
-
-
         }
         string secilenMarka;
         string secilenModel;
@@ -64,7 +62,7 @@ namespace AracIhale.UI
                 li.SubItems.Add(arac.StatuAd);
                 li.SubItems.Add(arac.KullaniciAd);
                 lstAracListesi.Items.Add(li);
-            }
+            }            
         }
 
         private void cmbAracMarka_SelectedIndexChanged(object sender, EventArgs e)

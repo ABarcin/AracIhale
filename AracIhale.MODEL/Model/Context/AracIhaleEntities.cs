@@ -10,7 +10,7 @@ namespace AracIhale.MODEL.Model.Context
     public partial class AracIhaleEntities : DbContext
     {
         public AracIhaleEntities()
-            : base("name = AracIhaleEntities")
+            : base("Server = DESKTOP-SOFE393\\SQLEXPRESS; Database=Slytherin_AracIhale;trusted_connection=true")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }

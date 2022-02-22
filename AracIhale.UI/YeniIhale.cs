@@ -17,6 +17,7 @@ namespace AracIhale.UI
     public partial class YeniIhale : Form
     {
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        Validation validation = new Validation();
 
         public YeniIhale()
         {
@@ -30,10 +31,7 @@ namespace AracIhale.UI
             FirmaComboBoxDoldu();
             DateTimePickerDoldur();
         }
-
-
-
-        Validation validation = new Validation();
+        
         private void btnKaydet_Click(object sender, EventArgs e)
         {
             AracListViewDoldur();

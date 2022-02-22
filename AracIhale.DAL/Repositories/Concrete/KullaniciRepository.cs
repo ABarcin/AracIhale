@@ -30,5 +30,15 @@ namespace AracIhale.DAL.Repositories.Concrete
 
             kullaniciRepository.Add(kullanici);
         }
+
+        public List<KullaniciTipVM> GetKullaniciTip()
+        {
+            List<KullaniciTipVM> kullaniciTipleri = ThisContext.KullaniciTip.Select(x => new KullaniciTipVM()
+            {
+                Tip = x.Tip,
+                IsActive = x.IsActive
+            }).Where(x => x.IsActive == true).ToList();
+            return kullaniciTipleri;
+        }
     }
 }

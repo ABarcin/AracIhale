@@ -29,5 +29,15 @@ namespace AracIhale.DAL.Repositories.Concrete
 
             return firmaVMler;
         }
-    }
+
+        public List<FirmaVM> GetFirmaAd()
+        {
+            List<FirmaVM> firmalar = ThisContext.Firma.Select(x => new FirmaVM()
+            {
+                Unvan = x.Unvan,
+                IsActive = x.IsActive
+            }).Where(x => x.IsActive == true).ToList();
+            return firmalar;
+        }
+    }   
 }
