@@ -15,6 +15,7 @@ namespace AracIhale.DAL.Repositories.Abstract
         List<Arac> GetAraclarWithRelationship();
         Arac GetAracWithRelationshipByID(int id);
         List<AracCDListVM> GetAracByIhaleID(int id);
+        List<AracListVM> AracVMListele(); 
         #endregion
 
         List<AracListVM> AracListele(string marka, string model, string kTip, string statu);

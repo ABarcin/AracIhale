@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class YeniIhale
+    partial class frmYeniIhale
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,14 @@ namespace AracIhale.UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListView listArac;
+            this.listArac = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAracEkle = new System.Windows.Forms.Button();
             this.btnKaydet = new System.Windows.Forms.Button();
@@ -43,8 +45,8 @@ namespace AracIhale.UI
             this.gbIhaleGenel = new System.Windows.Forms.GroupBox();
             this.dtBitisSaat = new System.Windows.Forms.DateTimePicker();
             this.dtBaslangicSaat = new System.Windows.Forms.DateTimePicker();
-            this.dtIhaleBitis = new System.Windows.Forms.DateTimePicker();
             this.dtIhaleBaslangic = new System.Windows.Forms.DateTimePicker();
+            this.dtIhaleBitis = new System.Windows.Forms.DateTimePicker();
             this.cmbStatu = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -57,34 +59,41 @@ namespace AracIhale.UI
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            listArac = new System.Windows.Forms.ListView();
+            this.myErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbIhaleArac.SuspendLayout();
             this.gbIhaleGenel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // listArac
             // 
-            listArac.AutoArrange = false;
-            listArac.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listArac.AutoArrange = false;
+            this.listArac.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6,
+            this.columnHeader7,
             this.columnHeader8});
-            listArac.Cursor = System.Windows.Forms.Cursors.Default;
-            listArac.GridLines = true;
-            listArac.HideSelection = false;
-            listArac.Location = new System.Drawing.Point(9, 36);
-            listArac.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            listArac.Name = "listArac";
-            listArac.ShowGroups = false;
-            listArac.Size = new System.Drawing.Size(992, 233);
-            listArac.TabIndex = 1;
-            listArac.UseCompatibleStateImageBehavior = false;
-            listArac.View = System.Windows.Forms.View.Details;
+            this.listArac.Cursor = System.Windows.Forms.Cursors.Default;
+            this.listArac.GridLines = true;
+            this.listArac.HideSelection = false;
+            this.listArac.Location = new System.Drawing.Point(9, 36);
+            this.listArac.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listArac.MultiSelect = false;
+            this.listArac.Name = "listArac";
+            this.listArac.ShowGroups = false;
+            this.listArac.Size = new System.Drawing.Size(992, 233);
+            this.listArac.TabIndex = 1;
+            this.listArac.UseCompatibleStateImageBehavior = false;
+            this.listArac.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Sıra";
+            this.columnHeader1.Width = 70;
             // 
             // columnHeader2
             // 
@@ -110,6 +119,11 @@ namespace AracIhale.UI
             // 
             this.columnHeader6.Text = "Kaydeden Kullanıcı";
             this.columnHeader6.Width = 129;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Kaydetme Zamanı";
+            this.columnHeader7.Width = 124;
             // 
             // columnHeader8
             // 
@@ -142,7 +156,7 @@ namespace AracIhale.UI
             // 
             // gbIhaleArac
             // 
-            this.gbIhaleArac.Controls.Add(listArac);
+            this.gbIhaleArac.Controls.Add(this.listArac);
             this.gbIhaleArac.Location = new System.Drawing.Point(15, 246);
             this.gbIhaleArac.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbIhaleArac.Name = "gbIhaleArac";
@@ -156,8 +170,8 @@ namespace AracIhale.UI
             // 
             this.gbIhaleGenel.Controls.Add(this.dtBitisSaat);
             this.gbIhaleGenel.Controls.Add(this.dtBaslangicSaat);
-            this.gbIhaleGenel.Controls.Add(this.dtIhaleBitis);
             this.gbIhaleGenel.Controls.Add(this.dtIhaleBaslangic);
+            this.gbIhaleGenel.Controls.Add(this.dtIhaleBitis);
             this.gbIhaleGenel.Controls.Add(this.cmbStatu);
             this.gbIhaleGenel.Controls.Add(this.label3);
             this.gbIhaleGenel.Controls.Add(this.label8);
@@ -202,24 +216,25 @@ namespace AracIhale.UI
             this.dtBaslangicSaat.Size = new System.Drawing.Size(189, 22);
             this.dtBaslangicSaat.TabIndex = 18;
             // 
-            // dtIhaleBitis
-            // 
-            this.dtIhaleBitis.Location = new System.Drawing.Point(529, 97);
-            this.dtIhaleBitis.Margin = new System.Windows.Forms.Padding(4);
-            this.dtIhaleBitis.Name = "dtIhaleBitis";
-            this.dtIhaleBitis.Size = new System.Drawing.Size(189, 22);
-            this.dtIhaleBitis.TabIndex = 17;
-            // 
             // dtIhaleBaslangic
             // 
-            this.dtIhaleBaslangic.Location = new System.Drawing.Point(133, 93);
+            this.dtIhaleBaslangic.Location = new System.Drawing.Point(133, 91);
             this.dtIhaleBaslangic.Margin = new System.Windows.Forms.Padding(4);
             this.dtIhaleBaslangic.Name = "dtIhaleBaslangic";
             this.dtIhaleBaslangic.Size = new System.Drawing.Size(189, 22);
             this.dtIhaleBaslangic.TabIndex = 17;
             // 
+            // dtIhaleBitis
+            // 
+            this.dtIhaleBitis.Location = new System.Drawing.Point(529, 91);
+            this.dtIhaleBitis.Margin = new System.Windows.Forms.Padding(4);
+            this.dtIhaleBitis.Name = "dtIhaleBitis";
+            this.dtIhaleBitis.Size = new System.Drawing.Size(189, 22);
+            this.dtIhaleBitis.TabIndex = 17;
+            // 
             // cmbStatu
             // 
+            this.cmbStatu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatu.FormattingEnabled = true;
             this.cmbStatu.Location = new System.Drawing.Point(835, 95);
             this.cmbStatu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -274,6 +289,7 @@ namespace AracIhale.UI
             // 
             // cmbUyeTip
             // 
+            this.cmbUyeTip.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUyeTip.FormattingEnabled = true;
             this.cmbUyeTip.Location = new System.Drawing.Point(529, 50);
             this.cmbUyeTip.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -283,6 +299,7 @@ namespace AracIhale.UI
             // 
             // cmbSirketAdi
             // 
+            this.cmbSirketAdi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSirketAdi.FormattingEnabled = true;
             this.cmbSirketAdi.Location = new System.Drawing.Point(835, 47);
             this.cmbSirketAdi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -325,11 +342,11 @@ namespace AracIhale.UI
             this.label1.TabIndex = 5;
             this.label1.Text = "İhale Adı:";
             // 
-            // errorProvider1
+            // myErrorProvider
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.myErrorProvider.ContainerControl = this;
             // 
-            // YeniIhale
+            // frmYeniIhale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -339,13 +356,14 @@ namespace AracIhale.UI
             this.Controls.Add(this.gbIhaleArac);
             this.Controls.Add(this.gbIhaleGenel);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "YeniIhale";
+            this.Name = "frmYeniIhale";
             this.Text = "YeniIhale";
             this.Load += new System.EventHandler(this.YeniIhale_Load);
+            this.VisibleChanged += new System.EventHandler(this.OnVisible_VisibleChanged);
             this.gbIhaleArac.ResumeLayout(false);
             this.gbIhaleGenel.ResumeLayout(false);
             this.gbIhaleGenel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -355,11 +373,13 @@ namespace AracIhale.UI
         private System.Windows.Forms.Button btnAracEkle;
         private System.Windows.Forms.Button btnKaydet;
         private System.Windows.Forms.GroupBox gbIhaleArac;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.GroupBox gbIhaleGenel;
         private System.Windows.Forms.Label label8;
@@ -374,10 +394,11 @@ namespace AracIhale.UI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtIhaleBitis;
         private System.Windows.Forms.DateTimePicker dtIhaleBaslangic;
+        private System.Windows.Forms.DateTimePicker dtIhaleBitis;
         private System.Windows.Forms.DateTimePicker dtBitisSaat;
         private System.Windows.Forms.DateTimePicker dtBaslangicSaat;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ListView listArac;
+        private System.Windows.Forms.ErrorProvider myErrorProvider;
     }
 }

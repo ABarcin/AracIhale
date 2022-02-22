@@ -11,5 +11,7 @@ namespace AracIhale.DAL.Repositories.Abstract
     public interface IIhaleRepository : IRepository<Ihale>
     {
         List<IhaleListVM> IhaleListele(String ihaleAdi, KullaniciTipVM kTip, StatuVM statu);
+        void InsertIhaleVM(IhaleListVM ihaleListVM);
+        void UpdateIhaleVM(IhaleListVM ihaleListVM);
     }
 }

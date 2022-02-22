@@ -264,18 +264,37 @@ namespace AracIhale.CORE
             errorProvider.SetError(userName, Message);
             return validate;
         }
+
         public bool IsValidateMoney(TextBox money, ErrorProvider errorProvider)
         {
             bool validate = true;
-            foreach (char item in money.Text)
+
+            var TryParseOut = 0.0M;
+
+            if (string.IsNullOrEmpty(money.Text))
             {
-                if (!char.IsDigit(item))
+                validate = false;
+                Message = "Bu kısım boş geçilemez";
+                errorProvider.SetError(money, Message);
+            }
+
+            else
+            {
+                if (!decimal.TryParse(money.Text, out TryParseOut))
                 {
                     validate = false;
-                    Message = "Sadece Sayi Girilebilir";
-                    break;
+                    Message = "Format hatası. Lütfen sayı giriniz.";
+                    errorProvider.SetError(money, Message);
+                }
+
+                if (money.Text.Contains('.'))
+                {
+                    validate = false;
+                    Message = "Format hatası. Lütfen virgül kullanınız.";
+                    errorProvider.SetError(money, Message);
                 }
             }
+
             return validate;
         }
 
@@ -334,6 +353,17 @@ namespace AracIhale.CORE
                 }                   
             }
             return validate;
+        }
+
+        public bool IsTextBoxNullOrWhiteSpace(TextBox txt, ErrorProvider errorProvider, string message)
+        {
+            if (string.IsNullOrWhiteSpace(txt.Text))
+            {
+                errorProvider.SetError(txt, message);
+                return false;
+            }
+
+            return true;
         }
     }
 }

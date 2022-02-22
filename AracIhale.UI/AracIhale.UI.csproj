@@ -84,6 +84,12 @@
     <Compile Include="frmSifreBul.Designer.cs">
       <DependentUpon>frmSifreBul.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTramerBilgileri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTramerBilgileri.Designer.cs">
+      <DependentUpon>frmTramerBilgileri.cs</DependentUpon>
+    </Compile>
     <Compile Include="TramerBilgileri.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,23 +150,23 @@
     <Compile Include="frmCalisanKayit.Designer.cs">
       <DependentUpon>frmCalisanKayit.cs</DependentUpon>
     </Compile>
-    <Compile Include="IhaleAracFiyat.cs">
+    <Compile Include="frmIhaleAracFiyat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IhaleAracFiyat.Designer.cs">
-      <DependentUpon>IhaleAracFiyat.cs</DependentUpon>
+    <Compile Include="frmIhaleAracFiyat.Designer.cs">
+      <DependentUpon>frmIhaleAracFiyat.cs</DependentUpon>
     </Compile>
-    <Compile Include="IhaleListeleme.cs">
+    <Compile Include="frmIhaleListeleme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IhaleListeleme.Designer.cs">
-      <DependentUpon>IhaleListeleme.cs</DependentUpon>
+    <Compile Include="frmIhaleListeleme.Designer.cs">
+      <DependentUpon>frmIhaleListeleme.cs</DependentUpon>
     </Compile>
-    <Compile Include="IlanBilgileri.cs">
+    <Compile Include="frmIlanBilgileri.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IlanBilgileri.Designer.cs">
-      <DependentUpon>IlanBilgileri.cs</DependentUpon>
+    <Compile Include="frmIlanBilgileri.Designer.cs">
+      <DependentUpon>frmIlanBilgileri.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCalisanListeleme.cs">
       <SubType>Form</SubType>
@@ -176,11 +182,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="YeniIhale.cs">
+    <Compile Include="frmYeniIhale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="YeniIhale.Designer.cs">
-      <DependentUpon>YeniIhale.cs</DependentUpon>
+    <Compile Include="frmYeniIhale.Designer.cs">
+      <DependentUpon>frmYeniIhale.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmAdminAnasayfa.resx">
       <DependentUpon>frmAdminAnasayfa.cs</DependentUpon>
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSifreBul.resx">
       <DependentUpon>frmSifreBul.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTramerBilgileri.resx">
+      <DependentUpon>frmTramerBilgileri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TramerBilgileri.resx">
       <DependentUpon>TramerBilgileri.cs</DependentUpon>
@@ -227,14 +236,14 @@
     <EmbeddedResource Include="frmCalisanKayit.resx">
       <DependentUpon>frmCalisanKayit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IhaleAracFiyat.resx">
-      <DependentUpon>IhaleAracFiyat.cs</DependentUpon>
+    <EmbeddedResource Include="frmIhaleAracFiyat.resx">
+      <DependentUpon>frmIhaleAracFiyat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IhaleListeleme.resx">
-      <DependentUpon>IhaleListeleme.cs</DependentUpon>
+    <EmbeddedResource Include="frmIhaleListeleme.resx">
+      <DependentUpon>frmIhaleListeleme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IlanBilgileri.resx">
-      <DependentUpon>IlanBilgileri.cs</DependentUpon>
+    <EmbeddedResource Include="frmIlanBilgileri.resx">
+      <DependentUpon>frmIlanBilgileri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCalisanListeleme.resx">
       <DependentUpon>frmCalisanListeleme.cs</DependentUpon>
@@ -251,8 +260,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="YeniIhale.resx">
-      <DependentUpon>YeniIhale.cs</DependentUpon>
+    <EmbeddedResource Include="frmYeniIhale.resx">
+      <DependentUpon>frmYeniIhale.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

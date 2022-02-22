@@ -32,5 +32,10 @@ namespace AracIhale.MODEL.VM
         public int KullaniciID { get; set; }
 
         public string KullaniciAd { get; set; }
+
+        public override string ToString()
+        {
+            return this.MarkaAd + " " + this.ModelAd;
+        }
     }
 }

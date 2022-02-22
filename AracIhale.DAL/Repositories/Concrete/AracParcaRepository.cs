@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AracIhale.DAL.Repositories.Abstract;
+using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
+using AracIhale.MODEL.VM;
 
 namespace AracIhale.DAL.Repositories.Concrete
 {
@@ -15,6 +17,15 @@ namespace AracIhale.DAL.Repositories.Concrete
         public AracParcaRepository(AracIhaleEntities context) : base(context)
         {
 
+        }
+
+        public List<AracParcaVM> AracParcaListesiGetir()
+        {
+            AracParcaRepository aracParcaRepository = new AracParcaRepository(ThisContext);
+
+            AracParcaMapping aracParcaMapping = new AracParcaMapping();
+
+            return aracParcaMapping.ListAracParcaToListAracParcaVM(aracParcaRepository.GetAll());
         }
     }
 }

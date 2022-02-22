@@ -13,5 +13,10 @@ namespace AracIhale.MODEL.VM
 
         [Required]
         public string Durum { get; set; }
+
+        public override string ToString()
+        {
+            return this.Durum;
+        }
     }
 }

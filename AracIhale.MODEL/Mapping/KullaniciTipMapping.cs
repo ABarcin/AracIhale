@@ -40,7 +40,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<KullaniciTipVM> ListKullaniciTipToListKullaniciTipVM(List<KullaniciTip> kullaniciTipleri)
         {
-            List<KullaniciTipVM> kullaniciTipVM = null;
+            List<KullaniciTipVM> kullaniciTipVM = new List<KullaniciTipVM>();
             foreach (KullaniciTip item in kullaniciTipleri)
             {
                 kullaniciTipVM.Add(KullaniciTipToKullaniciTipVM(item));
@@ -49,7 +49,7 @@ namespace AracIhale.MODEL.Mapping
         }
         public List<KullaniciTip> ListKullaniciTipVMToListKullaniciTip(List<KullaniciTipVM> kullaniciTipVM)
         {
-            List<KullaniciTip> kullaniciTipleri = null;
+            List<KullaniciTip> kullaniciTipleri = new List<KullaniciTip>();
             foreach (KullaniciTipVM item in kullaniciTipVM)
             {
                 kullaniciTipleri.Add(KullaniciTipVMToKullaniciTip(item));
