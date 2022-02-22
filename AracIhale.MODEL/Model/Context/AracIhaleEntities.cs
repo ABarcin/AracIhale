@@ -2,6 +2,7 @@ using AracIhale.MODEL.Model.Entities;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 
 namespace AracIhale.MODEL.Model.Context
@@ -10,7 +11,7 @@ namespace AracIhale.MODEL.Model.Context
     public partial class AracIhaleEntities : DbContext
     {
         public AracIhaleEntities()
-            : base("Server = DESKTOP-SOFE393\\SQLEXPRESS; Database=Slytherin_AracIhale;trusted_connection=true")
+            : base("data source=.;initial catalog=Slytherin_AracIhale;uid=buraktoglu;pwd=963633;MultipleActiveResultSets=True;App=EntityFramework")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
@@ -65,6 +66,7 @@ namespace AracIhale.MODEL.Model.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<ArabaModel>()
                 .HasMany(e => e.Arac)
                 .WithRequired(e => e.ArabaModel)

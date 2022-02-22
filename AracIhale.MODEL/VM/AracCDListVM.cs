@@ -20,13 +20,15 @@ namespace AracIhale.MODEL.VM
         public int ModelID { get; set; }
 
         public int Km { get; set; }
+        public string KullaniciTipAdi { get; set; }
 
-        public DateTime Yil { get; set; }
+        public int Yil { get; set; }
 
         public virtual ArabaModel ArabaModel { get; set; }
 
         public virtual Kullanici Kullanici { get; set; }
 
         public virtual Marka Marka { get; set; }
+        public virtual Statu Statu { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,7 +15,22 @@ namespace AracIhale.CORE
         {
             InitializeLocalValues();
         }
-
+        public bool IsValidateEmail(TextBox textBoxMail,ErrorProvider errorProvider)
+        {
+            bool validate = false;
+            string email = textBoxMail.Text;
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            if (match.Success)
+            {
+                validate = true;
+            }
+            else
+            {
+                errorProvider.SetError(textBoxMail, "Hatalı Mail");
+            }
+            return validate;
+        }
         private void InitializeLocalValues()
         {
             List<Char> tempForbiddenCharacters = new List<char>();
@@ -63,18 +79,26 @@ namespace AracIhale.CORE
             }
             return validate;
         }
-        public bool IsValidatePhoneNumber(MaskedTextBox maskedText, ErrorProvider errorProvider)
+
+        public bool IsValidatePhoneNumber(TextBox textBox, ErrorProvider errorProvider)
         {
-            bool validate = false;
-            if (maskedText.Text.Trim('(', ')', ' ', '-').Length < 10)
+            bool validate = true;
+            string numara = textBox.Text;
+            foreach (var item in numara)
             {
-                Message = "Geçersiz Numara Lütfen Geçerli Bir Numara Girin";
+                if (!char.IsDigit(item))
+                {
+                    validate = false;
+                    break;
+                }
             }
-            else
+            string temp= numara.TrimStart('0');
+            if (temp!=numara)
             {
-                validate = true;
+                Message = "Lütfen Numaranın Başına 0 Koymadan ve Boşluk Bırakmadan Yazınız";
+                errorProvider.SetError(textBox, Message);
+                validate = false;
             }
-            errorProvider.SetError(maskedText, Message);
             return validate;
         }
         private bool IsContainsNumber(TextBox textBox,ErrorProvider errorProvider)
@@ -240,18 +264,37 @@ namespace AracIhale.CORE
             errorProvider.SetError(userName, Message);
             return validate;
         }
+
         public bool IsValidateMoney(TextBox money, ErrorProvider errorProvider)
         {
             bool validate = true;
-            foreach (char item in money.Text)
+
+            var TryParseOut = 0.0M;
+
+            if (string.IsNullOrEmpty(money.Text))
             {
-                if (!char.IsDigit(item))
+                validate = false;
+                Message = "Bu kısım boş geçilemez";
+                errorProvider.SetError(money, Message);
+            }
+
+            else
+            {
+                if (!decimal.TryParse(money.Text, out TryParseOut))
                 {
                     validate = false;
-                    Message = "Sadece Sayi Girilebilir";
-                    break;
+                    Message = "Format hatası. Lütfen sayı giriniz.";
+                    errorProvider.SetError(money, Message);
+                }
+
+                if (money.Text.Contains('.'))
+                {
+                    validate = false;
+                    Message = "Format hatası. Lütfen virgül kullanınız.";
+                    errorProvider.SetError(money, Message);
                 }
             }
+
             return validate;
         }
 
@@ -309,6 +352,58 @@ namespace AracIhale.CORE
             return validate;
         }
 
+        public bool IsTextBoxNullOrWhiteSpace(TextBox txt, ErrorProvider errorProvider, string message)
+        {
+            if (string.IsNullOrWhiteSpace(txt.Text))
+            {
+                errorProvider.SetError(txt, message);
+                return false;
+            }
+
+            return true;
+        }
+        public bool IsValidateCombobox(List<ComboBox> comboBoxes, ErrorProvider errorProvider)
+        {
+            bool validate = true;
+            errorProvider.Clear();
+            foreach (ComboBox cmb in comboBoxes)
+            {
+                if (cmb.SelectedIndex < 0)
+                {
+                    validate = false;
+                    Message = "Lütfen bir seçim yapınız.";
+                    errorProvider.SetError(cmb, Message);
+                    break;
+                }
+            }
+            return validate;
+        }
+        public bool IsValidateNumericUpDown(NumericUpDown numericUpDown, ErrorProvider errorProvider)
+        {
+            bool validate = true;
+            if (numericUpDown.Value <= 0)
+            {
+                validate = false;
+                Message = "Lütfen geçerli bir sayı giriniz.";
+                errorProvider.SetError(numericUpDown, Message);
+            }
+            return validate;
+        }
+        public bool IsValidateNumericUpDown(List<NumericUpDown> numericUpDowns, ErrorProvider errorProvider)
+        {
+            bool validate = true;
+            foreach (var nm in numericUpDowns)
+            {
+                if (nm.Value <= 0)
+                {
+                    validate = false;
+                    Message = "Lütfen geçerli bir sayı giriniz.";
+                    errorProvider.SetError(nm, Message);
+                    break;
+                }
+            }
+            return validate;
+        }
         public bool IsValidateNull(GroupBox groupBox, ErrorProvider errorProvider)
         {
             bool validate = true;

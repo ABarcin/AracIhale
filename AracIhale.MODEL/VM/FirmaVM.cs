@@ -20,7 +20,7 @@ namespace AracIhale.MODEL.VM
 
         public override string ToString()
         {
-            return Unvan.ToString();
+            return Unvan;
         }
     }
 }

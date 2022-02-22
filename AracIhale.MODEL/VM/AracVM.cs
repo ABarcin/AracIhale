@@ -21,6 +21,6 @@ namespace AracIhale.MODEL.VM
 
         public int Km { get; set; }
 
-        public DateTime Yil { get; set; }
+        public int Yil { get; set; }
     }
 }

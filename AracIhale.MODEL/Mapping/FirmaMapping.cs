@@ -45,7 +45,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<FirmaVM> ListFirmaToListFirmaVM(List<Firma> list)
         {
-            List<FirmaVM> FirmaListVM = null;
+            List<FirmaVM> FirmaListVM = new List<FirmaVM>();
             foreach (Firma item in list)
             {
                 FirmaListVM.Add(FirmaToFirmaVM(item));
@@ -55,7 +55,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<Firma> ListFirmaVMToListFirma(List<FirmaVM> listVM)
         {
-            List<Firma> FirmaList = null;
+            List<Firma> FirmaList = new List<Firma>();
             foreach (FirmaVM item in listVM)
             {
                 FirmaList.Add(FirmaVMToFirma(item));

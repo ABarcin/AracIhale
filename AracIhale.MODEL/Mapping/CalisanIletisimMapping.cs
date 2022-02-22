@@ -15,9 +15,9 @@ namespace AracIhale.MODEL.Mapping
             return new CalisanIletisim()
             {
                 CalisanID = vm.CalisanID,
-                CalisanIletisimID = vm.CalisanIletisimID,
                 IletisimBilgi = vm.IletisimBilgi,
                 IletisimTuruID = vm.IletisimTuruID,
+                CalisanIletisimID=vm.CalisanIletisimID,
                 IsActive = vm.IsActive,
                 CreatedBy = vm.CreatedBy,
                 CreatedDate = vm.CreatedDate,
@@ -37,11 +37,12 @@ namespace AracIhale.MODEL.Mapping
                 CreatedBy = entity.CreatedBy,
                 CreatedDate = entity.CreatedDate,
                 ModifiedBy = entity.ModifiedBy,
+                ModifiedDate = entity.ModifiedDate
             };
         }
         public List<CalisanIletisimVM> ListCalisanIletisimToListCalisanIletisimVM(List<CalisanIletisim> list)
         {
-            List<CalisanIletisimVM> CalisanIletisimListVM = null;
+            List<CalisanIletisimVM> CalisanIletisimListVM = new List<CalisanIletisimVM>();
             foreach (CalisanIletisim item in list)
             {
                 CalisanIletisimListVM.Add(CalisanIletisimToCalisanIletisimVM(item));

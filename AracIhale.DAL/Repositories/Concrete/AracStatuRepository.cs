@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AracIhale.DAL.Repositories.Abstract;
+using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
 using AracIhale.MODEL.VM;
@@ -32,6 +33,17 @@ namespace AracIhale.DAL.Repositories.Concrete
             }).ToList();
 
             return aracStatu;
+        }
+
+        public void AracStatuEkle(AracStatuVM aracStatuVM)
+        {
+            AracStatu eklenecekAracStatu = new AracStatuMapping().AracStatuVMToAracStatu(aracStatuVM);
+            this.Add(eklenecekAracStatu);
+        }
+        public AracStatuVM AracinGuncelStatusunuGetir(int id)
+        {
+            // AracStatu tablosunda araca ait en son girilen statüyü getiriyor.
+            return new AracStatuMapping().AracStatuToAracStatuVM(GetAll(x => x.AracID == id).LastOrDefault());
         }
     }
 }

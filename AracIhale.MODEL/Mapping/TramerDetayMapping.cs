@@ -39,7 +39,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<TramerDetayVM> ListTramerDetayToListTramerDetayVM(List<TramerDetay> list)
         {
-            List<TramerDetayVM> TramerDetayListVM = null;
+            List<TramerDetayVM> TramerDetayListVM = new List<TramerDetayVM>();
             foreach (TramerDetay item in list)
             {
                 TramerDetayListVM.Add(TramerDetayToTramerDetayVM(item));
@@ -49,7 +49,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<TramerDetay> ListTramerDetayVMToListTramerDetay(List<TramerDetayVM> listVM)
         {
-            List<TramerDetay> TramerDetayList = null;
+            List<TramerDetay> TramerDetayList = new List<TramerDetay>();
             foreach (TramerDetayVM item in listVM)
             {
                 TramerDetayList.Add(TramerDetayVMToTramerDetay(item));

@@ -11,5 +11,7 @@ namespace AracIhale.DAL.Repositories.Abstract
     public interface IAracStatuRepository : IRepository<AracStatu>
     {
         List<StatuVM> StatuleriListele();
+        void AracStatuEkle(AracStatuVM aracStatuVM);
+        AracStatuVM AracinGuncelStatusunuGetir(int id);
     }
 }

@@ -13,5 +13,10 @@ namespace AracIhale.MODEL.VM
 
         [Required]
         public string OzellikAd { get; set; }
+
+        public override string ToString()
+        {
+            return OzellikAd;
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AracIhale.DAL.Repositories.Abstract;
+using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
 using AracIhale.MODEL.VM;
@@ -30,7 +31,9 @@ namespace AracIhale.DAL.Repositories.Concrete
         {
             IhaleAracRepository ihaleAracRepository = new IhaleAracRepository(ThisContext);
 
-            List<IhaleArac> ihaleAraclar = ihaleAracRepository.GetAll();
+            AracStatuRepository aracStatuRepository = new AracStatuRepository(ThisContext);
+
+            List<IhaleArac> ihaleAraclar = ihaleAracRepository.GetAll(x => x.IhaleID == id);
 
             List<Arac> araclar = new List<Arac>();
 
@@ -38,11 +41,9 @@ namespace AracIhale.DAL.Repositories.Concrete
 
             foreach (var item in ihaleAraclar)
             {
-                if (item.AracID == id)
-                {
-                    araclar.Add(GetAracWithRelationshipByID(item.AracID));
-                }
+                araclar.Add(this.GetAracWithRelationshipByID(item.AracID));
             }
+
             foreach (var item in araclar)
             {
                 AracCDListVM aracListVM = new AracCDListVM();
@@ -54,7 +55,10 @@ namespace AracIhale.DAL.Repositories.Concrete
                 aracListVM.Yil = item.Yil;
                 aracListVM.ArabaModel = item.ArabaModel;
                 aracListVM.Kullanici = item.Kullanici;
+                aracListVM.KullaniciTipAdi = ThisContext.KullaniciTip.Where(x => x.KullaniciTipID == item.Kullanici.KullaniciTipID).FirstOrDefault().Tip;
                 aracListVM.Marka = item.Marka;
+                aracListVM.Statu = ThisContext.AracStatu.Include("Statu").ToList().Where(y => y.AracID == item.AracID).OrderByDescending(x => x.Tarih).FirstOrDefault().Statu;
+
                 aracVMler.Add(aracListVM);
             }
 
@@ -97,9 +101,10 @@ namespace AracIhale.DAL.Repositories.Concrete
         public List<AracListVM> TumAraclariListele()
         {
             var aracList = ThisContext.Arac.Include("ArabaModel").Include("Kullanici").Include("Marka").Include("Statu").Include("AracStatu")
-                .Where(x=>x.IsActive == true)
+                .Where(x => x.IsActive == true)
                 .Select(x => new AracListVM
                 {
+                    AracID = x.AracID,
                     MarkaAd = x.Marka.Ad,
                     ModelAd = x.ArabaModel.Ad,
                     KullaniciTip = x.Kullanici.KullaniciTip.Tip,
@@ -110,6 +115,40 @@ namespace AracIhale.DAL.Repositories.Concrete
                 }).ToList();
 
             return aracList;
+        }
+
+        public List<AracListVM> AracVMListele()
+        {
+            var aracList = ThisContext.Arac.Include("ArabaModel").Include("Kullanici").Include("Marka").ToList();
+
+            return new AracListMapping().ListAracToListAracVM(aracList);
+        }
+        public void AracSil(object id)
+        {
+            Arac silinecekArac = GetByID(id);
+            SoftRemove(silinecekArac);
+        }
+
+        public void AracEkle(AracVM arac)
+        {
+            Arac eklenecekArac = new AracMapping().AracVMToArac(arac);
+            this.Add(eklenecekArac);
+        }
+
+        public int EklenenAracIDGetir()
+        {
+            return ThisContext.Arac.OrderByDescending(x => x.AracID).Select(x => x.AracID).FirstOrDefault();
+        }
+
+        public AracVM AracVMByAracID(int id)
+        {
+            return new AracMapping().AracToAracVM(this.GetByID(id));
+        }
+
+        public void AracGuncelle(AracVM arac)
+        {
+            Arac guncellenecekArac = new AracMapping().AracVMToArac(arac);
+            this.UpdateWithId(arac.AracID, guncellenecekArac);
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using AracIhale.MODEL.Model.Entities;
+using AracIhale.MODEL.VM;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AracIhale.MODEL.Model.Entities;
 
 namespace AracIhale.DAL.Repositories.Abstract
 {
     public interface ICalisanIletisimRepository : IRepository<CalisanIletisim>
     {
+        string GetEmailByUserName(string kullaniciAd);
+        List<CalisanIletisimVM> IletisimBilgileriniGetir(CalisanVM calisan);
+        void IletisimBilgisiEkle(CalisanIletisimVM vm);
+        void IletisimBilgisiGuncelle(CalisanIletisimVM vm);
     }
 }
