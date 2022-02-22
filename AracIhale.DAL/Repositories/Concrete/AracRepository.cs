@@ -52,7 +52,7 @@ namespace AracIhale.DAL.Repositories.Concrete
                 aracListVM.MarkaID = item.MarkaID;
                 aracListVM.ModelID = item.ModelID;
                 aracListVM.Km = item.Km;
-                aracListVM.Yil = item.Yil.Year;
+                aracListVM.Yil = item.Yil;
                 aracListVM.ArabaModel = item.ArabaModel;
                 aracListVM.Kullanici = item.Kullanici;
                 aracListVM.KullaniciTipAdi = ThisContext.KullaniciTip.Where(x => x.KullaniciTipID == item.Kullanici.KullaniciTipID).FirstOrDefault().Tip;
@@ -101,7 +101,7 @@ namespace AracIhale.DAL.Repositories.Concrete
         public List<AracListVM> TumAraclariListele()
         {
             var aracList = ThisContext.Arac.Include("ArabaModel").Include("Kullanici").Include("Marka").Include("Statu").Include("AracStatu")
-                .Where(x=>x.IsActive == true)
+                .Where(x => x.IsActive == true)
                 .Select(x => new AracListVM
                 {
                     MarkaAd = x.Marka.Ad,
@@ -121,6 +121,33 @@ namespace AracIhale.DAL.Repositories.Concrete
             var aracList = ThisContext.Arac.Include("ArabaModel").Include("Kullanici").Include("Marka").ToList();
 
             return new AracListMapping().ListAracToListAracVM(aracList);
+        }
+        public void AracSil(object id)
+        {
+            Arac silinecekArac = GetByID(id);
+            SoftRemove(silinecekArac);
+        }
+
+        public void AracEkle(AracVM arac)
+        {
+            Arac eklenecekArac = new AracMapping().AracVMToArac(arac);
+            this.Add(eklenecekArac);
+        }
+
+        public int EklenenAracIDGetir()
+        {
+            return ThisContext.Arac.OrderByDescending(x => x.AracID).Select(x => x.AracID).FirstOrDefault();
+        }
+
+        public AracVM AracVMByAracID(int id)
+        {
+            return new AracMapping().AracToAracVM(this.GetByID(id));
+        }
+
+        public void AracGuncelle(AracVM arac)
+        {
+            Arac guncellenecekArac = new AracMapping().AracVMToArac(arac);
+            this.UpdateWithId(arac.AracID, guncellenecekArac);
         }
     }
 }
