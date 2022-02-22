@@ -40,5 +40,10 @@ namespace AracIhale.DAL.Repositories.Concrete
             AracStatu eklenecekAracStatu = new AracStatuMapping().AracStatuVMToAracStatu(aracStatuVM);
             this.Add(eklenecekAracStatu);
         }
+        public AracStatuVM AracinGuncelStatusunuGetir(int id)
+        {
+            // AracStatu tablosunda araca ait en son girilen statüyü getiriyor.
+            return new AracStatuMapping().AracStatuToAracStatuVM(GetAll(x => x.AracID == id).LastOrDefault());
+        }
     }
 }

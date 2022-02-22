@@ -30,7 +30,7 @@ namespace AracIhale.MODEL.Model.Entities
 
         public int ModelID { get; set; }
 
-        public decimal Km { get; set; }
+        public int Km { get; set; }
 
         public int Yil { get; set; }
 

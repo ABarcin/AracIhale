@@ -18,6 +18,7 @@ namespace AracIhale.DAL.Repositories.Abstract
         void SoftRemove(TEntity entity);
         void RemoveRange(List<TEntity> entities);
         void Update(TEntity entity);
+        void UpdateWithId(object id, TEntity entity);
         int GetCount();
     }
 }

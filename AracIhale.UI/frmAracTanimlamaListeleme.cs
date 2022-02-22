@@ -22,7 +22,6 @@ namespace AracIhale.UI
         UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
         private void AracTanimlama_Load(object sender, EventArgs e)
         {
-
             lstAracListesi.Items.Clear();
             PrepareForm();
         }
@@ -126,13 +125,34 @@ namespace AracIhale.UI
         {
             FiltreleriTemizle();
         }
+        
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            AracListVM arac = lstAracListesi.SelectedItems[0].Tag as AracListVM;
+            using (frmAracDetayBilgi aracDetayBilgi = new frmAracDetayBilgi(arac))
+            {
+                aracDetayBilgi.ShowDialog();
+            }
+            btnGuncelle.Enabled = btnSil.Enabled = false;
+            FiltrelenenAraclariListele();
+            this.Show();
         }
         private void btnSil_Click(object sender, EventArgs e)
         {
             AracSil();
+        }
+
+        private void lstAracListesi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstAracListesi.SelectedItems.Count > 0)
+            {
+                btnGuncelle.Enabled = btnSil.Enabled = true;
+            }
+            else
+            {
+                btnGuncelle.Enabled = btnSil.Enabled = false;
+            }
         }
     }
 }

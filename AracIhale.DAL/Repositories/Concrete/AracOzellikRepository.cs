@@ -24,5 +24,20 @@ namespace AracIhale.DAL.Repositories.Concrete
             List<AracOzellik> eklenecekAracOzellikler = new AracOzellikMapping().ListAracOzellikVMToListAracOzellik(aracOzellikVMs);
             this.AddRange(eklenecekAracOzellikler);
         }
+
+        public List<AracOzellikVM> AracOzellikleriniGetir(int id)
+        {
+            // AracOzellik tablosunda araca ait olan tüm özellikleri getiriyor.
+            return new AracOzellikMapping().ListAracOzellikToListAracOzellikVM(GetAll(x => x.AracID == id).ToList());
+        }
+
+        public void AracOzellikGuncelle(List<AracOzellikVM> aracOzellikVMs)
+        {
+            List<AracOzellik> guncellenecekAracOzellikler = new AracOzellikMapping().ListAracOzellikVMToListAracOzellik(aracOzellikVMs);
+            foreach (AracOzellik aracOzellik in guncellenecekAracOzellikler)
+            {
+                this.UpdateWithId(aracOzellik.AracOzellikID, aracOzellik);
+            }
+        }
     }
 }

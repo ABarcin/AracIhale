@@ -24,5 +24,11 @@ namespace AracIhale.DAL.Repositories.Concrete
             AracFiyat eklenecekAracFiyat = new AracFiyatMapping().AracFiyatVMToAracFiyat(aracFiyatVM);
             this.Add(eklenecekAracFiyat);
         }
+
+        public AracFiyatVM AracinGuncelFiyatiniGetir(int id)
+        {
+            // AracFiyat tablosunda araca ait en son girilen fiyatı getiriyor.
+            return new AracFiyatMapping().AracFiyatToAracFiyatVM(GetAll(x=>x.AracID == id).LastOrDefault());
+        }
     }
 }

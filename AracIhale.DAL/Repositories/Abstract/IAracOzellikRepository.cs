@@ -11,5 +11,7 @@ namespace AracIhale.DAL.Repositories.Abstract
     public interface IAracOzellikRepository : IRepository<AracOzellik>
     {
         void AracOzellikEkle(List<AracOzellikVM> aracOzellikVMs);
+        List<AracOzellikVM> AracOzellikleriniGetir(int id);
+        void AracOzellikGuncelle(List<AracOzellikVM> aracOzellikVMs);
     }
 }

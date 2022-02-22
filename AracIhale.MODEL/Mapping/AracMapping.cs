@@ -14,7 +14,7 @@ namespace AracIhale.MODEL.Mapping
         {
             return new Arac()
             {
-                //AracID=vm.AracID,
+                AracID=vm.AracID,
                 Km=vm.Km,
                 KullaniciID=vm.KullaniciID,
                 MarkaID=vm.MarkaID,
@@ -31,7 +31,7 @@ namespace AracIhale.MODEL.Mapping
         {
             return new AracVM()
             {
-                //AracID = arac.AracID,
+                AracID = arac.AracID,
                 Km = arac.Km,
                 KullaniciID = arac.KullaniciID,
                 MarkaID = arac.MarkaID,

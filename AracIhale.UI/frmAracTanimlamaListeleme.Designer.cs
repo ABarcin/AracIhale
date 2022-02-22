@@ -87,6 +87,7 @@ namespace AracIhale.UI
             // 
             // btnGuncelle
             // 
+            this.btnGuncelle.Enabled = false;
             this.btnGuncelle.Location = new System.Drawing.Point(628, 441);
             this.btnGuncelle.Name = "btnGuncelle";
             this.btnGuncelle.Size = new System.Drawing.Size(75, 23);
@@ -97,6 +98,7 @@ namespace AracIhale.UI
             // 
             // btnSil
             // 
+            this.btnSil.Enabled = false;
             this.btnSil.Location = new System.Drawing.Point(709, 441);
             this.btnSil.Name = "btnSil";
             this.btnSil.Size = new System.Drawing.Size(75, 23);
@@ -153,6 +155,7 @@ namespace AracIhale.UI
             this.lstAracListesi.TabIndex = 0;
             this.lstAracListesi.UseCompatibleStateImageBehavior = false;
             this.lstAracListesi.View = System.Windows.Forms.View.Details;
+            this.lstAracListesi.SelectedIndexChanged += new System.EventHandler(this.lstAracListesi_SelectedIndexChanged);
             // 
             // columnHeader2
             // 
@@ -273,13 +276,13 @@ namespace AracIhale.UI
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // AracTanimlamaListeleme
+            // frmAracTanimlamaListeleme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 495);
             this.Controls.Add(this.grpGenel);
-            this.Name = "AracTanimlamaListeleme";
+            this.Name = "frmAracTanimlamaListeleme";
             this.Text = "Araç Tanımlama/Listeleme Ekranı";
             this.Load += new System.EventHandler(this.AracTanimlama_Load);
             this.grpGenel.ResumeLayout(false);
