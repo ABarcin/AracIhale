@@ -37,7 +37,7 @@ namespace SayfaIhale.MODEL.Mapping
         }
         public List<SayfaVM> ListSayfaToListSayfaVM(List<Sayfa> Sayfalar)
         {
-            List<SayfaVM> SayfalarListVM = null;
+            List<SayfaVM> SayfalarListVM = new List<SayfaVM>();
             foreach (Sayfa item in Sayfalar)
             {
                 SayfalarListVM.Add(SayfaToSayfaVM(item));
@@ -46,7 +46,7 @@ namespace SayfaIhale.MODEL.Mapping
         }
         public List<Sayfa> ListSayfaVMToListSayfa(List<SayfaVM> SayfalarVM)
         {
-            List<Sayfa> SayfalarList = null;
+            List<Sayfa> SayfalarList = new List<Sayfa>();
             foreach (SayfaVM item in SayfalarVM)
             {
                 SayfalarList.Add(SayfaVMToSayfa(item));

@@ -71,7 +71,8 @@ namespace AracIhale.UI
                 };
                 Label lblAracParca = new Label
                 {
-                    Text = aracParca.ParcaAd
+                    Text = aracParca.ParcaAd,
+                    Anchor = AnchorStyles.Bottom
                 };
 
                 flpAracParca.Controls.Add(lblAracParca);
@@ -144,7 +145,7 @@ namespace AracIhale.UI
                     btnGuncelle.Enabled = true;
                     MessageBox.Show("Tramer Bilgileri başarıyla eklendi.");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //MessageBox.Show(ex.Message);
                 }
@@ -178,7 +179,7 @@ namespace AracIhale.UI
                     scope.Complete();
                     MessageBox.Show("Tramer Bilgileri başarıyla güncellendi!");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //MessageBox.Show(ex.Message);
                 }

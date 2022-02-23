@@ -1,6 +1,8 @@
 ﻿using AracIhale.DAL.Repositories.Abstract;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
+using AracIhale.MODEL.VM;
+using SayfaIhale.MODEL.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,11 @@ namespace AracIhale.DAL.Repositories.Concrete
         public SayfaRepository(AracIhaleEntities context) : base(context)
         {
 
+        }
+
+        public List<SayfaVM> TumSayfalar()
+        {
+            return new SayfaMapping().ListSayfaToListSayfaVM(this.GetAll().ToList());
         }
     }
 }

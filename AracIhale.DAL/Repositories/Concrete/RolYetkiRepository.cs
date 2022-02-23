@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AracIhale.DAL.Repositories.Abstract;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
+using AracIhale.MODEL.VM;
 
 namespace AracIhale.DAL.Repositories.Concrete
 {
@@ -15,6 +16,11 @@ namespace AracIhale.DAL.Repositories.Concrete
         public RolYetkiRepository(AracIhaleEntities context) : base(context)
         {
 
+        }
+
+        public void RolYetkiGuncelle(RolVM rolVM, SayfaVM sayfaVM)
+        {
+            //toDO
         }
     }
 }

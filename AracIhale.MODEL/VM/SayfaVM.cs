@@ -15,5 +15,10 @@ namespace AracIhale.MODEL.VM
         [Required]
         [StringLength(50)]
         public string SayfaAdi { get; set; }
+
+        public override string ToString()
+        {
+            return SayfaAdi; 
+        }
     }
 }

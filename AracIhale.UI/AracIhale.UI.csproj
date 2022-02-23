@@ -90,6 +90,12 @@
     <Compile Include="frmTramerBilgileri.Designer.cs">
       <DependentUpon>frmTramerBilgileri.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmYetkiTanimlama.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmYetkiTanimlama.Designer.cs">
+      <DependentUpon>frmYetkiTanimlama.cs</DependentUpon>
+    </Compile>
     <Compile Include="TramerBilgileri.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTramerBilgileri.resx">
       <DependentUpon>frmTramerBilgileri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmYetkiTanimlama.resx">
+      <DependentUpon>frmYetkiTanimlama.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TramerBilgileri.resx">
       <DependentUpon>TramerBilgileri.cs</DependentUpon>

@@ -37,9 +37,9 @@ namespace AracIhale.MODEL.Mapping
             };
         }
 
-        public List<YetkiVM> ListYetkiToYetkiVM(List<Yetki> Yetkiler)
+        public List<YetkiVM> ListYetkiToListYetkiVM(List<Yetki> Yetkiler)
         {
-            List<YetkiVM> YetkiListVM = null;
+            List<YetkiVM> YetkiListVM = new List<YetkiVM>();
             foreach (Yetki item in Yetkiler)
             {
                 YetkiListVM.Add(YetkiToYetkiVM(item));
@@ -48,7 +48,7 @@ namespace AracIhale.MODEL.Mapping
         }
         public List<Yetki> ListYetkiVMToListYetki(List<YetkiVM> YetkilerVM)
         {
-            List<Yetki> YetkiList = null;
+            List<Yetki> YetkiList = new List<Yetki>();
             foreach (YetkiVM item in YetkilerVM)
             {
                 YetkiList.Add(YetkiVMToYetki(item));
