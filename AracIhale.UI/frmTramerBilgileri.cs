@@ -18,7 +18,7 @@ namespace AracIhale.UI
 {
     public partial class frmTramerBilgileri : Form
     {
-        int _aracID = 5; // injection metodu ile fatihten alınacak
+        int _aracID = 1031; // injection metodu ile fatihten alınacak
 
         public frmTramerBilgileri()
         {
@@ -256,4 +256,5 @@ namespace AracIhale.UI
             }
         }
     }
+    
 }

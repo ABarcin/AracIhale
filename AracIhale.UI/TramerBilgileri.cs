@@ -21,5 +21,10 @@ namespace AracIhale.UI
         {
 
         }
+
+        private void TramerBilgileri_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
