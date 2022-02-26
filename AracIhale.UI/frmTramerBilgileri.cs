@@ -24,6 +24,10 @@ namespace AracIhale.UI
         {
             InitializeComponent();
         }
+        public frmTramerBilgileri(int aracID):this()
+        {
+            _aracID = aracID;
+        }
 
         UnitOfWork _unitOfWork = new UnitOfWork();
         List<AracParcaVM> _aracParcaListesi;

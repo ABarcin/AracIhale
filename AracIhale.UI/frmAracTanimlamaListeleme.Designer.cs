@@ -81,6 +81,7 @@ namespace AracIhale.UI
             this.btnYeni.Name = "btnYeni";
             this.btnYeni.Size = new System.Drawing.Size(75, 23);
             this.btnYeni.TabIndex = 2;
+            this.btnYeni.Tag = "Create";
             this.btnYeni.Text = "Yeni";
             this.btnYeni.UseVisualStyleBackColor = true;
             this.btnYeni.Click += new System.EventHandler(this.btnYeni_Click);
@@ -92,6 +93,7 @@ namespace AracIhale.UI
             this.btnGuncelle.Name = "btnGuncelle";
             this.btnGuncelle.Size = new System.Drawing.Size(75, 23);
             this.btnGuncelle.TabIndex = 2;
+            this.btnGuncelle.Tag = "Update";
             this.btnGuncelle.Text = "Güncelle";
             this.btnGuncelle.UseVisualStyleBackColor = true;
             this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
@@ -103,6 +105,7 @@ namespace AracIhale.UI
             this.btnSil.Name = "btnSil";
             this.btnSil.Size = new System.Drawing.Size(75, 23);
             this.btnSil.TabIndex = 2;
+            this.btnSil.Tag = "Delete";
             this.btnSil.Text = "Sil";
             this.btnSil.UseVisualStyleBackColor = true;
             this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
@@ -123,6 +126,7 @@ namespace AracIhale.UI
             this.btnListele.Name = "btnListele";
             this.btnListele.Size = new System.Drawing.Size(75, 23);
             this.btnListele.TabIndex = 2;
+            this.btnListele.Tag = "Read";
             this.btnListele.Text = "Listele";
             this.btnListele.UseVisualStyleBackColor = true;
             this.btnListele.Click += new System.EventHandler(this.btnListele_Click);

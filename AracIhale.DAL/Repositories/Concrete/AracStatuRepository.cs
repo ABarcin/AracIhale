@@ -45,5 +45,18 @@ namespace AracIhale.DAL.Repositories.Concrete
             // AracStatu tablosunda araca ait en son girilen statüyü getiriyor.
             return new AracStatuMapping().AracStatuToAracStatuVM(GetAll(x => x.AracID == id).LastOrDefault());
         }
+
+        public List<AracStatuVM> AracinStatuTarihcesiniGetir(int id)
+        {
+            var statuTarihcesi = ThisContext.AracStatu.Include("Statu")
+                .Where(x => x.AracID == id)
+                .Select(x => new AracStatuVM
+                {
+                    StatuAd = x.Statu.StatuAd,
+                    Tarih = x.Tarih
+                }).ToList();
+
+            return statuTarihcesi;
+        }
     }
 }

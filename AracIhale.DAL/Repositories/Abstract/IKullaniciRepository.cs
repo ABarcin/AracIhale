@@ -11,5 +11,6 @@ namespace AracIhale.DAL.Repositories.Abstract
     public interface IKullaniciRepository : IRepository<Kullanici>
     {
         void BireyselKullaniciEkle(KullaniciVM kullaniciVM);
+        KullaniciVM AracKullanicisiniGetir(int aracID);
     }
 }
