@@ -25,7 +25,7 @@ namespace AracIhale.UI
             InitializeComponent();
         }
 
-        UnitOfWork _unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        UnitOfWork _unitOfWork = new UnitOfWork();
 
         private void frmIlanBilgileri_Load(object sender, EventArgs e)
         {

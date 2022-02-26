@@ -24,10 +24,13 @@ namespace AracIhale.DAL.Repositories.Concrete
             return this.GetAll().OrderByDescending(x => x.AracTramerID).First().AracTramerID;
         }
 
-        public void AracTramerEkle(AracTramerVM aracTramerVM)
+        public int AracTramerEkle(AracTramerVM aracTramerVM)
         {
             AracTramer eklenecekAracTramer = new AracTramerMapping().AracTramerVMToAracTramer(aracTramerVM);
             this.Add(eklenecekAracTramer);
+            ThisContext.SaveChanges();
+
+            return eklenecekAracTramer.AracTramerID;
         }
 
         public void AracTramerGuncelle(AracTramerVM aracTramerVM)

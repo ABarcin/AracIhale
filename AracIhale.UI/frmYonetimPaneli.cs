@@ -18,7 +18,7 @@ namespace AracIhale.UI
 {
     public partial class frmYonetimPaneli : Form
     {
-        UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        UnitOfWork unitOfWork = new UnitOfWork();
 
         public frmYonetimPaneli()
         {

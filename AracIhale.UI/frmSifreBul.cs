@@ -22,7 +22,7 @@ namespace AracIhale.UI
         {
             InitializeComponent();
         }
-        UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        UnitOfWork unitOfWork = new UnitOfWork();
         Validation validation=new Validation();
         /// <summary>
         /// Formdan gelen verilen kontrol edildikten sonra kullanıcı adı ve kullanıcı adına bağlı email uyuşuyor ise kullanıcının mail adresine şifresi gönderiliyor

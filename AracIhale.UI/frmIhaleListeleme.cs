@@ -17,7 +17,7 @@ namespace AracIhale.UI
 {
     public partial class frmIhaleListeleme : Form
     {
-        UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        UnitOfWork unitOfWork = new UnitOfWork();
 
         IhaleListVM ihaleListVM = null;
 

@@ -13,60 +13,55 @@ namespace AracIhale.DAL.UnitOfWork
     {
         private AracIhaleEntities _unitOfWorkContext;
 
-        public UnitOfWork(AracIhaleEntities UnitOfWorkContext)
+        public UnitOfWork()
         {
-            _unitOfWorkContext = UnitOfWorkContext;
-            AracFiyatRepository = new AracFiyatRepository(UnitOfWorkContext);
-            AracOzellikRepository = new AracOzellikRepository(UnitOfWorkContext);
-            AracParcaRepository = new AracParcaRepository(UnitOfWorkContext);
-            AracRepository = new AracRepository(UnitOfWorkContext);
-            AracStatuRepository = new AracStatuRepository(UnitOfWorkContext);
-            AracTeklifRepository = new AracTeklifRepository(UnitOfWorkContext);
-            AracTramerDetayRepository = new AracTramerDetayRepository(UnitOfWorkContext);
-            AracTramerRepository = new AracTramerRepository(UnitOfWorkContext);
-            CalisanIletisimRepository = new CalisanIletisimRepository(UnitOfWorkContext);
-            CalisanRepository = new CalisanRepository(UnitOfWorkContext);
-            FavoriAramaKriterRepository = new FavoriAramaKriterRepository(UnitOfWorkContext);
-            FavoriAramaRepository = new FavoriAramaRepository(UnitOfWorkContext);
-            FavoriIlanRepository = new FavoriIlanRepository(UnitOfWorkContext);
-            FavoriOzellikRepository = new FavoriOzellikRepository(UnitOfWorkContext);
-            FirmaIletisimRepository = new FirmaIletisimRepository(UnitOfWorkContext);
-            FirmaRepository = new FirmaRepository(UnitOfWorkContext);
-            FirmaTipRepository = new FirmaTipRepository(UnitOfWorkContext);
-            FirmaTipRepository = new FirmaTipRepository(UnitOfWorkContext);
-            IhaleAracRepository = new IhaleAracRepository(UnitOfWorkContext);
-            IhaleRepository = new IhaleRepository(UnitOfWorkContext);
-            IhaleStatuRepository = new IhaleStatuRepository(UnitOfWorkContext);
-            IhaleSurecRepository = new IhaleSurecRepository(UnitOfWorkContext);
-            IlanRepository = new IlanRepository(UnitOfWorkContext);
-            IletisimTurRepository = new IletisimTurRepository(UnitOfWorkContext);
-            KullaniciIletisimRepository = new KullaniciIletisimRepository(UnitOfWorkContext);
-            KullaniciRepository = new KullaniciRepository(UnitOfWorkContext);
-            KullaniciTipRepository = new KullaniciTipRepository(UnitOfWorkContext);
-            KurumsalIhaleRepository = new KurumsalIhaleRepository(UnitOfWorkContext);
-            KurumsalKullaniciRepository = new KurumsalKullaniciRepository(UnitOfWorkContext);
-            MarkaRepository = new MarkaRepository(UnitOfWorkContext);
-            OzellikBilgiRepository = new OzellikBilgiRepository(UnitOfWorkContext);
-            OzellikRepository = new OzellikRepository(UnitOfWorkContext);
-            PaketRepository = new PaketRepository(UnitOfWorkContext);
-            RolRepository = new RolRepository(UnitOfWorkContext);
-            RolYetkiRepository = new RolYetkiRepository(UnitOfWorkContext);
-            StatuRepository = new StatuRepository(UnitOfWorkContext);
-            StokRepository = new StokRepository(UnitOfWorkContext);
-            TramerDetayRepository = new TramerDetayRepository(UnitOfWorkContext);
-            YetkiRepository = new YetkiRepository(UnitOfWorkContext);
-            SehirRepository = new SehirRepository(UnitOfWorkContext);
-            IlceRepository = new IlceRepository(UnitOfWorkContext);
-            SehirIlceRepository = new SehirIlceRepository(UnitOfWorkContext);
-            ArabaModelRepository = new ArabaModelRepository(UnitOfWorkContext);
-            SayfaRepository = new SayfaRepository(UnitOfWorkContext);
+            _unitOfWorkContext = new AracIhaleEntities();
+            AracFiyatRepository = new AracFiyatRepository(_unitOfWorkContext);
+            AracOzellikRepository = new AracOzellikRepository(_unitOfWorkContext);
+            AracParcaRepository = new AracParcaRepository(_unitOfWorkContext);
+            AracRepository = new AracRepository(_unitOfWorkContext);
+            AracStatuRepository = new AracStatuRepository(_unitOfWorkContext);
+            AracTeklifRepository = new AracTeklifRepository(_unitOfWorkContext);
+            AracTramerDetayRepository = new AracTramerDetayRepository(_unitOfWorkContext);
+            AracTramerRepository = new AracTramerRepository(_unitOfWorkContext);
+            CalisanIletisimRepository = new CalisanIletisimRepository(_unitOfWorkContext);
+            CalisanRepository = new CalisanRepository(_unitOfWorkContext);
+            FavoriAramaKriterRepository = new FavoriAramaKriterRepository(_unitOfWorkContext);
+            FavoriAramaRepository = new FavoriAramaRepository(_unitOfWorkContext);
+            FavoriIlanRepository = new FavoriIlanRepository(_unitOfWorkContext);
+            FavoriOzellikRepository = new FavoriOzellikRepository(_unitOfWorkContext);
+            FirmaIletisimRepository = new FirmaIletisimRepository(_unitOfWorkContext);
+            FirmaRepository = new FirmaRepository(_unitOfWorkContext);
+            FirmaTipRepository = new FirmaTipRepository(_unitOfWorkContext);
+            FirmaTipRepository = new FirmaTipRepository(_unitOfWorkContext);
+            IhaleAracRepository = new IhaleAracRepository(_unitOfWorkContext);
+            IhaleRepository = new IhaleRepository(_unitOfWorkContext);
+            IhaleStatuRepository = new IhaleStatuRepository(_unitOfWorkContext);
+            IhaleSurecRepository = new IhaleSurecRepository(_unitOfWorkContext);
+            IlanRepository = new IlanRepository(_unitOfWorkContext);
+            IletisimTurRepository = new IletisimTurRepository(_unitOfWorkContext);
+            KullaniciIletisimRepository = new KullaniciIletisimRepository(_unitOfWorkContext);
+            KullaniciRepository = new KullaniciRepository(_unitOfWorkContext);
+            KullaniciTipRepository = new KullaniciTipRepository(_unitOfWorkContext);
+            KurumsalIhaleRepository = new KurumsalIhaleRepository(_unitOfWorkContext);
+            KurumsalKullaniciRepository = new KurumsalKullaniciRepository(_unitOfWorkContext);
+            MarkaRepository = new MarkaRepository(_unitOfWorkContext);
+            OzellikBilgiRepository = new OzellikBilgiRepository(_unitOfWorkContext);
+            OzellikRepository = new OzellikRepository(_unitOfWorkContext);
+            PaketRepository = new PaketRepository(_unitOfWorkContext);
+            RolRepository = new RolRepository(_unitOfWorkContext);
+            RolYetkiRepository = new RolYetkiRepository(_unitOfWorkContext);
+            StatuRepository = new StatuRepository(_unitOfWorkContext);
+            StokRepository = new StokRepository(_unitOfWorkContext);
+            TramerDetayRepository = new TramerDetayRepository(_unitOfWorkContext);
+            YetkiRepository = new YetkiRepository(_unitOfWorkContext);
+            SehirRepository = new SehirRepository(_unitOfWorkContext);
+            IlceRepository = new IlceRepository(_unitOfWorkContext);
+            SehirIlceRepository = new SehirIlceRepository(_unitOfWorkContext);
+            ArabaModelRepository = new ArabaModelRepository(_unitOfWorkContext);
+            SayfaRepository = new SayfaRepository(_unitOfWorkContext);
 
     }
-
-        public void IletisimBilgileriniDoldur()
-        {
-            throw new NotImplementedException();
-        }
 
         public IAracFiyatRepository AracFiyatRepository { get; private set; }
 

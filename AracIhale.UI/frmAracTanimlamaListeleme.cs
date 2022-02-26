@@ -19,7 +19,7 @@ namespace AracIhale.UI
         {
             InitializeComponent();
         }
-        UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        UnitOfWork unitOfWork = new UnitOfWork();
         private void AracTanimlama_Load(object sender, EventArgs e)
         {
             lstAracListesi.Items.Clear();

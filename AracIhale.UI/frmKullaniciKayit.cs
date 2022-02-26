@@ -18,7 +18,7 @@ namespace AracIhale.UI
 {
     public partial class frmKullaniciKayit : Form
     {
-        UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        UnitOfWork unitOfWork = new UnitOfWork();
         Validation validation = new Validation();
         KullaniciVM kullaniciVM = new KullaniciVM();
         KullaniciTipVM kullaniciTipVM = new KullaniciTipVM();

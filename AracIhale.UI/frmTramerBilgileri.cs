@@ -18,14 +18,14 @@ namespace AracIhale.UI
 {
     public partial class frmTramerBilgileri : Form
     {
-        int _aracID = 1031; // injection metodu ile fatihten alınacak
+        int _aracID = 1035; // injection metodu ile fatihten alınacak
 
         public frmTramerBilgileri()
         {
             InitializeComponent();
         }
 
-        UnitOfWork _unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        UnitOfWork _unitOfWork = new UnitOfWork();
         List<AracParcaVM> _aracParcaListesi;
         List<TramerDetayVM> _tramerDurumListesi;
 
@@ -133,10 +133,7 @@ namespace AracIhale.UI
                         throw new Exception();
                     }
 
-                    _unitOfWork.AracTramerRepository.AracTramerEkle(aracTramerVM);
-                    _unitOfWork.Complate();
-
-                     int aracTramerID = _unitOfWork.AracTramerRepository.EklenenAracTramerIDGetir();
+                    int aracTramerID = _unitOfWork.AracTramerRepository.AracTramerEkle(aracTramerVM);
 
                     AracTramerDetaylariEkle(_aracParcaListesi, _tramerDurumListesi, aracTramerID);
 
@@ -247,6 +244,7 @@ namespace AracIhale.UI
 
                                         _unitOfWork.AracTramerDetayRepository.AracTramerDetayGuncelle(aracTramerDetayVM);
                                         _unitOfWork.Complate();
+
                                     }
                                 }
                             }

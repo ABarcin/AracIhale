@@ -53,7 +53,7 @@ namespace AracIhale.UI
         private void IletisimBilgileriniDoldur()
         {
             lsvIletisim.Items.Clear();
-            using (unitOfWork = new UnitOfWork(new AracIhaleEntities()))
+            using (unitOfWork = new UnitOfWork())
             {
                 ListViewItem listView;
                 foreach (var item in unitOfWork.CalisanIletisimRepository.IletisimBilgileriniGetir(calisan))
@@ -74,7 +74,7 @@ namespace AracIhale.UI
 
         private void CmbDoldurIletisimTurDoldur()
         {
-            using (unitOfWork=new UnitOfWork(new AracIhaleEntities()))
+            using (unitOfWork=new UnitOfWork())
             {
                 cmbIletisimTur.Items.AddRange(unitOfWork.IletisimTurRepository.IletisimTurleriniGetir().ToArray());
             }
@@ -109,7 +109,7 @@ namespace AracIhale.UI
 
         private void IletisimEkle()
         {
-            using (unitOfWork = new UnitOfWork(new AracIhaleEntities()))
+            using (unitOfWork = new UnitOfWork())
             {
                 CalisanIletisimVM vm = new CalisanIletisimVM()
                 {
@@ -181,7 +181,7 @@ namespace AracIhale.UI
 
         private void IletisimGuncelle()
         {
-            using (unitOfWork = new UnitOfWork(new AracIhaleEntities()))
+            using (unitOfWork = new UnitOfWork())
             {
                 CalisanIletisimVM vm = new CalisanIletisimVM()
                 {

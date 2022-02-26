@@ -43,7 +43,7 @@ namespace AracIhale.UI
         }
         private void btnSil_Click(object sender, EventArgs e)
         {
-            unitOfWork = new UnitOfWork(new AracIhaleEntities());
+            unitOfWork = new UnitOfWork();
             unitOfWork.CalisanRepository.Sil((listCalisanlar.SelectedItems[0].Tag as CalisanVM).CalisanID);
             int etkilenen = unitOfWork.Complate();
             if (etkilenen > 0)
@@ -120,7 +120,7 @@ namespace AracIhale.UI
         }
         private void AddCalisan()
         {
-            unitOfWork = new UnitOfWork(new AracIhaleEntities());
+            unitOfWork = new UnitOfWork();
             validation = new Validation();
             calisanIletisimMapping = new CalisanIletisimMapping();
             if ((validation.IsValidateName(txtAd, 2, 150, errorProvider) && validation.IsValidateName(txtSoyad, 2, 200, errorProvider) && validation.IsValidateUserName(txtKullaniciAdi, errorProvider, 3, 25) && validation.IsValidatePassWord(txtSifre, errorProvider, 3, 30) && SifreKontrol()))
@@ -204,7 +204,7 @@ namespace AracIhale.UI
                         vM.Soyad = txtSoyad.Text;
                         vM.RolID = (cmbRol.SelectedItem as RolVM).RolID;
                         vM.AktiflikDurumu = rdbAktif.Checked == true ? true : false;
-                        using (unitOfWork = new UnitOfWork(new AracIhaleEntities()))
+                        using (unitOfWork = new UnitOfWork())
                         {
                             unitOfWork.CalisanRepository.Guncelle(vM);
                             unitOfWork.Complate();

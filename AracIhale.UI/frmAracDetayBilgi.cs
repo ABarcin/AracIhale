@@ -24,7 +24,7 @@ namespace AracIhale.UI
         {
             InitializeComponent();
         }
-        UnitOfWork unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        UnitOfWork unitOfWork = new UnitOfWork();
         Validation validation = new Validation();
         AracListVM _guncellenecekArac = null;
         public frmAracDetayBilgi(AracListVM arac) : this()

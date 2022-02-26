@@ -16,7 +16,7 @@ namespace AracIhale.UI
 {
     public partial class frmYetkiTanimlama : Form
     {
-        UnitOfWork _unitOfWork = new UnitOfWork(new AracIhaleEntities());
+        UnitOfWork _unitOfWork = new UnitOfWork();
         List<RolVM> _rolListesi;
         List<SayfaVM> _sayfaListesi;
         List<YetkiVM> _yetkiListesi;

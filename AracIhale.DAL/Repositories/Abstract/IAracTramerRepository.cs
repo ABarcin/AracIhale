@@ -12,7 +12,7 @@ namespace AracIhale.DAL.Repositories.Abstract
     {
         int EklenenAracTramerIDGetir();
 
-        void AracTramerEkle(AracTramerVM aracTramerVM);
+        int AracTramerEkle(AracTramerVM aracTramerVM);
 
         void AracTramerGuncelle(AracTramerVM aracTramerVM);
 
