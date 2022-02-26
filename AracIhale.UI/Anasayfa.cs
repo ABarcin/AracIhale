@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AracIhale.CORE;
+using AracIhale.CORE.Login;
+using AracIhale.DAL.UnitOfWork;
+using AracIhale.MODEL.VM;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,15 +20,63 @@ namespace AracIhale.UI
         {
             InitializeComponent();
         }
-
+        UnitOfWork unitOfWork = new UnitOfWork();
+        Validation validation;
         private void btnBireysel_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            using (frmKullaniciKayit bireyselUyeKayit=new frmKullaniciKayit())
+            Hide();
+            using (frmKullaniciKayit frm = new frmKullaniciKayit())
             {
-                bireyselUyeKayit.ShowDialog();
+                frm.ShowDialog();
             }
-            this.Show();
+            Close();
+        }
+        private void btnGiris_Click(object sender, EventArgs e)
+        {
+            if (IsValidate())
+            {
+                KullaniciVM kullanici = unitOfWork.KullaniciRepository.KullaniciGetir(txtKullaniciAdi.Text);
+                bool loginOlduMu = unitOfWork.KullaniciRepository.OturumAc(txtKullaniciAdi.Text, txtSifre.Text);
+                if (loginOlduMu)
+                {
+                    Login.GirisYapmisKullanici = kullanici;
+                    Hide();
+                    using (frmIhaleListeleme frm = new frmIhaleListeleme())
+                    {
+                        frm.ShowDialog();
+                    }
+                    Close();
+                    errorProvider.Clear();
+                }
+                else
+                {
+                    errorProvider.SetError(btnGiris, "Hatalı Kullanıcı Adı Yada Şifre!!!");
+                }
+            }
+            else
+            {
+                errorProvider.SetError(btnGiris, "Girdiğiniz Bilgiler Eksik Yada Hatalı");
+            }
+
+        }
+        private bool IsValidate()
+        {
+            validation = new Validation();
+            bool validate = false;
+            if (validation.IsValidateUserName(txtKullaniciAdi, errorProvider, 3, 25) && validation.IsValidatePassword(txtSifre, 3, 50, errorProvider))
+            {
+                validate = true;
+            }
+            return validate;
+        }
+        private void btnSifre_Click(object sender, EventArgs e)
+        {
+            Hide();
+            using (frmSifreBul frmSifre = new frmSifreBul(Text))
+            {
+                frmSifre.ShowDialog();
+            }
+            Close();
         }
     }
 }

@@ -99,7 +99,7 @@ namespace AracIhale.UI
         private void btnSifre_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (frmSifreBul frmSifre = new frmSifreBul())
+            using (frmSifreBul frmSifre = new frmSifreBul(Text))
             {
                 frmSifre.ShowDialog();
             }
