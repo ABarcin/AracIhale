@@ -23,15 +23,12 @@ namespace AracIhale.DAL.Repositories.Concrete
         public bool OturumAc(string kullaniciAdi, string sifre)
         {
             bool dogruMu = false;
-            CalisanRepository calisanRepository = new CalisanRepository(ThisContext);
-
-            Calisan calisan = calisanRepository.GetAll().Where(x=>x.KullaniciAd.TrimEnd()==kullaniciAdi&&x.Sifre==sifre).SingleOrDefault();
+            Calisan calisan = this.GetAll().Where(x=>x.KullaniciAd.TrimEnd()==kullaniciAdi&&x.Sifre==sifre).SingleOrDefault();
 
             if (calisan != null) 
             { 
                 dogruMu = true; 
             }
-
             return dogruMu;
         }
         CalisanMapping mapping = new CalisanMapping();
