@@ -59,10 +59,33 @@ namespace AracIhale.UI
 
                 CheckBox cbYetki = new CheckBox
                 {
-                    Name = yetki.YetkiAciklama,
+                    Name = yetki.YetkiID.ToString(),
                 };
 
                 flpYetkiler.Controls.Add(cbYetki);
+            }
+        }
+
+        private void RolYetkiDoldur(List<RolYetkiVM> lst)
+        {
+            foreach (var control in flpYetkiler.Controls)
+            {
+                if (control.GetType() == typeof(CheckBox))
+                {
+                    CheckBox checkBox = control as CheckBox;
+                    checkBox.Checked = false;
+
+                    foreach (var yetkiVM in _yetkiListesi)
+                    {
+                        foreach (var item in lst)
+                        {
+                            if (checkBox.Name == item.YetkiID.ToString())
+                            {
+                                checkBox.Checked = true;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -70,42 +93,101 @@ namespace AracIhale.UI
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                RolVM rolVM = null;
-                SayfaVM sayfaVM = null;
-
-                if (cmbRoller.SelectedIndex != -1)
+                try
                 {
-                    rolVM = cmbRoller.SelectedItem as RolVM;
-                }
+                    RolVM rolVM = null;
+                    SayfaVM sayfaVM = null;
 
-                if (cmbSayfalar.SelectedIndex != -1)
-                {
-                    sayfaVM = cmbSayfalar.SelectedItem as SayfaVM;
-                }
-
-                if (rolVM != null && sayfaVM != null)
-                {
-                    foreach (var control in flpYetkiler.Controls)
+                    if (cmbRoller.SelectedIndex != -1)
                     {
-                        if (control.GetType() == typeof(CheckBox))
-                        {
-                            CheckBox checkBox = control as CheckBox;
+                        rolVM = cmbRoller.SelectedItem as RolVM;
+                    }
 
-                            foreach (var yetkiVM in _yetkiListesi)
+                    if (cmbSayfalar.SelectedIndex != -1)
+                    {
+                        sayfaVM = cmbSayfalar.SelectedItem as SayfaVM;
+                    }
+
+                    if (rolVM != null && sayfaVM != null)
+                    {
+                        _unitOfWork.RolYetkiRepository.RolYetkiSoftDelete(rolVM, sayfaVM);
+                        _unitOfWork.Complete();
+
+                        foreach (var control in flpYetkiler.Controls)
+                        {
+                            if (control.GetType() == typeof(CheckBox))
                             {
-                                if (checkBox.Checked && checkBox.Name == yetkiVM.YetkiAciklama)
+                                CheckBox checkBox = control as CheckBox;
+
+                                foreach (var yetkiVM in _yetkiListesi)
                                 {
-                                    _unitOfWork.RolYetkiRepository.RolYetkiGuncelle(rolVM, sayfaVM);
-                                    _unitOfWork.Complete();
+                                    if (checkBox.Checked && checkBox.Name == yetkiVM.YetkiID.ToString())
+                                    {
+                                        _unitOfWork.RolYetkiRepository.RolYetkiEkle(rolVM, sayfaVM, yetkiVM);
+                                        _unitOfWork.Complete();
+                                    }
                                 }
                             }
                         }
                     }
+
+                    scope.Complete();
+                    MessageBox.Show($"{rolVM.Ad} rolüne, {sayfaVM.SayfaAdi} formunda, seçilen yetkiler atanmıştır.");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Yetki ataması yapılamadı.");
                 }
 
-                scope.Complete();
+            }
+        }
+
+        private void cmbRoller_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RolVM rolVM = null;
+            SayfaVM sayfaVM = null;
+
+            if (cmbRoller.SelectedIndex != -1)
+            {
+                rolVM = cmbRoller.SelectedItem as RolVM;
             }
 
+            if (cmbSayfalar.SelectedIndex != -1)
+            {
+                sayfaVM = cmbSayfalar.SelectedItem as SayfaVM;
+            }
+
+            if (rolVM != null && sayfaVM != null)
+            {
+                List<RolYetkiVM> lst = _unitOfWork.RolYetkiRepository.RolYetkiVMListesiGetir(rolVM, sayfaVM);
+
+                RolYetkiDoldur(lst);
+            }
+
+        }
+
+        private void cmbSayfalar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RolVM rolVM = null;
+            SayfaVM sayfaVM = null;
+
+            if (cmbRoller.SelectedIndex != -1)
+            {
+                rolVM = cmbRoller.SelectedItem as RolVM;
+            }
+
+            if (cmbSayfalar.SelectedIndex != -1)
+            {
+                sayfaVM = cmbSayfalar.SelectedItem as SayfaVM;
+            }
+
+            if (rolVM != null && sayfaVM != null)
+            {
+                List<RolYetkiVM> lst = _unitOfWork.RolYetkiRepository.RolYetkiVMListesiGetir(rolVM, sayfaVM);
+
+                RolYetkiDoldur(lst);
+            }
+         
         }
     }
 }
