@@ -53,10 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Login\Login.cs" />
+    <Compile Include="Login\SayfaYetkiYonetimi.cs" />
     <Compile Include="Loglar\DbLogger.cs" />
     <Compile Include="Loglar\EnumCRUD.cs" />
     <Compile Include="Loglar\ILogger.cs" />
-    <Compile Include="Login\LoginKullanici.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation.cs" />
   </ItemGroup>

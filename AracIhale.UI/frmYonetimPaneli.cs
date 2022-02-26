@@ -37,7 +37,7 @@ namespace AracIhale.UI
 
                     if (loginOlduMu)
                     {
-                        LoginKullanici.GirisYapmisCalisan = calisan;
+                        Login.GirisYapmisCalisan = calisan;
                         this.Hide();
                         using (frmAdminAnasayfa adminAnasayfa = new frmAdminAnasayfa())
                         {

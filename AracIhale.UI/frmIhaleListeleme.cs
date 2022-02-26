@@ -34,10 +34,10 @@ namespace AracIhale.UI
             btnSil.Enabled = false;
 
             // Silinmesi gerekiyor. Test icin.
-            Login.GirisYapmisCalisan = new Calisan()
-            {
-                CalisanID = 1
-            };
+            //Login.GirisYapmisCalisan = new Calisan()
+            //{
+            //    CalisanID = 1
+            //};
         }
 
         /// <summary>

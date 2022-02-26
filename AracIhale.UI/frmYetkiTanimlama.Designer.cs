@@ -55,6 +55,7 @@ namespace AracIhale.UI
             this.cmbRoller.Name = "cmbRoller";
             this.cmbRoller.Size = new System.Drawing.Size(222, 21);
             this.cmbRoller.TabIndex = 1;
+            this.cmbRoller.SelectedIndexChanged += new System.EventHandler(this.cmbRoller_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -74,6 +75,7 @@ namespace AracIhale.UI
             this.cmbSayfalar.Name = "cmbSayfalar";
             this.cmbSayfalar.Size = new System.Drawing.Size(222, 21);
             this.cmbSayfalar.TabIndex = 2;
+            this.cmbSayfalar.SelectedIndexChanged += new System.EventHandler(this.cmbSayfalar_SelectedIndexChanged);
             // 
             // flpYetkiler
             // 

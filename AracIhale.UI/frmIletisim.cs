@@ -117,8 +117,8 @@ namespace AracIhale.UI
                     IletisimTuruID = (cmbIletisimTur.SelectedItem as IletisimTurVM).IletisimTuruID,
                     IletisimBilgi = txtIletisimBilgi.Text,
                     IsActive = true,
-                    CreatedBy=LoginKullanici.GirisYapmisCalisan.KullaniciAd,
-                    ModifiedBy=LoginKullanici.GirisYapmisCalisan.KullaniciAd
+                    CreatedBy=Login.GirisYapmisCalisan.KullaniciAd,
+                    ModifiedBy=Login.GirisYapmisCalisan.KullaniciAd
                     
                 };
                 unitOfWork.CalisanIletisimRepository.IletisimBilgisiEkle(vm);
@@ -190,7 +190,7 @@ namespace AracIhale.UI
                     IletisimBilgi = txtIletisimBilgi.Text,
                     IsActive = true,
                     CalisanIletisimID = (lsvIletisim.SelectedItems[0].Tag as CalisanIletisimVM).CalisanIletisimID,
-                    ModifiedBy = LoginKullanici.GirisYapmisCalisan.KullaniciAd
+                    ModifiedBy = Login.GirisYapmisCalisan.KullaniciAd
 
                     
                 };
