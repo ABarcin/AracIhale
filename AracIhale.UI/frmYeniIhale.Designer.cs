@@ -60,6 +60,7 @@ namespace AracIhale.UI
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.myErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnTeklifVer = new System.Windows.Forms.Button();
             this.gbIhaleArac.SuspendLayout();
             this.gbIhaleGenel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myErrorProvider)).BeginInit();
@@ -78,6 +79,7 @@ namespace AracIhale.UI
             this.columnHeader7,
             this.columnHeader8});
             this.listArac.Cursor = System.Windows.Forms.Cursors.Default;
+            this.listArac.FullRowSelect = true;
             this.listArac.GridLines = true;
             this.listArac.HideSelection = false;
             this.listArac.Location = new System.Drawing.Point(9, 36);
@@ -89,6 +91,7 @@ namespace AracIhale.UI
             this.listArac.TabIndex = 1;
             this.listArac.UseCompatibleStateImageBehavior = false;
             this.listArac.View = System.Windows.Forms.View.Details;
+            this.listArac.SelectedIndexChanged += new System.EventHandler(this.listArac_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -346,11 +349,24 @@ namespace AracIhale.UI
             // 
             this.myErrorProvider.ContainerControl = this;
             // 
+            // btnTeklifVer
+            // 
+            this.btnTeklifVer.BackColor = System.Drawing.Color.White;
+            this.btnTeklifVer.Location = new System.Drawing.Point(15, 551);
+            this.btnTeklifVer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTeklifVer.Name = "btnTeklifVer";
+            this.btnTeklifVer.Size = new System.Drawing.Size(113, 33);
+            this.btnTeklifVer.TabIndex = 5;
+            this.btnTeklifVer.Text = "Teklif Ver";
+            this.btnTeklifVer.UseVisualStyleBackColor = false;
+            this.btnTeklifVer.Click += new System.EventHandler(this.btnTeklifVer_Click);
+            // 
             // frmYeniIhale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1055, 603);
+            this.Controls.Add(this.btnTeklifVer);
             this.Controls.Add(this.btnAracEkle);
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.gbIhaleArac);
@@ -400,5 +416,6 @@ namespace AracIhale.UI
         private System.Windows.Forms.DateTimePicker dtBaslangicSaat;
         private System.Windows.Forms.ListView listArac;
         private System.Windows.Forms.ErrorProvider myErrorProvider;
+        private System.Windows.Forms.Button btnTeklifVer;
     }
 }
