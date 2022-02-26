@@ -146,7 +146,7 @@ namespace AracIhale.UI
                     {
                         // Araç ekleme methodumuzu çağırıyoruz.
                         AracEkle();
-                        unitOfWork.Complate();
+                        unitOfWork.Complete();
 
                         // Araç ile ilişkili diğer tablolara AracID ile insert işlemi yapacağımız için,
                         // Arac tablosuna insert ettikten sonra eklenen son aracın ID'sini buluyoruz.
@@ -154,15 +154,15 @@ namespace AracIhale.UI
 
                         // Araç Fiyat ekleme methodumuzu çağırıyoruz.
                         AracFiyatEkle(aracID);
-                        unitOfWork.Complate();
+                        unitOfWork.Complete();
 
                         // Araç Statü ekleme methodumuzu çağırıyoruz.
                         AracStatuEkle(aracID);
-                        unitOfWork.Complate();
+                        unitOfWork.Complete();
 
                         // Aracın tüm özelliklerini insert edeceğimiz methodu çağırıyoruz.
                         AracOzellikEkle(aracID);
-                        unitOfWork.Complate();
+                        unitOfWork.Complete();
 
                         scope.Complete();
                         MessageBox.Show("Araç kaydedildi.");
@@ -185,7 +185,7 @@ namespace AracIhale.UI
                     {
                         // Araç ekleme methodumuzu çağırıyoruz.
                         AracGuncelle();
-                        unitOfWork.Complate();
+                        unitOfWork.Complete();
 
                         // Araç ile ilişkili diğer tablolara AracID ile insert işlemi yapacağımız için,
                         // Arac tablosuna insert ettikten sonra eklenen son aracın ID'sini buluyoruz.
@@ -195,19 +195,19 @@ namespace AracIhale.UI
                         if (nmAracFiyat.Value != aracFiyatVM.Fiyat)
                         {
                             AracFiyatGuncelle();
-                            unitOfWork.Complate();
+                            unitOfWork.Complete();
                         }
 
                         // Araç Statü ekleme methodumuzu çağırıyoruz.
                         if ((cmbStatu.SelectedItem as StatuVM).StatuID != aracStatuVM.StatuID)
                         {
                             AracStatuGuncelle();
-                            unitOfWork.Complate();
+                            unitOfWork.Complete();
                         }
                         
                         // Aracın tüm özelliklerini insert edeceğimiz methodu çağırıyoruz.
                         AracOzellikGuncelle();
-                        unitOfWork.Complate();
+                        unitOfWork.Complete();
 
                         scope.Complete();
                         MessageBox.Show("Araç güncellendi.");

@@ -54,7 +54,7 @@ namespace AracIhale.UI
                             ihaleAracVM.IhaleID = ihaleListVM.IhaleID;
 
                             unitOfWork.IhaleAracRepository.Add(new IhaleAracMapping().IhaleAracVMToIhaleArac(ihaleAracVM));
-                            unitOfWork.Complate();
+                            unitOfWork.Complete();
                             Clear();
 
                             MessageBox.Show("Araç ihaleye eklendi.");

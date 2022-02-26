@@ -45,7 +45,7 @@ namespace AracIhale.UI
         {
             unitOfWork = new UnitOfWork();
             unitOfWork.CalisanRepository.Sil((listCalisanlar.SelectedItems[0].Tag as CalisanVM).CalisanID);
-            int etkilenen = unitOfWork.Complate();
+            int etkilenen = unitOfWork.Complete();
             if (etkilenen > 0)
             {
                 FormuTemizle();
@@ -144,7 +144,7 @@ namespace AracIhale.UI
                             calisan.AktiflikDurumu = false;
                         }
                         unitOfWork.CalisanRepository.Ekle(calisan);
-                        unitOfWork.Complate();
+                        unitOfWork.Complete();
                         tempCalisan = calisan;
                         tempCalisan.CalisanID = unitOfWork.CalisanRepository.CalisanIdGetir();
 
@@ -161,7 +161,7 @@ namespace AracIhale.UI
                             CalisanIletisimVM vm= unitOfWork.CalisanIletisimRepository.IletisimBilgileriniGetir(calisan).Where(x=>x.IletisimTuruID==1).FirstOrDefault();
                             if (vm!=null)
                             {
-                                unitOfWork.Complate();
+                                unitOfWork.Complete();
                                 scope.Complete();
                             }
                             
@@ -207,7 +207,7 @@ namespace AracIhale.UI
                         using (unitOfWork = new UnitOfWork())
                         {
                             unitOfWork.CalisanRepository.Guncelle(vM);
-                            unitOfWork.Complate();
+                            unitOfWork.Complete();
                         }
 
                         FormuTemizle();

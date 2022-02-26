@@ -70,7 +70,7 @@ namespace AracIhale.UI
                 if (lstAracListesi.SelectedItems.Count > 0)
                 {
                     unitOfWork.AracRepository.AracSil(secilenArac.AracID);
-                    if (unitOfWork.Complate() > 0)
+                    if (unitOfWork.Complete() > 0)
                     {
                         MessageBox.Show("Araç silindi.");
                         FiltrelenenAraclariListele();

@@ -70,7 +70,7 @@ namespace AracIhale.UI
 
                             unitOfWork.IhaleRepository.InsertIhaleVM(ihaleListVM);
 
-                            if (unitOfWork.Complate() > 0)
+                            if (unitOfWork.Complete() > 0)
                             {
                                 MessageBox.Show("İhale ekleme başarılı");
                             }
@@ -106,7 +106,7 @@ namespace AracIhale.UI
 
                             unitOfWork.IhaleRepository.UpdateIhaleVM(ihaleListVM);
 
-                            if (unitOfWork.Complate() > 0)
+                            if (unitOfWork.Complete() > 0)
                             {
                                 MessageBox.Show("İhale güncelleme başarılı");
                             }

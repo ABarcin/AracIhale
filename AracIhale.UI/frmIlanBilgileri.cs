@@ -72,7 +72,7 @@ namespace AracIhale.UI
                         };
 
                         _unitOfWork.IlanRepository.IlanEkle(_ilanVM);
-                        _unitOfWork.Complate();
+                        _unitOfWork.Complete();
                     }
                     else
                     {
@@ -107,7 +107,7 @@ namespace AracIhale.UI
                         _ilanVM.Aciklama = txtIlanAciklama.Text;
 
                         _unitOfWork.IlanRepository.IlanGuncelle(_ilanVM);
-                        _unitOfWork.Complate();
+                        _unitOfWork.Complete();
                     }
                     else
                     {

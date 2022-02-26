@@ -156,7 +156,7 @@ namespace AracIhale.UI
 
                     unitOfWork.IhaleRepository.UpdateIhaleVM(ihaleListVM);
 
-                    if (unitOfWork.Complate() > 0)
+                    if (unitOfWork.Complete() > 0)
                     {
                         MessageBox.Show("İhale silme başarılı");
                     }

@@ -57,6 +57,6 @@ namespace AracIhale.DAL.UnitOfWork
 
 
 
-        int Complate();
+        int Complete();
     }
 }

@@ -122,7 +122,7 @@ namespace AracIhale.UI
                     
                 };
                 unitOfWork.CalisanIletisimRepository.IletisimBilgisiEkle(vm);
-                unitOfWork.Complate();
+                unitOfWork.Complete();
                 IletisimBilgileriniDoldur();
             }
         }
@@ -195,7 +195,7 @@ namespace AracIhale.UI
                     
                 };
                 unitOfWork.CalisanIletisimRepository.IletisimBilgisiGuncelle(vm);
-                unitOfWork.Complate();
+                unitOfWork.Complete();
                 IletisimBilgileriniDoldur();
                 errorProvider.Clear();
             }

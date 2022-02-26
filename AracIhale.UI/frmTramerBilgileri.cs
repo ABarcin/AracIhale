@@ -167,7 +167,7 @@ namespace AracIhale.UI
                     }
 
                     _unitOfWork.AracTramerRepository.AracTramerGuncelle(aracTramerVM);
-                    _unitOfWork.Complate();
+                    _unitOfWork.Complete();
 
                     int aracTramerID = aracTramerVM.AracTramerID;
 
@@ -209,7 +209,7 @@ namespace AracIhale.UI
                                         };
 
                                         _unitOfWork.AracTramerDetayRepository.AracTramerDetayEkle(aracTramerDetayVM);
-                                        _unitOfWork.Complate();
+                                        _unitOfWork.Complete();
                                     }
                                 }
                             }
@@ -243,7 +243,7 @@ namespace AracIhale.UI
                                         aracTramerDetayVM.TramerDetayID = tramerDurum.TramerDetayID;
 
                                         _unitOfWork.AracTramerDetayRepository.AracTramerDetayGuncelle(aracTramerDetayVM);
-                                        _unitOfWork.Complate();
+                                        _unitOfWork.Complete();
 
                                     }
                                 }

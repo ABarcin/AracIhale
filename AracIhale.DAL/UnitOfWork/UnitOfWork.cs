@@ -150,7 +150,7 @@ namespace AracIhale.DAL.UnitOfWork
         public IArabaModelRepository ArabaModelRepository { get; private set; }
         public ISayfaRepository SayfaRepository { get; private set; }
 
-        public int Complate()
+        public int Complete()
         {
             return _unitOfWorkContext.SaveChanges();
         }

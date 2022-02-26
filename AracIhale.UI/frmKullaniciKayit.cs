@@ -66,7 +66,7 @@ namespace AracIhale.UI
                             kullaniciVM.KVKK = cbKvkk.Checked;
 
                             unitOfWork.KullaniciRepository.BireyselKullaniciEkle(kullaniciVM);
-                            unitOfWork.Complate();
+                            unitOfWork.Complete();
 
                             //burcin
                             if (cmbKullaniciTip.Text=="Kurumsal")

@@ -96,7 +96,7 @@ namespace AracIhale.UI
                                 if (checkBox.Checked && checkBox.Name == yetkiVM.YetkiAciklama)
                                 {
                                     _unitOfWork.RolYetkiRepository.RolYetkiGuncelle(rolVM, sayfaVM);
-                                    _unitOfWork.Complate();
+                                    _unitOfWork.Complete();
                                 }
                             }
                         }
