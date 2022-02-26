@@ -34,6 +34,7 @@ namespace AracIhale.UI
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnBireysel = new System.Windows.Forms.Button();
+            this.btnGirisYap = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label6
@@ -78,7 +79,7 @@ namespace AracIhale.UI
             // 
             // btnBireysel
             // 
-            this.btnBireysel.Location = new System.Drawing.Point(186, 211);
+            this.btnBireysel.Location = new System.Drawing.Point(92, 213);
             this.btnBireysel.Margin = new System.Windows.Forms.Padding(4);
             this.btnBireysel.Name = "btnBireysel";
             this.btnBireysel.Size = new System.Drawing.Size(183, 48);
@@ -87,11 +88,22 @@ namespace AracIhale.UI
             this.btnBireysel.UseVisualStyleBackColor = true;
             this.btnBireysel.Click += new System.EventHandler(this.btnBireysel_Click);
             // 
+            // btnGirisYap
+            // 
+            this.btnGirisYap.Location = new System.Drawing.Point(307, 213);
+            this.btnGirisYap.Name = "btnGirisYap";
+            this.btnGirisYap.Size = new System.Drawing.Size(183, 48);
+            this.btnGirisYap.TabIndex = 15;
+            this.btnGirisYap.Text = "Giriş Yap";
+            this.btnGirisYap.UseVisualStyleBackColor = true;
+            this.btnGirisYap.Click += new System.EventHandler(this.btnGirisYap_Click);
+            // 
             // Anasayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 425);
+            this.Controls.Add(this.btnGirisYap);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -112,5 +124,6 @@ namespace AracIhale.UI
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnBireysel;
+        private System.Windows.Forms.Button btnGirisYap;
     }
 }

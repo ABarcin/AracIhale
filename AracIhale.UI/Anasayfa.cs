@@ -26,5 +26,15 @@ namespace AracIhale.UI
             }
             this.Show();
         }
+
+        private void btnGirisYap_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            using (frmKullaniciGiris kullaniciGiris = new frmKullaniciGiris())
+            {
+                kullaniciGiris.ShowDialog();
+            }
+            this.Show();
+        }
     }
 }

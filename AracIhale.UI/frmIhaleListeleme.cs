@@ -29,15 +29,25 @@ namespace AracIhale.UI
         private void IhaleListeleme_Load(object sender, EventArgs e)
         {
             PrepareForm();
-            SetDefaultValueAndFillListView();
             btnGuncelle.Enabled = false;
             btnSil.Enabled = false;
+
+
 
             // Silinmesi gerekiyor. Test icin.
             Login.GirisYapmisCalisan = new Calisan()
             {
                 CalisanID = 1
             };
+        }
+
+        private void PrepareFormForUser()
+        {
+            txtIhaleAdi.Enabled = false;
+            cmbUyeTipi.Enabled = false;
+            cmbStatu.Enabled = false;
+
+
         }
 
         /// <summary>
@@ -61,6 +71,8 @@ namespace AracIhale.UI
 
             cmbUyeTipi.SelectedIndex = 0;
             cmbStatu.SelectedIndex = 0;
+
+            SetDefaultValueAndFillListView();
         }
 
         /// <summary>
