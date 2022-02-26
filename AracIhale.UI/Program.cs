@@ -16,7 +16,7 @@ namespace AracIhale.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Anasayfa());
+            Application.Run(new frmIhaleListeleme());
         }
     }
 }

@@ -78,12 +78,6 @@
     <Compile Include="frmIletisim.Designer.cs">
       <DependentUpon>frmIletisim.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKullaniciGiris.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmKullaniciGiris.Designer.cs">
-      <DependentUpon>frmKullaniciGiris.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmSifreBul.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,9 +205,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmIletisim.resx">
       <DependentUpon>frmIletisim.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmKullaniciGiris.resx">
-      <DependentUpon>frmKullaniciGiris.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSifreBul.resx">
       <DependentUpon>frmSifreBul.cs</DependentUpon>
