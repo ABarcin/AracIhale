@@ -20,7 +20,8 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public List<ArabaModelVM> ModelListele(MarkaVM marka)
         {
-            var tumModeller = ThisContext.ArabaModel.Where(x => x.MarkaID == marka.MarkaID).Select(y => new ArabaModelVM
+            var tumModeller = ThisContext.ArabaModel.Where(x => x.MarkaID == marka.MarkaID)
+                .Select(y => new ArabaModelVM
             {
                 Ad = y.Ad,
                 ModelID = y.ModelID,

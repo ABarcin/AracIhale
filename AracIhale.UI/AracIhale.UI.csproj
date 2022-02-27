@@ -138,11 +138,11 @@
     <Compile Include="AracTarihce.Designer.cs">
       <DependentUpon>AracTarihce.cs</DependentUpon>
     </Compile>
-    <Compile Include="BireyselTeklif.cs">
+    <Compile Include="frmBireyselTeklif.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BireyselTeklif.Designer.cs">
-      <DependentUpon>BireyselTeklif.cs</DependentUpon>
+    <Compile Include="frmBireyselTeklif.Designer.cs">
+      <DependentUpon>frmBireyselTeklif.cs</DependentUpon>
     </Compile>
     <Compile Include="frmKullaniciKayit.cs">
       <SubType>Form</SubType>
@@ -236,8 +236,8 @@
     <EmbeddedResource Include="AracTarihce.resx">
       <DependentUpon>AracTarihce.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BireyselTeklif.resx">
-      <DependentUpon>BireyselTeklif.cs</DependentUpon>
+    <EmbeddedResource Include="frmBireyselTeklif.resx">
+      <DependentUpon>frmBireyselTeklif.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKullaniciKayit.resx">
       <DependentUpon>frmKullaniciKayit.cs</DependentUpon>

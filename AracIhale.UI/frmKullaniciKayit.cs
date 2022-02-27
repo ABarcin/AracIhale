@@ -60,7 +60,6 @@ namespace AracIhale.UI
                             kullaniciVM.Soyad = txtSoyad.Text;
                             kullaniciVM.KullaniciAd = txtKullaniciAdi.Text;
                             kullaniciVM.Sifre = txtSifre.Text;
-                            //düzeltilmesi lazım
                             kullaniciVM.RolID = unitOfWork.RolRepository.RolIDGetir(cmbKullaniciTip.SelectedItem.ToString());
                             kullaniciVM.KullaniciTipID = 1;
                             kullaniciVM.KVKK = cbKvkk.Checked;
