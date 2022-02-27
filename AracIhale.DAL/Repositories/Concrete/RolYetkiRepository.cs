@@ -46,5 +46,7 @@ namespace AracIhale.DAL.Repositories.Concrete
             return new RolYetkiMapping().ListRolYetkiToRolYetkiVM(RolYetkiListesiGetir(rolVM, sayfaVM));
         }
 
+
+
     }
 }
