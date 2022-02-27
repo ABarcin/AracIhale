@@ -21,11 +21,7 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public List<AracParcaVM> AracParcaListesiGetir()
         {
-            AracParcaRepository aracParcaRepository = new AracParcaRepository(ThisContext);
-
-            AracParcaMapping aracParcaMapping = new AracParcaMapping();
-
-            return aracParcaMapping.ListAracParcaToListAracParcaVM(aracParcaRepository.GetAll());
+            return new AracParcaMapping().ListAracParcaToListAracParcaVM(GetAll());
         }
     }
 }

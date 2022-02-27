@@ -33,13 +33,7 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public void RolYetkiSoftDelete(RolVM rolVM, SayfaVM sayfaVM)
         {
-            List<RolYetki> mevcutYetkiler = RolYetkiListesiGetir(rolVM, sayfaVM);
-
-            foreach (var rolYetki in mevcutYetkiler)
-            {
-                rolYetki.IsActive = false;
-                this.UpdateWithId(rolYetki.RolYetkiID, rolYetki);
-            }
+            RolYetkiListesiGetir(rolVM, sayfaVM).ForEach(x => SoftRemove(x));
         }
 
         public List<RolYetki> RolYetkiListesiGetir(RolVM rolVM, SayfaVM sayfaVM)
@@ -51,7 +45,6 @@ namespace AracIhale.DAL.Repositories.Concrete
         {
             return new RolYetkiMapping().ListRolYetkiToRolYetkiVM(RolYetkiListesiGetir(rolVM, sayfaVM));
         }
-
 
     }
 }

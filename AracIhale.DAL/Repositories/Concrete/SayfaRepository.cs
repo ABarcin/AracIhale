@@ -21,7 +21,7 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public List<SayfaVM> TumSayfalar()
         {
-            return new SayfaMapping().ListSayfaToListSayfaVM(this.GetAll().ToList());
+            return new SayfaMapping().ListSayfaToListSayfaVM(GetAll().ToList());
         }
     }
 }
