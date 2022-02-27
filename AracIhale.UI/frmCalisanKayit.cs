@@ -23,19 +23,16 @@ namespace AracIhale.UI
     {
         public frmCalisanKayit()
         {
+            validation = new Validation();
             InitializeComponent();
         }
-        CalisanRepository repository;
-        RolRepository rolRepository;
-        Validation validation;
-        UnitOfWork unitOfWork;
+        private readonly Validation validation;
         CalisanIletisimMapping calisanIletisimMapping;
         CalisanVM tempCalisan = null;
         private void CalisanKayit_Load(object sender, EventArgs e)
         {
             ListCalisanlarDoldur();
             CmbRolDoldur();
-            cmbRol.SelectedIndex = 1;
         }
         private void btnKaydet_Click(object sender, EventArgs e)
         {
@@ -43,17 +40,20 @@ namespace AracIhale.UI
         }
         private void btnSil_Click(object sender, EventArgs e)
         {
-            unitOfWork = new UnitOfWork();
-            unitOfWork.CalisanRepository.Sil((listCalisanlar.SelectedItems[0].Tag as CalisanVM).CalisanID);
-            int etkilenen = unitOfWork.Complete();
-            if (etkilenen > 0)
+            using (UnitOfWork unitOfWork=new UnitOfWork())
             {
-                FormuTemizle();
+                unitOfWork.CalisanRepository.Sil((listCalisanlar.SelectedItems[0].Tag as CalisanVM).CalisanID);
+                int etkilenen = unitOfWork.Complete();
+                if (etkilenen > 0)
+                {
+                    FormuTemizle();
+                }
+                else
+                {
+                    errorProvider.SetError(btnSil, "Hata");
+                }
             }
-            else
-            {
-                errorProvider.SetError(btnSil, "Hata");
-            }
+            
         }
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
@@ -61,7 +61,7 @@ namespace AracIhale.UI
         }
         private void btnIletisim_Click(object sender, EventArgs e)
         {
-            if (tempCalisan != null)
+            if (tempCalisan != null&&tempCalisan.CalisanID!=0)
             {
                 this.Hide();
                 using (frmIletisim frm = new frmIletisim(tempCalisan))
@@ -69,6 +69,11 @@ namespace AracIhale.UI
                     frm.ShowDialog();
                 }
                 this.Show();
+                IsEmailAdded();
+            }
+            else if (tempCalisan.CalisanID == 0) 
+            {
+                MessageBox.Show("İletişim Bilgisi Eklemek İÇin Yeniden Kaydet Butonuna Basınız Ve Kaydetmek İçin Email Bilgisi Giriniz");
             }
             else if (listCalisanlar.SelectedItems.Count > 0)
             {
@@ -78,12 +83,41 @@ namespace AracIhale.UI
                     frm.ShowDialog();
                 }
                 this.Show();
+                IsEmailAdded();
             }
             else
             {
                 errorProvider.SetError(btnIletisim, "İletişim Bilgisi Eklemek İçin Bir Kullanıcı Gerekli Ya Listeden Seçin Yada Yeni Bir Tane Oluşturun");
             }
         }
+
+        private bool IsEmailAdded()
+        {
+            bool validate = false;
+            using (UnitOfWork unitOfWork = new UnitOfWork())
+            {
+                List<CalisanIletisimVM> iletisimVM;
+                if (listCalisanlar.SelectedItems.Count > 0)
+                {
+                    iletisimVM = unitOfWork.CalisanIletisimRepository.IletisimBilgileriniGetir(listCalisanlar.SelectedItems[0].Tag as CalisanVM);
+                }
+                else 
+                {
+                    iletisimVM = unitOfWork.CalisanIletisimRepository.IletisimBilgileriniGetir(tempCalisan);
+                }
+                int count = iletisimVM.Where(x => x.IletisimTuruID == 1).Count();
+                if (count > 0)
+                {
+                    validate = true;
+                }
+                else
+                {
+                    errorProvider.SetError(btnIletisim, "Çalışanın Emaili Girilmek Zorundadır");
+                }
+            }
+            return validate;
+        }
+
         private void listCalisanlar_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             GetCalisanForUpdate();
@@ -93,15 +127,21 @@ namespace AracIhale.UI
         /// </summary>
         private void CmbRolDoldur()
         {
-            rolRepository = new RolRepository(new AracIhaleEntities());
-            foreach (RolVM item in rolRepository.TumRoller())
+            using (UnitOfWork unitOfWork=new UnitOfWork())
             {
-                if (item.RolID >= Login.GirisYapmisCalisan.RolID)
+                if (unitOfWork.RolRepository.TumRoller().Count > 0)
                 {
-                    cmbRol.Items.Add(item);
-                }
+                    foreach (RolVM item in unitOfWork.RolRepository.TumRoller())
+                    {
+                        if (item.RolID >= Login.GirisYapmisCalisan.RolID)
+                        {
+                            cmbRol.Items.Add(item);
+                        }
 
+                    }
+                }
             }
+          
         }
         private void ListCalisanlarDoldur()
         {
@@ -109,76 +149,90 @@ namespace AracIhale.UI
             {
                 listCalisanlar.Items.Clear();
             }
-            repository = new CalisanRepository(new AracIhaleEntities());
-            foreach (CalisanVM item in repository.TumCalisanlar())
+            using (UnitOfWork unitOfWork=new UnitOfWork())
             {
-                string[] row = { item.Ad, item.Soyad, item.RolAd, item.AktiflikDurumu.ToString() };
-                var satir = new ListViewItem(row);
-                satir.Tag = item;
-                listCalisanlar.Items.Add(satir);
+                if (unitOfWork.CalisanRepository.TumCalisanlar().Count > 0)
+                {
+                    foreach (CalisanVM item in unitOfWork.CalisanRepository.TumCalisanlar())
+                    {
+                        string[] row = { item.Ad, item.Soyad, item.RolAd, item.AktiflikDurumu.ToString() };
+                        var satir = new ListViewItem(row);
+                        satir.Tag = item;
+                        listCalisanlar.Items.Add(satir);
+                    }
+                }
             }
+            
+
         }
         private void AddCalisan()
         {
-            unitOfWork = new UnitOfWork();
-            validation = new Validation();
+           
             calisanIletisimMapping = new CalisanIletisimMapping();
-            if ((validation.IsValidateName(txtAd, 2, 150, errorProvider) && validation.IsValidateName(txtSoyad, 2, 200, errorProvider) && validation.IsValidateUserName(txtKullaniciAdi, errorProvider, 3, 25) && validation.IsValidatePassWord(txtSifre, errorProvider, 3, 30) && SifreKontrol()))
+            if ((validation.IsValidateName(txtAd, 2, 150, errorProvider) && validation.IsValidateName(txtSoyad, 2, 200, errorProvider) && validation.IsValidateUserName(txtKullaniciAdi, errorProvider, 3, 25) && validation.IsValidatePassWord(txtSifre, errorProvider, 3, 30) && SifreKontrol()) && RolControl())
             {
-                using (TransactionScope scope = new TransactionScope())
+                using (UnitOfWork unitOfWork=new UnitOfWork())
                 {
-                    try
+                    using (TransactionScope scope = new TransactionScope())
                     {
-                        CalisanVM calisan = new CalisanVM();
-                        calisan.Ad = txtAd.Text;
-                        calisan.Soyad = txtSoyad.Text;
-                        calisan.KullaniciAd = txtKullaniciAdi.Text;
-                        calisan.RolID = (cmbRol.SelectedItem as RolVM).RolID;
-                        calisan.Sifre = txtSifre.Text;
-                        if (rdbAktif.Checked == true)
+                        try
                         {
-                            calisan.AktiflikDurumu = true;
-                        }
-                        else
-                        {
-                            calisan.AktiflikDurumu = false;
-                        }
-                        unitOfWork.CalisanRepository.Ekle(calisan);
-                        unitOfWork.Complete();
-                        tempCalisan = calisan;
-                        tempCalisan.CalisanID = unitOfWork.CalisanRepository.CalisanIdGetir();
-
-
-                        DialogResult result = new DialogResult();
-                        this.Hide();
-                        using (frmIletisim frm = new frmIletisim(tempCalisan))
-                        {
-                            result = frm.ShowDialog();
-                        }
-                        this.Show();
-                        if (result == DialogResult.Yes)
-                        {
-                            CalisanIletisimVM vm= unitOfWork.CalisanIletisimRepository.IletisimBilgileriniGetir(calisan).Where(x=>x.IletisimTuruID==1).FirstOrDefault();
-                            if (vm!=null)
+                            CalisanVM calisan = new CalisanVM();
+                            calisan.Ad = txtAd.Text;
+                            calisan.Soyad = txtSoyad.Text;
+                            calisan.KullaniciAd = txtKullaniciAdi.Text;
+                            calisan.RolID = (cmbRol.SelectedItem as RolVM).RolID;
+                            calisan.Sifre = txtSifre.Text;
+                            if (rdbAktif.Checked == true)
                             {
-                                unitOfWork.Complete();
-                                scope.Complete();
+                                calisan.AktiflikDurumu = true;
                             }
-                            
+                            else
+                            {
+                                calisan.AktiflikDurumu = false;
+                            }
+                            unitOfWork.CalisanRepository.Ekle(calisan);
+                            unitOfWork.Complete();
+                            tempCalisan = calisan;
+                            tempCalisan.CalisanID = unitOfWork.CalisanRepository.CalisanIdGetir();
+                            DialogResult result = new DialogResult();
+                            this.Hide();
+                            using (frmIletisim frm = new frmIletisim(tempCalisan))
+                            {
+                                result = frm.ShowDialog();
+                            }
+                            this.Show();
+                            if (result == DialogResult.Yes)
+                            {
+                                CalisanIletisimVM vm = unitOfWork.CalisanIletisimRepository.IletisimBilgileriniGetir(calisan).Where(x => x.IletisimTuruID == 1).FirstOrDefault();
+                                if (vm != null)
+                                {
+                                    unitOfWork.Complete();
+                                    tempCalisan = null;
+                                    scope.Complete();
+                                    FormuTemizle();
+                                }
+                                else 
+                                {
+                                    MessageBox.Show("İletişim eklemediğiniz için kayıt tamamlanamadı lütfen iletişim bilgisi ekleyiniz");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("İletişim eklemediğiniz için kayıt tamamlanamadı lütfen iletişim bilgisi ekleyiniz");
+                            }
                         }
-                        else
+                        catch (Exception)
                         {
-                            MessageBox.Show("İletişim eklemediğiniz için kayıt tamamlanamadı lütfen iletişim bilgisi ekleyiniz");
+                            errorProvider.SetError(btnKaydet, "Hata Çıktı");
                         }
                     }
-                    catch (Exception)
+                    if (tempCalisan!=null)
                     {
-                        errorProvider.SetError(btnKaydet, "Hata Çıktı");
+                        tempCalisan.CalisanID = 0; //kontrol için yazıldı
                     }
-
+                   
                 }
-
-                FormuTemizle();
                 ListCalisanlarDoldur();
             }
             else
@@ -186,9 +240,17 @@ namespace AracIhale.UI
                 errorProvider.SetError(btnKaydet, "Hata");
             }
         }
+        private bool RolControl()
+        {
+            if (cmbRol.SelectedIndex != -1)
+            {
+                return true;
+            }
+            errorProvider.SetError(btnKaydet, "Lütfen Rol Seçiniz");
+            return false;
+        }
         private void UpdateCalisan()
         {
-            validation = new Validation();
             if (listCalisanlar.SelectedItems.Count > 0)
             {
                 if ((listCalisanlar.SelectedItems[0].Tag as CalisanVM).RolID < Login.GirisYapmisCalisan.RolID)
@@ -204,7 +266,7 @@ namespace AracIhale.UI
                         vM.Soyad = txtSoyad.Text;
                         vM.RolID = (cmbRol.SelectedItem as RolVM).RolID;
                         vM.AktiflikDurumu = rdbAktif.Checked == true ? true : false;
-                        using (unitOfWork = new UnitOfWork())
+                        using (UnitOfWork unitOfWork = new UnitOfWork())
                         {
                             unitOfWork.CalisanRepository.Guncelle(vM);
                             unitOfWork.Complete();

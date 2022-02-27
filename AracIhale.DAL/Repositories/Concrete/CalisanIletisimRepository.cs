@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AracIhale.CORE.Login;
 using AracIhale.DAL.Repositories.Abstract;
 using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
@@ -45,8 +46,8 @@ namespace AracIhale.DAL.Repositories.Concrete
         public void IletisimBilgisiGuncelle(CalisanIletisimVM vm)
         {
             CalisanIletisim iletisim = mapping.CalisanIletisimVMToCalisanIletisim(vm);
-
-
+            iletisim.ModifiedDate = DateTime.Now;
+            iletisim.ModifiedBy = Login.GirisYapmisCalisan.KullaniciAd;
             this.Update(iletisim);
         }
 
