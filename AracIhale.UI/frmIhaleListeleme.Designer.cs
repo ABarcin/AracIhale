@@ -50,6 +50,7 @@ namespace AracIhale.UI
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnIhaleArac = new System.Windows.Forms.Button();
             this.gbIhaleListeleme.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -59,6 +60,7 @@ namespace AracIhale.UI
             // 
             this.gbIhaleListeleme.Controls.Add(this.btnSil);
             this.gbIhaleListeleme.Controls.Add(this.btnGuncelle);
+            this.gbIhaleListeleme.Controls.Add(this.btnIhaleArac);
             this.gbIhaleListeleme.Controls.Add(this.btnYeni);
             this.gbIhaleListeleme.Controls.Add(this.groupBox3);
             this.gbIhaleListeleme.Controls.Add(this.btnListele);
@@ -262,6 +264,18 @@ namespace AracIhale.UI
             this.label1.TabIndex = 0;
             this.label1.Text = "İhale Adı:";
             // 
+            // btnIhaleArac
+            // 
+            this.btnIhaleArac.BackColor = System.Drawing.Color.White;
+            this.btnIhaleArac.Location = new System.Drawing.Point(24, 497);
+            this.btnIhaleArac.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIhaleArac.Name = "btnIhaleArac";
+            this.btnIhaleArac.Size = new System.Drawing.Size(144, 27);
+            this.btnIhaleArac.TabIndex = 5;
+            this.btnIhaleArac.Text = "Araçlara Göz At";
+            this.btnIhaleArac.UseVisualStyleBackColor = false;
+            this.btnIhaleArac.Click += new System.EventHandler(this.btnIhaleArac_Click);
+            // 
             // frmIhaleListeleme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -303,5 +317,6 @@ namespace AracIhale.UI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnIhaleArac;
     }
 }

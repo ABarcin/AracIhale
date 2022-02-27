@@ -28,23 +28,89 @@ namespace AracIhale.UI
 
         private void IhaleListeleme_Load(object sender, EventArgs e)
         {
-            PrepareForm();
-            SetDefaultValueAndFillListView();
-            btnGuncelle.Enabled = false;
-            btnSil.Enabled = false;
-
             // Silinmesi gerekiyor. Test icin.
-            Login.GirisYapmisCalisan = new Calisan()
+            LoginKullanici.GirisYapmisCalisan = new CalisanVM()
             {
                 CalisanID = 1
             };
+
+            // Silinmesi gerekiyor. Test icin.
+            //LoginKullanici.GirisYapmisKullanici = new KullaniciVM()
+            //{
+            //    KullaniciID = 1,
+            //};
+
+            PrepareForm();
         }
 
         /// <summary>
-        /// Comboboxlarin dolduruldugu metod.
+        /// Kullanci ve calisan bossa butun formu kitler.
+        /// </summary>
+        private void LockForm()
+        {
+            txtIhaleAdi.Enabled = false;
+            cmbUyeTipi.Enabled = false;
+            cmbStatu.Enabled = false;
+            listIhaleler.Enabled = false;
+            btnListele.Hide();
+            btnYeni.Hide();
+            btnGuncelle.Hide();
+            btnSil.Hide();
+            btnIhaleArac.Hide();
+        }
+
+        /// <summary>
+        /// Formu hazirlamasi icin gerekli olan metodu 
+        /// cagiran metod.
         /// </summary>
         private void PrepareForm()
         {
+            if (LoginKullanici.GirisYapmisCalisan != null && LoginKullanici.GirisYapmisKullanici != null)
+            {
+                LockForm();
+            }
+
+            else if (LoginKullanici.GirisYapmisCalisan != null)
+            {
+                PrepareFormForEmployee();
+            }
+
+            else if (LoginKullanici.GirisYapmisKullanici != null)
+            {
+                PrepareFormForUser();
+            }
+
+            else
+            {
+                LockForm();
+            }
+        }
+
+        /// <summary>
+        /// Formu kullanicilarin gormesi gerektigi 
+        /// sekilde hazirlar.
+        /// </summary>
+        private void PrepareFormForUser()
+        {
+            txtIhaleAdi.Enabled = false;
+            cmbUyeTipi.Enabled = false;
+            cmbStatu.Enabled = false;
+            btnIhaleArac.Enabled = false;
+            btnListele.Hide();
+            btnYeni.Hide();
+            btnGuncelle.Hide();
+            btnSil.Hide();
+        }
+
+        /// <summary>
+        /// Formu calisanlarin gormesi gerektigi
+        /// sekilde hazirlar.
+        /// </summary>
+        private void PrepareFormForEmployee()
+        {
+            btnGuncelle.Enabled = false;
+            btnSil.Enabled = false;
+
             cmbUyeTipi.Items.Add("Uye Tipi Seciniz");
 
             if(unitOfWork.KullaniciTipRepository.KullaniciTipListele() != null)
@@ -61,6 +127,10 @@ namespace AracIhale.UI
 
             cmbUyeTipi.SelectedIndex = 0;
             cmbStatu.SelectedIndex = 0;
+
+            btnIhaleArac.Hide();
+
+            SetDefaultValueAndFillListView();
         }
 
         /// <summary>
@@ -185,6 +255,7 @@ namespace AracIhale.UI
                 {
                     btnGuncelle.Enabled = true;
                     btnSil.Enabled = true;
+                    btnIhaleArac.Enabled = true;
                 }
 
                 MessageBox.Show($"'{ihaleListVM.IhaleAdi}' adlı ihale seçildi.");
@@ -193,7 +264,22 @@ namespace AracIhale.UI
 
         private void OnVisible_VisibleChanged(object sender, EventArgs e)
         {
-            SetDefaultValueAndFillListView();
+            if(LoginKullanici.GirisYapmisCalisan != null || LoginKullanici.GirisYapmisKullanici != null)
+            {
+                PrepareForm();
+
+                SetDefaultValueAndFillListView();
+            }
+        }
+
+        private void btnIhaleArac_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            using (frmYeniIhale yeniIhale = new frmYeniIhale(ihaleListVM))
+            {
+                yeniIhale.ShowDialog();
+            }
+            this.Show();
         }
     }
 }
