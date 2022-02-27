@@ -70,13 +70,13 @@ namespace AracIhale.UI
 
         private void PrepareFormByLoggedUser()
         {
-            if (Login.GirisYapmisCalisan == null)
+            if (Login.GirisYapmisCalisan != null)
             {
-                LockForm();
+                RolYetkiKontrol();
             }
             else
             {
-                RolYetkiKontrol();
+                LockForm();
             }
         }
 
@@ -95,10 +95,7 @@ namespace AracIhale.UI
                     {
                         btnGuncelle.Visible = false;
                     }
-                    else
-                    {
-                        LockForm();
-                    }
+
                 }
                 else
                 {
@@ -195,23 +192,48 @@ namespace AracIhale.UI
         {
             RolVM rolVM = null;
             SayfaVM sayfaVM = null;
-
-            if (cmbRoller.SelectedIndex != -1)
+            if (cmbRoller.SelectedIndex == 0)
             {
-                rolVM = cmbRoller.SelectedItem as RolVM;
+                foreach (var control in flpYetkiler.Controls)
+                {
+                    if (control.GetType() == typeof(CheckBox))
+                    {
+                        CheckBox checkBox = control as CheckBox;
+
+                        checkBox.Checked = true;
+                        checkBox.Enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var control in flpYetkiler.Controls)
+                {
+                    if (control.GetType() == typeof(CheckBox))
+                    {
+                        CheckBox checkBox = control as CheckBox;
+                        checkBox.Enabled = true;
+                    }
+                }
+
+                if (cmbRoller.SelectedIndex != -1)
+                {
+                    rolVM = cmbRoller.SelectedItem as RolVM;
+                }
+
+                if (cmbSayfalar.SelectedIndex != -1)
+                {
+                    sayfaVM = cmbSayfalar.SelectedItem as SayfaVM;
+                }
+
+                if (rolVM != null && sayfaVM != null)
+                {
+                    List<RolYetkiVM> lst = _unitOfWork.RolYetkiRepository.RolYetkiVMListesiGetir(rolVM, sayfaVM);
+
+                    RolYetkiDoldur(lst);
+                }
             }
 
-            if (cmbSayfalar.SelectedIndex != -1)
-            {
-                sayfaVM = cmbSayfalar.SelectedItem as SayfaVM;
-            }
-
-            if (rolVM != null && sayfaVM != null)
-            {
-                List<RolYetkiVM> lst = _unitOfWork.RolYetkiRepository.RolYetkiVMListesiGetir(rolVM, sayfaVM);
-
-                RolYetkiDoldur(lst);
-            }
 
         }
 
@@ -219,24 +241,47 @@ namespace AracIhale.UI
         {
             RolVM rolVM = null;
             SayfaVM sayfaVM = null;
-
-            if (cmbRoller.SelectedIndex != -1)
+            if (cmbRoller.SelectedIndex == 0)
             {
-                rolVM = cmbRoller.SelectedItem as RolVM;
-            }
+                foreach (var control in flpYetkiler.Controls)
+                {
+                    if (control.GetType() == typeof(CheckBox))
+                    {
+                        CheckBox checkBox = control as CheckBox;
 
-            if (cmbSayfalar.SelectedIndex != -1)
+                        checkBox.Checked = true;
+                        checkBox.Enabled = false;
+                    }
+                }
+            }
+            else
             {
-                sayfaVM = cmbSayfalar.SelectedItem as SayfaVM;
-            }
+                foreach (var control in flpYetkiler.Controls)
+                {
+                    if (control.GetType() == typeof(CheckBox))
+                    {
+                        CheckBox checkBox = control as CheckBox;
+                        checkBox.Enabled = true;
+                    }
+                }
 
-            if (rolVM != null && sayfaVM != null)
-            {
-                List<RolYetkiVM> lst = _unitOfWork.RolYetkiRepository.RolYetkiVMListesiGetir(rolVM, sayfaVM);
+                if (cmbRoller.SelectedIndex != -1)
+                {
+                    rolVM = cmbRoller.SelectedItem as RolVM;
+                }
 
-                RolYetkiDoldur(lst);
+                if (cmbSayfalar.SelectedIndex != -1)
+                {
+                    sayfaVM = cmbSayfalar.SelectedItem as SayfaVM;
+                }
+
+                if (rolVM != null && sayfaVM != null)
+                {
+                    List<RolYetkiVM> lst = _unitOfWork.RolYetkiRepository.RolYetkiVMListesiGetir(rolVM, sayfaVM);
+
+                    RolYetkiDoldur(lst);
+                }
             }
-         
         }
     }
 }
