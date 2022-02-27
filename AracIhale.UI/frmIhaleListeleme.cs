@@ -28,16 +28,16 @@ namespace AracIhale.UI
 
         private void IhaleListeleme_Load(object sender, EventArgs e)
         {
-            // Silinmesi gerekiyor. Test icin.
-            Login.GirisYapmisCalisan = new CalisanVM()
-            {
-                CalisanID = 1
-            };
+            //// Silinmesi gerekiyor. Test icin.
+            //Login.GirisYapmisCalisan = new CalisanVM()
+            //{
+            //    CalisanID = 1
+            //};
 
             // Silinmesi gerekiyor. Test icin.
-            //LoginKullanici.GirisYapmisKullanici = new KullaniciVM()
+            //Login.GirisYapmisKullanici = new KullaniciVM()
             //{
-            //    KullaniciID = 1,
+            //    KullaniciID = 2,
             //};
 
             PrepareForm();

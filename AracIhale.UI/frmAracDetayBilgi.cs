@@ -250,7 +250,6 @@ namespace AracIhale.UI
             unitOfWork.AracRepository.AracGuncelle(new AracVM()
             {
                 AracID = _aracID,
-                KullaniciID = 1,
                 MarkaID = (cmbAracMarka.SelectedItem as MarkaVM).MarkaID,
                 ModelID = (cmbAracModel.SelectedItem as ArabaModelVM).ModelID,
                 Km = Convert.ToInt32(nmKMBilgisi.Value),
