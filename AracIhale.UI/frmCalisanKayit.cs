@@ -40,7 +40,7 @@ namespace AracIhale.UI
         }
         private void btnSil_Click(object sender, EventArgs e)
         {
-            using (UnitOfWork unitOfWork=new UnitOfWork())
+            using (UnitOfWork unitOfWork = new UnitOfWork())
             {
                 unitOfWork.CalisanRepository.Sil((listCalisanlar.SelectedItems[0].Tag as CalisanVM).CalisanID);
                 int etkilenen = unitOfWork.Complete();
@@ -53,7 +53,7 @@ namespace AracIhale.UI
                     errorProvider.SetError(btnSil, "Hata");
                 }
             }
-            
+
         }
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
@@ -61,7 +61,7 @@ namespace AracIhale.UI
         }
         private void btnIletisim_Click(object sender, EventArgs e)
         {
-            if (tempCalisan != null&&tempCalisan.CalisanID!=0)
+            if (tempCalisan != null && tempCalisan.CalisanID != 0)
             {
                 this.Hide();
                 using (frmIletisim frm = new frmIletisim(tempCalisan))
@@ -71,7 +71,7 @@ namespace AracIhale.UI
                 this.Show();
                 IsEmailAdded();
             }
-            else if (tempCalisan.CalisanID == 0) 
+            else if (tempCalisan.CalisanID == 0)
             {
                 MessageBox.Show("İletişim Bilgisi Eklemek İÇin Yeniden Kaydet Butonuna Basınız Ve Kaydetmek İçin Email Bilgisi Giriniz");
             }
@@ -101,7 +101,7 @@ namespace AracIhale.UI
                 {
                     iletisimVM = unitOfWork.CalisanIletisimRepository.IletisimBilgileriniGetir(listCalisanlar.SelectedItems[0].Tag as CalisanVM);
                 }
-                else 
+                else
                 {
                     iletisimVM = unitOfWork.CalisanIletisimRepository.IletisimBilgileriniGetir(tempCalisan);
                 }
@@ -127,7 +127,7 @@ namespace AracIhale.UI
         /// </summary>
         private void CmbRolDoldur()
         {
-            using (UnitOfWork unitOfWork=new UnitOfWork())
+            using (UnitOfWork unitOfWork = new UnitOfWork())
             {
                 if (unitOfWork.RolRepository.TumRoller().Count > 0)
                 {
@@ -141,7 +141,7 @@ namespace AracIhale.UI
                     }
                 }
             }
-          
+
         }
         private void ListCalisanlarDoldur()
         {
@@ -149,7 +149,7 @@ namespace AracIhale.UI
             {
                 listCalisanlar.Items.Clear();
             }
-            using (UnitOfWork unitOfWork=new UnitOfWork())
+            using (UnitOfWork unitOfWork = new UnitOfWork())
             {
                 if (unitOfWork.CalisanRepository.TumCalisanlar().Count > 0)
                 {
@@ -162,16 +162,16 @@ namespace AracIhale.UI
                     }
                 }
             }
-            
+
 
         }
         private void AddCalisan()
         {
-           
+
             calisanIletisimMapping = new CalisanIletisimMapping();
             if ((validation.IsValidateName(txtAd, 2, 150, errorProvider) && validation.IsValidateName(txtSoyad, 2, 200, errorProvider) && validation.IsValidateUserName(txtKullaniciAdi, errorProvider, 3, 25) && validation.IsValidatePassWord(txtSifre, errorProvider, 3, 30) && SifreKontrol()) && RolControl())
             {
-                using (UnitOfWork unitOfWork=new UnitOfWork())
+                using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
                     using (TransactionScope scope = new TransactionScope())
                     {
@@ -207,14 +207,17 @@ namespace AracIhale.UI
                                 CalisanIletisimVM vm = unitOfWork.CalisanIletisimRepository.IletisimBilgileriniGetir(calisan).Where(x => x.IletisimTuruID == 1).FirstOrDefault();
                                 if (vm != null)
                                 {
+                                    unitOfWork.LogRepository.AddLog(Text, "Çalışan Kaydı");
                                     unitOfWork.Complete();
                                     tempCalisan = null;
                                     scope.Complete();
                                     FormuTemizle();
                                 }
-                                else 
+                                else
                                 {
                                     MessageBox.Show("İletişim eklemediğiniz için kayıt tamamlanamadı lütfen iletişim bilgisi ekleyiniz");
+                                    unitOfWork.LogErrorRepository.AddLog(Text, "Çalışan Kaydı", "Eklenemedi");
+                                    unitOfWork.Complete();
                                 }
                             }
                             else
@@ -227,11 +230,11 @@ namespace AracIhale.UI
                             errorProvider.SetError(btnKaydet, "Hata Çıktı");
                         }
                     }
-                    if (tempCalisan!=null)
+                    if (tempCalisan != null)
                     {
                         tempCalisan.CalisanID = 0; //kontrol için yazıldı
                     }
-                   
+
                 }
                 ListCalisanlarDoldur();
             }
