@@ -1,7 +1,7 @@
 ﻿
 namespace AracIhale.UI
 {
-    partial class AracTarihce
+    partial class frmAracTarihce
     {
         /// <summary>
         /// Required designer variable.
@@ -77,14 +77,15 @@ namespace AracIhale.UI
             this.columnHeader3.Text = "Tarih";
             this.columnHeader3.Width = 150;
             // 
-            // AracTarihce
+            // frmAracTarihce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 441);
             this.Controls.Add(this.grpAracTarihce);
-            this.Name = "AracTarihce";
+            this.Name = "frmAracTarihce";
             this.Text = "AracTarihce";
+            this.Load += new System.EventHandler(this.frmAracTarihce_Load);
             this.grpAracTarihce.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -40,6 +40,10 @@ namespace AracIhale.DAL.Repositories.Concrete
             }).Where(x => x.IsActive == true).ToList();
             return kullaniciTipleri;
         }
+        public KullaniciVM AracKullanicisiniGetir(int aracID)
+        {
+            return new KullaniciMapping().KullaniciToKullaniciVM(ThisContext.Arac.Where(x => x.AracID == aracID).Select(y => y.Kullanici).FirstOrDefault());
+        }
 
         public KullaniciVM KullaniciGetir(string kullaniciAdi)
         {

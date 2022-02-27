@@ -20,7 +20,7 @@ namespace AracIhale.DAL.Repositories.Abstract
 
         List<AracListVM> AracListele(string marka, string model, string kTip, string statu);
         void AracSil(object id);
-        void AracEkle(AracVM arac);
+        int AracEkle(AracVM arac);
         void AracGuncelle(AracVM arac);
         int EklenenAracIDGetir();
         AracVM AracVMByAracID(int id);

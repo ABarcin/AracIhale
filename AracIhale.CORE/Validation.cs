@@ -267,13 +267,11 @@ namespace AracIhale.CORE
 
         public bool IsValidateMoney(TextBox money, ErrorProvider errorProvider)
         {
-            bool validate = true;
 
             var TryParseOut = 0.0M;
 
             if (string.IsNullOrEmpty(money.Text))
             {
-                validate = false;
                 Message = "Bu kısım boş geçilemez";
                 errorProvider.SetError(money, Message);
             }
@@ -282,14 +280,12 @@ namespace AracIhale.CORE
             {
                 if (!decimal.TryParse(money.Text, out TryParseOut))
                 {
-                    validate = false;
                     Message = "Format hatası. Lütfen sayı giriniz.";
                     errorProvider.SetError(money, Message);
                 }
 
                 if (money.Text.Contains('.'))
                 {
-                    validate = false;
                     Message = "Format hatası. Lütfen virgül kullanınız.";
                     errorProvider.SetError(money, Message);
                 }
@@ -302,7 +298,7 @@ namespace AracIhale.CORE
                 }
             }
 
-            return validate;
+            return TryParseOut > 0 ? true : false;
         }
 
         public bool IsValidateNull(GroupBox groupBox, ErrorProvider errorProvider, DateTimePicker basTarih, DateTimePicker bitTarih, DateTimePicker basSaat, DateTimePicker bitSaat )

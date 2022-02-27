@@ -14,5 +14,6 @@ namespace AracIhale.DAL.Repositories.Abstract
         KullaniciVM KullaniciGetir(string kullaniciAdi);
         KullaniciVM KullaniciGetir(object id);
         bool OturumAc(string kullaniciAdi, string sifre);
+        KullaniciVM AracKullanicisiniGetir(int aracID);
     }
 }

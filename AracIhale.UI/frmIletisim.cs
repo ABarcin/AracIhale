@@ -47,6 +47,7 @@ namespace AracIhale.UI
             CmbDoldurIletisimTurDoldur();
 
             IletisimBilgileriniDoldur();
+            btnGuncelle.Enabled = false;
 
         }
 

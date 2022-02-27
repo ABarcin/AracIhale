@@ -149,17 +149,17 @@ namespace AracIhale.UI
         /// </summary>
         private void PrepareForm() 
         {
-            if (LoginKullanici.GirisYapmisCalisan != null && LoginKullanici.GirisYapmisKullanici != null)
+            if (Login.GirisYapmisCalisan != null && Login.GirisYapmisKullanici != null)
             {
                 LockForm();
             }
 
-            else if (LoginKullanici.GirisYapmisCalisan != null)
+            else if (Login.GirisYapmisCalisan != null)
             {
                 PrepareFormForEmployee();
             }
 
-            else if (LoginKullanici.GirisYapmisKullanici != null)
+            else if (Login.GirisYapmisKullanici != null)
             {
                 PrepareFormForUser();
             }
@@ -369,7 +369,7 @@ namespace AracIhale.UI
 
         private void listArac_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listArac.SelectedItems.Count > 0 && LoginKullanici.GirisYapmisKullanici != null)
+            if (listArac.SelectedItems.Count > 0 && Login.GirisYapmisKullanici != null)
             {
                 arac = listArac.SelectedItems[0].Tag as AracCDListVM;
 
