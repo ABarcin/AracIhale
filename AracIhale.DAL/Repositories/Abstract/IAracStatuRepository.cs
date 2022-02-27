@@ -13,5 +13,6 @@ namespace AracIhale.DAL.Repositories.Abstract
         List<StatuVM> StatuleriListele();
         void AracStatuEkle(AracStatuVM aracStatuVM);
         AracStatuVM AracinGuncelStatusunuGetir(int id);
+        List<AracStatuVM> AracinStatuTarihcesiniGetir(int id);
     }
 }

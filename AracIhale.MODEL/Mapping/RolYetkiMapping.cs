@@ -41,7 +41,7 @@ namespace AracIhale.MODEL.Mapping
 
         public List<RolYetkiVM> ListRolYetkiToRolYetkiVM(List<RolYetki> RolYetkiler)
         {
-            List<RolYetkiVM> RolYetkiListVM = null;
+            List<RolYetkiVM> RolYetkiListVM = new List<RolYetkiVM>();
             foreach (RolYetki item in RolYetkiler)
             {
                 RolYetkiListVM.Add(RolYetkiToRolYetkiVM(item));
@@ -50,7 +50,7 @@ namespace AracIhale.MODEL.Mapping
         }
         public List<RolYetki> ListRolYetkiVMToListRolYetki(List<RolYetkiVM> RolYetkilerVM)
         {
-            List<RolYetki> RolYetkiList = null;
+            List<RolYetki> RolYetkiList = new List<RolYetki>();
             foreach (RolYetkiVM item in RolYetkilerVM)
             {
                 RolYetkiList.Add(RolYetkiVMToRolYetki(item));

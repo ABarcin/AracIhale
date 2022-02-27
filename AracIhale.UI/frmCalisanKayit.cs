@@ -96,7 +96,7 @@ namespace AracIhale.UI
             rolRepository = new RolRepository(new AracIhaleEntities());
             foreach (RolVM item in rolRepository.TumRoller())
             {
-                if (item.RolID >= LoginKullanici.GirisYapmisCalisan.RolID)
+                if (item.RolID >= Login.GirisYapmisCalisan.RolID)
                 {
                     cmbRol.Items.Add(item);
                 }
@@ -191,7 +191,7 @@ namespace AracIhale.UI
             validation = new Validation();
             if (listCalisanlar.SelectedItems.Count > 0)
             {
-                if ((listCalisanlar.SelectedItems[0].Tag as CalisanVM).RolID < LoginKullanici.GirisYapmisCalisan.RolID)
+                if ((listCalisanlar.SelectedItems[0].Tag as CalisanVM).RolID < Login.GirisYapmisCalisan.RolID)
                 {
                     errorProvider.SetError(btnGuncelle, "Seçiğiniz Kişi Sizden Daha Üst Yetkiye Sahip Erişim Engellendi");
                 }
@@ -244,7 +244,7 @@ namespace AracIhale.UI
         {
             if (listCalisanlar.SelectedItems.Count > 0)
             {
-                if ((listCalisanlar.SelectedItems[0].Tag as CalisanVM).RolID < LoginKullanici.GirisYapmisCalisan.RolID)
+                if ((listCalisanlar.SelectedItems[0].Tag as CalisanVM).RolID < Login.GirisYapmisCalisan.RolID)
                 {
                     errorProvider.SetError(btnGuncelle, "Seçiğiniz Kişi Sizden Daha Üst Yetkiye Sahip Erişim Engellendi");
                 }

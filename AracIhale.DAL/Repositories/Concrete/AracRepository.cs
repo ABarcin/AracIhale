@@ -108,12 +108,11 @@ namespace AracIhale.DAL.Repositories.Concrete
                     MarkaAd = x.Marka.Ad,
                     ModelAd = x.ArabaModel.Ad,
                     KullaniciTip = x.Kullanici.KullaniciTip.Tip,
-                    StatuID = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().StatuID,
-                    StatuAd = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().Statu.StatuAd,
+                    StatuID = x.AracStatu.Where(y => y.IsActive == true).OrderByDescending(y=>y.Tarih).FirstOrDefault().StatuID,
+                    StatuAd = x.AracStatu.Where(y => y.IsActive == true).OrderByDescending(y => y.Tarih).FirstOrDefault().Statu.StatuAd,
                     KullaniciID = x.KullaniciID,
                     KullaniciAd = x.Kullanici.KullaniciAd
                 }).ToList();
-
             return aracList;
         }
 
@@ -123,16 +122,20 @@ namespace AracIhale.DAL.Repositories.Concrete
 
             return new AracListMapping().ListAracToListAracVM(aracList);
         }
+
         public void AracSil(object id)
         {
             Arac silinecekArac = GetByID(id);
             SoftRemove(silinecekArac);
         }
 
-        public void AracEkle(AracVM arac)
+        public int AracEkle(AracVM arac)
         {
             Arac eklenecekArac = new AracMapping().AracVMToArac(arac);
             this.Add(eklenecekArac);
+            ThisContext.SaveChanges();
+
+            return eklenecekArac.AracID;
         }
 
         public int EklenenAracIDGetir()
@@ -150,5 +153,6 @@ namespace AracIhale.DAL.Repositories.Concrete
             Arac guncellenecekArac = new AracMapping().AracVMToArac(arac);
             this.UpdateWithId(arac.AracID, guncellenecekArac);
         }
+        
     }
 }

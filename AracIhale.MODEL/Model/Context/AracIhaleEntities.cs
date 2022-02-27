@@ -1,5 +1,6 @@
 using AracIhale.MODEL.Model.Entities;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -14,6 +15,10 @@ namespace AracIhale.MODEL.Model.Context
             : base("data source=.\\SQLEXPRESS;initial catalog=Slytherin_AracIhale;uid=sa;pwd=123;MultipleActiveResultSets=True;App=EntityFramework")
         {
             this.Configuration.LazyLoadingEnabled = false;
+
+            //Database.SetInitializer<AracIhaleEntities>(new DropCreateDatabaseAlways<AracIhaleEntities>());
+
+            //Database.SetInitializer(new AracIhaleInitializer<AracIhaleEntities>());
         }
 
         public virtual DbSet<ArabaModel> ArabaModel { get; set; }
@@ -370,6 +375,458 @@ namespace AracIhale.MODEL.Model.Context
             modelBuilder.Entity<Ekspertiz>()
                 .Property(e => e.Adres)
                 .IsUnicode(false);
+
+        }
+
+
+        // Sayfa eklenecek
+        private class AracIhaleInitializer<TEntity> : DropCreateDatabaseAlways<AracIhaleEntities>
+        {
+            protected override void Seed(AracIhaleEntities context)
+            {
+                IList<IhaleStatu> ihaleStatuleri = new List<IhaleStatu>();
+                IList<Statu> aracStatuleri = new List<Statu>();
+                IList<KullaniciTip> kullaniciTipleri = new List<KullaniciTip>();
+                IList<Rol> roller = new List<Rol>();
+                IList<Paket> paketler = new List<Paket>();
+                IList<Ozellik> ozellikler = new List<Ozellik>();
+                IList<Sehir> sehirler = new List<Sehir>();
+                IList<Ilce> ilceler = new List<Ilce>();
+                IList<SehirIlce> sehirIlceler = new List<SehirIlce>();
+
+                #region Ihale Statu
+
+                ihaleStatuleri.Add(new IhaleStatu()
+                {
+                    Durum = "Baþladý",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ihaleStatuleri.Add(new IhaleStatu()
+                {
+                    Durum = "Baþlamadý",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ihaleStatuleri.Add(new IhaleStatu()
+                {
+                    Durum = "Bitti",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ihaleStatuleri.Add(new IhaleStatu()
+                {
+                    Durum = "Ýptal",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                foreach (IhaleStatu statu in ihaleStatuleri)
+                {
+                    context.IhaleStatu.Add(statu);
+                }
+
+                #endregion
+
+                #region Arac Statu
+
+                aracStatuleri.Add(new Statu() { 
+                    StatuAd = "Giriþ",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                aracStatuleri.Add(new Statu()
+                {
+                    StatuAd = "Hemen Al Satýþta",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                aracStatuleri.Add(new Statu()
+                {
+                    StatuAd = "Ýhalede",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                aracStatuleri.Add(new Statu()
+                {
+                    StatuAd = "Satýþ Komisyonu tahsil edildi",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                aracStatuleri.Add(new Statu()
+                {
+                    StatuAd = "Ekspertiz sonucu bekleniyor",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                aracStatuleri.Add(new Statu()
+                {
+                    StatuAd = "Ekspertiz sonucu alýndý",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                aracStatuleri.Add(new Statu()
+                {
+                    StatuAd = "Satýldý",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                aracStatuleri.Add(new Statu()
+                {
+                    StatuAd = "Satýþ Ýptal",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                foreach (Statu statu in aracStatuleri)
+                {
+                    context.Statu.Add(statu);
+                }
+
+                #endregion
+
+                #region Kullanici Tipi
+
+                kullaniciTipleri.Add(new KullaniciTip() {
+                    Tip = "Bireysel",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                kullaniciTipleri.Add(new KullaniciTip()
+                {
+                    Tip = "Kurumsal",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                #endregion
+
+                #region Rol
+
+                roller.Add(new Rol() { 
+                    Ad = "SuperAdmin",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                roller.Add(new Rol()
+                {
+                    Ad = "Admin",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                roller.Add(new Rol()
+                {
+                    Ad = "Bireysel",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                roller.Add(new Rol()
+                {
+                    Ad = "Kurumsal",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                foreach (Rol rol in roller)
+                {
+                    context.Rol.Add(rol);
+                }
+
+                #endregion
+
+                #region Paket
+
+                paketler.Add(new Paket() { 
+                    Ad = "Altýn",
+                    AracLimiti = 15,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                paketler.Add(new Paket()
+                {
+                    Ad = "Gümüþ",
+                    AracLimiti = 10,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                paketler.Add(new Paket()
+                {
+                    Ad = "Bronz",
+                    AracLimiti = 5,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                foreach (Paket paket in paketler)
+                {
+                    context.Paket.Add(paket);
+                }
+
+                #endregion
+
+                #region Ozellik
+
+                ozellikler.Add(new Ozellik() { 
+                    OzellikAd = "Gövde Tipi",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ozellikler.Add(new Ozellik()
+                {
+                    OzellikAd = "Yakýt Tipi",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ozellikler.Add(new Ozellik()
+                {
+                    OzellikAd = "Vites Tipi",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ozellikler.Add(new Ozellik()
+                {
+                    OzellikAd = "Versiyon",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ozellikler.Add(new Ozellik()
+                {
+                    OzellikAd = "Renk",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ozellikler.Add(new Ozellik()
+                {
+                    OzellikAd = "Donaným",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                foreach (Ozellik ozellik in ozellikler)
+                {
+                    context.Ozellik.Add(ozellik);
+                }
+
+                #endregion
+
+                #region Sehir
+
+                sehirler.Add(new Sehir() { 
+                    Ad = "Ankara",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+
+                });
+
+                sehirler.Add(new Sehir()
+                {
+                    Ad = "Ýstanbul",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+
+                });
+
+                sehirler.Add(new Sehir()
+                {
+                    Ad = "Antalya",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+
+                });
+
+                sehirler.Add(new Sehir()
+                {
+                    Ad = "Ýzmir",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+
+                });
+
+                foreach (Sehir sehir in sehirler)
+                {
+                    context.Sehir.Add(sehir);
+                }
+
+                #endregion
+
+                #region Ilce
+
+                ilceler.Add(new Ilce() { 
+                    Ad = "Kýzýlcahamam",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ilceler.Add(new Ilce()
+                {
+                    Ad = "Mamak",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ilceler.Add(new Ilce()
+                {
+                    Ad = "Beylikdüzü",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ilceler.Add(new Ilce()
+                {
+                    Ad = "Avcýlar",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ilceler.Add(new Ilce()
+                {
+                    Ad = "Ataþehir",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ilceler.Add(new Ilce()
+                {
+                    Ad = "Alanya",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ilceler.Add(new Ilce()
+                {
+                    Ad = "Elmalý",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ilceler.Add(new Ilce()
+                {
+                    Ad = "Bornova",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                ilceler.Add(new Ilce()
+                {
+                    Ad = "Çeþme",
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                foreach (Ilce ilce in ilceler)
+                {
+                    context.Ilce.Add(ilce);
+                }
+
+                #endregion
+
+                #region Sehir Ilce
+
+                sehirIlceler.Add(new SehirIlce() { 
+                    SehirID = 1,
+                    IlceID = 1,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                sehirIlceler.Add(new SehirIlce()
+                {
+                    SehirID = 1,
+                    IlceID = 2,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                sehirIlceler.Add(new SehirIlce()
+                {
+                    SehirID = 2,
+                    IlceID = 3,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                sehirIlceler.Add(new SehirIlce()
+                {
+                    SehirID = 2,
+                    IlceID = 4,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                sehirIlceler.Add(new SehirIlce()
+                {
+                    SehirID = 2,
+                    IlceID = 5,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                sehirIlceler.Add(new SehirIlce()
+                {
+                    SehirID = 3,
+                    IlceID = 6,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                sehirIlceler.Add(new SehirIlce()
+                {
+                    SehirID = 3,
+                    IlceID = 7,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                sehirIlceler.Add(new SehirIlce()
+                {
+                    SehirID = 4,
+                    IlceID = 8,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                sehirIlceler.Add(new SehirIlce()
+                {
+                    SehirID = 4,
+                    IlceID = 9,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                });
+
+                foreach (SehirIlce sehirIlce in sehirIlceler)
+                {
+                    context.SehirIlce.Add(sehirIlce);
+                }
+
+                #endregion
+
+                context.SaveChanges();
+
+                base.Seed(context);
+            }
+
+
         }
     }
 }

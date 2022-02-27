@@ -267,13 +267,11 @@ namespace AracIhale.CORE
 
         public bool IsValidateMoney(TextBox money, ErrorProvider errorProvider)
         {
-            bool validate = true;
-
+            bool validate = false;
             var TryParseOut = 0.0M;
 
             if (string.IsNullOrEmpty(money.Text))
             {
-                validate = false;
                 Message = "Bu kısım boş geçilemez";
                 errorProvider.SetError(money, Message);
             }
@@ -282,16 +280,31 @@ namespace AracIhale.CORE
             {
                 if (!decimal.TryParse(money.Text, out TryParseOut))
                 {
-                    validate = false;
                     Message = "Format hatası. Lütfen sayı giriniz.";
                     errorProvider.SetError(money, Message);
                 }
-
-                if (money.Text.Contains('.'))
+                else 
                 {
-                    validate = false;
-                    Message = "Format hatası. Lütfen virgül kullanınız.";
-                    errorProvider.SetError(money, Message);
+                    if (money.Text.Contains('.'))
+                    {
+                        Message = "Format hatası. Lütfen virgül kullanınız.";
+                        errorProvider.SetError(money, Message);
+                    }
+                    else 
+                    {
+                        if (TryParseOut < 0)
+                        {
+                            validate = false;
+                            Message = "Eksi Para Hatası. Lütfen Eksi Değer Girmeyiniz.";
+                            errorProvider.SetError(money, Message);
+
+                        }
+                        else 
+                        {
+                            validate = true;
+                        }
+                    }
+                    
                 }
             }
 

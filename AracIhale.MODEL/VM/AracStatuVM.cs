@@ -12,6 +12,8 @@ namespace AracIhale.MODEL.VM
 
         public int AracID { get; set; }
 
+        public string StatuAd { get; set; }
+
         public int StatuID { get; set; }
 
         public DateTime? Tarih { get; set; }

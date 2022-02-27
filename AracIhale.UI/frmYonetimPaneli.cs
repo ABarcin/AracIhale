@@ -37,7 +37,7 @@ namespace AracIhale.UI
 
                     if (loginOlduMu)
                     {
-                        LoginKullanici.GirisYapmisCalisan = calisan;
+                        Login.GirisYapmisCalisan = calisan;
                         this.Hide();
                         using (frmAdminAnasayfa adminAnasayfa = new frmAdminAnasayfa())
                         {
@@ -99,7 +99,7 @@ namespace AracIhale.UI
         private void btnSifre_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (frmSifreBul frmSifre = new frmSifreBul())
+            using (frmSifreBul frmSifre = new frmSifreBul(Text))
             {
                 frmSifre.ShowDialog();
             }

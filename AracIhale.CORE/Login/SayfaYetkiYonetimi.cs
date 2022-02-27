@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace AracIhale.CORE.Login
 {
-    public static class LoginKullanici
+    public class SayfaYetkiYonetimi
     {
-        public static KullaniciVM GirisYapmisKullanici { get; set; }
-        public static CalisanVM GirisYapmisCalisan { get; set; }
+        public SayfaVM Sayfa { get; set; }
+
+        public List<YetkiVM> YetkiListesi { get; set; }
     }
 }

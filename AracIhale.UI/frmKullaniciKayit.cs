@@ -68,7 +68,7 @@ namespace AracIhale.UI
                             unitOfWork.Complete();
 
                             //burcin
-                            if (cmbKullaniciTip.Text=="Kurumsal")
+                            if (cmbKullaniciTip.Text == "Kurumsal")
                             {
                                 kurumsalKullaniciVM.KullaniciID = unitOfWork.KullaniciRepository.GetAll(x => x.KullaniciAd == kullaniciVM.KullaniciAd)[0].KullaniciID;
 
@@ -77,7 +77,7 @@ namespace AracIhale.UI
                                 kurumsalKullaniciVM.FirmaID = unitOfWork.FirmaRepository.GetAll()[cmbFirmaAd.SelectedIndex].FirmaID;
 
                                 unitOfWork.KurumsalKullaniciRepository.KurumsalKullaniciEkle(kurumsalKullaniciVM);
-                            }                          
+                            }
 
                         }
                         trans.Complete();
@@ -158,6 +158,48 @@ namespace AracIhale.UI
             else
             {
                 gbFirma.Visible = false;
+            }
+        }
+
+        private void sozlesmeMetni_Click(object sender, EventArgs e)
+        {
+            string message = "Madde 1. Taraflar İşbu sözleşme bir sonraki maddede detayı yer alan ………………………………… plakalı aracın ……………………….\n " +
+                "TC Kimlik Numaralı / Vergi numaralı sahibi(SATICI) tarafından ……………………………….\n" +
+                " TC.Kimlik Numaralı / Vergi numaralı(ALICI) alıcısına satışına ilişkindir.Madde 2:\n" +
+                " Araç Kimlik Bilgileri Plaka  :\n" +
+                "Cinsi:\n" +
+                "Markası ve tipi:\n" +
+                "Modeli:\n" +
+                "Rengi:\n" +
+                "Motor No:\n" +
+                "Şase No:\n" +
+                "Ruhsat sahibi:";
+            string title = "Sozlesme Metni";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                cbUyelik.Checked =true;
+            }
+            else
+            {
+                cbUyelik.Checked = false;
+            }
+        }
+
+        private void kvkkMetni_Click(object sender, EventArgs e)
+        {
+            string message = "KVKK METNİ";
+            string title = "KVKK METNİ";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                cbKvkk.Checked = true;
+            }
+            else
+            {
+                cbKvkk.Checked = false;
             }
         }
     }
