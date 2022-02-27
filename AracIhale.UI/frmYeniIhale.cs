@@ -202,7 +202,34 @@ namespace AracIhale.UI
             bilgileriGetir();
             AracListViewDoldur();
 
+            PrepareFormForRole();
+
             btnTeklifVer.Hide();
+        }
+
+        private void PrepareFormForRole()
+        {
+            var rolYetki = Login.SayfaYetkiYonetimiListesi.FirstOrDefault(x => x.Sayfa.SayfaAdi == "frmYeniIhale");
+            if (rolYetki.YetkiListesi.Count > 0)
+            {
+                if (rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Read"))
+                {
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Create"))
+                    {
+                        btnAracEkle.Hide();
+                        btnKaydet.Hide();
+                    }
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Update"))
+                    {
+                        btnAracEkle.Hide();
+                        btnKaydet.Hide();
+                    }
+                }
+                else
+                {
+                    LockForm();
+                }
+            }
         }
 
         private bool ValidateForm()

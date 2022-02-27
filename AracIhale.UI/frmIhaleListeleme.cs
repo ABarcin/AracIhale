@@ -108,6 +108,11 @@ namespace AracIhale.UI
         /// </summary>
         private void PrepareFormForEmployee()
         {
+            cmbUyeTipi.Items.Clear();
+            cmbStatu.Items.Clear();
+
+            PrepareFormForRole();
+
             btnGuncelle.Enabled = false;
             btnSil.Enabled = false;
 
@@ -131,6 +136,33 @@ namespace AracIhale.UI
             btnIhaleArac.Hide();
 
             SetDefaultValueAndFillListView();
+        }
+
+        private void PrepareFormForRole()
+        {
+            var rolYetki = Login.SayfaYetkiYonetimiListesi.FirstOrDefault(x => x.Sayfa.SayfaAdi == "frmIhaleListeleme");
+            if (rolYetki.YetkiListesi.Count > 0)
+            {
+                if (rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Read"))
+                {
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Create"))
+                    {
+                        btnYeni.Hide();
+                    }
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Update"))
+                    {
+                        btnGuncelle.Hide();
+                    }
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Delete"))
+                    {
+                        btnSil.Hide();
+                    }
+                }
+                else
+                {
+                    LockForm();
+                }
+            }
         }
 
         /// <summary>

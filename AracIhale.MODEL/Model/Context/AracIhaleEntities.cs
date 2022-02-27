@@ -12,7 +12,7 @@ namespace AracIhale.MODEL.Model.Context
     public partial class AracIhaleEntities : DbContext
     {
         public AracIhaleEntities()
-            : base("data source=.;initial catalog=Slytherin_AracIhale;uid=buraktoglu;pwd=963633;MultipleActiveResultSets=True;App=EntityFramework")
+            : base("name=AracIhaleEntities")
         {
             this.Configuration.LazyLoadingEnabled = false;
 
