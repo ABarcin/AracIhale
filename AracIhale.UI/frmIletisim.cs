@@ -45,8 +45,8 @@ namespace AracIhale.UI
         private void frmIletisim_Load(object sender, EventArgs e)
         {
             CmbDoldurIletisimTurDoldur();
-
             IletisimBilgileriniDoldur();
+            btnGuncelle.Enabled = false;
 
         }
 
@@ -84,27 +84,36 @@ namespace AracIhale.UI
         private void btnKaydet_Click(object sender, EventArgs e)
         {
             validation = new Validation();
-            string iletisimTur = (cmbIletisimTur.SelectedItem as IletisimTurVM).Ad.ToLower();
-            if(iletisimTur=="email"|| iletisimTur=="mail")
+            if (cmbIletisimTur.SelectedIndex != -1)
             {
-                if (validation.IsValidateEmail(txtIletisimBilgi, errorProvider))
+                string iletisimTur = (cmbIletisimTur.SelectedItem as IletisimTurVM).Ad.ToLower();
+                if (iletisimTur == "email" || iletisimTur == "mail")
                 {
-                    IletisimEkle();
+                    if (validation.IsValidateEmail(txtIletisimBilgi, errorProvider))
+                    {
+                        IletisimEkle();
+                    }
                 }
-            }else if (iletisimTur=="telefon"|| iletisimTur=="phone"|| iletisimTur=="cep"|| iletisimTur=="mobile")
-            {
-                if (validation.IsValidatePhoneNumber(txtIletisimBilgi,errorProvider))
+                else if (iletisimTur == "telefon" || iletisimTur == "phone" || iletisimTur == "cep" || iletisimTur == "mobile")
                 {
-                    IletisimEkle();
+                    if (validation.IsValidatePhoneNumber(txtIletisimBilgi, errorProvider))
+                    {
+                        IletisimEkle();
+                    }
+                }
+                else if (iletisimTur == "adres" || iletisimTur == "adress")
+                {
+                    if (!string.IsNullOrWhiteSpace(txtIletisimBilgi.Text))
+                    {
+                        IletisimEkle();
+                    }
                 }
             }
-            else if (iletisimTur=="adres"||iletisimTur=="adress")
+            else 
             {
-                if (!string.IsNullOrWhiteSpace(txtIletisimBilgi.Text))
-                {
-                    IletisimEkle();
-                }
+                errorProvider.SetError(btnKaydet, "İletişim Tür Seçiniz");
             }
+            
         }
 
         private void IletisimEkle()

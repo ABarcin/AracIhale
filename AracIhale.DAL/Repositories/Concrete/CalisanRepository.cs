@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AracIhale.CORE.Login;
 using AracIhale.DAL.Repositories.Abstract;
 using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
@@ -23,15 +24,12 @@ namespace AracIhale.DAL.Repositories.Concrete
         public bool OturumAc(string kullaniciAdi, string sifre)
         {
             bool dogruMu = false;
-            CalisanRepository calisanRepository = new CalisanRepository(ThisContext);
-
-            Calisan calisan = calisanRepository.GetAll().Where(x=>x.KullaniciAd.TrimEnd()==kullaniciAdi&&x.Sifre==sifre).SingleOrDefault();
+            Calisan calisan = this.GetAll().Where(x=>x.KullaniciAd.TrimEnd()==kullaniciAdi&&x.Sifre==sifre).SingleOrDefault();
 
             if (calisan != null) 
             { 
                 dogruMu = true; 
             }
-
             return dogruMu;
         }
         CalisanMapping mapping = new CalisanMapping();
@@ -70,7 +68,8 @@ namespace AracIhale.DAL.Repositories.Concrete
             guncellenecekCalisan.Sifre = calisan.Sifre;
             guncellenecekCalisan.KullaniciAd = calisan.KullaniciAd;
             guncellenecekCalisan.RolID = calisan.RolID;
-            guncellenecekCalisan.ModifiedBy = calisan.KullaniciAd;
+            guncellenecekCalisan.ModifiedBy = Login.GirisYapmisCalisan.KullaniciAd;
+            guncellenecekCalisan.ModifiedDate = DateTime.Now;
             this.Update(guncellenecekCalisan);
         }
         public void Ekle(CalisanVM calisan)

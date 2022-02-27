@@ -86,7 +86,6 @@
     <Compile Include="Mapping\KullaniciTipMapping.cs" />
     <Compile Include="Mapping\KurumsalIhaleMapping.cs" />
     <Compile Include="Mapping\KurumsalKullaniciMapping.cs" />
-    <Compile Include="Mapping\LogMapping.cs" />
     <Compile Include="Mapping\MarkaMapping.cs" />
     <Compile Include="Mapping\OzellikBilgiMapping.cs" />
     <Compile Include="Mapping\OzellikMapping.cs" />
@@ -136,6 +135,7 @@
     <Compile Include="Model\Entities\KurumsalIhale.cs" />
     <Compile Include="Model\Entities\KurumsalKullanici.cs" />
     <Compile Include="Model\Entities\Log.cs" />
+    <Compile Include="Model\Entities\LogError.cs" />
     <Compile Include="Model\Entities\Marka.cs" />
     <Compile Include="Model\Entities\Ozellik.cs" />
     <Compile Include="Model\Entities\OzellikBilgi.cs" />

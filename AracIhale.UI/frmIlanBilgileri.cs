@@ -24,6 +24,10 @@ namespace AracIhale.UI
         {
             InitializeComponent();
         }
+        public frmIlanBilgileri(int aracID) : this()
+        {
+            _aracID = aracID;
+        }
 
         UnitOfWork _unitOfWork = new UnitOfWork();
 

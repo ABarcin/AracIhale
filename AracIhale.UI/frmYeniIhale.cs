@@ -19,6 +19,7 @@ namespace AracIhale.UI
     {
         UnitOfWork unitOfWork = new UnitOfWork();
         IhaleListVM ihaleListVM = null;
+        AracCDListVM arac = null;
 
         public frmYeniIhale()
         {
@@ -33,11 +34,7 @@ namespace AracIhale.UI
 
         private void YeniIhale_Load(object sender, EventArgs e)
         {
-            KullaniciTipComboBoxDoldur();
-            IhaleStatuComboBoxDoldur();
-            FirmaComboBoxDoldu();
-            bilgileriGetir();
-            AracListViewDoldur();
+            PrepareForm();
         }
 
         private void btnKaydet_Click(object sender, EventArgs e)
@@ -125,6 +122,87 @@ namespace AracIhale.UI
                 MessageBox.Show("Giriş yapmadınız. Lütfen giriş yapınız.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
             }
 
+        }
+
+        /// <summary>
+        /// Kullanci ve calisan bossa butun formu kitler.
+        /// </summary>
+        private void LockForm() 
+        {
+            txtIhaleAdi.Enabled = false;
+            cmbUyeTip.Enabled = false;
+            cmbSirketAdi.Enabled = false;
+            dtIhaleBaslangic.Enabled = false;
+            dtIhaleBitis.Enabled = false;
+            cmbStatu.Enabled = false;
+            dtBaslangicSaat.Enabled = false;
+            dtBitisSaat.Enabled = false;
+            listArac.Enabled = false;
+            btnAracEkle.Enabled = false;
+            btnKaydet.Enabled = false;
+            btnTeklifVer.Enabled = false;
+        }
+
+        /// <summary>
+        /// Formu hazirlamasi icin gerekli olan metodu 
+        /// cagiran metod.
+        /// </summary>
+        private void PrepareForm() 
+        {
+            if (Login.GirisYapmisCalisan != null && Login.GirisYapmisKullanici != null)
+            {
+                LockForm();
+            }
+
+            else if (Login.GirisYapmisCalisan != null)
+            {
+                PrepareFormForEmployee();
+            }
+
+            else if (Login.GirisYapmisKullanici != null)
+            {
+                PrepareFormForUser();
+            }
+
+            else
+            {
+                LockForm();
+            }
+        }
+
+        /// <summary>
+        /// Formu kullanicilarin gormesi gerektigi 
+        /// sekilde hazirlar.
+        /// </summary>
+        private void PrepareFormForUser() 
+        {
+            btnTeklifVer.Enabled = false;
+            txtIhaleAdi.Enabled = false;
+            cmbUyeTip.Enabled = false;
+            cmbSirketAdi.Enabled = false;
+            dtIhaleBaslangic.Enabled = false;
+            dtIhaleBitis.Enabled = false;
+            cmbStatu.Enabled = false;
+            dtBaslangicSaat.Enabled = false;
+            dtBitisSaat.Enabled = false;
+            btnAracEkle.Hide();
+            btnKaydet.Hide();
+            arac = null;
+        }
+
+        /// <summary>
+        /// Formu calisanlarin gormesi gerektigi
+        /// sekilde hazirlar.
+        /// </summary>
+        private void PrepareFormForEmployee() 
+        {
+            KullaniciTipComboBoxDoldur();
+            IhaleStatuComboBoxDoldur();
+            FirmaComboBoxDoldu();
+            bilgileriGetir();
+            AracListViewDoldur();
+
+            btnTeklifVer.Hide();
         }
 
         private bool ValidateForm()
@@ -225,6 +303,8 @@ namespace AracIhale.UI
                     listViewItem.SubItems.Add(item.Kullanici.Ad);
                     listViewItem.SubItems.Add(item.CreatedDate.ToString());
 
+                    listViewItem.Tag = item;
+
                     listArac.Items.Add(listViewItem);
                 }
             }
@@ -281,7 +361,34 @@ namespace AracIhale.UI
 
         private void OnVisible_VisibleChanged(object sender, EventArgs e)
         {
+            btnTeklifVer.Enabled = false;
+            arac = null;
+
             AracListViewDoldur();
+        }
+
+        private void listArac_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listArac.SelectedItems.Count > 0 && Login.GirisYapmisKullanici != null)
+            {
+                arac = listArac.SelectedItems[0].Tag as AracCDListVM;
+
+                if (arac != null)
+                {
+                    btnTeklifVer.Enabled = true;
+                }
+
+                MessageBox.Show($"'{arac.Marka.Ad} {arac.ArabaModel.Ad}' adli araç seçildi.");
+            }
+        }
+
+
+        /// <summary>
+        /// Arac teklif verme sayfasina giden metod.
+        /// </summary>
+        private void btnTeklifVer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -32,6 +32,7 @@ namespace AracIhale.UI
             this.gbIhaleListeleme = new System.Windows.Forms.GroupBox();
             this.btnSil = new System.Windows.Forms.Button();
             this.btnGuncelle = new System.Windows.Forms.Button();
+            this.btnIhaleArac = new System.Windows.Forms.Button();
             this.btnYeni = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listIhaleler = new System.Windows.Forms.ListView();
@@ -59,27 +60,28 @@ namespace AracIhale.UI
             // 
             this.gbIhaleListeleme.Controls.Add(this.btnSil);
             this.gbIhaleListeleme.Controls.Add(this.btnGuncelle);
+            this.gbIhaleListeleme.Controls.Add(this.btnIhaleArac);
             this.gbIhaleListeleme.Controls.Add(this.btnYeni);
             this.gbIhaleListeleme.Controls.Add(this.groupBox3);
             this.gbIhaleListeleme.Controls.Add(this.btnListele);
             this.gbIhaleListeleme.Controls.Add(this.groupBox2);
-            this.gbIhaleListeleme.Location = new System.Drawing.Point(27, 6);
-            this.gbIhaleListeleme.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbIhaleListeleme.Location = new System.Drawing.Point(20, 5);
+            this.gbIhaleListeleme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gbIhaleListeleme.Name = "gbIhaleListeleme";
-            this.gbIhaleListeleme.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbIhaleListeleme.Size = new System.Drawing.Size(1015, 543);
+            this.gbIhaleListeleme.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbIhaleListeleme.Size = new System.Drawing.Size(761, 441);
             this.gbIhaleListeleme.TabIndex = 1;
             this.gbIhaleListeleme.TabStop = false;
-            this.gbIhaleListeleme.Text = "Araç Tanımlama/Listeleme";
+            this.gbIhaleListeleme.Text = "İhale Tanımlama/Listeleme";
             this.gbIhaleListeleme.VisibleChanged += new System.EventHandler(this.OnVisible_VisibleChanged);
             // 
             // btnSil
             // 
             this.btnSil.BackColor = System.Drawing.Color.White;
-            this.btnSil.Location = new System.Drawing.Point(917, 497);
-            this.btnSil.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSil.Location = new System.Drawing.Point(688, 404);
+            this.btnSil.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSil.Name = "btnSil";
-            this.btnSil.Size = new System.Drawing.Size(85, 27);
+            this.btnSil.Size = new System.Drawing.Size(64, 22);
             this.btnSil.TabIndex = 7;
             this.btnSil.Text = "Sil";
             this.btnSil.UseVisualStyleBackColor = false;
@@ -88,22 +90,34 @@ namespace AracIhale.UI
             // btnGuncelle
             // 
             this.btnGuncelle.BackColor = System.Drawing.Color.White;
-            this.btnGuncelle.Location = new System.Drawing.Point(784, 497);
-            this.btnGuncelle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGuncelle.Location = new System.Drawing.Point(588, 404);
+            this.btnGuncelle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGuncelle.Name = "btnGuncelle";
-            this.btnGuncelle.Size = new System.Drawing.Size(95, 27);
+            this.btnGuncelle.Size = new System.Drawing.Size(71, 22);
             this.btnGuncelle.TabIndex = 6;
             this.btnGuncelle.Text = "Güncelle";
             this.btnGuncelle.UseVisualStyleBackColor = false;
             this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
             // 
+            // btnIhaleArac
+            // 
+            this.btnIhaleArac.BackColor = System.Drawing.Color.White;
+            this.btnIhaleArac.Location = new System.Drawing.Point(18, 404);
+            this.btnIhaleArac.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnIhaleArac.Name = "btnIhaleArac";
+            this.btnIhaleArac.Size = new System.Drawing.Size(108, 22);
+            this.btnIhaleArac.TabIndex = 5;
+            this.btnIhaleArac.Text = "Araçlara Göz At";
+            this.btnIhaleArac.UseVisualStyleBackColor = false;
+            this.btnIhaleArac.Click += new System.EventHandler(this.btnIhaleArac_Click);
+            // 
             // btnYeni
             // 
             this.btnYeni.BackColor = System.Drawing.Color.White;
-            this.btnYeni.Location = new System.Drawing.Point(668, 497);
-            this.btnYeni.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnYeni.Location = new System.Drawing.Point(501, 404);
+            this.btnYeni.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnYeni.Name = "btnYeni";
-            this.btnYeni.Size = new System.Drawing.Size(85, 27);
+            this.btnYeni.Size = new System.Drawing.Size(64, 22);
             this.btnYeni.TabIndex = 5;
             this.btnYeni.Text = "Yeni";
             this.btnYeni.UseVisualStyleBackColor = false;
@@ -112,11 +126,11 @@ namespace AracIhale.UI
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.listIhaleler);
-            this.groupBox3.Location = new System.Drawing.Point(24, 219);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Location = new System.Drawing.Point(18, 178);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(985, 260);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Size = new System.Drawing.Size(739, 211);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "İhale Listesi";
@@ -135,11 +149,11 @@ namespace AracIhale.UI
             this.listIhaleler.FullRowSelect = true;
             this.listIhaleler.GridLines = true;
             this.listIhaleler.HideSelection = false;
-            this.listIhaleler.Location = new System.Drawing.Point(5, 26);
-            this.listIhaleler.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listIhaleler.Location = new System.Drawing.Point(4, 21);
+            this.listIhaleler.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listIhaleler.MultiSelect = false;
             this.listIhaleler.Name = "listIhaleler";
-            this.listIhaleler.Size = new System.Drawing.Size(973, 233);
+            this.listIhaleler.Size = new System.Drawing.Size(731, 190);
             this.listIhaleler.TabIndex = 0;
             this.listIhaleler.UseCompatibleStateImageBehavior = false;
             this.listIhaleler.View = System.Windows.Forms.View.Details;
@@ -181,10 +195,10 @@ namespace AracIhale.UI
             // btnListele
             // 
             this.btnListele.BackColor = System.Drawing.Color.White;
-            this.btnListele.Location = new System.Drawing.Point(917, 166);
-            this.btnListele.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnListele.Location = new System.Drawing.Point(688, 135);
+            this.btnListele.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnListele.Name = "btnListele";
-            this.btnListele.Size = new System.Drawing.Size(85, 27);
+            this.btnListele.Size = new System.Drawing.Size(64, 22);
             this.btnListele.TabIndex = 3;
             this.btnListele.Text = "Listele";
             this.btnListele.UseVisualStyleBackColor = false;
@@ -198,11 +212,11 @@ namespace AracIhale.UI
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(24, 44);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Location = new System.Drawing.Point(18, 36);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(985, 92);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(739, 75);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Kriterler";
@@ -211,64 +225,66 @@ namespace AracIhale.UI
             // 
             this.cmbUyeTipi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUyeTipi.FormattingEnabled = true;
-            this.cmbUyeTipi.Location = new System.Drawing.Point(467, 34);
-            this.cmbUyeTipi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbUyeTipi.Location = new System.Drawing.Point(350, 28);
+            this.cmbUyeTipi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbUyeTipi.Name = "cmbUyeTipi";
-            this.cmbUyeTipi.Size = new System.Drawing.Size(171, 24);
+            this.cmbUyeTipi.Size = new System.Drawing.Size(129, 21);
             this.cmbUyeTipi.TabIndex = 2;
             // 
             // cmbStatu
             // 
             this.cmbStatu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatu.FormattingEnabled = true;
-            this.cmbStatu.Location = new System.Drawing.Point(789, 36);
-            this.cmbStatu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbStatu.Location = new System.Drawing.Point(592, 29);
+            this.cmbStatu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbStatu.Name = "cmbStatu";
-            this.cmbStatu.Size = new System.Drawing.Size(179, 24);
+            this.cmbStatu.Size = new System.Drawing.Size(135, 21);
             this.cmbStatu.TabIndex = 2;
             // 
             // txtIhaleAdi
             // 
-            this.txtIhaleAdi.Location = new System.Drawing.Point(87, 33);
-            this.txtIhaleAdi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtIhaleAdi.Location = new System.Drawing.Point(65, 27);
+            this.txtIhaleAdi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtIhaleAdi.Name = "txtIhaleAdi";
-            this.txtIhaleAdi.Size = new System.Drawing.Size(159, 22);
+            this.txtIhaleAdi.Size = new System.Drawing.Size(120, 20);
             this.txtIhaleAdi.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(729, 38);
+            this.label3.Location = new System.Drawing.Point(547, 31);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 17);
+            this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Statü:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(324, 38);
+            this.label2.Location = new System.Drawing.Point(243, 31);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 17);
+            this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Bireysel/Kurumsal:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 36);
+            this.label1.Location = new System.Drawing.Point(4, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 17);
+            this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "İhale Adı:";
             // 
             // frmIhaleListeleme
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 570);
+            this.ClientSize = new System.Drawing.Size(800, 463);
             this.Controls.Add(this.gbIhaleListeleme);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmIhaleListeleme";
             this.Text = "IhaleListeleme";
             this.Load += new System.EventHandler(this.IhaleListeleme_Load);
@@ -303,5 +319,6 @@ namespace AracIhale.UI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnIhaleArac;
     }
 }

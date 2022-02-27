@@ -40,5 +40,31 @@ namespace AracIhale.DAL.Repositories.Concrete
             }).Where(x => x.IsActive == true).ToList();
             return kullaniciTipleri;
         }
+        public KullaniciVM AracKullanicisiniGetir(int aracID)
+        {
+            return new KullaniciMapping().KullaniciToKullaniciVM(ThisContext.Arac.Where(x => x.AracID == aracID).Select(y => y.Kullanici).FirstOrDefault());
+        }
+
+        public KullaniciVM KullaniciGetir(string kullaniciAdi)
+        {
+            Kullanici kullanici =GetAll(x => x.KullaniciAd == kullaniciAdi).FirstOrDefault();
+            return kullanici == null ? null :new KullaniciMapping().KullaniciToKullaniciVM(kullanici);
+        }
+
+        public KullaniciVM KullaniciGetir(object id)
+        {
+            return new KullaniciMapping().KullaniciToKullaniciVM(GetByID(id));
+        }
+
+        public bool OturumAc(string kullaniciAdi, string sifre)
+        {
+            bool dogruMu = false;
+            Kullanici calisan = GetAll().Where(x => x.KullaniciAd.TrimEnd() == kullaniciAdi && x.Sifre == sifre).SingleOrDefault();
+            if (calisan != null)
+            {
+                dogruMu = true;
+            }
+            return dogruMu;
+        }
     }
 }

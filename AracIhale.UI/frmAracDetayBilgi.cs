@@ -19,79 +19,96 @@ namespace AracIhale.UI
 {
     public partial class frmAracDetayBilgi : Form
     {
-        string modifiedBy = "Admin";
         public frmAracDetayBilgi()
         {
             InitializeComponent();
         }
+
         UnitOfWork unitOfWork = new UnitOfWork();
         Validation validation = new Validation();
-        AracListVM _guncellenecekArac = null;
-        public frmAracDetayBilgi(AracListVM arac) : this()
-        {
-            _guncellenecekArac = arac;
-        }
-
-
-        private void AracDetayBilgi_Load(object sender, EventArgs e)
-        {
-            if (_guncellenecekArac == null)
-            {
-                PrepareForm();
-            }
-            else
-            {
-                PrepareFormForUpdate();
-            }
-        }
-
         AracVM aracVM;
         List<AracOzellikVM> aracOzellikVMs;
         AracFiyatVM aracFiyatVM;
         AracStatuVM aracStatuVM;
+        KullaniciVM kullaniciVM;
+        int _aracID;
+        string modifiedBy = "Admin";
+
+        public frmAracDetayBilgi(AracListVM arac) : this()
+        {
+            _aracID = arac.AracID;
+        }
+
+        private void AracDetayBilgi_Load(object sender, EventArgs e)
+        {
+            if (_aracID > 0)
+            {
+                PrepareFormForUpdate();
+            }
+            else
+            {
+                PrepareForm();
+            }
+        }
+
         private void PrepareFormForUpdate()
         {
             PrepareForm();
+
+            #region Button States
             btnKaydet.Click -= btnKaydet_Click;
             btnKaydet.Click += btnGuncelle_Click;
             btnKaydet.Text = "Güncelle";
-            aracVM = unitOfWork.AracRepository.AracVMByAracID(_guncellenecekArac.AracID);
-            aracFiyatVM = unitOfWork.AracFiyatRepository.AracinGuncelFiyatiniGetir(_guncellenecekArac.AracID);
-            aracOzellikVMs = unitOfWork.AracOzellikRepository.AracOzellikleriniGetir(_guncellenecekArac.AracID);
-            aracStatuVM = unitOfWork.AracStatuRepository.AracinGuncelStatusunuGetir(_guncellenecekArac.AracID);
+            btnTramerBilgileri.Enabled = true;
+            btnIlanBilgileri.Enabled = true;
+            btnHemenAlSatis.Enabled = true;
+            btnAracTarihce.Enabled = true;
+            btnKomisyon.Enabled = true;
+            #endregion
+
+            aracVM = unitOfWork.AracRepository.AracVMByAracID(_aracID);
+            aracFiyatVM = unitOfWork.AracFiyatRepository.AracinGuncelFiyatiniGetir(_aracID);
+            aracOzellikVMs = unitOfWork.AracOzellikRepository.AracOzellikleriniGetir(_aracID);
+            aracStatuVM = unitOfWork.AracStatuRepository.AracinGuncelStatusunuGetir(_aracID);
+            kullaniciVM = unitOfWork.KullaniciRepository.AracKullanicisiniGetir(_aracID);
             nmAracFiyat.Value = aracFiyatVM.Fiyat;
-            nmKMBilgisi.Value = aracVM.Km;           
+            nmKMBilgisi.Value = aracVM.Km;  
+            
             #region Fill Comboboxes
             int index = -1;
             foreach (var item in cmbAracMarka.Items)
             {
-                if (item.ToString() == _guncellenecekArac.MarkaAd)
+                if ((item as MarkaVM).MarkaID == aracVM.MarkaID)
                 {
                     index = cmbAracMarka.Items.IndexOf(item);
+                    break;
                 }
             }
             cmbAracMarka.SelectedIndex = index; index = -1;
             foreach (var item in cmbAracModel.Items)
             {
-                if (item.ToString() == _guncellenecekArac.ModelAd)
+                if ((item as ArabaModelVM).ModelID  == aracVM.ModelID)
                 {
                     index = cmbAracModel.Items.IndexOf(item);
+                    break;
                 }
             }
             cmbAracModel.SelectedIndex = index; index = -1;
             foreach (var item in cmbKullaniciTipi.Items)
             {
-                if (item.ToString() == _guncellenecekArac.KullaniciTip)
+                if ((item as KullaniciTipVM).KullaniciTipID == kullaniciVM.KullaniciTipID)
                 {
                     index = cmbKullaniciTipi.Items.IndexOf(item);
+                    break;
                 }
             }
             cmbKullaniciTipi.SelectedIndex = index; index = -1;
             foreach (var item in cmbStatu.Items)
             {
-                if (item.ToString() == _guncellenecekArac.StatuAd)
+                if ((item as StatuVM).StatuID == aracStatuVM.StatuID)
                 {
                     index = cmbStatu.Items.IndexOf(item);
+                    break;
                 }
             }
             cmbStatu.SelectedIndex = index; index = -1;
@@ -100,6 +117,7 @@ namespace AracIhale.UI
                 if (item == aracVM.Yil)
                 {
                     index = cmbAracYil.Items.IndexOf(item);
+                    break;
                 }
             }cmbAracYil.SelectedIndex = index; index = -1;
             
@@ -111,6 +129,7 @@ namespace AracIhale.UI
                     if ((item as OzellikBilgiVM).OzellikBilgiID == aracOzellikVMs[i].OzellikBilgiID)
                     {
                         index = comboBoxes[i].Items.IndexOf(item);
+                        break;
                     }
                 }
                 comboBoxes[i].SelectedIndex = index; index = -1;
@@ -135,7 +154,7 @@ namespace AracIhale.UI
                 cmbAracYil.Items.Add(d);
             }
         }
-
+        
         private void btnKaydet_Click(object sender, EventArgs e)
         {
             if (IsValidate())
@@ -144,30 +163,35 @@ namespace AracIhale.UI
                 {
                     try
                     {
-                        // Araç ekleme methodumuzu çağırıyoruz.
-                        AracEkle();
+                        // Araç ekleme methodumuzu çağırıyoruz. Araç Eklendikten sonra eklenen aracın id'sini diğer tablolarda kullanabilmek için değişkene alıyoruz.
+                        _aracID = AracEkle();
                         unitOfWork.Complete();
 
                         // Araç ile ilişkili diğer tablolara AracID ile insert işlemi yapacağımız için,
                         // Arac tablosuna insert ettikten sonra eklenen son aracın ID'sini buluyoruz.
-                        int aracID = unitOfWork.AracRepository.EklenenAracIDGetir();
+                        aracVM = new AracVM(){AracID = _aracID};
 
                         // Araç Fiyat ekleme methodumuzu çağırıyoruz.
-                        AracFiyatEkle(aracID);
+                        AracFiyatEkle(_aracID);
                         unitOfWork.Complete();
 
                         // Araç Statü ekleme methodumuzu çağırıyoruz.
-                        AracStatuEkle(aracID);
+                        AracStatuEkle(_aracID);
                         unitOfWork.Complete();
 
                         // Aracın tüm özelliklerini insert edeceğimiz methodu çağırıyoruz.
-                        AracOzellikEkle(aracID);
+                        AracOzellikEkle(_aracID);
                         unitOfWork.Complete();
 
                         scope.Complete();
                         MessageBox.Show("Araç kaydedildi.");
+                        btnKaydet.Enabled = false;
+                        btnTramerBilgileri.Enabled = true;
+                        btnIlanBilgileri.Enabled = true;
+                        btnHemenAlSatis.Enabled = true;
+                        btnAracTarihce.Enabled = true;
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         MessageBox.Show("Araç eklenemedi.");
                     }
@@ -212,7 +236,7 @@ namespace AracIhale.UI
                         scope.Complete();
                         MessageBox.Show("Araç güncellendi.");
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         MessageBox.Show("Araç güncellenemedi.");
                     }
@@ -222,11 +246,10 @@ namespace AracIhale.UI
 
         private void AracGuncelle()
         {
-            // Arac tablosund güncelleme yapmak için VM oluşturup repository içine gönderip güncelleme işlemini orada yapıyoruz.
+            // Arac tablosunda güncelleme yapmak için VM oluşturup repository içine gönderip güncelleme işlemini orada yapıyoruz.
             unitOfWork.AracRepository.AracGuncelle(new AracVM()
             {
-                AracID = _guncellenecekArac.AracID,
-                KullaniciID = 1,
+                AracID = _aracID,
                 MarkaID = (cmbAracMarka.SelectedItem as MarkaVM).MarkaID,
                 ModelID = (cmbAracModel.SelectedItem as ArabaModelVM).ModelID,
                 Km = Convert.ToInt32(nmKMBilgisi.Value),
@@ -236,10 +259,10 @@ namespace AracIhale.UI
             });
         }
 
-        private void AracEkle()
+        private int AracEkle()
         {
-            // Arac tablosuna insert yapmak için VM oluşturup repository içine gönderip ekleme işlemini orada yapıyoruz.
-            unitOfWork.AracRepository.AracEkle(new AracVM()
+            // Arac tablosuna insert yapmak için VM oluşturup repository içine gönderip ekleme işlemini orada yapıyoruz. Eklenen aracın ID'sini return ediyoruz.
+            int aracID = unitOfWork.AracRepository.AracEkle(new AracVM()
             {
                 KullaniciID = 1,
                 MarkaID = (cmbAracMarka.SelectedItem as MarkaVM).MarkaID,
@@ -247,17 +270,20 @@ namespace AracIhale.UI
                 Km = Convert.ToInt32(nmKMBilgisi.Value),
                 Yil = int.Parse(cmbAracYil.SelectedItem.ToString())
             });
+            return aracID;
         }
 
         private void AracFiyatEkle(int aracID)
         {
             // AracFiyat tablosuna insert yapmak için VM oluşturup repository içine gönderip ekleme işlemini orada yapıyoruz.
-            unitOfWork.AracFiyatRepository.AracFiyatEkle(new AracFiyatVM()
+            // AracFiyatVM Komisyon methodunda kullanılacağı için object initializer kullanılmadı. 
+            aracFiyatVM = new AracFiyatVM()
             {
                 AracID = aracID,
                 Fiyat = nmAracFiyat.Value,
                 Tarih = DateTime.Now
-            });
+            };
+            unitOfWork.AracFiyatRepository.AracFiyatEkle(aracFiyatVM);
         }
 
         private void AracFiyatGuncelle()
@@ -265,7 +291,7 @@ namespace AracIhale.UI
             // AracFiyat tablosuna insert yapmak için VM oluşturup repository içine gönderip ekleme işlemini orada yapıyoruz.
             unitOfWork.AracFiyatRepository.AracFiyatEkle(new AracFiyatVM()
             {
-                AracID = _guncellenecekArac.AracID,
+                AracID = _aracID,
                 Fiyat = nmAracFiyat.Value,
                 Tarih = DateTime.Now,
                 ModifiedDate = DateTime.Now,
@@ -289,7 +315,7 @@ namespace AracIhale.UI
             // AracStatu tablosuna insert yapmak için VM oluşturup repository içine gönderip ekleme işlemini orada yapıyoruz.
             unitOfWork.AracStatuRepository.AracStatuEkle(new AracStatuVM()
             {
-                AracID = _guncellenecekArac.AracID,
+                AracID = _aracID,
                 StatuID = (cmbStatu.SelectedItem as StatuVM).StatuID,
                 Tarih = DateTime.Now,
                 ModifiedDate = DateTime.Now,
@@ -391,28 +417,45 @@ namespace AracIhale.UI
 
         private void btnTramerBilgileri_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            using (TramerBilgileri tramerBilgileri = new TramerBilgileri())
+            
+            if (aracVM != null)
             {
-                tramerBilgileri.ShowDialog();
+                this.Hide();
+                using (frmTramerBilgileri tramerBilgileri = new frmTramerBilgileri(aracVM.AracID))
+                {
+                    tramerBilgileri.ShowDialog();
+                }
+                this.Show();
             }
-            this.Show();
+            else
+            {
+                MessageBox.Show("Bu araç için tramer bilgileri ekranı gösterilemiyor.");
+            }
         }
 
         private void btnIlanBilgileri_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            using (frmIlanBilgileri ilanBilgileri = new frmIlanBilgileri())
+            
+            if (aracVM != null)
             {
-                ilanBilgileri.ShowDialog();
+                this.Hide();
+                using (frmIlanBilgileri ilanBilgileri = new frmIlanBilgileri(aracVM.AracID))
+                {
+                    ilanBilgileri.ShowDialog();
+                }
+                this.Show();
             }
-            this.Show();
+            else
+            {
+                MessageBox.Show("Bu araç için ilan bilgileri ekranı gösterilemiyor.");
+            }
+            
         }
 
         private void btnAracTarihce_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (AracTarihce aracTarihce = new AracTarihce())
+            using (frmAracTarihce aracTarihce = new frmAracTarihce(aracVM.AracID))
             {
                 aracTarihce.ShowDialog();
             }
@@ -437,6 +480,7 @@ namespace AracIhale.UI
             }
             else
             {
+                cmbSirketAdi.SelectedIndex = -1;
                 cmbSirketAdi.Enabled = false;
             }
         }
@@ -449,6 +493,68 @@ namespace AracIhale.UI
             }
         }
 
+        private void btnHemenAlSatis_Click(object sender, EventArgs e)
+        {
+            AracHemenAlSatis();
+        }
 
+        private void AracHemenAlSatis()
+        {
+            try
+            {
+                if (aracVM != null)
+                {
+                    if (DialogResult.Yes == MessageBox.Show("Araç hemen al satış statüsüne geçirilecek. Onaylıyor musunuz?", "Hemen Al Satış", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
+                    {
+                        // AracStatu tablosuna insert yapmak için VM oluşturup repository içine gönderip ekleme işlemini orada yapıyoruz.
+                        unitOfWork.AracStatuRepository.AracStatuEkle(new AracStatuVM()
+                        {
+                            AracID = _aracID,
+                            StatuID = unitOfWork.StatuRepository.HemenAlSatisStatuIDGetir(),
+                            Tarih = DateTime.Now,
+                            ModifiedDate = DateTime.Now,
+                            ModifiedBy = modifiedBy
+                        });
+                        unitOfWork.Complete();
+                        MessageBox.Show("Araç hemen al satış statüsüne geçirildi.");
+
+                        foreach (var item in cmbStatu.Items)
+                        {
+                            if ((item as StatuVM).StatuAd == "Hemen Al Satış")
+                            {
+                                cmbStatu.SelectedIndex = cmbStatu.Items.IndexOf(item);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Araç statüsü değiştirilemedi.");
+            }
+        }
+
+        private void btnKomisyon_Click(object sender, EventArgs e)
+        {
+            int komisyon = 0;
+            if (aracFiyatVM.Fiyat >= 0 && aracFiyatVM.Fiyat <=100000)
+            {
+                komisyon = 3000;
+            }
+            if (aracFiyatVM.Fiyat >= 100000 && aracFiyatVM.Fiyat < 300000)
+            {
+                komisyon = 4000;
+            }
+            if (aracFiyatVM.Fiyat >= 300000 && aracFiyatVM.Fiyat < 500000)
+            {
+                komisyon = 5000;
+            }
+            if (aracFiyatVM.Fiyat >= 500000 )
+            {
+                komisyon = 6000;
+            }
+            MessageBox.Show(string.Format("Komisyon ücreti: {0} TL",komisyon));
+        }
     }
 }
