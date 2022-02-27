@@ -293,6 +293,13 @@ namespace AracIhale.CORE
                     Message = "Format hatası. Lütfen virgül kullanınız.";
                     errorProvider.SetError(money, Message);
                 }
+                if (TryParseOut<0)
+                {
+                    validate = false;
+                    Message = "Eksi Para Hatası. Lütfen Eksi Değer Girmeyiniz.";
+                    errorProvider.SetError(money, Message);
+
+                }
             }
 
             return validate;
