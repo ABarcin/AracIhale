@@ -19,6 +19,7 @@ namespace AracIhale.DAL.Repositories.Abstract
         #endregion
 
         List<AracListVM> AracListele(string marka, string model, string kTip, string statu);
+        List<AracListVM> AracListele(int kullaniciID, string marka, string model, string kTip, string statu);
         void AracSil(object id);
         int AracEkle(AracVM arac);
         void AracGuncelle(AracVM arac);
