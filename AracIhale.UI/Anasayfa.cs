@@ -1,6 +1,8 @@
 ﻿using AracIhale.CORE;
 using AracIhale.CORE.Login;
+using AracIhale.DAL.Repositories.Concrete;
 using AracIhale.DAL.UnitOfWork;
+using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.VM;
 using System;
 using System.Collections.Generic;
@@ -40,6 +42,8 @@ namespace AracIhale.UI
                 if (loginOlduMu)
                 {
                     Login.GirisYapmisKullanici = kullanici;
+                    Login.SayfaYetkiYonetimiListesi = new LoginRepository().
+                        HerSayfaIcınYetkiVMDoldur(new RolMapping().RolToRolVM(unitOfWork.RolRepository.GetByID(kullanici.RolID)));
                     Hide();
                     using (frmIhaleListeleme frm = new frmIhaleListeleme())
                     {

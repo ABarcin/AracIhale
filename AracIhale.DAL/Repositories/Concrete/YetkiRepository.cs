@@ -21,7 +21,7 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public List<YetkiVM> TumYetkiler()
         {
-            return new YetkiMapping().ListYetkiToListYetkiVM(this.GetAll().ToList());
+            return new YetkiMapping().ListYetkiToListYetkiVM(GetAll().ToList());
         }
     }
 }

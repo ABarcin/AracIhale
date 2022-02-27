@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AracIhale.DAL.Repositories.Abstract;
+using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
 using AracIhale.MODEL.VM;
@@ -20,28 +21,17 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public List<RolVM> TumRoller()
         {
-            List<RolVM> roller=ThisContext.Rol.Select(x => new RolVM()
-            {
-                Ad=x.Ad,
-                RolID=x.RolID,
-                IsActive=x.IsActive
-            }).Where(x => x.IsActive == true).ToList();
-            return roller;
+            return new RolMapping().ListRolToRolVM(GetAll(x => x.IsActive == true));
         }
-        //burak
+
         public string RolAdiGetir(int rolID)
         {
-            Rol rol = ThisContext.Rol.Where(x => x.RolID == rolID).FirstOrDefault();
-
-            return rol.Ad;
+            return GetAll(x => x.RolID == rolID).FirstOrDefault().Ad;
         }
 
-        //burcin
         public int RolIDGetir(string rolAd)
         {
-            Rol rol = ThisContext.Rol.Where(x => x.Ad == rolAd).FirstOrDefault();
-
-            return rol.RolID;
+            return GetAll(x => x.Ad == rolAd).FirstOrDefault().RolID;
         }
     }
 }

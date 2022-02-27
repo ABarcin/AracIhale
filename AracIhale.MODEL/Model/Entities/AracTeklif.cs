@@ -11,6 +11,7 @@ namespace AracIhale.MODEL.Model.Entities
     {
         public int AracTeklifID { get; set; }
 
+        [Required]
         public int IhaleAracID { get; set; }
 
         [Required]

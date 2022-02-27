@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AracIhale.DAL.Repositories.Abstract
 {
-    public interface ILogRepository : IRepository<Log>
+    public interface ILoginRepository
     {
-        void AddLog(string sayfaAd,string islem);
+        
     }
 }

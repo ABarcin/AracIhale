@@ -60,6 +60,8 @@ namespace AracIhale.DAL.UnitOfWork
             SehirIlceRepository = new SehirIlceRepository(_unitOfWorkContext);
             ArabaModelRepository = new ArabaModelRepository(_unitOfWorkContext);
             SayfaRepository = new SayfaRepository(_unitOfWorkContext);
+            LogRepository = new LogRepository(_unitOfWorkContext);
+            LogErrorRepository = new LogErrorRepository(_unitOfWorkContext);
 
     }
 
@@ -149,6 +151,8 @@ namespace AracIhale.DAL.UnitOfWork
 
         public IArabaModelRepository ArabaModelRepository { get; private set; }
         public ISayfaRepository SayfaRepository { get; private set; }
+        public ILogRepository LogRepository { get; private set; }
+        public ILogErrorRepository LogErrorRepository { get; private set; }
 
         public int Complete()
         {
