@@ -49,8 +49,24 @@ namespace AracIhale.UI
             {
                 PrepareForm();
             }
-        }
+            //// GroupBox itemlarına da ulaşan döngü
+            //int i = 0;
+            //foreach (Control ctrl in this.Controls)
+            //{
+            //    if (ctrl.ToString().StartsWith("System.Windows.Forms.GroupBox"))
+            //    {
+            //        foreach (Control c in ctrl.Controls)
+            //        {
+            //            if (c.GetType() == typeof(ComboBox))
+            //            {
+            //                i++;
+            //            }
+            //        }
+            //    }
+            //}
+            //MessageBox.Show(i.ToString());
 
+        }
         private void PrepareFormForUpdate()
         {
             PrepareForm();

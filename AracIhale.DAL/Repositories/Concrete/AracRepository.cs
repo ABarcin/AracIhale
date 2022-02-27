@@ -97,6 +97,33 @@ namespace AracIhale.DAL.Repositories.Concrete
             }
             return aracLists;
         }
+        public List<AracListVM> AracListele(int kullaniciID, string marka = null, string model = null, string kTip = null, string statu = null)
+        {
+            // Aktif olan tüm araçları alıyoruz.
+            var aracLists = TumAraclariListele().Where(x=>x.KullaniciID == kullaniciID).ToList();
+
+            // Marka null değilse markaya göre filtreleme yapılacak.
+            if (marka != null)
+            {
+                aracLists = aracLists.Where(x => x.MarkaAd == marka).ToList();
+            }
+            // Model null değilse modele göre filtreleme yapılacak.
+            if (model != null)
+            {
+                aracLists = aracLists.Where(x => x.ModelAd == model).ToList();
+            }
+            // Kullanıcı Tipi null değilse kullanıcı tipine göre filtreleme yapılacak.
+            if (kTip != null)
+            {
+                aracLists = aracLists.Where(x => x.KullaniciTip == kTip).ToList();
+            }
+            // Statu null değilse statüye gore filtreleme yapılacak.
+            if (statu != null)
+            {
+                aracLists = aracLists.Where(x => x.StatuAd == statu).ToList();
+            }
+            return aracLists;
+        }
 
         public List<AracListVM> TumAraclariListele()
         {
