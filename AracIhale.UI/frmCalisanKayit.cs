@@ -61,19 +61,22 @@ namespace AracIhale.UI
         }
         private void btnIletisim_Click(object sender, EventArgs e)
         {
-            if (tempCalisan != null && tempCalisan.CalisanID != 0)
+            if (tempCalisan != null)
             {
-                this.Hide();
-                using (frmIletisim frm = new frmIletisim(tempCalisan))
+                if (tempCalisan.CalisanID != 0)
                 {
-                    frm.ShowDialog();
+                    this.Hide();
+                    using (frmIletisim frm = new frmIletisim(tempCalisan))
+                    {
+                        frm.ShowDialog();
+                    }
+                    this.Show();
+                    IsEmailAdded();
                 }
-                this.Show();
-                IsEmailAdded();
-            }
-            else if (tempCalisan.CalisanID == 0)
-            {
-                MessageBox.Show("İletişim Bilgisi Eklemek İÇin Yeniden Kaydet Butonuna Basınız Ve Kaydetmek İçin Email Bilgisi Giriniz");
+                else 
+                {
+                    MessageBox.Show("İletişim Bilgisi Eklemek İÇin Yeniden Kaydet Butonuna Basınız Ve Kaydetmek İçin Email Bilgisi Giriniz");
+                }
             }
             else if (listCalisanlar.SelectedItems.Count > 0)
             {
@@ -131,7 +134,7 @@ namespace AracIhale.UI
             {
                 if (unitOfWork.RolRepository.TumRoller().Count > 0)
                 {
-                    foreach (RolVM item in unitOfWork.RolRepository.TumRoller())
+                    foreach (RolVM item in unitOfWork.RolRepository.TumRoller().Where(x=>x.RolID==1||x.RolID==2))
                     {
                         if (item.RolID >= Login.GirisYapmisCalisan.RolID)
                         {
