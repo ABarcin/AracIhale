@@ -53,17 +53,17 @@ namespace AracIhale.UI
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpGenel.SuspendLayout();
             this.grpAracListesi.SuspendLayout();
             this.grpKriterler.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpGenel
             // 
-            this.grpGenel.Controls.Add(this.btnYeni);
-            this.grpGenel.Controls.Add(this.btnGuncelle);
-            this.grpGenel.Controls.Add(this.btnSil);
+            this.grpGenel.Controls.Add(this.flowLayoutPanel1);
             this.grpGenel.Controls.Add(this.btnTemizle);
             this.grpGenel.Controls.Add(this.btnListele);
             this.grpGenel.Controls.Add(this.grpAracListesi);
@@ -77,7 +77,7 @@ namespace AracIhale.UI
             // 
             // btnYeni
             // 
-            this.btnYeni.Location = new System.Drawing.Point(547, 441);
+            this.btnYeni.Location = new System.Drawing.Point(3, 3);
             this.btnYeni.Name = "btnYeni";
             this.btnYeni.Size = new System.Drawing.Size(75, 23);
             this.btnYeni.TabIndex = 2;
@@ -89,7 +89,7 @@ namespace AracIhale.UI
             // btnGuncelle
             // 
             this.btnGuncelle.Enabled = false;
-            this.btnGuncelle.Location = new System.Drawing.Point(628, 441);
+            this.btnGuncelle.Location = new System.Drawing.Point(84, 3);
             this.btnGuncelle.Name = "btnGuncelle";
             this.btnGuncelle.Size = new System.Drawing.Size(75, 23);
             this.btnGuncelle.TabIndex = 2;
@@ -101,7 +101,7 @@ namespace AracIhale.UI
             // btnSil
             // 
             this.btnSil.Enabled = false;
-            this.btnSil.Location = new System.Drawing.Point(709, 441);
+            this.btnSil.Location = new System.Drawing.Point(165, 3);
             this.btnSil.Name = "btnSil";
             this.btnSil.Size = new System.Drawing.Size(75, 23);
             this.btnSil.TabIndex = 2;
@@ -280,6 +280,17 @@ namespace AracIhale.UI
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btnSil);
+            this.flowLayoutPanel1.Controls.Add(this.btnGuncelle);
+            this.flowLayoutPanel1.Controls.Add(this.btnYeni);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(535, 441);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(243, 26);
+            this.flowLayoutPanel1.TabIndex = 3;
+            // 
             // frmAracTanimlamaListeleme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,6 +305,7 @@ namespace AracIhale.UI
             this.grpKriterler.ResumeLayout(false);
             this.grpKriterler.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -323,6 +335,7 @@ namespace AracIhale.UI
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTemizle;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 

@@ -21,14 +21,12 @@ namespace AracIhale.UI
             InitializeComponent();
         }
         UnitOfWork unitOfWork = new UnitOfWork();
-        int _kullaniciID = 0;
-        int _calisanID = 0;
 
         private void AracTanimlama_Load(object sender, EventArgs e)
         {
             lstAracListesi.Items.Clear();
             //Login.GirisYapmisCalisan = new CalisanVM { CalisanID = 1 };
-            Login.GirisYapmisKullanici = new KullaniciVM { KullaniciID = 8 };
+            //Login.GirisYapmisKullanici = new KullaniciVM { KullaniciID = 8 };
             PrepareForm();
         }
 
@@ -49,20 +47,72 @@ namespace AracIhale.UI
 
             else if (Login.GirisYapmisCalisan != null)
             {
-                _calisanID = Login.GirisYapmisCalisan.CalisanID;
-                AraclariListele();
-                
+                CalisanRolYetkiKontrol();
             }
 
             else if (Login.GirisYapmisKullanici != null)
             {
-                _kullaniciID = Login.GirisYapmisKullanici.KullaniciID;
-                KullaniciAraclariListele();
+                KullaniciRolYetkiKontrol();
             }
 
             else
             {
                 LockForm();
+            }
+        }
+        private void CalisanRolYetkiKontrol()
+        {
+            var rolYetki = Login.SayfaYetkiYonetimiListesi.FirstOrDefault(x => x.Sayfa.SayfaAdi == this.Name);
+            if (rolYetki.YetkiListesi.Count > 0)
+            {
+                if (rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Read"))
+                {
+                    AraclariListele();
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Create"))
+                    {
+                        btnYeni.Visible = false;
+                    }
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Update"))
+                    {
+                        btnGuncelle.Visible = false;
+                    }
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Delete"))
+                    {
+                        btnSil.Visible = false;
+                    }
+                }
+                else
+                {
+                    LockForm();
+                }
+            }
+        }
+
+        private void KullaniciRolYetkiKontrol()
+        {
+            var rolYetki = Login.SayfaYetkiYonetimiListesi.FirstOrDefault(x => x.Sayfa.SayfaAdi == this.Name);
+            if (rolYetki.YetkiListesi.Count > 0)
+            {
+                if (rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Read"))
+                {
+                    KullaniciAraclariListele();
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Create"))
+                    {
+                        btnYeni.Visible = false;
+                    }
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Update"))
+                    {
+                        btnGuncelle.Visible = false;
+                    }
+                    if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Delete"))
+                    {
+                        btnSil.Visible = false;
+                    }
+                }
+                else
+                {
+                    LockForm();
+                }
             }
         }
 
@@ -94,11 +144,13 @@ namespace AracIhale.UI
                 lstAracListesi.Items.Add(li);
             }            
         }
+
         private void KullaniciAraclariListele()
         {
             lstAracListesi.Items.Clear();
-            foreach (AracListVM arac in unitOfWork.AracRepository.AracListele(_kullaniciID,secilenMarka, secilenModel, secilenKullaniciTipi, secilenStatu))
+            foreach (AracListVM arac in unitOfWork.AracRepository.AracListele(Login.GirisYapmisKullanici.KullaniciID, secilenMarka, secilenModel, secilenKullaniciTipi, secilenStatu))
             {
+
                 ListViewItem li = new ListViewItem();
                 li.Text = arac.MarkaAd;
                 li.SubItems.Add(arac.ModelAd);
@@ -146,6 +198,7 @@ namespace AracIhale.UI
         private void FiltreleriTemizle()
         {
             cmbAracModel.SelectedIndex = cmbKullaniciTipi.SelectedIndex = cmbStatu.SelectedIndex = cmbAracMarka.SelectedIndex = -1;
+            cmbAracModel.Items.Clear();
             secilenMarka = secilenModel = secilenKullaniciTipi = secilenStatu = null;
             PrepareFormByLoginUser();
 

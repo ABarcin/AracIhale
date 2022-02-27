@@ -45,7 +45,7 @@ namespace AracIhale.UI
                     Login.SayfaYetkiYonetimiListesi = new LoginRepository().
                         HerSayfaIcınYetkiVMDoldur(new RolMapping().RolToRolVM(unitOfWork.RolRepository.GetByID(kullanici.RolID)));
                     Hide();
-                    using (frmIhaleListeleme frm = new frmIhaleListeleme())
+                    using (frmAracTanimlamaListeleme frm = new frmAracTanimlamaListeleme())
                     {
                         frm.ShowDialog();
                     }

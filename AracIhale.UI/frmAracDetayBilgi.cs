@@ -1,4 +1,5 @@
 ﻿using AracIhale.CORE;
+using AracIhale.CORE.Login;
 using AracIhale.DAL.UnitOfWork;
 using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
@@ -32,7 +33,7 @@ namespace AracIhale.UI
         AracStatuVM aracStatuVM;
         KullaniciVM kullaniciVM;
         int _aracID;
-        string modifiedBy = "Admin";
+        
 
         public frmAracDetayBilgi(AracListVM arac) : this()
         {
@@ -41,32 +42,60 @@ namespace AracIhale.UI
 
         private void AracDetayBilgi_Load(object sender, EventArgs e)
         {
-            if (_aracID > 0)
+            PrepareFormByLoginUser();
+        }
+
+        int kullaniciID = 0;
+        string modifiedBy = null;
+        private void PrepareFormByLoginUser()
+        {
+            if (Login.GirisYapmisCalisan != null && Login.GirisYapmisKullanici != null)
             {
-                PrepareFormForUpdate();
+                LockForm();
             }
+
+            else if (Login.GirisYapmisCalisan != null)
+            {
+                kullaniciID = Login.GirisYapmisCalisan.CalisanID;
+                modifiedBy = Login.GirisYapmisCalisan.KullaniciAd;
+                if (_aracID > 0)
+                {
+                    PrepareFormForUpdate();
+                }
+                else
+                {
+                    PrepareForm();
+                }
+            }
+
+            else if (Login.GirisYapmisKullanici != null)
+            {
+                kullaniciID = Login.GirisYapmisKullanici.KullaniciID;
+                modifiedBy = Login.GirisYapmisKullanici.KullaniciAd;
+                if (_aracID > 0)
+                {
+                    PrepareFormForUpdate();
+                }
+                else
+                {
+                    PrepareForm();
+                }
+            }
+
             else
             {
-                PrepareForm();
+                LockForm();
             }
-            //// GroupBox itemlarına da ulaşan döngü
-            //int i = 0;
-            //foreach (Control ctrl in this.Controls)
-            //{
-            //    if (ctrl.ToString().StartsWith("System.Windows.Forms.GroupBox"))
-            //    {
-            //        foreach (Control c in ctrl.Controls)
-            //        {
-            //            if (c.GetType() == typeof(ComboBox))
-            //            {
-            //                i++;
-            //            }
-            //        }
-            //    }
-            //}
-            //MessageBox.Show(i.ToString());
-
         }
+
+        private void LockForm()
+        {
+            foreach (Control ctrl in this.Controls)
+            {
+                ctrl.Enabled = false;
+            }
+        }
+
         private void PrepareFormForUpdate()
         {
             PrepareForm();
@@ -271,7 +300,7 @@ namespace AracIhale.UI
                 Km = Convert.ToInt32(nmKMBilgisi.Value),
                 Yil = int.Parse(cmbAracYil.SelectedItem.ToString()),
                 ModifiedDate = DateTime.Now,
-                ModifiedBy = "Admin"
+                ModifiedBy = modifiedBy
             });
         }
 
@@ -280,7 +309,7 @@ namespace AracIhale.UI
             // Arac tablosuna insert yapmak için VM oluşturup repository içine gönderip ekleme işlemini orada yapıyoruz. Eklenen aracın ID'sini return ediyoruz.
             int aracID = unitOfWork.AracRepository.AracEkle(new AracVM()
             {
-                KullaniciID = 1,
+                KullaniciID = kullaniciID,
                 MarkaID = (cmbAracMarka.SelectedItem as MarkaVM).MarkaID,
                 ModelID = (cmbAracModel.SelectedItem as ArabaModelVM).ModelID,
                 Km = Convert.ToInt32(nmKMBilgisi.Value),
