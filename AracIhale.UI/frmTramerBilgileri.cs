@@ -1,4 +1,5 @@
 ﻿using AracIhale.CORE;
+using AracIhale.CORE.Login;
 using AracIhale.DAL.UnitOfWork;
 using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
@@ -18,13 +19,15 @@ namespace AracIhale.UI
 {
     public partial class frmTramerBilgileri : Form
     {
-        int _aracID = 1035; // injection metodu ile fatihten alınacak
+        int _aracID;
+        string _createdBy;
+        string _modifiedBy;
 
         public frmTramerBilgileri()
         {
             InitializeComponent();
         }
-        public frmTramerBilgileri(int aracID):this()
+        public frmTramerBilgileri(int aracID) : this()
         {
             _aracID = aracID;
         }
@@ -38,6 +41,71 @@ namespace AracIhale.UI
             _aracParcaListesi = _unitOfWork.AracParcaRepository.AracParcaListesiGetir();
             _tramerDurumListesi = _unitOfWork.TramerDetayRepository.TramerDurumListesiGetir();
             PrepareForm();
+            PrepareFormByLoggedUser();
+        }
+
+        private void PrepareFormByLoggedUser()
+        {
+            if (Login.GirisYapmisCalisan != null && Login.GirisYapmisKullanici != null)
+            {
+                LockForm();
+            }
+
+            else if (Login.GirisYapmisCalisan != null)
+            {
+                RolYetkiKontrol();
+                _modifiedBy = _createdBy = Login.GirisYapmisCalisan.Ad;
+            }
+
+            else if (Login.GirisYapmisKullanici != null)
+            {
+                RolYetkiKontrol();
+                _modifiedBy = _createdBy = Login.GirisYapmisCalisan.Ad;
+            }
+
+            else
+            {
+                LockForm();
+            }
+        }
+
+        private void RolYetkiKontrol()
+        {
+            var rolYetki = Login.SayfaYetkiYonetimiListesi.FirstOrDefault(x => x.Sayfa.SayfaAdi == this.Name);
+
+            if (rolYetki.YetkiListesi.Count > 0)
+            {
+                if (rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Read"))
+                {
+                    bool create = rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Create");
+                    bool update = rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Update");
+
+                    if (!create)
+                    {
+                        btnKaydet.Visible = false;
+                    }
+                    if (!update)
+                    {
+                        btnGuncelle.Visible = false;
+                    }
+                    if (!create && !update)
+                    {
+                        LockForm();
+                    }
+                }
+                else
+                {
+                    LockForm();
+                }
+            }
+        }
+
+        private void LockForm()
+        {
+            foreach (Control ctrl in this.Controls)
+            {
+                ctrl.Enabled = false;
+            }
         }
 
         private void PrepareForm()
@@ -53,13 +121,14 @@ namespace AracIhale.UI
             else
             {
                 aracTramerDetayVMList = _unitOfWork.AracTramerDetayRepository.AracTramerVMListesiniGetir(aracTramerVM.AracTramerID);
-                btnKaydet.Enabled = false;
-                MessageBox.Show("Bilgiler daha önce kaydedilmiştir. Güncellemek için verileri düzenleyin ve 'Güncelle' butonuna tıklayınız.");
+                MessageBox.Show("Bilgiler daha önce kaydedilmiştir Güncel Tramer bilgileri görüntülenmektedir." +
+                                " Güncellemek için verileri düzenleyin ve 'Güncelle' butonuna tıklayınız.'Kaydet'" +
+                                " butonuna tıklayarak araç için yeni bir tramer kaydı oluşturabilirsiniz");
             }
 
             foreach (var item in _tramerDurumListesi)
             {
-                flpTramerDurum.Controls.Add(new Label 
+                flpTramerDurum.Controls.Add(new Label
                 {
                     Text = item.TramerDurum
                 });
@@ -131,6 +200,7 @@ namespace AracIhale.UI
                     {
                         aracTramerVM.AracID = _aracID;
                         aracTramerVM.Fiyat = decimal.Parse(txtMoney.Text);
+                        aracTramerVM.CreatedBy = aracTramerVM.ModifiedBy = _createdBy;
                     }
                     else
                     {
@@ -142,7 +212,6 @@ namespace AracIhale.UI
                     AracTramerDetaylariEkle(_aracParcaListesi, _tramerDurumListesi, aracTramerID);
 
                     scope.Complete();
-                    btnKaydet.Enabled = false;
                     btnGuncelle.Enabled = true;
                     MessageBox.Show("Tramer Bilgileri başarıyla eklendi.");
                 }
@@ -164,6 +233,7 @@ namespace AracIhale.UI
                     if (new Validation().IsValidateMoney(txtMoney, epMoney))
                     {
                         aracTramerVM.Fiyat = decimal.Parse(txtMoney.Text);
+                        aracTramerVM.ModifiedBy = _modifiedBy;
                     }
                     else
                     {
@@ -209,7 +279,9 @@ namespace AracIhale.UI
                                         {
                                             AracTramerID = aracTramerID,
                                             AracParcaID = aracParca.AracParcaID,
-                                            TramerDetayID = tramerDurum.TramerDetayID
+                                            TramerDetayID = tramerDurum.TramerDetayID,
+                                            CreatedBy = _createdBy,
+                                            ModifiedBy = _modifiedBy
                                         };
 
                                         _unitOfWork.AracTramerDetayRepository.AracTramerDetayEkle(aracTramerDetayVM);
@@ -245,6 +317,8 @@ namespace AracIhale.UI
                                             .AracTramerDetayVMGetir(aracTramerID, aracParca.AracParcaID);
 
                                         aracTramerDetayVM.TramerDetayID = tramerDurum.TramerDetayID;
+                                        aracTramerDetayVM.ModifiedBy = _modifiedBy;
+                                        aracTramerDetayVM.ModifiedDate = DateTime.Now;
 
                                         _unitOfWork.AracTramerDetayRepository.AracTramerDetayGuncelle(aracTramerDetayVM);
                                         _unitOfWork.Complete();
@@ -258,5 +332,5 @@ namespace AracIhale.UI
             }
         }
     }
-    
+
 }

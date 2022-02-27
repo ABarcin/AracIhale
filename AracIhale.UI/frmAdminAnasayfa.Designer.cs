@@ -33,6 +33,7 @@ namespace AracIhale.UI
             this.btnAraclslemleri = new System.Windows.Forms.Button();
             this.btnIhaleIslemleri = new System.Windows.Forms.Button();
             this.btnUyeListeleme = new System.Windows.Forms.Button();
+            this.btnYetkiTanimlama = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnKullaniciIslemleri
@@ -75,11 +76,22 @@ namespace AracIhale.UI
             this.btnUyeListeleme.UseVisualStyleBackColor = true;
             this.btnUyeListeleme.Click += new System.EventHandler(this.btnUyeListeleme_Click);
             // 
+            // btnYetkiTanimlama
+            // 
+            this.btnYetkiTanimlama.Location = new System.Drawing.Point(272, 231);
+            this.btnYetkiTanimlama.Name = "btnYetkiTanimlama";
+            this.btnYetkiTanimlama.Size = new System.Drawing.Size(190, 23);
+            this.btnYetkiTanimlama.TabIndex = 2;
+            this.btnYetkiTanimlama.Text = "Yetki Tanımlama";
+            this.btnYetkiTanimlama.UseVisualStyleBackColor = true;
+            this.btnYetkiTanimlama.Click += new System.EventHandler(this.btnYetkiTanimlama_Click);
+            // 
             // frmAdminAnasayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnYetkiTanimlama);
             this.Controls.Add(this.btnUyeListeleme);
             this.Controls.Add(this.btnIhaleIslemleri);
             this.Controls.Add(this.btnAraclslemleri);
@@ -97,5 +109,6 @@ namespace AracIhale.UI
         private System.Windows.Forms.Button btnAraclslemleri;
         private System.Windows.Forms.Button btnIhaleIslemleri;
         private System.Windows.Forms.Button btnUyeListeleme;
+        private System.Windows.Forms.Button btnYetkiTanimlama;
     }
 }

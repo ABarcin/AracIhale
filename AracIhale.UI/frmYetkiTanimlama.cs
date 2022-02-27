@@ -1,4 +1,5 @@
-﻿using AracIhale.DAL.UnitOfWork;
+﻿using AracIhale.CORE.Login;
+using AracIhale.DAL.UnitOfWork;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.VM;
 using System;
@@ -28,7 +29,8 @@ namespace AracIhale.UI
 
         private void frmYetkiTanimlama_Load(object sender, EventArgs e)
         {
-            PrepareForm();
+            PrepareForm(); 
+            PrepareFormByLoggedUser();
         }
 
         private void PrepareForm()
@@ -63,6 +65,53 @@ namespace AracIhale.UI
                 };
 
                 flpYetkiler.Controls.Add(cbYetki);
+            }
+        }
+
+        private void PrepareFormByLoggedUser()
+        {
+            if (Login.GirisYapmisCalisan == null)
+            {
+                LockForm();
+            }
+            else
+            {
+                RolYetkiKontrol();
+            }
+        }
+
+        private void RolYetkiKontrol()
+        {
+            var rolYetki = Login.SayfaYetkiYonetimiListesi.FirstOrDefault(x => x.Sayfa.SayfaAdi == this.Name);
+
+            if (rolYetki.YetkiListesi.Count > 0)
+            {
+                if (rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Read"))
+                {
+
+                    bool update = rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Update");
+
+                    if (!update)
+                    {
+                        btnGuncelle.Visible = false;
+                    }
+                    else
+                    {
+                        LockForm();
+                    }
+                }
+                else
+                {
+                    LockForm();
+                }
+            }
+        }
+
+        private void LockForm()
+        {
+            foreach (Control ctrl in this.Controls)
+            {
+                ctrl.Enabled = false;
             }
         }
 

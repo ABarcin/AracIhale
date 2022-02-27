@@ -12,7 +12,7 @@ namespace AracIhale.MODEL.Model.Context
     public partial class AracIhaleEntities : DbContext
     {
         public AracIhaleEntities()
-            : base("data source=.;initial catalog=Slytherin_AracIhale;uid=sa;pwd=123;MultipleActiveResultSets=True;App=EntityFramework")
+            : base("data source=.;initial catalog=Slytherin_AracIhale;uid=buraktoglu;pwd=963633;MultipleActiveResultSets=True;App=EntityFramework")
         {
             this.Configuration.LazyLoadingEnabled = false;
 
@@ -67,8 +67,8 @@ namespace AracIhale.MODEL.Model.Context
         public virtual DbSet<Yetki> Yetki { get; set; }
         public virtual DbSet<Ekspertiz> Ekspertiz { get; set; }
         public virtual DbSet<Sayfa> Sayfa { get; set; }
-        public virtual  DbSet<Log> Log { get; set; }
-        public virtual  DbSet<LogError> LogError { get; set; }
+        public virtual DbSet<Log> Log { get; set; }
+        public virtual DbSet<LogError> LogError { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

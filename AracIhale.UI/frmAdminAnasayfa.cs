@@ -61,5 +61,15 @@ namespace AracIhale.UI
         {
 
         }
+
+        private void btnYetkiTanimlama_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            using (frmYetkiTanimlama yetkiTanimlama = new frmYetkiTanimlama())
+            {
+                yetkiTanimlama.ShowDialog();
+            }
+            this.Show();
+        }
     }
 }
