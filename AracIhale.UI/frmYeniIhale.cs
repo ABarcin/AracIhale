@@ -388,7 +388,12 @@ namespace AracIhale.UI
         /// </summary>
         private void btnTeklifVer_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            using (frmBireyselTeklif bireyselTeklif = new frmBireyselTeklif(arac))
+            {
+                bireyselTeklif.ShowDialog();
+            }
+            this.Show();
         }
     }
 }

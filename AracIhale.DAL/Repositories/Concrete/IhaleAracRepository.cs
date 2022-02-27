@@ -20,18 +20,18 @@ namespace AracIhale.DAL.Repositories.Concrete
         }
         public IhaleAracListVM IhaleAracFindByID(int id)
         {         
-            var aracList = ThisContext.Arac.Include("ArabaModel").Include("OzellikBilgi").Include("Marka").Include("Statu").Include("AracStatu")
+            var aracList = ThisContext.Arac.Include("ArabaModel").Include("OzellikBilgi").Include("Marka").Include("Statu").Include("AracStatu").Include("IhaleArac")
                 .Where(x => x.IsActive == true && x.AracID == id)
                 .Select(x => new IhaleAracListVM
                 {
                     AracID = x.AracID,
+                    IhaleAracID = x.IhaleArac.Where(y=>y.IsActive == true && y.AracID==x.AracID).Select(z=>z.IhaleAracID).DefaultIfEmpty(-1).FirstOrDefault(),
                     MarkaAd = x.Marka.Ad,
                     ModelAd = x.ArabaModel.Ad,
                     StatuID = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().StatuID,
                     StatuAd = x.AracStatu.Where(y => y.IsActive == true).FirstOrDefault().Statu.StatuAd,       
                     Yil = x.Yil,
                     Km = x.Km,
-                    IhaleAracID = x.AracID,
 
                     GovdeAd = x.AracOzellik.Where(y => y.IsActive == true)
                                          .Where(y => y.OzellikBilgi.OzellikBilgiID == y.OzellikBilgiID)

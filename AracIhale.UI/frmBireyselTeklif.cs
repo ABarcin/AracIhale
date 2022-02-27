@@ -27,6 +27,16 @@ namespace AracIhale.UI
 
         UnitOfWork unitOfWork = new UnitOfWork();
         Validation validation = new Validation();
+        int aracID, kullaniciID;
+        string adSoyad="Burçin Eren";
+
+        public frmBireyselTeklif(AracCDListVM arac)
+        {
+                aracID = arac.AracID;
+                //aracID = 1035;
+                kullaniciID = arac.KullaniciID;
+                adSoyad = arac.Kullanici.Ad + " " + arac.Kullanici.Soyad;            
+        }
 
         private void frmBireyselTeklif_Load(object sender, EventArgs e)
         {
@@ -41,12 +51,11 @@ namespace AracIhale.UI
 
         private void AracTeklifAdd()
         {
-            if (validation.IsValidateNull(gbGenelBilgiler, errorProvider1))
+            if (!txtTeklifFiyat.Text.Equals(""))
             {
                 AracTeklifVM aracTeklifVM = new AracTeklifVM();
-                //kullanıcıid gelecek ve ihalearacıd gelecek
-                aracTeklifVM.IhaleAracID = 1035;
-                aracTeklifVM.KullaniciID = 1;
+                aracTeklifVM.IhaleAracID = unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).IhaleAracID;
+                aracTeklifVM.KullaniciID = kullaniciID;
                 aracTeklifVM.TeklifFiyat = decimal.Parse(txtTeklifFiyat.Text);
                 aracTeklifVM.Tarih = DateTime.Now;
 
@@ -57,26 +66,25 @@ namespace AracIhale.UI
             }
             else
             {
-                MessageBox.Show("Teklif verilmedi");
+                MessageBox.Show("Teklif verilemedi");
             }
         }
 
         private void PrepareForm()
         {
-            int id = 1035;
-
-            cmbMarka.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).MarkaAd);
-            cmbMarka.Text = unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).MarkaAd;
-            cmbGovde.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).GovdeAd);
-            cmbYakit.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).YakıtAd);
-            cmbModel.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).ModelAd);
-            cmbRenk.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).RenkAd);
-            cmbVersiyon.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).Versiyon);
-            cmbVites.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).VitesAd);
-            cmbYıl.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).Yil);
-            cmbDonanim.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).DonanımAd);
-            cmbStatu.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).StatuAd);
-            nmKM.Value = unitOfWork.IhaleAracRepository.IhaleAracFindByID(id).Km;
+            txtAdSoyad.Text = adSoyad;
+            cmbMarka.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).MarkaAd);
+            cmbMarka.Text = unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).MarkaAd;
+            cmbGovde.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).GovdeAd);
+            cmbYakit.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).YakıtAd);
+            cmbModel.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).ModelAd);
+            cmbRenk.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).RenkAd);
+            cmbVersiyon.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).Versiyon);
+            cmbVites.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).VitesAd);
+            cmbYıl.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).Yil);
+            cmbDonanim.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).DonanımAd);
+            cmbStatu.Items.Add(unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).StatuAd);
+            nmKM.Value = unitOfWork.IhaleAracRepository.IhaleAracFindByID(aracID).Km;
             cmbStatu.SelectedIndex = 0;
 
             foreach (Control item in gbAracDetay.Controls)

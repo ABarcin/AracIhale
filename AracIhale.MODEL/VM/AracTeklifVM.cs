@@ -12,6 +12,7 @@ namespace AracIhale.MODEL.VM
     {
         public int AracTeklifID { get; set; }
 
+        [Required]
         public int IhaleAracID { get; set; }
 
         [Required]

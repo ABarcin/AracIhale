@@ -11,6 +11,8 @@ namespace AracIhale.MODEL.VM
     public class IhaleAracListVM : BaseVM
     {
         public int AracID { get; set; }
+
+        [Required]
         public int IhaleAracID { get; set; }
         public string MarkaAd { get; set; }
         public string ModelAd { get; set; }

@@ -99,6 +99,7 @@ namespace AracIhale.UI
             // 
             // txtAdSoyad
             // 
+            this.txtAdSoyad.Enabled = false;
             this.txtAdSoyad.Location = new System.Drawing.Point(159, 36);
             this.txtAdSoyad.Margin = new System.Windows.Forms.Padding(4);
             this.txtAdSoyad.Name = "txtAdSoyad";
