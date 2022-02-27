@@ -67,7 +67,8 @@ namespace AracIhale.MODEL.Model.Context
         public virtual DbSet<Yetki> Yetki { get; set; }
         public virtual DbSet<Ekspertiz> Ekspertiz { get; set; }
         public virtual DbSet<Sayfa> Sayfa { get; set; }
-        public virtual DbSet<Log> Log { get; set; }
+        public virtual  DbSet<Log> Log { get; set; }
+        public virtual  DbSet<LogError> LogError { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

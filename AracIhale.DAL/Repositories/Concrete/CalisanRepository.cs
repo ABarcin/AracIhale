@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AracIhale.CORE.Login;
 using AracIhale.DAL.Repositories.Abstract;
 using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
@@ -67,7 +68,8 @@ namespace AracIhale.DAL.Repositories.Concrete
             guncellenecekCalisan.Sifre = calisan.Sifre;
             guncellenecekCalisan.KullaniciAd = calisan.KullaniciAd;
             guncellenecekCalisan.RolID = calisan.RolID;
-            guncellenecekCalisan.ModifiedBy = calisan.KullaniciAd;
+            guncellenecekCalisan.ModifiedBy = Login.GirisYapmisCalisan.KullaniciAd;
+            guncellenecekCalisan.ModifiedDate = DateTime.Now;
             this.Update(guncellenecekCalisan);
         }
         public void Ekle(CalisanVM calisan)

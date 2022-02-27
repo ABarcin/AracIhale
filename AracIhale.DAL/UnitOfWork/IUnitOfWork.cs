@@ -53,6 +53,8 @@ namespace AracIhale.DAL.UnitOfWork
         ISehirIlceRepository SehirIlceRepository { get; }
         IArabaModelRepository ArabaModelRepository { get; }
         ISayfaRepository SayfaRepository { get; }
+        ILogRepository LogRepository { get; }
+        ILogErrorRepository LogErrorRepository { get; }
 
 
 
