@@ -21,14 +21,12 @@ namespace AracIhale.DAL.Repositories.Concrete
 
         public void BireyselKullaniciEkle(KullaniciVM kullaniciVM)
         {
-            KullaniciRepository kullaniciRepository = new KullaniciRepository(ThisContext);
-
             Kullanici kullanici = new KullaniciMapping().KullaniciVMToKullanici(kullaniciVM);
 
             kullanici.CreatedDate = DateTime.Now;
             kullanici.IsActive = true;
 
-            kullaniciRepository.Add(kullanici);
+            this.Add(kullanici);
         }
 
         public List<KullaniciTipVM> GetKullaniciTip()
