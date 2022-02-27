@@ -29,7 +29,7 @@ namespace AracIhale.UI
         private void IhaleListeleme_Load(object sender, EventArgs e)
         {
             // Silinmesi gerekiyor. Test icin.
-            LoginKullanici.GirisYapmisCalisan = new CalisanVM()
+            Login.GirisYapmisCalisan = new CalisanVM()
             {
                 CalisanID = 1
             };
@@ -65,17 +65,17 @@ namespace AracIhale.UI
         /// </summary>
         private void PrepareForm()
         {
-            if (LoginKullanici.GirisYapmisCalisan != null && LoginKullanici.GirisYapmisKullanici != null)
+            if (Login.GirisYapmisCalisan != null && Login.GirisYapmisKullanici != null)
             {
                 LockForm();
             }
 
-            else if (LoginKullanici.GirisYapmisCalisan != null)
+            else if (Login.GirisYapmisCalisan != null)
             {
                 PrepareFormForEmployee();
             }
 
-            else if (LoginKullanici.GirisYapmisKullanici != null)
+            else if (Login.GirisYapmisKullanici != null)
             {
                 PrepareFormForUser();
             }
@@ -264,7 +264,7 @@ namespace AracIhale.UI
 
         private void OnVisible_VisibleChanged(object sender, EventArgs e)
         {
-            if(LoginKullanici.GirisYapmisCalisan != null || LoginKullanici.GirisYapmisKullanici != null)
+            if(Login.GirisYapmisCalisan != null || Login.GirisYapmisKullanici != null)
             {
                 PrepareForm();
 
