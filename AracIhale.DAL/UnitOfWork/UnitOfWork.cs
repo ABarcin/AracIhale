@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AracIhale.DAL.Repositories.Abstract;
+﻿using AracIhale.DAL.Repositories.Abstract;
 using AracIhale.DAL.Repositories.Concrete;
 using AracIhale.MODEL.Model.Context;
 
@@ -32,7 +27,6 @@ namespace AracIhale.DAL.UnitOfWork
             FavoriOzellikRepository = new FavoriOzellikRepository(_unitOfWorkContext);
             FirmaIletisimRepository = new FirmaIletisimRepository(_unitOfWorkContext);
             FirmaRepository = new FirmaRepository(_unitOfWorkContext);
-            FirmaTipRepository = new FirmaTipRepository(_unitOfWorkContext);
             FirmaTipRepository = new FirmaTipRepository(_unitOfWorkContext);
             IhaleAracRepository = new IhaleAracRepository(_unitOfWorkContext);
             IhaleRepository = new IhaleRepository(_unitOfWorkContext);

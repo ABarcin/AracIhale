@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AracIhale.CORE.Encryption;
 using AracIhale.CORE.Login;
+using AracIhale.CORE.Mapping;
+using AracIhale.CORE.VM;
 using AracIhale.DAL.Repositories.Abstract;
-using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
-using AracIhale.MODEL.VM;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AracIhale.DAL.Repositories.Concrete
 {
@@ -24,7 +23,7 @@ namespace AracIhale.DAL.Repositories.Concrete
         public bool OturumAc(string kullaniciAdi, string sifre)
         {
             bool dogruMu = false;
-            Calisan calisan = this.GetAll().Where(x=>x.KullaniciAd.TrimEnd()==kullaniciAdi&&x.Sifre==sifre).SingleOrDefault();
+            Calisan calisan = this.GetAll().Where(x=>x.KullaniciAd.TrimEnd()==kullaniciAdi&& SlytherinCryption.Decrypt(x.Sifre)==sifre).SingleOrDefault();
 
             if (calisan != null) 
             { 
@@ -65,7 +64,7 @@ namespace AracIhale.DAL.Repositories.Concrete
             guncellenecekCalisan.AktiflikDurumu = calisan.AktiflikDurumu;
             guncellenecekCalisan.Ad = calisan.Ad;
             guncellenecekCalisan.Soyad = calisan.Soyad;
-            guncellenecekCalisan.Sifre = calisan.Sifre;
+            guncellenecekCalisan.Sifre = SlytherinCryption.Encrypt(calisan.Sifre);
             guncellenecekCalisan.KullaniciAd = calisan.KullaniciAd;
             guncellenecekCalisan.RolID = calisan.RolID;
             guncellenecekCalisan.ModifiedBy = Login.GirisYapmisCalisan.KullaniciAd;
@@ -78,7 +77,7 @@ namespace AracIhale.DAL.Repositories.Concrete
             eklenecekCalisan.AktiflikDurumu = calisan.AktiflikDurumu;
             eklenecekCalisan.Ad = calisan.Ad;
             eklenecekCalisan.Soyad = calisan.Soyad;
-            eklenecekCalisan.Sifre = calisan.Sifre;
+            eklenecekCalisan.Sifre = SlytherinCryption.Encrypt(calisan.Sifre);
             eklenecekCalisan.KullaniciAd = calisan.KullaniciAd;
             eklenecekCalisan.RolID = calisan.RolID;
             eklenecekCalisan.CreatedBy = calisan.KullaniciAd;

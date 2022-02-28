@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AracIhale.DAL.Repositories.Abstract;
+﻿using AracIhale.DAL.Repositories.Abstract;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
 

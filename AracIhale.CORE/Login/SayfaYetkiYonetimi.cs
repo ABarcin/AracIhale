@@ -1,4 +1,4 @@
-﻿using AracIhale.MODEL.VM;
+﻿using AracIhale.CORE.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;

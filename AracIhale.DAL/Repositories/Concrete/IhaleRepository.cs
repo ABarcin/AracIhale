@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-using AracIhale.CORE.Login;
+﻿using AracIhale.CORE.Login;
+using AracIhale.CORE.Mapping;
+using AracIhale.CORE.VM;
 using AracIhale.DAL.Repositories.Abstract;
-using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
-using AracIhale.MODEL.VM;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Transactions;
 
 namespace AracIhale.DAL.Repositories.Concrete
 {

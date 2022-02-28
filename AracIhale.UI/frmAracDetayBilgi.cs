@@ -1,18 +1,9 @@
 ﻿using AracIhale.CORE;
 using AracIhale.CORE.Login;
+using AracIhale.CORE.VM;
 using AracIhale.DAL.UnitOfWork;
-using AracIhale.MODEL.Mapping;
-using AracIhale.MODEL.Model.Context;
-using AracIhale.MODEL.VM;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 
@@ -510,7 +501,7 @@ namespace AracIhale.UI
         private void btnAliciBilgileri_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (AliciBilgileri aliciBilgileri = new AliciBilgileri())
+            using (frmAliciBilgileri aliciBilgileri = new frmAliciBilgileri())
             {
                 aliciBilgileri.ShowDialog();
             }

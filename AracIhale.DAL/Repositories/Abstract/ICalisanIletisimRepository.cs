@@ -1,5 +1,5 @@
 ﻿using AracIhale.MODEL.Model.Entities;
-using AracIhale.MODEL.VM;
+using AracIhale.CORE.VM;
 using System.Collections.Generic;
 
 namespace AracIhale.DAL.Repositories.Abstract

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AracIhale.CORE.Encryption;
+using AracIhale.CORE.Mapping;
+using AracIhale.CORE.VM;
 using AracIhale.DAL.Repositories.Abstract;
-using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
-using AracIhale.MODEL.VM;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AracIhale.DAL.Repositories.Concrete
 {
@@ -57,12 +56,17 @@ namespace AracIhale.DAL.Repositories.Concrete
         public bool OturumAc(string kullaniciAdi, string sifre)
         {
             bool dogruMu = false;
-            Kullanici calisan = GetAll().Where(x => x.KullaniciAd.TrimEnd() == kullaniciAdi && x.Sifre == sifre).SingleOrDefault();
+            Kullanici calisan = GetAll().Where(x => x.KullaniciAd.TrimEnd() == kullaniciAdi && SlytherinCryption.Decrypt( x.Sifre) == sifre).SingleOrDefault();
             if (calisan != null)
             {
                 dogruMu = true;
             }
             return dogruMu;
+        }
+
+        public List<KullaniciVM> TumKullanicilariGetir()
+        {
+            return new KullaniciMapping().ListKullaniciToListKullaniciVM(GetAll());
         }
     }
 }

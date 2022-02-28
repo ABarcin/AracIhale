@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AracIhale.CORE.VM;
 using AracIhale.MODEL.Model.Entities;
-using AracIhale.MODEL.VM;
+using System.Collections.Generic;
 
 namespace AracIhale.DAL.Repositories.Abstract
 {
     public interface IKurumsalKullaniciRepository : IRepository<KurumsalKullanici>
     {
         void KurumsalKullaniciEkle(KurumsalKullaniciVM kurumsalKullaniciVM);
+        List<KurumsalKullaniciVM> KurumsalKullanicilariGetir();
+        void KurumsalKullaniciGuncelle(KurumsalKullaniciVM kurumsalKullanici);
+        KurumsalKullaniciVM KurumsalKullaniciGetir(object id);
     }
 }

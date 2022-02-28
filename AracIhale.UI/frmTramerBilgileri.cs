@@ -1,17 +1,11 @@
 ﻿using AracIhale.CORE;
 using AracIhale.CORE.Login;
+using AracIhale.CORE.VM;
 using AracIhale.DAL.UnitOfWork;
-using AracIhale.MODEL.Mapping;
-using AracIhale.MODEL.Model.Context;
-using AracIhale.MODEL.VM;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 

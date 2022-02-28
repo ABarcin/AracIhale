@@ -60,17 +60,17 @@
     <Compile Include="frmAdminAnasayfa.Designer.cs">
       <DependentUpon>frmAdminAnasayfa.cs</DependentUpon>
     </Compile>
-    <Compile Include="AliciBilgileri.cs">
+    <Compile Include="frmAliciBilgileri.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AliciBilgileri.Designer.cs">
-      <DependentUpon>AliciBilgileri.cs</DependentUpon>
+    <Compile Include="frmAliciBilgileri.Designer.cs">
+      <DependentUpon>frmAliciBilgileri.cs</DependentUpon>
     </Compile>
-    <Compile Include="Anasayfa.cs">
+    <Compile Include="frmAnasayfa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Anasayfa.Designer.cs">
-      <DependentUpon>Anasayfa.cs</DependentUpon>
+    <Compile Include="frmAnasayfa.Designer.cs">
+      <DependentUpon>frmAnasayfa.cs</DependentUpon>
     </Compile>
     <Compile Include="frmIletisim.cs">
       <SubType>Form</SubType>
@@ -102,17 +102,17 @@
     <Compile Include="frmYetkiTanimlama.Designer.cs">
       <DependentUpon>frmYetkiTanimlama.cs</DependentUpon>
     </Compile>
-    <Compile Include="UyeListeleme.cs">
+    <Compile Include="frmUyeListeleme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UyeListeleme.Designer.cs">
-      <DependentUpon>UyeListeleme.cs</DependentUpon>
+    <Compile Include="frmUyeListeleme.Designer.cs">
+      <DependentUpon>frmUyeListeleme.cs</DependentUpon>
     </Compile>
-    <Compile Include="UyeOnay.cs">
+    <Compile Include="frmUyeOnay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UyeOnay.Designer.cs">
-      <DependentUpon>UyeOnay.cs</DependentUpon>
+    <Compile Include="frmUyeOnay.Designer.cs">
+      <DependentUpon>frmUyeOnay.cs</DependentUpon>
     </Compile>
     <Compile Include="frmYonetimPaneli.cs">
       <SubType>Form</SubType>
@@ -180,12 +180,6 @@
     <Compile Include="frmCalisanListeleme.Designer.cs">
       <DependentUpon>frmCalisanListeleme.cs</DependentUpon>
     </Compile>
-    <Compile Include="KurumsalUyeKayit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KurumsalUyeKayit.Designer.cs">
-      <DependentUpon>KurumsalUyeKayit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmYeniIhale.cs">
@@ -197,11 +191,11 @@
     <EmbeddedResource Include="frmAdminAnasayfa.resx">
       <DependentUpon>frmAdminAnasayfa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AliciBilgileri.resx">
-      <DependentUpon>AliciBilgileri.cs</DependentUpon>
+    <EmbeddedResource Include="frmAliciBilgileri.resx">
+      <DependentUpon>frmAliciBilgileri.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Anasayfa.resx">
-      <DependentUpon>Anasayfa.cs</DependentUpon>
+    <EmbeddedResource Include="frmAnasayfa.resx">
+      <DependentUpon>frmAnasayfa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmIletisim.resx">
       <DependentUpon>frmIletisim.cs</DependentUpon>
@@ -218,11 +212,11 @@
     <EmbeddedResource Include="frmYetkiTanimlama.resx">
       <DependentUpon>frmYetkiTanimlama.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UyeListeleme.resx">
-      <DependentUpon>UyeListeleme.cs</DependentUpon>
+    <EmbeddedResource Include="frmUyeListeleme.resx">
+      <DependentUpon>frmUyeListeleme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UyeOnay.resx">
-      <DependentUpon>UyeOnay.cs</DependentUpon>
+    <EmbeddedResource Include="frmUyeOnay.resx">
+      <DependentUpon>frmUyeOnay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmYonetimPaneli.resx">
       <DependentUpon>frmYonetimPaneli.cs</DependentUpon>
@@ -256,9 +250,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCalisanListeleme.resx">
       <DependentUpon>frmCalisanListeleme.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="KurumsalUyeKayit.resx">
-      <DependentUpon>KurumsalUyeKayit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

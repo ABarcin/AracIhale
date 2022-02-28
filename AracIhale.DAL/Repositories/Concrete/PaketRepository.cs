@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AracIhale.CORE.Mapping;
+using AracIhale.CORE.VM;
 using AracIhale.DAL.Repositories.Abstract;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
+using System.Collections.Generic;
 
 namespace AracIhale.DAL.Repositories.Concrete
 {
@@ -15,6 +13,11 @@ namespace AracIhale.DAL.Repositories.Concrete
         public PaketRepository(AracIhaleEntities context) : base(context)
         {
 
+        }
+
+        public List<PaketVM> TumPaketler()
+        {
+            return new PaketMapping().ListPaketToPaketVM(GetAll());
         }
     }
 }

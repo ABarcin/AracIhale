@@ -1,17 +1,10 @@
 ﻿using AracIhale.CORE;
+using AracIhale.CORE.Encryption;
+using AracIhale.CORE.VM;
 using AracIhale.DAL.UnitOfWork;
-using AracIhale.MODEL.Model.Context;
-using AracIhale.MODEL.VM;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AracIhale.UI
@@ -33,7 +26,7 @@ namespace AracIhale.UI
         /// <param name="e"></param>
         private void btnGonder_Click(object sender, EventArgs e)
         {
-            if (frmName == "Anasayfa")
+            if (frmName == "frmAnasayfa")
             {
                 if (validation.IsValidateName(txtKullaniciAd, 2, 150, errorProvider1) && validation.IsValidateEmail(txtMail, errorProvider1))
                 {
@@ -51,7 +44,7 @@ namespace AracIhale.UI
                         msg.To.Add(txtMail.Text);
                         msg.From = new MailAddress("ahmet_barcin@hotmail.com");
                         msg.Subject = "Slytherin Arac Ihale";
-                        msg.Body = $"Sevgili :{kullanici.Ad} Unuttuğunuz Şifreniz : {kullanici.Sifre} Mutlu Alışverişler Dileriz :)";
+                        msg.Body = $"Sevgili :{kullanici.Ad} Unuttuğunuz Şifreniz : {SlytherinCryption.Decrypt(kullanici.Sifre)} Mutlu Alışverişler Dileriz :)";
                         client.Send(msg);
                         MessageBox.Show("Mail Adresinize Şifreniz Gönderilmiştir Lütfen Kontrol Ediniz. Eğer Gelmedi İse Lütfen Gereksiz yada Spam Kutusunu Kontrol Ediniz.");
                     }
@@ -79,7 +72,7 @@ namespace AracIhale.UI
                         msg.To.Add(txtMail.Text);
                         msg.From = new MailAddress("ahmet_barcin@hotmail.com");
                         msg.Subject = "Slytherin Arac Ihale";
-                        msg.Body = $"Sevgili :{calisan.Ad} Unuttuğunuz Şifreniz : {calisan.Sifre} Mutlu Alışverişler Dileriz :)";
+                        msg.Body = $"Sevgili :{calisan.Ad} Unuttuğunuz Şifreniz : {SlytherinCryption.Decrypt(calisan.Sifre)} İyi Çalışmalar Dileriz :)";
                         client.Send(msg);
                         MessageBox.Show("Mail Adresinize Şifreniz Gönderilmiştir Lütfen Kontrol Ediniz. Eğer Gelmedi İse Lütfen Gereksiz yada Spam Kutusunu Kontrol Ediniz.");
                     }

@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-using System.Windows.Forms;
-using AracIhale.CORE;
+﻿using AracIhale.CORE;
+using AracIhale.CORE.Encryption;
+using AracIhale.CORE.VM;
 using AracIhale.DAL.Repositories.Concrete;
 using AracIhale.DAL.UnitOfWork;
 using AracIhale.MODEL.Model.Context;
-using AracIhale.MODEL.VM;
+using System;
+using System.Transactions;
+using System.Windows.Forms;
 
 namespace AracIhale.UI
 {
@@ -59,7 +53,7 @@ namespace AracIhale.UI
                             kullaniciVM.Ad = txtAd.Text;
                             kullaniciVM.Soyad = txtSoyad.Text;
                             kullaniciVM.KullaniciAd = txtKullaniciAdi.Text;
-                            kullaniciVM.Sifre = txtSifre.Text;
+                            kullaniciVM.Sifre = SlytherinCryption.Encrypt(txtSifre.Text);
                             kullaniciVM.RolID = unitOfWork.RolRepository.RolIDGetir(cmbKullaniciTip.SelectedItem.ToString());
                             kullaniciVM.KullaniciTipID = 1;
                             kullaniciVM.KVKK = cbKvkk.Checked;
@@ -117,12 +111,9 @@ namespace AracIhale.UI
             FirmaAdDoldur();
             FirmaTipDoldur();
         }
-
-        FirmaTipRepository firmaTipRepo;
         private void FirmaTipDoldur()
         {
-            firmaTipRepo = new FirmaTipRepository(new AracIhaleEntities());
-            foreach (FirmaTipVM item in firmaTipRepo.GetFirmaTip())
+            foreach (FirmaTipVM item in new FirmaTipRepository(new AracIhaleEntities()).GetFirmaTip())
             {
                 cmbFirmaTip.Items.Add(item);
             }

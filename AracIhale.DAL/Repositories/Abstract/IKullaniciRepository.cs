@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AracIhale.CORE.VM;
 using AracIhale.MODEL.Model.Entities;
-using AracIhale.MODEL.VM;
+using System.Collections.Generic;
 
 namespace AracIhale.DAL.Repositories.Abstract
 {
@@ -15,5 +11,6 @@ namespace AracIhale.DAL.Repositories.Abstract
         KullaniciVM KullaniciGetir(object id);
         bool OturumAc(string kullaniciAdi, string sifre);
         KullaniciVM AracKullanicisiniGetir(int aracID);
+        List<KullaniciVM> TumKullanicilariGetir();
     }
 }

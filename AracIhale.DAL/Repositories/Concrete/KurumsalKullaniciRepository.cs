@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AracIhale.CORE.Mapping;
+using AracIhale.CORE.VM;
 using AracIhale.DAL.Repositories.Abstract;
-using AracIhale.MODEL.Mapping;
 using AracIhale.MODEL.Model.Context;
 using AracIhale.MODEL.Model.Entities;
-using AracIhale.MODEL.VM;
+using System;
+using System.Collections.Generic;
 
 namespace AracIhale.DAL.Repositories.Concrete
 {
@@ -29,6 +26,22 @@ namespace AracIhale.DAL.Repositories.Concrete
             kurumsalKullanici.IsActive = true;
 
             kurumsalKullaniciRepository.Add(kurumsalKullanici);
+        }
+
+        public List<KurumsalKullaniciVM> KurumsalKullanicilariGetir()
+        {
+            return new KurumsalKullaniciMapping().ListKurumsalKullaniciToListKurumsalKullaniciVM(GetAll());
+        }
+
+        public void KurumsalKullaniciGuncelle(KurumsalKullaniciVM kurumsalKullanici)
+        {
+            KurumsalKullanici kurumsal = new KurumsalKullaniciMapping().KurumsalKullaniciVMToKurumsalKullanici(kurumsalKullanici);
+            UpdateWithId(kurumsalKullanici.KurumsalKullaniciID, kurumsal);
+        }
+
+        public KurumsalKullaniciVM KurumsalKullaniciGetir(object id)
+        {
+            return new KurumsalKullaniciMapping().KurumsalKullaniciToKurumsalKullaniciVM(GetByID(id));
         }
     }
 }
