@@ -219,6 +219,9 @@ namespace AracIhale.UI
                         AracOzellikEkle(_aracID);
                         unitOfWork.Complete();
 
+                        unitOfWork.LogRepository.AddLog(this.Name, "Araç Eklendi");
+                        unitOfWork.Complete();
+
                         scope.Complete();
                         MessageBox.Show("Araç kaydedildi.");
                         btnKaydet.Enabled = false;
@@ -226,9 +229,11 @@ namespace AracIhale.UI
                         btnIlanBilgileri.Enabled = true;
                         btnHemenAlSatis.Enabled = true;
                         btnAracTarihce.Enabled = true;
+                        
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        unitOfWork.LogErrorRepository.AddLog(this.Name, "Araç Eklenemedi", ex.Message);
                         MessageBox.Show("Araç eklenemedi.");
                     }
                 }

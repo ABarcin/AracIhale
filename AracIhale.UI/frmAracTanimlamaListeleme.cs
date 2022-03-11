@@ -88,7 +88,7 @@ namespace AracIhale.UI
             {
                 if (rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Read"))
                 {
-                    KullaniciAraclariListele();
+                    AraclariListele();
                     if (!rolYetki.YetkiListesi.Any(x => x.YetkiAciklama == "Create"))
                     {
                         btnYeni.Visible = false;
